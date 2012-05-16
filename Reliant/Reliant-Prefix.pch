@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Reliant' target in the 'Reliant' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
+		274D7B971563BF2E0007C1C8 /* Reliant.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7B961563BF2E0007C1C8 /* Reliant.m */; };
+		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
+		274D7BA11563BF2E0007C1C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BA01563BF2E0007C1C8 /* UIKit.framework */; };
+		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
+		274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */; };
+		274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */; };
+		274D7BAE1563BF2E0007C1C8 /* ReliantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BAD1563BF2E0007C1C8 /* ReliantTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		274D7BA31563BF2E0007C1C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274D7B841563BF2E0007C1C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274D7B8C1563BF2E0007C1C8;
+			remoteInfo = Reliant;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
+		274D7B951563BF2E0007C1C8 /* Reliant.h */ = {isa = PBXFileReference; path = Reliant.h; sourceTree = "<group>"; };
+		274D7B961563BF2E0007C1C8 /* Reliant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reliant.m; sourceTree = "<group>"; };
+		274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		274D7BA01563BF2E0007C1C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */ = {isa = PBXFileReference; path = "ReliantTests-Info.plist"; sourceTree = "<group>"; };
+		274D7BAA1563BF2E0007C1C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		274D7BAC1563BF2E0007C1C8 /* ReliantTests.h */ = {isa = PBXFileReference; path = ReliantTests.h; sourceTree = "<group>"; };
+		274D7BAD1563BF2E0007C1C8 /* ReliantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReliantTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		274D7B8A1563BF2E0007C1C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274D7B991563BF2E0007C1C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */,
+				274D7BA11563BF2E0007C1C8 /* UIKit.framework in Frameworks */,
+				274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */,
+				274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		274D7B821563BF2E0007C1C8 = {
+			isa = PBXGroup;
+			children = (
+				274D7B921563BF2E0007C1C8 /* Reliant */,
+				274D7BA61563BF2E0007C1C8 /* ReliantTests */,
+				274D7B8F1563BF2E0007C1C8 /* Frameworks */,
+				274D7B8E1563BF2E0007C1C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		274D7B8E1563BF2E0007C1C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				274D7B8D1563BF2E0007C1C8 /* libReliant.a */,
+				274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		274D7B8F1563BF2E0007C1C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
+				274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */,
+				274D7BA01563BF2E0007C1C8 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		274D7B921563BF2E0007C1C8 /* Reliant */ = {
+			isa = PBXGroup;
+			children = (
+				274D7B951563BF2E0007C1C8 /* Reliant.h */,
+				274D7B961563BF2E0007C1C8 /* Reliant.m */,
+				274D7B931563BF2E0007C1C8 /* Supporting Files */,
+			);
+			path = Reliant;
+			sourceTree = "<group>";
+		};
+		274D7B931563BF2E0007C1C8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		274D7BA61563BF2E0007C1C8 /* ReliantTests */ = {
+			isa = PBXGroup;
+			children = (
+				274D7BAC1563BF2E0007C1C8 /* ReliantTests.h */,
+				274D7BAD1563BF2E0007C1C8 /* ReliantTests.m */,
+				274D7BA71563BF2E0007C1C8 /* Supporting Files */,
+			);
+			path = ReliantTests;
+			sourceTree = "<group>";
+		};
+		274D7BA71563BF2E0007C1C8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */,
+				274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		274D7B8B1563BF2E0007C1C8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		274D7B8C1563BF2E0007C1C8 /* Reliant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant" */;
+			buildPhases = (
+				274D7B891563BF2E0007C1C8 /* Sources */,
+				274D7B8A1563BF2E0007C1C8 /* Frameworks */,
+				274D7B8B1563BF2E0007C1C8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Reliant;
+			productName = Reliant;
+			productReference = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		274D7B9C1563BF2E0007C1C8 /* ReliantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274D7BB41563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "ReliantTests" */;
+			buildPhases = (
+				274D7B981563BF2E0007C1C8 /* Sources */,
+				274D7B991563BF2E0007C1C8 /* Frameworks */,
+				274D7B9A1563BF2E0007C1C8 /* Resources */,
+				274D7B9B1563BF2E0007C1C8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				274D7BA41563BF2E0007C1C8 /* PBXTargetDependency */,
+			);
+			name = ReliantTests;
+			productName = ReliantTests;
+			productReference = 274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		274D7B841563BF2E0007C1C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 274D7B871563BF2E0007C1C8 /* Build configuration list for PBXProject "Reliant" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 274D7B821563BF2E0007C1C8;
+			productRefGroup = 274D7B8E1563BF2E0007C1C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				274D7B8C1563BF2E0007C1C8 /* Reliant */,
+				274D7B9C1563BF2E0007C1C8 /* ReliantTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		274D7B9A1563BF2E0007C1C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		274D7B9B1563BF2E0007C1C8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		274D7B891563BF2E0007C1C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274D7B971563BF2E0007C1C8 /* Reliant.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274D7B981563BF2E0007C1C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274D7BAE1563BF2E0007C1C8 /* ReliantTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		274D7BA41563BF2E0007C1C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 274D7B8C1563BF2E0007C1C8 /* Reliant */;
+			targetProxy = 274D7BA31563BF2E0007C1C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				274D7BAA1563BF2E0007C1C8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		274D7BAF1563BF2E0007C1C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		274D7BB01563BF2E0007C1C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		274D7BB21563BF2E0007C1C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Reliant.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		274D7BB31563BF2E0007C1C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Reliant.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		274D7BB51563BF2E0007C1C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		274D7BB61563BF2E0007C1C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		274D7B871563BF2E0007C1C8 /* Build configuration list for PBXProject "Reliant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274D7BAF1563BF2E0007C1C8 /* Debug */,
+				274D7BB01563BF2E0007C1C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274D7BB21563BF2E0007C1C8 /* Debug */,
+				274D7BB31563BF2E0007C1C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		274D7BB41563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "ReliantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274D7BB51563BF2E0007C1C8 /* Debug */,
+				274D7BB61563BF2E0007C1C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 274D7B841563BF2E0007C1C8 /* Project object */;
+}
