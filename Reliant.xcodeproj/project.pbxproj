@@ -10,11 +10,27 @@
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7B971563BF2E0007C1C8 /* Reliant.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7B961563BF2E0007C1C8 /* Reliant.m */; };
 		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
-		274D7BA11563BF2E0007C1C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BA01563BF2E0007C1C8 /* UIKit.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */; };
 		274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */; };
-		274D7BAE1563BF2E0007C1C8 /* ReliantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BAD1563BF2E0007C1C8 /* ReliantTests.m */; };
+		274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */; };
+		274D7BC21563BFA10007C1C8 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
+		274D7BC31563BFA10007C1C8 /* OCSScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB91563BFA10007C1C8 /* OCSScope.h */; };
+		274D7BC41563BFA10007C1C8 /* OCSConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */; };
+		274D7BC51563BFA10007C1C8 /* OCSApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */; };
+		274D7BC61563BFA10007C1C8 /* OCSApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */; };
+		274D7BC71563BFA10007C1C8 /* OCSDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */; };
+		274D7BC81563BFA10007C1C8 /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */; };
+		274D7BC91563BFA10007C1C8 /* OCSConfiguratorFromClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */; };
+		274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; };
+		274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */; };
+		274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BCF1563CB9A0007C1C8 /* libOCMock.a */; };
+		2759BA781569A7C100349871 /* OCSConfiguratorClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA761569A7C100349871 /* OCSConfiguratorClassProxy.h */; };
+		2759BA791569A7C100349871 /* OCSConfiguratorClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2759BA771569A7C100349871 /* OCSConfiguratorClassProxy.m */; };
+		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
+		27C112EC156546C800499664 /* ProxyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C112EB156546C800499664 /* ProxyTest.m */; };
+		27C112EE1565912700499664 /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; };
+		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,16 +46,36 @@
 /* Begin PBXFileReference section */
 		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
-		274D7B951563BF2E0007C1C8 /* Reliant.h */ = {isa = PBXFileReference; path = Reliant.h; sourceTree = "<group>"; };
+		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
+		274D7B951563BF2E0007C1C8 /* Reliant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reliant.h; sourceTree = "<group>"; };
 		274D7B961563BF2E0007C1C8 /* Reliant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reliant.m; sourceTree = "<group>"; };
 		274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		274D7BA01563BF2E0007C1C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */ = {isa = PBXFileReference; path = "ReliantTests-Info.plist"; sourceTree = "<group>"; };
+		274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReliantTests-Info.plist"; sourceTree = "<group>"; };
 		274D7BAA1563BF2E0007C1C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		274D7BAC1563BF2E0007C1C8 /* ReliantTests.h */ = {isa = PBXFileReference; path = ReliantTests.h; sourceTree = "<group>"; };
-		274D7BAD1563BF2E0007C1C8 /* ReliantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReliantTests.m; sourceTree = "<group>"; };
+		274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSingletonScope.h; sourceTree = "<group>"; };
+		274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSingletonScope.m; sourceTree = "<group>"; };
+		274D7BB91563BFA10007C1C8 /* OCSScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSScope.h; sourceTree = "<group>"; };
+		274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfigurator.h; sourceTree = "<group>"; };
+		274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSApplicationContext.h; sourceTree = "<group>"; };
+		274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OCSApplicationContext.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSDefinition.h; sourceTree = "<group>"; };
+		274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinition.m; sourceTree = "<group>"; };
+		274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClass.h; sourceTree = "<group>"; };
+		274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClass.m; sourceTree = "<group>"; };
+		274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSApplicationContextTests.h; sourceTree = "<group>"; };
+		274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSApplicationContextTests.m; sourceTree = "<group>"; };
+		274D7BCF1563CB9A0007C1C8 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = /Library/Developer/libs/libOCMock.a; sourceTree = "<absolute>"; };
+		2759BA761569A7C100349871 /* OCSConfiguratorClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorClassProxy.h; sourceTree = "<group>"; };
+		2759BA771569A7C100349871 /* OCSConfiguratorClassProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorClassProxy.m; sourceTree = "<group>"; };
+		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
+		27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzlerTests.h; sourceTree = "<group>"; };
+		27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSwizzlerTests.m; sourceTree = "<group>"; };
+		27C112EA156546C800499664 /* ProxyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyTest.h; sourceTree = "<group>"; };
+		27C112EB156546C800499664 /* ProxyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxyTest.m; sourceTree = "<group>"; };
+		27C112ED1565912700499664 /* OCSSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzler.h; sourceTree = "<group>"; };
+		27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClassTests.h; sourceTree = "<group>"; };
+		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */,
 				274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */,
-				274D7BA11563BF2E0007C1C8 /* UIKit.framework in Frameworks */,
 				274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */,
 				274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */,
 			);
@@ -87,9 +123,9 @@
 		274D7B8F1563BF2E0007C1C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				274D7BCF1563CB9A0007C1C8 /* libOCMock.a */,
 				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
 				274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */,
-				274D7BA01563BF2E0007C1C8 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -97,9 +133,22 @@
 		274D7B921563BF2E0007C1C8 /* Reliant */ = {
 			isa = PBXGroup;
 			children = (
+				274D7BCB1563BFBA0007C1C8 /* Scopes */,
+				274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */,
+				2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */,
+				2759BA761569A7C100349871 /* OCSConfiguratorClassProxy.h */,
+				2759BA771569A7C100349871 /* OCSConfiguratorClassProxy.m */,
+				274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */,
+				274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */,
+				274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */,
+				274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */,
+				274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */,
+				274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */,
+				274D7BB91563BFA10007C1C8 /* OCSScope.h */,
 				274D7B951563BF2E0007C1C8 /* Reliant.h */,
 				274D7B961563BF2E0007C1C8 /* Reliant.m */,
 				274D7B931563BF2E0007C1C8 /* Supporting Files */,
+				27C112ED1565912700499664 /* OCSSwizzler.h */,
 			);
 			path = Reliant;
 			sourceTree = "<group>";
@@ -115,9 +164,15 @@
 		274D7BA61563BF2E0007C1C8 /* ReliantTests */ = {
 			isa = PBXGroup;
 			children = (
-				274D7BAC1563BF2E0007C1C8 /* ReliantTests.h */,
-				274D7BAD1563BF2E0007C1C8 /* ReliantTests.m */,
+				274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */,
+				274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */,
+				27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */,
+				27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */,
+				27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */,
+				27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */,
 				274D7BA71563BF2E0007C1C8 /* Supporting Files */,
+				27C112EA156546C800499664 /* ProxyTest.h */,
+				27C112EB156546C800499664 /* ProxyTest.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -131,6 +186,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		274D7BCB1563BFBA0007C1C8 /* Scopes */ = {
+			isa = PBXGroup;
+			children = (
+				274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */,
+				274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */,
+			);
+			name = Scopes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -138,6 +202,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
+				274D7BC31563BFA10007C1C8 /* OCSScope.h in Headers */,
+				274D7BC41563BFA10007C1C8 /* OCSConfigurator.h in Headers */,
+				274D7BC51563BFA10007C1C8 /* OCSApplicationContext.h in Headers */,
+				274D7BC71563BFA10007C1C8 /* OCSDefinition.h in Headers */,
+				274D7BC91563BFA10007C1C8 /* OCSConfiguratorFromClass.h in Headers */,
+				27C112EE1565912700499664 /* OCSSwizzler.h in Headers */,
+				2759BA781569A7C100349871 /* OCSConfiguratorClassProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				274D7B971563BF2E0007C1C8 /* Reliant.m in Sources */,
+				274D7BC21563BFA10007C1C8 /* OCSSingletonScope.m in Sources */,
+				274D7BC61563BFA10007C1C8 /* OCSApplicationContext.m in Sources */,
+				274D7BC81563BFA10007C1C8 /* OCSDefinition.m in Sources */,
+				274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */,
+				2759BA791569A7C100349871 /* OCSConfiguratorClassProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274D7BAE1563BF2E0007C1C8 /* ReliantTests.m in Sources */,
+				274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */,
+				27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */,
+				27C112EC156546C800499664 /* ProxyTest.m in Sources */,
+				27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +397,7 @@
 		274D7BB21563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
@@ -329,6 +410,7 @@
 		274D7BB31563BF2E0007C1C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
@@ -341,13 +423,17 @@
 		274D7BB51563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Library/Developer/libs;
 				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = /Library/Developer/libs;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -356,13 +442,17 @@
 		274D7BB61563BF2E0007C1C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Library/Developer/libs;
 				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = /Library/Developer/libs;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -387,6 +477,7 @@
 				274D7BB31563BF2E0007C1C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		274D7BB41563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "ReliantTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +486,7 @@
 				274D7BB61563BF2E0007C1C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

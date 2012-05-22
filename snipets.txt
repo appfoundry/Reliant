@@ -1,0 +1,132 @@
+Failed attempt, but usefull to check how to do invocations with varargs
+
+/*Class granny = [self superclass];
+    IMP grannyImp = class_getMethodImplementation(granny, _cmd);
+    
+    va_list args;
+    va_start(args, _cmd);
+    id result = grannyImp(super, _cmd, args);
+    va_end(args);
+     */
+    /*
+    Method calledMethod = class_getInstanceMethod([orig class], _cmd);
+    NSUInteger numberOfArgs = method_getNumberOfArguments(calledMethod);
+    
+    NSMethodSignature *methodSignature = [[orig class] instanceMethodSignatureForSelector:_cmd];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+    
+    invocation.target = orig;
+    invocation.selector = NSSelectorFromString([NSString stringWithFormat:@"swizzled_%@", selector]);
+    
+    if (numberOfArgs > 2) {
+        va_list args;
+        va_start(args, _cmd);
+        
+        
+        NSUInteger size;
+        NSUInteger alignment;
+        
+        //The following code is made to correctly position ourselves in de va list. We cannot use va_arg here, because we cannot rely on va_arg's sizeof mechanism as we don't know the exact type of the argument at compile time.
+        //We need to first detect the 
+        for (int i = 2; i < numberOfArgs; i++) {
+            const char * argumentEncoding = [methodSignature getArgumentTypeAtIndex:i];
+            NSGetSizeAndAlignment(argumentEncoding, &size, &alignment);
+            switch (argumentEncoding[0]) {
+                case '{':
+                    [invocation setArgument:args atIndex:i];
+                    break;
+                default:
+                    //OK, we don't have a special case, we take de current argument
+                    
+                    [invocation setArgument:&((void **)args)[0] atIndex:i];
+                    break;
+                    
+            }
+            args += size;
+        }
+    
+        va_end(args);
+    }
+    
+    [invocation invoke];
+    
+    id returnValue;
+    //Return type of the method must be an id
+    [invocation getReturnValue:&returnValue];
+    NSLog(@"Dynamic method for %@ with selector %@ and result %@(end)", orig, selector, returnValue);
+    
+    return returnValue;*/
+    
+    
+    
+    
+    
+    /*static void swizzleEntireClass(Class c, BOOL (^filterBlock) (Method)) {
+    NSUInteger count;
+    Method *methods = class_copyMethodList(c, &count);
+    for (int i = 0; i < count; i++) {
+        Method m = methods[i];
+        if (filterBlock(m)) {
+            SEL selector = method_getName(m);
+            
+            //TODO exclude . methods (ARC), property methods
+            if (class_respondsToSelector(c, selector)) {
+                SEL swizzleSelector = NSSelectorFromString([NSString stringWithFormat:@"swizzled_%@", NSStringFromSelector(selector)]);
+                const char *typeEncoding = method_getTypeEncoding(m);
+                NSLog(@"Adding method %@ with encoding %s", NSStringFromSelector(selector), typeEncoding);
+                class_addMethod(c, swizzleSelector, (IMP) dynamicIDMethodIMP, typeEncoding);
+                Swizzle(c, selector, c, swizzleSelector);
+            }
+        }
+        
+    }
+    free(&methods);
+}*/
+
+/*static void dynamicForwardInvocation(id self, SEL _cmd, NSInvocation *invocation) {
+    Ivar var = class_getInstanceVariable([self class], "__ocs_proxy_reference");
+    id proxy = object_getIvar(self, var);
+    
+    //Send the message to the real object, but change the "self" into our standin
+    invocation.target = proxy;
+    //[invocation setArgument:&self atIndex:0];
+    [invocation invoke];
+}
+
+static BOOL dynamicRespondsToSelector(id self, SEL _cmd, SEL selector) {
+    Ivar var = class_getInstanceVariable([self class], "__ocs_proxy_reference");
+    id proxy = object_getIvar(self, var);
+    return [proxy respondsToSelector:selector];
+}
+
+static NSMethodSignature *dynamicMethodSignatureForSelector(id self, SEL _cmd, SEL selector) {
+    Ivar var = class_getInstanceVariable([self class], "__ocs_proxy_reference");
+    id proxy = object_getIvar(self, var);
+    NSMethodSignature* signature = [proxy methodSignatureForSelector:selector];
+    return signature;
+}
+
+static Class addProxiedClass(Class c, id proxy) {
+    char *dest = malloc(strlen("OCSReliantExtended_") + strlen(class_getName(c)) + 1);
+    dest = strcpy(dest, "OCSReliantExtended_");
+    
+    const char *name = strcat(dest, class_getName(c));
+    Class extendedClass = objc_allocateClassPair([NSObject class], name, 0);
+    
+    BOOL ok = class_addIvar(extendedClass, "__ocs_proxy_reference", sizeof(id), log2(sizeof(id)), @encode(id));
+    
+    objc_registerClassPair(extendedClass);
+    
+    Method m = class_getInstanceMethod([NSObject class], @selector(forwardInvocation:));
+    ok = class_addMethod(extendedClass, @selector(forwardInvocation:), (IMP) dynamicForwardInvocation, method_getTypeEncoding(m));
+    m = class_getInstanceMethod([NSObject class], @selector(respondsToSelector:));
+    ok = class_addMethod(extendedClass, @selector(respondsToSelector:), (IMP) dynamicRespondsToSelector, method_getTypeEncoding(m));
+    m = class_getInstanceMethod([NSObject class], @selector(methodSignatureForSelector:));
+    ok = class_addMethod(extendedClass, @selector(methodSignatureForSelector:), (IMP) dynamicMethodSignatureForSelector, method_getTypeEncoding(m));
+    
+    free(&dest);
+    
+    return extendedClass;
+}*/
+
+    
