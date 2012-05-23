@@ -5,6 +5,18 @@
 //  Created by Michael Seghers on 6/05/12.
 //  Copyright (c) 2012 Oak Consultancy Services. All rights reserved.
 //
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+
 
 
 #import "OCSConfiguratorFromClass.h"
@@ -12,23 +24,72 @@
 #import <objc/runtime.h>
 
 #import "OCSConfiguratorConstants.h"
-#import "OCSConfiguratorClassProxy.h"
 #import "OCSApplicationContext.h"
 #import "OCSDefinition.h"
 #import "OCSSingletonScope.h"
 #import "OCSSwizzler.h"
 
+/**
+ Configurator private category. Holds private ivars and methods.
+ */
 @interface OCSConfiguratorFromClass () {
+    /**
+     A reference to the configurator instance.
+     @see OCSConfiguratorFromClass
+     */
     id _configInstance;
+    
+    /**
+     Registry of object definitions, derived from the configurator instance.
+     @see OCSDefinition
+     */
     NSMutableDictionary *_definitionRegistry;
     
+    /**
+     Flag to check if we are still initializing. While initialization is going on, we should not return any objects yet as there state might be unpredictable.
+     */
     BOOL _initializing;
 
 }
 
+/**
+ Register a definition with a key. The key is derived from the configurator instance.
+ 
+ @param definition The definition to register.
+ @param key the key for this definition.
+ 
+ @see OCSDefinition
+ */
 - (void) _registerDefinition:(OCSDefinition *)definition forKey:(NSString *)key;
+
+/**
+ Retrieve a definiation, given a string representing the key or alias for the definition. The alias is looked up in the definition's aliases.
+ 
+ @param keyOrAlias The key or alias to look for.
+ 
+ @return a definition or nil if the definition was not found for the given key or alias.
+ */
 - (OCSDefinition *) _definitionForKeyOrAlias:(NSString *) keyOrAlias;
+
+/**
+ Create an object instance for the given key. This method will delegate to the configurator class.
+ 
+ @param key the key
+ 
+ @return the object for the given key. Returns nil while still initializing or when the object for the given key was not found.
+ */
 - (id) _createObjectInstanceForKey:(NSString *) key;
+
+/**
+ Internal representation of objectForKey. Will always attempt a lookup, even if still initializing. This is ok since internally we know what we are doing.
+ 
+ @param key the key
+ @param context the application context
+ 
+ @return the object with the given key, or nil if not found
+ 
+ @see OCSConfigurator::objectForKey:inContext:
+ */
 - (id) _objectForKey:(NSString *)key inContext:(OCSApplicationContext *)context;
 
 
@@ -43,8 +104,6 @@
     self = [super init];
     if (self) {
         _initializing = YES;
-        
-        
         
         _configInstance = createExtendedConfiguratorInstance(configuratorClass, ^(NSString *name) {
             BOOL result = NO;
@@ -137,6 +196,7 @@
     id result = nil;
     if (definition) {
         if (definition.singleton) {
+            //TODO since the configurator class is extended, does the singleton sope make sence here. Shouldn't we use it in the dynamic subclass instead?
             result = [[OCSSingletonScope sharedOCSSingletonScope] objectForKey:definition.key];
             if (result == nil) {
                 result = [self _createObjectInstanceForKey:definition.key];
@@ -166,17 +226,6 @@
     
     return def;
 }
-
-- (id) initSwizzled {
-    //Self refers to the swizzled class instance!
-    self = [self initSwizzled];
-    if (self) {
-        id proxy = [[OCSConfiguratorClassProxy alloc] initWithConfiguratorInstance:self];
-        self = proxy;
-    }
-    return self;
-}
-
 
 - (void) contextLoaded:(OCSApplicationContext *) context {
     for (NSString *key in [_definitionRegistry allKeys]) {

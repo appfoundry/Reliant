@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
-		274D7B971563BF2E0007C1C8 /* Reliant.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7B961563BF2E0007C1C8 /* Reliant.m */; };
 		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */; };
@@ -25,11 +24,11 @@
 		274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; };
 		274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */; };
 		274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BCF1563CB9A0007C1C8 /* libOCMock.a */; };
-		2759BA781569A7C100349871 /* OCSConfiguratorClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA761569A7C100349871 /* OCSConfiguratorClassProxy.h */; };
-		2759BA791569A7C100349871 /* OCSConfiguratorClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2759BA771569A7C100349871 /* OCSConfiguratorClassProxy.m */; };
+		2795FD80156D560E00E7F6FA /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7B951563BF2E0007C1C8 /* Reliant.h */; };
+		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
+		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
 		27C112EC156546C800499664 /* ProxyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C112EB156546C800499664 /* ProxyTest.m */; };
-		27C112EE1565912700499664 /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,6 @@
 		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
 		274D7B951563BF2E0007C1C8 /* Reliant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reliant.h; sourceTree = "<group>"; };
-		274D7B961563BF2E0007C1C8 /* Reliant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reliant.m; sourceTree = "<group>"; };
 		274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReliantTests-Info.plist"; sourceTree = "<group>"; };
@@ -66,8 +64,6 @@
 		274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSApplicationContextTests.h; sourceTree = "<group>"; };
 		274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSApplicationContextTests.m; sourceTree = "<group>"; };
 		274D7BCF1563CB9A0007C1C8 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = /Library/Developer/libs/libOCMock.a; sourceTree = "<absolute>"; };
-		2759BA761569A7C100349871 /* OCSConfiguratorClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorClassProxy.h; sourceTree = "<group>"; };
-		2759BA771569A7C100349871 /* OCSConfiguratorClassProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorClassProxy.m; sourceTree = "<group>"; };
 		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
 		27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzlerTests.h; sourceTree = "<group>"; };
 		27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSwizzlerTests.m; sourceTree = "<group>"; };
@@ -133,22 +129,16 @@
 		274D7B921563BF2E0007C1C8 /* Reliant */ = {
 			isa = PBXGroup;
 			children = (
+				2795FD7F156D556A00E7F6FA /* Protocols */,
 				274D7BCB1563BFBA0007C1C8 /* Scopes */,
-				274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */,
-				2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */,
-				2759BA761569A7C100349871 /* OCSConfiguratorClassProxy.h */,
-				2759BA771569A7C100349871 /* OCSConfiguratorClassProxy.m */,
 				274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */,
 				274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */,
 				274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */,
 				274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */,
 				274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */,
 				274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */,
-				274D7BB91563BFA10007C1C8 /* OCSScope.h */,
 				274D7B951563BF2E0007C1C8 /* Reliant.h */,
-				274D7B961563BF2E0007C1C8 /* Reliant.m */,
 				274D7B931563BF2E0007C1C8 /* Supporting Files */,
-				27C112ED1565912700499664 /* OCSSwizzler.h */,
 			);
 			path = Reliant;
 			sourceTree = "<group>";
@@ -156,6 +146,8 @@
 		274D7B931563BF2E0007C1C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27C112ED1565912700499664 /* OCSSwizzler.h */,
+				2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */,
 				274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -195,6 +187,15 @@
 			name = Scopes;
 			sourceTree = "<group>";
 		};
+		2795FD7F156D556A00E7F6FA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */,
+				274D7BB91563BFA10007C1C8 /* OCSScope.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -202,14 +203,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */,
+				2795FD80156D560E00E7F6FA /* Reliant.h in Headers */,
+				2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */,
 				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
 				274D7BC31563BFA10007C1C8 /* OCSScope.h in Headers */,
 				274D7BC41563BFA10007C1C8 /* OCSConfigurator.h in Headers */,
 				274D7BC51563BFA10007C1C8 /* OCSApplicationContext.h in Headers */,
 				274D7BC71563BFA10007C1C8 /* OCSDefinition.h in Headers */,
 				274D7BC91563BFA10007C1C8 /* OCSConfiguratorFromClass.h in Headers */,
-				27C112EE1565912700499664 /* OCSSwizzler.h in Headers */,
-				2759BA781569A7C100349871 /* OCSConfiguratorClassProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +225,7 @@
 				274D7B891563BF2E0007C1C8 /* Sources */,
 				274D7B8A1563BF2E0007C1C8 /* Frameworks */,
 				274D7B8B1563BF2E0007C1C8 /* Headers */,
+				27C2106B156BDD7600E3A89C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -303,6 +306,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		27C2106B156BDD7600E3A89C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name ${PRODUCT_NAME} --project-company \"Oak Consultancy Services\" --company-id be.oakcs --output ~/help --logformat xcode --exit-threshold 2 --no-merge-categories .";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -310,12 +326,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274D7B971563BF2E0007C1C8 /* Reliant.m in Sources */,
 				274D7BC21563BFA10007C1C8 /* OCSSingletonScope.m in Sources */,
 				274D7BC61563BFA10007C1C8 /* OCSApplicationContext.m in Sources */,
 				274D7BC81563BFA10007C1C8 /* OCSDefinition.m in Sources */,
 				274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */,
-				2759BA791569A7C100349871 /* OCSConfiguratorClassProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +411,9 @@
 		274D7BB21563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
@@ -410,7 +426,9 @@
 		274D7BB31563BF2E0007C1C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
