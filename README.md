@@ -2,16 +2,18 @@ Reliant
 =======
 
 Reliant is a dependency injection framework for Objective C, specifically targeted, but 
-not limited to, for iOS. It's goal is to make it's use as simple as possible, while not 
+not limited to iOS. It's goal is to make it's use as simple as possible, while not 
 limiting it's possibilities. It aims to have as little impact as possible on your project 
 code.
 
-The motivation for this library came from being used to a highly testable infrastructure 
-in other languages thanks to DI. Although factories and mock libraries provide a fairly 
-nice solution, the pure loose coupling is never reached, since you still have a dependency 
-to a factory in almost all classes in your project. Before starting this library, I looked 
-for opinions about DI in dynamic languages at the one hand, and in frontend driven 
-solutions at the other hand. Reliant is an answer to these questions.
+The motivation for this library came from being used to a highly testable infrastructure
+in other languages thanks to DI. Looking at the typical design pattern to solve the loose
+coupling problem, the Factory pattern is the natural solution. Although factories, in
+conjunction with mock libraries provide a fairly nice and testable solution, the pure
+loose coupling is never reached, since you still have a dependency to a factory in almost
+all classes in your project. Before starting this library, I looked for opinions about DI
+in dynamic languages at the one hand, and in frontend driven solutions at the other hand.
+Reliant is an answer to these questions.
 
 Quick start
 -----------
@@ -19,7 +21,8 @@ Quick start
 ### Bootstrapping Reliant
 
 To get started with Reliant, you need to tell the *OCSApplicationContext* to start up. You
-will need to provide a configurator instance to the application context. More on configurators later.
+will need to provide a configurator instance to the application context. More on
+configurators later.
 
 ```objective-c
 //Initialize a configurator
@@ -36,19 +39,25 @@ OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigur
 
 ### Using the *OCSConfiguratorFromClass*
 
-This is a ready-made configurator implementation. It uses the information found in a class
-provided by you through introspection. The provided class will also serve as the creator of your objects. The
-idea behind this is to give you a programatic and testable configuration. This makes the
-use of external configuration files and/or macros obsolete.
+*TODO rewrite when less tired*. This is a ready-made configurator implementation. It uses the information found in a class
+provided by you through introspection. The provided class will also serve as the creator
+of your objects, hence we will call it a factory class. The idea behind this is to give you a programatic and testable
+configuration. This makes the use of external configuration files and/or macros obsolete.
 
-TODO describe category feature
+#### Dealing with larger applications
 
-Reliant identifies 2 kinds of objects: singletons and prototypes. (*These names are taken
-from the well know design patterns*) 
+In larger applications, the factory class can quickly become huge. This is where you can
+and should use Objective C's
+[category](http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/chapters/occategories.html "Objective-C programming language reference")
+mechanism. For each logical group of objects you can create a category, named after this
+logical group. All methods in all categories of your factory class will be taken into
+account. TODO give some category name examples...
 
-- A singleton is a stateless shared object, which is
-created only once (might be more then once cfr. memory warnings). Objects created as
-singleton should be thread safe! 
+Reliant identifies 2 kinds of scope for an object: singletons and prototypes. (*These
+names are taken from the well know design patterns*)
+
+- A singleton is a stateless shared object, which is created only once (might be more then
+once cfr. memory warnings). Objects created as singleton should be thread safe!
 
 - A prototype will be created each time it is requested from the application context. Be
 carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
@@ -93,12 +102,24 @@ For creating prototypes we can use a similar approach. Only the method name chan
 **Remember:** each time a prototype is requested this method will be called. You should 
 therefore consider to keep the initialization as performant as possible.
 
+#### Other methods in your factory class
 
+You can add other methods, which might help in creating your objects. These will be
+ignored by the framework, but you can obviously use them in your create methods.
+
+#### Injection
+
+All objects created in the application context will be injected after their creation. This
+is done by using Objective-C's [KVC](http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html "Key-Value Coding Programming Guide")
+mechanism. Reliant will scan your object's properties. If a writable property's name
+matches with a key or alias for an object in the application context, and if it's current
+value is nil, the matching object will be injected in this property. All other properties
+will be left alone.
 
 ### The configurator
 
-A configurator is responsible for setting up definitions and creating object instance
-based on those definitions. Although a default class configurator
+As we already saw, a configurator is responsible for setting up definitions and creating
+object instance based on those definitions. Although a default class configurator
 (*OCSConfiguratorFromClass*) is provided by Reliant, you can always build your own. Your
 custom configurator should conform to the *OCSConfigurator* protocol. In the
 configurator's designated initializer, you should start building your object definitions.
@@ -106,7 +127,9 @@ A configurator, although not enforced, should maintain it's own definition regis
 configurator should not start creating instances for these definitions just until the
 contextLoaded: message is send to it. Only after all work is done should the configurator
 return objects through its objectForKey:inContext: method. When work is done, the
-initializing property should be true/YES/whatever-other-bool-literal-is-available
+initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
+
+*Remark* Although the framework is extendible, we encourage the use of the provided configurator.
 
 #### Example
 
@@ -120,14 +143,10 @@ initializing property should be true/YES/whatever-other-bool-literal-is-availabl
 
 // CustomConfigurator.m
 
-
 TODO
 
 @end
 ```
-
-
-
 
 Interesting references/discussions
 ----------------------------------
@@ -157,3 +176,19 @@ Objective C (and other dynamic languages for that matter) take a different appro
 framework for Objective C, based on Guice. As stated before, the "binding" approach did
 look appealing to me at first, but after considering that the *type safety* isn't really
 there. But still, a very well made port.
+
+Special thanks
+--------------
+
+- Filip Maelbrancke: for second opinions and rubber ducking
+- Bart Vandeweerdt: for functional insights and simplifications
+- Oak Consultancy Services: for necessary resources
+- iDA MediaFoundry: for letting me use this in production code
+- Liesbet Gouwy: for unconditional support
+- Kato Seghers: for being born
+
+Contact
+-------
+If not via GitHub
+
+find me on twitter: @mikeseghers

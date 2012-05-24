@@ -23,3 +23,7 @@
 @interface OCSConfiguratorFromClassTests : SenTestCase
 
 @end
+
+@interface DummyConfigurator : NSObject
+
+@end

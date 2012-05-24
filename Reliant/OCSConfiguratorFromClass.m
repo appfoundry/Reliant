@@ -99,13 +99,13 @@
 
 @synthesize initializing = _initializing;
 
-- (id)initWithClass:(Class) configuratorClass
+- (id)initWithClass:(Class) factoryClass
 {
     self = [super init];
     if (self) {
         _initializing = YES;
         
-        _configInstance = createExtendedConfiguratorInstance(configuratorClass, ^(NSString *name) {
+        _configInstance = createExtendedConfiguratorInstance(factoryClass, ^(NSString *name) {
             BOOL result = NO;
             if ([name hasPrefix:SINGLETON_PREFIX]) {
                 result = YES;
@@ -116,7 +116,7 @@
         _definitionRegistry = [[NSMutableDictionary alloc] init];
 
         unsigned int count;
-        Method * methods = class_copyMethodList(configuratorClass, &count);
+        Method * methods = class_copyMethodList(factoryClass, &count);
         if (count > 0) {
             for (int i = 0; i < count; i++) {
                 SEL selector = method_getName(methods[i]);

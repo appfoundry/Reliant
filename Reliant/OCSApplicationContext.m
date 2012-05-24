@@ -93,7 +93,7 @@
         NSRange objectRange = [propertyAttributes rangeOfString:@"T@"];
         NSRange readOnlyRange = [propertyAttributes rangeOfString:@",R"];
         
-        if (objectRange.location != NSNotFound && readOnlyRange.location == NSNotFound) {
+        if (objectRange.location != NSNotFound && readOnlyRange.location == NSNotFound && [object valueForKey:name] == nil) {
             id instance = [_configurator objectForKey:name inContext:self];
             if (instance) {
                 [object setValue:instance forKey:name];

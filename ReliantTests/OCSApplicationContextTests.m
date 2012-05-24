@@ -143,7 +143,7 @@
     
     [[[configurator expect] andReturn:@"PRKP"] objectForKey:@"publiclyKnownPrivate" inContext:context];
     [[[configurator expect] andReturn:@"PUKP"] objectForKey:@"publiclyKnownProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PP"] objectForKey:@"privateProperty" inContext:context];
+    [[[configurator expect] andReturn:@"PrivP"] objectForKey:@"privateProperty" inContext:context];
     [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
     [[[configurator expect] andReturn:@"EP"] objectForKey:@"extendedProperty" inContext:context];
     [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
@@ -155,7 +155,7 @@
     
     STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
     STAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
-    STAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
+    STAssertTrue([@"PrivP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
     STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
     STAssertTrue([@"EP" isEqualToString:[dummy valueForKey:@"extendedProperty"]], @"extendedProperty should be set to EP");
     STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
@@ -170,6 +170,30 @@
     EmptyClass *dummy = [[EmptyClass alloc] init];
     
     [context performInjectionOn:dummy];
+    
+    [configurator verify];
+}
+
+- (void) testPerformInjectionOnAlreadyInjectedClass {
+    //We must be able to try to inject classes that on their own have no dependencies. No actual injection should happen. The configurator should never be called.
+    DummyClass *dummy = [[DummyClass alloc] init];
+    dummy.publiclyKnownProperty = @"AlreadyThere";
+    
+    [[[configurator expect] andReturn:@"PRKP"] objectForKey:@"publiclyKnownPrivate" inContext:context];
+    [[[configurator stub] andReturn:@"PUKP"] objectForKey:@"publiclyKnownProperty" inContext:context];
+    [[[configurator expect] andReturn:@"PP"] objectForKey:@"privateProperty" inContext:context];
+    [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
+    [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
+    [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
+    
+    [context performInjectionOn:dummy];
+    
+    STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
+    STAssertTrue([@"AlreadyThere" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should not have been overriden!");
+    STAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
+    STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
+    STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
+    STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
     
     [configurator verify];
 }

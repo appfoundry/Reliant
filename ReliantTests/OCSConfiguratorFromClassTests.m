@@ -25,7 +25,7 @@
 #import "OCSConfiguratorFromClass.h"
 #import "OCSApplicationContext.h"
 
-@interface DummyConfigurator : NSObject
+@interface DummyConfigurator (SomeDummyCategory)
 
 @end
 
@@ -51,6 +51,8 @@
     int unbelievableOtherSmartNameInjected;
     int superInjected;
     int extendedInjected;
+    int categoryInjected;
+    int externalCategoryInjected;
 }
 
 - (void) setUp {
@@ -61,6 +63,8 @@
     unbelievableOtherSmartNameInjected = 0;
     superInjected = 0;
     extendedInjected = 0;
+    categoryInjected = 0;
+    externalCategoryInjected = 0;
     
     configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DummyConfigurator class]];
 }
@@ -91,9 +95,9 @@
 - (void) testAfterLoaded {
     id context = [OCMockObject mockForClass:[OCSApplicationContext class]];
     
-    //3 singletons to be loaded -> 3 injection attempts
+    //5 singletons to be loaded (3 from main class, 2 from category" -> 5 injection attempts
     //Remaining object is not a singleton and should not have been loaded, nor injected after a contetLoaded
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
         [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
     }
     
@@ -102,6 +106,8 @@
     STAssertEquals(verySmartNameInjected, 1, @"Very smart object should have been injected by now");
     STAssertEquals(superInjected, 1, @"Super object should have been injected by now");
     STAssertEquals(extendedInjected, 1, @"Extended object should have been injected by now");
+    STAssertEquals(categoryInjected, 1, @"Category object should have been injected by now");
+    STAssertEquals(externalCategoryInjected, 1, @"External Category object should have been injected by now");
     STAssertEquals(unbelievableOtherSmartNameInjected, 0, @"Ubelievable object should not have been injected by now");
     
     //Now fetching the singletons, with aliases should work, they should not be re-injected
@@ -112,33 +118,33 @@
     
     [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
     
-    id unbelievableObject = [[configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context] retain];
+    id unbelievableObject = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
     
     STAssertNotNil(unbelievableObject, @"Unbelievable object shoud be available");
     
     STAssertEquals(verySmartNameInjected, 1, @"Very smart object should have been injected by now");
     STAssertEquals(superInjected, 1, @"Super object should have been injected by now");
     STAssertEquals(extendedInjected, 1, @"Extended object should have been injected by now");
+    STAssertEquals(categoryInjected, 1, @"Category object should have been injected by now");
+    STAssertEquals(externalCategoryInjected, 1, @"External Category object should have been injected by now");
     STAssertEquals(unbelievableOtherSmartNameInjected, 1, @"Ubelievable object should not have been injected by now");
     
     //Re-fetch a new instance object, it should always be a new instance which has been injected.
     [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
     
     
-    id otherUnbelievableObject = [[configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context] retain];
+    id otherUnbelievableObject = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
     STAssertFalse(unbelievableObject == otherUnbelievableObject, @"New instance objects should always be different instances");
     STAssertEquals(verySmartNameInjected, 1, @"Very smart object should have been injected by now");
     STAssertEquals(superInjected, 1, @"Super object should have been injected by now");
     STAssertEquals(extendedInjected, 1, @"Extended object should have been injected by now");
+    STAssertEquals(categoryInjected, 1, @"Category object should have been injected by now");
+    STAssertEquals(externalCategoryInjected, 1, @"External Category object should have been injected by now");
     STAssertEquals(unbelievableOtherSmartNameInjected, 2, @"Ubelievable object should not have been injected again");
     
     //We also know by now that the "wrong" configurator methods did not yield an object...
     
     [context verify];
-    
-    [unbelievableObject release];
-    [otherUnbelievableObject release];
-    
     
 }
 
@@ -153,6 +159,13 @@
         superInjected++;
     } else if ([injectedObject isMemberOfClass:[ExtendedObjectWithInjectables class]]) {
         extendedInjected++;
+    } else if ([injectedObject isKindOfClass:[NSString class]]) {
+        NSString *value = (NSString *) injectedObject;
+        if ([@"FromCategory" isEqualToString:value]) {
+            categoryInjected++;
+        } else if ([@"ExternalCategory" isEqualToString:value]) {
+            externalCategoryInjected++;
+        }
     } else {
         result = NO;
     }
@@ -194,6 +207,14 @@
     return @"WRONG AGAIN AGAIN";
 }
 
+
+@end
+
+@implementation DummyConfigurator (SomeDummyCategory)
+
+- (id) createSingletonFromCategory {
+    return @"FromCategory";
+}
 
 @end
 

@@ -32,9 +32,9 @@
 /**
  Designated initializer.
  
- @param configuratorClass the class which holds methods, able to create objects.
+ @param factoryClass the factory class. This class will be  which holds methods, able to create objects TODO rewrite.
  @return self
  */
-- (id)initWithClass:(Class) configuratorClass;
+- (id)initWithClass:(Class) factoryClass;
 
 @end

@@ -27,6 +27,7 @@
 		2795FD80156D560E00E7F6FA /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7B951563BF2E0007C1C8 /* Reliant.h */; };
 		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
 		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
 		27C112EC156546C800499664 /* ProxyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C112EB156546C800499664 /* ProxyTest.m */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
@@ -65,6 +66,8 @@
 		274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSApplicationContextTests.m; sourceTree = "<group>"; };
 		274D7BCF1563CB9A0007C1C8 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = /Library/Developer/libs/libOCMock.a; sourceTree = "<absolute>"; };
 		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
+		2795FD83156EE3DC00E7F6FA /* DummyConfigurator+External.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DummyConfigurator+External.h"; sourceTree = "<group>"; };
+		2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DummyConfigurator+External.m"; sourceTree = "<group>"; };
 		27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzlerTests.h; sourceTree = "<group>"; };
 		27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSwizzlerTests.m; sourceTree = "<group>"; };
 		27C112EA156546C800499664 /* ProxyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyTest.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				274D7BA71563BF2E0007C1C8 /* Supporting Files */,
 				27C112EA156546C800499664 /* ProxyTest.h */,
 				27C112EB156546C800499664 /* ProxyTest.m */,
+				2795FD83156EE3DC00E7F6FA /* DummyConfigurator+External.h */,
+				2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */,
 				27C112EC156546C800499664 /* ProxyTest.m in Sources */,
 				27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */,
+				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
