@@ -24,7 +24,7 @@
 #ifndef OCS_SWIZZLER
 #define OCS_SWIZZLER
 
-#define OCS_CAHCE_IVAR "__ocs_object_cache"
+#define OCS_CACHE_IVAR "__ocs_object_cache"
 
 //C function to swizzle, taken from http://cocoadev.com/wiki/MethodSwizzling
 static void Swizzle(Class c, SEL original, Class o, SEL replacement) {
@@ -46,7 +46,7 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
     superData.super_class = [self superclass];//[metaclass superclass];    
     
     //If the method was previously called, it's result should have been cached.
-    Ivar var = class_getInstanceVariable([self class], OCS_CAHCE_IVAR);
+    Ivar var = class_getInstanceVariable([self class], OCS_CACHE_IVAR);
     NSMutableDictionary *cache = object_getIvar(self, var);
     id result = [cache objectForKey:selector];
     if (!result) {
@@ -58,7 +58,7 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
 }
 
 static void dynamicDealloc(id self, SEL _cmd) {
-    Ivar var = class_getInstanceVariable([self class], OCS_CAHCE_IVAR);
+    Ivar var = class_getInstanceVariable([self class], OCS_CACHE_IVAR);
     NSMutableDictionary *cache = object_getIvar(self, var);
     [cache release];
     
@@ -82,7 +82,7 @@ static id createExtendedConfiguratorInstance(Class baseClass, BOOL (^filter)(NSS
     const char *name = strcat(dest, class_getName(baseClass));
     Class extendedClass = objc_allocateClassPair(baseClass, name, sizeof(id));
     if (extendedClass) {
-        class_addIvar(extendedClass, OCS_CAHCE_IVAR, sizeof(NSMutableDictionary *), log2(sizeof(NSMutableDictionary*)), @encode(NSMutableDictionary *));
+        class_addIvar(extendedClass, OCS_CACHE_IVAR, sizeof(NSMutableDictionary *), log2(sizeof(NSMutableDictionary*)), @encode(NSMutableDictionary *));
         
         objc_registerClassPair(extendedClass);
         
@@ -113,7 +113,7 @@ static id createExtendedConfiguratorInstance(Class baseClass, BOOL (^filter)(NSS
     
     
     NSLog(@"Class of extended %@ with super class %@", NSStringFromClass([extendedClass class]), NSStringFromClass([instance superclass]));
-    object_setInstanceVariable(instance, OCS_CAHCE_IVAR, [[NSMutableDictionary alloc] init]);
+    object_setInstanceVariable(instance, OCS_CACHE_IVAR, [[NSMutableDictionary alloc] init]);
     
     return instance;
 }

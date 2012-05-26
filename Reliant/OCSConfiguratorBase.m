@@ -20,10 +20,6 @@
     return _initializing;
 }
 
-- (void) setInitializing:(BOOL)initializing {
-    _initializing = initializing;
-}
-
 - (id)init
 {
     self = [super init];
