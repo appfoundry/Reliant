@@ -25,6 +25,8 @@
  Initialize an instance using the designated init method OCSApplicationContext::initWithConfigurator:
  
  Objects that are not in the DI context can still optain objects on the DI context using this class.
+ 
+ @author Mike Seghers
  */
 @interface OCSApplicationContext : NSObject
 

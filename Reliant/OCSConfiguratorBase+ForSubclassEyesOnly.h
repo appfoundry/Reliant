@@ -12,6 +12,8 @@
 
 /**
  When creating subclasses of the OCSConfiguratorBase, you should import this header file in it's implementation. The configurator base will guard the initializing state, and automatically bootstrap eager singletons for you. The objectForKey:inContext: method is templated to call the internalObjectForKey:inContext: and the contextLoaded: method will call the internalContextLoaded: These methods are your hooks to do more work specific to your own configurator. This header file should never be used outside a subclass implementation. It's methods should also never be called from outside a subclass.
+ 
+ @author Mike Seghers
  */
 @interface OCSConfiguratorBase (ForSubclassEyesOnly)
 

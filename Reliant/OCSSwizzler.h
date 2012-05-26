@@ -19,7 +19,7 @@
 
 
 #import <objc/runtime.h>
-#import <objc/objc-runtime.h>
+#import <objc/message.h>
 
 #ifndef OCS_SWIZZLER
 #define OCS_SWIZZLER

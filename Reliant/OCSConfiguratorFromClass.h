@@ -24,6 +24,8 @@
  Configurator implementation which derives definitions from methods in a given class instance. The class instance is also used to create object instances.
  
  TODO Write on how to make a configurator class
+ 
+ @author Mike Seghers
  */
 @interface OCSConfiguratorFromClass : OCSConfiguratorBase
 

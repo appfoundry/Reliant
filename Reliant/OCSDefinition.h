@@ -17,7 +17,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-
+/**
+ Describes an object configuration in the application context.
+ 
+ @author Mike Seghers
+ */
 @interface OCSDefinition : NSObject
 
 /**

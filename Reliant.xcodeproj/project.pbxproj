@@ -10,7 +10,7 @@
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
-		274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */; };
+		274D7BA51563BF2E0007C1C8 /* libReliant iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B8D1563BF2E0007C1C8 /* libReliant iOS.a */; };
 		274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */; };
 		274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */; };
 		274D7BC21563BFA10007C1C8 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
@@ -27,6 +27,24 @@
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; };
 		2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
+		2780EDE1157115FB00CFD38C /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
+		2780EDE2157115FB00CFD38C /* OCSApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */; };
+		2780EDE3157115FB00CFD38C /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */; };
+		2780EDE4157115FB00CFD38C /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; };
+		2780EDE5157115FB00CFD38C /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
+		2780EDE6157115FB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
+		2780EDE8157115FB00CFD38C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
+		2780EDEA157115FB00CFD38C /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2780EDEB157115FB00CFD38C /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7B951563BF2E0007C1C8 /* Reliant.h */; };
+		2780EDEC157115FB00CFD38C /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
+		2780EDED157115FB00CFD38C /* OCSSingletonScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */; };
+		2780EDEE157115FB00CFD38C /* OCSScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB91563BFA10007C1C8 /* OCSScope.h */; };
+		2780EDEF157115FB00CFD38C /* OCSConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */; };
+		2780EDF0157115FB00CFD38C /* OCSApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */; };
+		2780EDF1157115FB00CFD38C /* OCSDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */; };
+		2780EDF2157115FB00CFD38C /* OCSConfiguratorFromClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */; };
+		2780EDF3157115FB00CFD38C /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; };
+		2780EDF4157115FB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; };
 		2795FD80156D560E00E7F6FA /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7B951563BF2E0007C1C8 /* Reliant.h */; };
 		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -49,7 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		274D7B8D1563BF2E0007C1C8 /* libReliant iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libReliant iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
 		274D7B951563BF2E0007C1C8 /* Reliant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reliant.h; sourceTree = "<group>"; };
@@ -76,6 +94,7 @@
 		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
 		2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCSConfiguratorBase+ForSubclassEyesOnly.m"; sourceTree = "<group>"; };
 		2780EDDB1571052200CFD38C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2780EDF9157115FB00CFD38C /* libReliant copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libReliant copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2795FD83156EE3DC00E7F6FA /* DummyConfigurator+External.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DummyConfigurator+External.h"; sourceTree = "<group>"; };
 		2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DummyConfigurator+External.m"; sourceTree = "<group>"; };
 		2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBase.h; sourceTree = "<group>"; };
@@ -105,7 +124,15 @@
 				274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */,
 				274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */,
 				274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */,
-				274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */,
+				274D7BA51563BF2E0007C1C8 /* libReliant iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2780EDE7157115FB00CFD38C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2780EDE8157115FB00CFD38C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,8 +152,9 @@
 		274D7B8E1563BF2E0007C1C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				274D7B8D1563BF2E0007C1C8 /* libReliant.a */,
+				274D7B8D1563BF2E0007C1C8 /* libReliant iOS.a */,
 				274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */,
+				2780EDF9157115FB00CFD38C /* libReliant copy.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,25 +269,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2780EDE9157115FB00CFD38C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2780EDEA157115FB00CFD38C /* OCSSwizzler.h in Headers */,
+				2780EDEB157115FB00CFD38C /* Reliant.h in Headers */,
+				2780EDEC157115FB00CFD38C /* OCSConfiguratorConstants.h in Headers */,
+				2780EDED157115FB00CFD38C /* OCSSingletonScope.h in Headers */,
+				2780EDEE157115FB00CFD38C /* OCSScope.h in Headers */,
+				2780EDEF157115FB00CFD38C /* OCSConfigurator.h in Headers */,
+				2780EDF0157115FB00CFD38C /* OCSApplicationContext.h in Headers */,
+				2780EDF1157115FB00CFD38C /* OCSDefinition.h in Headers */,
+				2780EDF2157115FB00CFD38C /* OCSConfiguratorFromClass.h in Headers */,
+				2780EDF3157115FB00CFD38C /* OCSConfiguratorBase.h in Headers */,
+				2780EDF4157115FB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		274D7B8C1563BF2E0007C1C8 /* Reliant */ = {
+		274D7B8C1563BF2E0007C1C8 /* Reliant iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant" */;
+			buildConfigurationList = 274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant iOS" */;
 			buildPhases = (
 				274D7B891563BF2E0007C1C8 /* Sources */,
 				274D7B8A1563BF2E0007C1C8 /* Frameworks */,
 				274D7B8B1563BF2E0007C1C8 /* Headers */,
-				27C2106B156BDD7600E3A89C /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Reliant;
+			name = "Reliant iOS";
 			productName = Reliant;
-			productReference = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */;
+			productReference = 274D7B8D1563BF2E0007C1C8 /* libReliant iOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		274D7B9C1563BF2E0007C1C8 /* ReliantTests */ = {
@@ -281,6 +326,23 @@
 			productReference = 274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		2780EDDF157115FB00CFD38C /* Reliant OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2780EDF6157115FB00CFD38C /* Build configuration list for PBXNativeTarget "Reliant OSX" */;
+			buildPhases = (
+				2780EDE0157115FB00CFD38C /* Sources */,
+				2780EDE7157115FB00CFD38C /* Frameworks */,
+				2780EDE9157115FB00CFD38C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Reliant OSX";
+			productName = Reliant;
+			productReference = 2780EDF9157115FB00CFD38C /* libReliant copy.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -301,7 +363,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				274D7B8C1563BF2E0007C1C8 /* Reliant */,
+				274D7B8C1563BF2E0007C1C8 /* Reliant iOS */,
+				2780EDDF157115FB00CFD38C /* Reliant OSX */,
 				274D7B9C1563BF2E0007C1C8 /* ReliantTests */,
 			);
 		};
@@ -332,19 +395,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		27C2106B156BDD7600E3A89C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc --project-name ${PRODUCT_NAME} --project-company \"Oak Consultancy Services\" --company-id be.oakcs --output ~/help --logformat xcode --exit-threshold 2 --no-merge-categories .";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -374,12 +424,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2780EDE0157115FB00CFD38C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2780EDE1157115FB00CFD38C /* OCSSingletonScope.m in Sources */,
+				2780EDE2157115FB00CFD38C /* OCSApplicationContext.m in Sources */,
+				2780EDE3157115FB00CFD38C /* OCSDefinition.m in Sources */,
+				2780EDE4157115FB00CFD38C /* OCSConfiguratorFromClass.m in Sources */,
+				2780EDE5157115FB00CFD38C /* OCSConfiguratorBase.m in Sources */,
+				2780EDE6157115FB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		274D7BA41563BF2E0007C1C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 274D7B8C1563BF2E0007C1C8 /* Reliant */;
+			target = 274D7B8C1563BF2E0007C1C8 /* Reliant iOS */;
 			targetProxy = 274D7BA31563BF2E0007C1C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -441,6 +504,11 @@
 		274D7BB21563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
@@ -448,6 +516,7 @@
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos5.1;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -455,6 +524,11 @@
 		274D7BB31563BF2E0007C1C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
@@ -462,6 +536,7 @@
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos5.1;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -504,6 +579,38 @@
 			};
 			name = Release;
 		};
+		2780EDF7157115FB00CFD38C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				BUNDLE_LOADER = "";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/Reliant.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Reliant copy";
+				SDKROOT = macosx10.7;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2780EDF8157115FB00CFD38C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				BUNDLE_LOADER = "";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/Reliant.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Reliant copy";
+				SDKROOT = macosx10.7;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -516,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant" */ = {
+		274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274D7BB21563BF2E0007C1C8 /* Debug */,
@@ -530,6 +637,15 @@
 			buildConfigurations = (
 				274D7BB51563BF2E0007C1C8 /* Debug */,
 				274D7BB61563BF2E0007C1C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2780EDF6157115FB00CFD38C /* Build configuration list for PBXNativeTarget "Reliant OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2780EDF7157115FB00CFD38C /* Debug */,
+				2780EDF8157115FB00CFD38C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

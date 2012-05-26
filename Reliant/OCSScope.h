@@ -19,6 +19,8 @@
 
 /**
  Describes a scope. A scope represent TODO describe better
+ 
+ @author Mike Seghers
  */
 @protocol OCSScope <NSObject>
 

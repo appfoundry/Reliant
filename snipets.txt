@@ -49,6 +49,20 @@ osascript $TEMP_DIR/loadDocSet.scpt
 exit 0
 
 
+MAcros
+______
+
+#ifdef __IPHONE_NA  
+#import <UIKit/UIKit.h>
+#warning ussing UIKit
+#else
+#warning not using UIKit
+#endif
+
+
+/usr/local/bin/appledoc --project-name ${PRODUCT_NAME} --project-company "Oak Consultancy Services" --company-id be.oakcs --output ~/help --logformat xcode --exit-threshold 2 --no-merge-categories .
+
+
 
 
 

@@ -33,9 +33,6 @@
 
 @end
 
-/**
- Describes an object configuration in the application context.
- */
 @implementation OCSDefinition
 
 @synthesize implementingClass, key, singleton, lazy;

@@ -10,6 +10,8 @@
 
 /**
  Base configurator class, meant to be extended. Provides a dictionary for holding bean definitions. Also holds an initializing flag, which will be set to false, once all initializing work is done in the contextLoaded: method.
+ 
+ @author Mike Seghers
 */
 
 @interface OCSConfiguratorBase : NSObject<OCSConfigurator> {
