@@ -20,6 +20,8 @@ Quick start
 
 ### Bootstrapping Reliant
 
+TODO bind to appdelegate
+
 To get started with Reliant, you need to tell the *OCSApplicationContext* to start up. You
 will need to provide a configurator instance to the application context. More on
 configurators later.
@@ -102,12 +104,28 @@ For creating prototypes we can use a similar approach. Only the method name chan
 **Remember:** each time a prototype is requested this method will be called. You should 
 therefore consider to keep the initialization as performant as possible.
 
+#### Registering aliases for an object
+
+Registering aliases for an object is also possible. Again, you just need to add a method
+with a certain signature:
+
+```objective-c
+- (NSSet *) aliasesForFoo {
+	return [NSSet setWithObjects:@"_foo", @"_fuu", nil];
+}
+```
+
+*Remark:* by default, two aliases are already registered for each object. They take the
+form of the key in uppercase (eg. FOO, BAR, ...) and the key starting with a lowercase
+(eg. foo, bar, ...). Aliases must be unique, and should also never be equal to an object
+key. If an attempt is made to add a duplicate, an exception will be raised.
+
 #### Other methods in your factory class
 
 You can add other methods, which might help in creating your objects. These will be
 ignored by the framework, but you can obviously use them in your create methods.
 
-#### Injection
+### Injection
 
 All objects created in the application context will be injected after their creation. This
 is done by using Objective-C's [KVC](http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html "Key-Value Coding Programming Guide")
@@ -115,6 +133,27 @@ mechanism. Reliant will scan your object's properties. If a writable property's 
 matches with a key or alias for an object in the application context, and if it's current
 value is nil, the matching object will be injected in this property. All other properties
 will be left alone.
+
+#### Injecting objects that are not know to the application context
+
+You can use the injection mechanism described above on objects which are not setup in the 
+application context. A good example would be a UIViewController. This is what you need to do:
+
+```objective-c
+- (void) setup {
+    AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    [appDelegate performInjectionOn:self];
+}
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+```
 
 ### The configurator
 
@@ -129,7 +168,8 @@ contextLoaded: message is send to it. Only after all work is done should the con
 return objects through its objectForKey:inContext: method. When work is done, the
 initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
 
-*Remark* Although the framework is extendible, we encourage the use of the provided configurator.
+*Remark* Although the framework is extendible, we encourage the use of the provided
+configurator.
 
 #### Example
 
@@ -152,7 +192,6 @@ Interesting references/discussions
 ----------------------------------
 
 - [Discussion](http://stackoverflow.com/questions/309711/dependency-injection-framework-for-cocoa "StackOverflow") on the necessity of DI in Objective C/Dynamic languages 
-
 
 Inspirational projects / credits
 --------------------------------
@@ -181,14 +220,11 @@ Special thanks
 --------------
 
 - Filip Maelbrancke: for second opinions and rubber ducking
-- Bart Vandeweerdt: for functional insights and simplifications
-- Oak Consultancy Services: for necessary resources
 - iDA MediaFoundry: for letting me use this in production code
+- Oak Consultancy Services: for necessary resources
 - Liesbet Gouwy: for unconditional support
 - Kato Seghers: for being born
 
 Contact
 -------
-If not via GitHub
-
-find me on twitter: @mikeseghers
+If not via GitHub, find me on twitter: @mikeseghers

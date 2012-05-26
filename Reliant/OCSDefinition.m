@@ -38,7 +38,11 @@
  */
 @implementation OCSDefinition
 
-@synthesize implementingClass, singleton, key;
+@synthesize implementingClass, key, singleton, lazy;
+
+- (NSArray *) aliases {
+    return [NSArray arrayWithArray:_aliases];
+}
 
 - (id) init
 {

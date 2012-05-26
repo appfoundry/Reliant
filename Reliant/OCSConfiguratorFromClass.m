@@ -20,6 +20,7 @@
 
 
 #import "OCSConfiguratorFromClass.h"
+#import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
 
 #import <objc/runtime.h>
 
@@ -38,38 +39,8 @@
      @see OCSConfiguratorFromClass
      */
     id _configInstance;
-    
-    /**
-     Registry of object definitions, derived from the configurator instance.
-     @see OCSDefinition
-     */
-    NSMutableDictionary *_definitionRegistry;
-    
-    /**
-     Flag to check if we are still initializing. While initialization is going on, we should not return any objects yet as there state might be unpredictable.
-     */
-    BOOL _initializing;
-
 }
 
-/**
- Register a definition with a key. The key is derived from the configurator instance.
- 
- @param definition The definition to register.
- @param key the key for this definition.
- 
- @see OCSDefinition
- */
-- (void) _registerDefinition:(OCSDefinition *)definition forKey:(NSString *)key;
-
-/**
- Retrieve a definiation, given a string representing the key or alias for the definition. The alias is looked up in the definition's aliases.
- 
- @param keyOrAlias The key or alias to look for.
- 
- @return a definition or nil if the definition was not found for the given key or alias.
- */
-- (OCSDefinition *) _definitionForKeyOrAlias:(NSString *) keyOrAlias;
 
 /**
  Create an object instance for the given key. This method will delegate to the configurator class.
@@ -80,41 +51,22 @@
  */
 - (id) _createObjectInstanceForKey:(NSString *) key;
 
-/**
- Internal representation of objectForKey. Will always attempt a lookup, even if still initializing. This is ok since internally we know what we are doing.
- 
- @param key the key
- @param context the application context
- 
- @return the object with the given key, or nil if not found
- 
- @see OCSConfigurator::objectForKey:inContext:
- */
-- (id) _objectForKey:(NSString *)key inContext:(OCSApplicationContext *)context;
+- (void) _registerAliasesForDefinition:(OCSDefinition *) definition;
 
 
 @end
 
 @implementation OCSConfiguratorFromClass
 
-@synthesize initializing = _initializing;
 
 - (id)initWithClass:(Class) factoryClass
 {
     self = [super init];
     if (self) {
-        _initializing = YES;
-        
         _configInstance = createExtendedConfiguratorInstance(factoryClass, ^(NSString *name) {
-            BOOL result = NO;
-            if ([name hasPrefix:SINGLETON_PREFIX]) {
-                result = YES;
-            }
-
+            BOOL result = ([name hasPrefix:LAZY_SINGLETON_PREFIX] || [name hasPrefix:EAGER_SINGLETON_PREFIX]);
             return result;
         });
-        _definitionRegistry = [[NSMutableDictionary alloc] init];
-
         unsigned int count;
         Method * methods = class_copyMethodList(factoryClass, &count);
         if (count > 0) {
@@ -128,24 +80,27 @@
                     OCSDefinition *def = [[OCSDefinition alloc] init];
                     //TODO put more info on definition
                     NSUInteger offset = 0;
-                    if ([objcStringName hasPrefix:SINGLETON_PREFIX]) {
+                    if ([objcStringName hasPrefix:LAZY_SINGLETON_PREFIX]) {
                         def.singleton = YES;
-                        offset = SINGLETON_PREFIX.length;
-                    } else if ([objcStringName hasPrefix:NEW_INSTANCE_PREFIX]) {
+                        def.lazy = YES;
+                        offset = LAZY_SINGLETON_PREFIX.length;
+                    } else if ([objcStringName hasPrefix:EAGER_SINGLETON_PREFIX]) {
+                        def.singleton = YES;
+                        def.lazy = NO;
+                        offset = EAGER_SINGLETON_PREFIX.length;
+                    } else if ([objcStringName hasPrefix:PROTOTYPE_PREFIX]) {
                         def.singleton = NO;
-                        offset = NEW_INSTANCE_PREFIX.length;
+                        offset = PROTOTYPE_PREFIX.length;
                     }
                     
                     if (offset) {
                         NSLog(@"Registering definition %@", def);
                         NSString *key = [objcStringName substringFromIndex:offset];
-                        def.key = key;
-                        //Alias where all letters are upper cased
-                        [def addAlias:[key uppercaseString]];
-                        //Alias where first letter is lower case
-                        [def addAlias:[key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[key substringWithRange:NSMakeRange(0, 1)] lowercaseString]]];
-                        
-                        [self _registerDefinition:def forKey:key];
+                        if (key.length > 0) {
+                            def.key = key;
+                            [self _registerAliasesForDefinition:def];
+                            [self registerDefinition:def];
+                        }
                     } else {
                         NSLog(@"Create method found, but not as expected, ignoring it (%@)", objcStringName);
                     }
@@ -162,18 +117,14 @@
     return self;
 }
 
-- (void) _registerDefinition:(OCSDefinition *)definition forKey:(NSString *)key {
-    if ([_definitionRegistry objectForKey:key] != nil) {
-        NSLog(@"Overriding object with name %@ to new instance %@", key, definition);
-    }
-    [_definitionRegistry setObject:definition forKey:key];
-}
+
+
 
 - (id) _createObjectInstanceForKey:(NSString *) key {
-    OCSDefinition *definition = [_definitionRegistry objectForKey:key];
+    OCSDefinition *definition = [self definitionForKeyOrAlias:key];
     id result = nil;
     if (definition) {
-        NSString *methodPrefix = definition.singleton ? SINGLETON_PREFIX : NEW_INSTANCE_PREFIX;
+        NSString *methodPrefix = definition.singleton ? (definition.lazy ? LAZY_SINGLETON_PREFIX : EAGER_SINGLETON_PREFIX) : PROTOTYPE_PREFIX;
         SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", methodPrefix, key]);
         if ([_configInstance respondsToSelector:selector]) {
             result = [_configInstance performSelector:selector];
@@ -183,18 +134,43 @@
     return result;
 }
 
-- (id) objectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
-    id result = nil;
-    if (!_initializing) {
-        result = [self _objectForKey:keyOrAlias inContext:context];
+- (void) _registerAliasesForDefinition:(OCSDefinition *) definition
+{
+    NSString *key = definition.key;
+    
+    //Alias where all letters are upper cased
+    [definition addAlias:[key uppercaseString]];
+    //Alias where first letter is lower case
+    [definition addAlias:[key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[key substringWithRange:NSMakeRange(0, 1)] lowercaseString]]];
+
+    
+    NSString *aliasMethodName = [NSString stringWithFormat:@"%@%@", ALIAS_METHOD_PREFIX, key];
+    Method aliasMethod = class_getInstanceMethod([_configInstance class], NSSelectorFromString(aliasMethodName));
+    if (aliasMethod) {
+        id aliases = method_invoke(_configInstance, aliasMethod);
+        if (![aliases isKindOfClass:[NSArray class]]) {
+            [NSException raise:@"OCSConfiguratorException" format:@"Method %@ should return an NSArray or a subclass of it", aliasMethodName];
+            
+            return;
+        }
+        
+        [aliases enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if (![obj isKindOfClass:[NSString class]]) {
+                [NSException raise:@"OCSConfiguratorException" format:@"Method %@ should return an NSArray or a subclass of it, containing only NSString objects or a subclass of it", aliasMethodName];
+            }
+            
+            [definition addAlias:obj]; 
+        }];
     }
-    return result;
 }
 
-- (id) _objectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
-    OCSDefinition *definition = [self _definitionForKeyOrAlias:keyOrAlias];
+
+- (id) internalObjectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
+    OCSDefinition *definition = [self definitionForKeyOrAlias:keyOrAlias];
     id result = nil;
     if (definition) {
+        //If singleton, check if we already have it in our registry. If not load it and put it there.
+        //DO NOT do anything different for lazy or eager singletons. If demanded, we must always load!
         if (definition.singleton) {
             //TODO since the configurator class is extended, does the singleton sope make sence here. Shouldn't we use it in the dynamic subclass instead?
             result = [[OCSSingletonScope sharedOCSSingletonScope] objectForKey:definition.key];
@@ -202,6 +178,12 @@
                 result = [self _createObjectInstanceForKey:definition.key];
                 
                 [[OCSSingletonScope sharedOCSSingletonScope] registerObject:result forKey:definition.key];
+                
+                //If we are still initializing, postpone the injection process
+                //Ohterwise we can do injection.
+                if (!self.initializing) {
+                    [context performInjectionOn:result];
+                }
             }
         } else {
             result = [self _createObjectInstanceForKey:definition.key];
@@ -213,35 +195,15 @@
 }
 
 
-- (OCSDefinition *) _definitionForKeyOrAlias:(NSString *) keyOrAlias {
-    OCSDefinition *def = [_definitionRegistry objectForKey:keyOrAlias];
-    if (!def) {
-        for (OCSDefinition *definition in [_definitionRegistry allValues]) {
-            if ([definition.key isEqualToString:keyOrAlias] || [definition isAlsoKnownWithAlias:keyOrAlias]) {
-                def = definition;
-                break;
-            }
-        }
-    }
-    
-    return def;
-}
 
-- (void) contextLoaded:(OCSApplicationContext *) context {
-    for (NSString *key in [_definitionRegistry allKeys]) {
-        OCSDefinition *definition = [_definitionRegistry objectForKey:key];
-        if (definition.singleton) {
-            id instance = [self _objectForKey:key inContext:context];
-            [context performInjectionOn:instance];
-        }
-    }
-    _initializing = NO;
+
+- (void) internalContextLoaded:(OCSApplicationContext *) context {
+    //NO OP
 }
 
 - (void)dealloc
 {
     [_configInstance release];
-    [_definitionRegistry release];
     [super dealloc];
 }
 @end

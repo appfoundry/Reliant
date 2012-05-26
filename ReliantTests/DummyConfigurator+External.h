@@ -10,5 +10,5 @@
 
 @interface DummyConfigurator (External)
 
-- (id) createSingletongExternalCategory;
+- (id) createEagerSingletonExternalCategory;
 @end

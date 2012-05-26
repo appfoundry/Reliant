@@ -10,7 +10,7 @@
 
 @implementation DummyConfigurator (External)
 
-- (id) createSingletongExternalCategory {
+- (id) createEagerSingletonExternalCategory {
     return @"ExternalCategory";
 }
 

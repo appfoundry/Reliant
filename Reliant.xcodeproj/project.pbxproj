@@ -24,10 +24,15 @@
 		274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; };
 		274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */; };
 		274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BCF1563CB9A0007C1C8 /* libOCMock.a */; };
+		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
+		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; };
+		2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
 		2795FD80156D560E00E7F6FA /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7B951563BF2E0007C1C8 /* Reliant.h */; };
 		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
+		2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; };
+		2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
 		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
 		27C112EC156546C800499664 /* ProxyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C112EB156546C800499664 /* ProxyTest.m */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
@@ -66,8 +71,15 @@
 		274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSApplicationContextTests.m; sourceTree = "<group>"; };
 		274D7BCF1563CB9A0007C1C8 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = /Library/Developer/libs/libOCMock.a; sourceTree = "<absolute>"; };
 		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
+		2780EDCF156FE48A00CFD38C /* OCSConfiguratorBaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBaseTests.h; sourceTree = "<group>"; };
+		2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBaseTests.m; sourceTree = "<group>"; };
+		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
+		2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCSConfiguratorBase+ForSubclassEyesOnly.m"; sourceTree = "<group>"; };
+		2780EDDB1571052200CFD38C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2795FD83156EE3DC00E7F6FA /* DummyConfigurator+External.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DummyConfigurator+External.h"; sourceTree = "<group>"; };
 		2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DummyConfigurator+External.m"; sourceTree = "<group>"; };
+		2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBase.h; sourceTree = "<group>"; };
+		2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBase.m; sourceTree = "<group>"; };
 		27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzlerTests.h; sourceTree = "<group>"; };
 		27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSwizzlerTests.m; sourceTree = "<group>"; };
 		27C112EA156546C800499664 /* ProxyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyTest.h; sourceTree = "<group>"; };
@@ -123,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				274D7BCF1563CB9A0007C1C8 /* libOCMock.a */,
+				2780EDDB1571052200CFD38C /* UIKit.framework */,
 				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
 				274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */,
 			);
@@ -134,6 +147,10 @@
 			children = (
 				2795FD7F156D556A00E7F6FA /* Protocols */,
 				274D7BCB1563BFBA0007C1C8 /* Scopes */,
+				2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */,
+				2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */,
+				2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */,
+				2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */,
 				274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */,
 				274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */,
 				274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */,
@@ -161,6 +178,8 @@
 			children = (
 				274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */,
 				274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */,
+				2780EDCF156FE48A00CFD38C /* OCSConfiguratorBaseTests.h */,
+				2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */,
 				27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */,
 				27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */,
 				27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */,
@@ -217,6 +236,8 @@
 				274D7BC51563BFA10007C1C8 /* OCSApplicationContext.h in Headers */,
 				274D7BC71563BFA10007C1C8 /* OCSDefinition.h in Headers */,
 				274D7BC91563BFA10007C1C8 /* OCSConfiguratorFromClass.h in Headers */,
+				2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */,
+				2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +356,8 @@
 				274D7BC61563BFA10007C1C8 /* OCSApplicationContext.m in Sources */,
 				274D7BC81563BFA10007C1C8 /* OCSDefinition.m in Sources */,
 				274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */,
+				2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */,
+				2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +370,7 @@
 				27C112EC156546C800499664 /* ProxyTest.m in Sources */,
 				27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */,
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
+				2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +443,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
@@ -434,7 +457,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";

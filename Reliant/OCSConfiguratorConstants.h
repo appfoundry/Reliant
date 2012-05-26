@@ -20,15 +20,25 @@
 #ifndef Reliant_OCSConfiguratorConstants_h
 
 /**
- The prefix used in OCSConfiguratorFromClass to detect a method which will create a singleton.
+ The prefix used in OCSConfiguratorFromClass to detect a method which will create a lazy singleton.
  */
-#define SINGLETON_PREFIX @"createSingleton"
+#define LAZY_SINGLETON_PREFIX @"createSingleton"
+
+/**
+ The prefix used in OCSConfiguratorFromClass to detect a method which will create an eager singleton.
+ */
+#define EAGER_SINGLETON_PREFIX @"createEagerSingleton"
+
 
 /**
  The prefix used in OCSConfiguratorFromClass to detect a method which will create a prototype.
  */
+#define PROTOTYPE_PREFIX @"createPrototype"
 
-#define NEW_INSTANCE_PREFIX @"createNewInstance"
+/**
+ The prefix used in OCSConfiguratorFromClass to call optional alias methods for a certain object.
+ */
+#define ALIAS_METHOD_PREFIX @"aliasesFor"
 
 #define Reliant_OCSConfiguratorConstants_h
 #endif

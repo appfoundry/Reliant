@@ -18,16 +18,14 @@
 //  limitations under the License.
 
 
-#import <Foundation/Foundation.h>
-
-#import "OCSConfigurator.h"
+#import "OCSConfiguratorBase.h"
 
 /**
  Configurator implementation which derives definitions from methods in a given class instance. The class instance is also used to create object instances.
  
  TODO Write on how to make a configurator class
  */
-@interface OCSConfiguratorFromClass : NSObject<OCSConfigurator>
+@interface OCSConfiguratorFromClass : OCSConfiguratorBase
 
 /**
  Designated initializer.

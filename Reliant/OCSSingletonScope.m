@@ -17,9 +17,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-
 #import "OCSSingletonScope.h"
-
 
 @implementation OCSSingletonScope {
     NSMutableDictionary *_objectRegistry;
@@ -57,6 +55,7 @@ static OCSSingletonScope *sharedOCSSingletonScope = nil;
     self = [super init];
     if (self) {
         _objectRegistry = [[NSMutableDictionary alloc] init];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hanldeMemoryWarning:) name:@"UIApplicationDidReceiveMemoryWarningNotification" object:[UIApplication sharedApplication]];
     }
     return self;
 }
@@ -69,8 +68,13 @@ static OCSSingletonScope *sharedOCSSingletonScope = nil;
     [_objectRegistry setObject:object forKey:key];
 }
 
+- (void) _handleMemoryWarning:(NSNotification *) notification {
+    [_objectRegistry removeAllObjects];
+}
+
 - (void)dealloc
 {
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
     [_objectRegistry release];
     [super dealloc];
 }
