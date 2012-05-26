@@ -1,30 +1,60 @@
 Reliant
 =======
 
-Reliant is a dependency injection framework for Objective C, specifically targeted, but 
-not limited to iOS. It's goal is to make it's use as simple as possible, while not 
-limiting it's possibilities. It aims to have as little impact as possible on your project 
-code.
+Reliant is a Dependency Injection (DI) framework for Objective-C, both for OS X and iOS. It's
+goal is to make it's use as simple as possible, while not limiting it's possibilities. It
+aims to have as little impact as possible on your project code.
 
 The motivation for this library came from being used to a highly testable infrastructure
 in other languages thanks to DI. Looking at the typical design pattern to solve the loose
 coupling problem, the Factory pattern is the natural solution. Although factories, in
 conjunction with mock libraries provide a fairly nice and testable solution, the pure
 loose coupling is never reached, since you still have a dependency to a factory in almost
-all classes in your project. Before starting this library, I looked for opinions about DI
-in dynamic languages at the one hand, and in frontend driven solutions at the other hand.
-Reliant is an answer to these questions.
+all classes in your project, which is a rather large footprint. Before starting this
+library, I looked for opinions about DI in dynamic languages at the one hand, and in
+frontend driven solutions at the other hand. Reliant is an answer to these questions.
+
+*Remark* at the moment, Reliant is still under development, and put here for review by the
+community. Although we consider the latest version to be pretty complete, there is still
+room for improvement. Obviously, since this is open source, do feel free to add your own
+insights/ideas/remarks/opinions.
+
+Overall architecture
+--------------------
+
+The framework is setup to be lightweight, you basically need an OCSApplicationContext
+which serves as the container of the managed objects. To register managed objects in this
+container, the application context uses an OCSConfigurator instance. The OCSConfigurator
+is responsible for creating OCSDefinitions, which describe the objects you want to put
+under the application context's control.
+
+At the moment, Reliant identifies two types of objects: singletons and prototypes. (*These
+names are taken from the well know [design patterns](http://en.wikipedia.org/wiki/Software_design_pattern#Classification_and_list)*)
+
+- A singleton is a stateless shared object, which is created only once (might be more then
+once cfr. memory warnings). Objects created as singleton should be thread safe! Reliant
+further identifies eager and lazy singletons. Eager means that they will be instantiated
+when the application context boots up, lazy means they will be instantiated
+*Just-in-Time*, when they are requested.
+
+- A prototype will be created each time it is requested from the application context. Be
+carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
+bound to the singleton!
+
+Objects are identified by a key and can have aliases, both strings. The framework makes
+sure these are unique. Exceptions will be thrown if an attempt is made to add an object
+with a non-unique key or alias.
+
+Now let's look at a Quick start example.
 
 Quick start
 -----------
 
 ### Bootstrapping Reliant
 
-TODO bind to appdelegate
-
 To get started with Reliant, you need to tell the *OCSApplicationContext* to start up. You
 will need to provide a configurator instance to the application context. More on
-configurators later.
+configurators later, bare with us for now.
 
 ```objective-c
 //Initialize a configurator
@@ -39,35 +69,42 @@ OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigur
 //Done! Well...
 ```
 
+This will bootstrap the entire application context. At the time the start method finishes
+it's job, it will have loaded your defintions and it will have instantiated and injected
+your eager singletons.
+
+Now where should you put this peace of code? As close as possible to where the application
+startup. For iOS this means in the [application:didFinishLaunchingWithOptions:](http://developer.apple.com/library/ios/documentation/uikit/reference/UIApplicationDelegate_Protocol/Reference/Reference.html#//apple_ref/occ/intfm/UIApplicationDelegate/application:didFinishLaunchingWithOptions:) 
+method in your UIApplicationDelegate. For OS X this is almost the same:
+[applicationDidFinishLaunching:](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/NSApplicationDelegate_Protocol/Reference/Reference.html#//apple_ref/occ/intfm/NSApplicationDelegate/applicationDidFinishLaunching:)
+ in your NSApplicationDelegate.
+ 
 ### Using the *OCSConfiguratorFromClass*
 
-*TODO rewrite when less tired*. This is a ready-made configurator implementation. It uses the information found in a class
+This is a ready-made configurator implementation. It uses the information found in a class
 provided by you through introspection. The provided class will also serve as the creator
-of your objects, hence we will call it a factory class. The idea behind this is to give you a programatic and testable
-configuration. This makes the use of external configuration files and/or macros obsolete.
+of your objects, hence we will call it a factory class. The idea behind this is to give
+you a programatic way to define objects, and make the configuration itself subject to
+testing. This makes the use of external configuration files and/or macros obsolete, which
+yields more robust code.
 
-#### Dealing with larger applications
+So what you need to use this configurator is a factory class. The methods in this class
+will be responsible for creating your objects. In order for the framework to detect these
+methods, you will need to follow some naming conventions on them.
 
-In larger applications, the factory class can quickly become huge. This is where you can
-and should use Objective C's
-[category](http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/chapters/occategories.html "Objective-C programming language reference")
-mechanism. For each logical group of objects you can create a category, named after this
-logical group. All methods in all categories of your factory class will be taken into
-account. TODO give some category name examples...
+OCSConfiguratorFromClass will detect 4 kinds of methods. (Replace YourObjectKey each time with a unique name)
 
-Reliant identifies 2 kinds of scope for an object: singletons and prototypes. (*These
-names are taken from the well know design patterns*)
+```objective-c
+- (id) createSingleton/*YourObjectKey*/; //Lazy singleton definition
+- (id) createEagerSingleton/*YourObjectKey*/; //Eager singleton definition
+- (id) createPrototype/*YourObjectKey*/;//Prototype definition
+- (NSArray *) aliasesFor/*YourObjectKey*/;//Alias definitions
+```
+Let's look at them in more detail:
 
-- A singleton is a stateless shared object, which is created only once (might be more then
-once cfr. memory warnings). Objects created as singleton should be thread safe!
+#### Defining singletons
 
-- A prototype will be created each time it is requested from the application context. Be
-carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
-bound to the singleton!
-
-#### Creating singletons with your factory class
-
-For each singleton you need, you should add a method with the following signature:
+For each lazy singleton you need, you should add a method with the following signature:
 
 ```objective-c
 - (id) createSingletonFoo {
@@ -76,7 +113,7 @@ For each singleton you need, you should add a method with the following signatur
 ```
 
 You can also use what is called *constructor injection* by calling another 
-*createSingleton* method:
+*createSingleton* or *createEagerSingleton* method:
 
 ```objective-c
 - (id) createSingletonBar {
@@ -91,7 +128,15 @@ making the results true singletons.
 You don't necessarily need to inject your objects through constructor injection. Later on
 we will explain how objects are injected through the use of properties.
 
-#### Creating prototypes with your factory class
+To create eager singletons, add this kind of method:
+
+```objective-c
+- (id) createEagerSingletonFooBar {
+	return [[[FooBar alloc] init] autorelease];
+}
+```
+
+#### Defining prototypes
 
 For creating prototypes we can use a similar approach. Only the method name changes a bit:
 
@@ -110,25 +155,72 @@ Registering aliases for an object is also possible. Again, you just need to add 
 with a certain signature:
 
 ```objective-c
-- (NSSet *) aliasesForFoo {
+- (NSArray *) aliasesForFoo {
 	return [NSSet setWithObjects:@"_foo", @"_fuu", nil];
 }
 ```
 
 *Remark:* by default, two aliases are already registered for each object. They take the
-form of the key in uppercase (eg. FOO, BAR, ...) and the key starting with a lowercase
-(eg. foo, bar, ...). Aliases must be unique, and should also never be equal to an object
-key. If an attempt is made to add a duplicate, an exception will be raised.
+form of the key in uppercase (eg. FOO, BAR, FOOBAR, ...) and the key starting with a
+lowercase (eg. foo, bar, fooBar, ...). Aliases must be unique, and should also never be
+equal to an object key. If an attempt is made to add a duplicate, an exception will be
+raised. The automatically added aliases, will only be added if they are not a duplicate of
+the key.
 
 #### Other methods in your factory class
 
 You can add other methods, which might help in creating your objects. These will be
 ignored by the framework, but you can obviously use them in your create methods.
 
+#### Dealing with larger applications
+
+In larger applications, the factory class can quickly become huge. This is where you can
+and should use Objective C's
+[category](http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/chapters/occategories.html "Objective-C programming language reference")
+mechanism. For each logical group of objects you can create a category, named after this
+logical group. All methods in all categories of your factory class will be taken into
+account. It might look something like this (interfaces will be omitted for brevity).
+
+```objective-c
+@implementation ReliantFactory
+
+- (id) createSingletonGeneralObject {
+	return ...;
+}
+
+@end
+
+@implementation ReliantFactory (Services)
+
+- (id) createEagerSingletonServiceA {
+	return [[[ServiceA alloc] init] autorelease];
+}
+
+- (id) createEagerSingletonServiceB {
+	return [[[ServiceB alloc] init] autorelease];
+}
+
+@end
+
+@implementation ReliantFactory (Repositories)
+
+- (id) createEagerSingletonRepositoryA {
+	return [[[RepositoryA alloc] init] autorelease];
+}
+
+- (id) createEagerSingletonRepositoryB {
+	return [[[RepositoryB alloc] init] autorelease];
+}
+
+@end
+
+```
+
 ### Injection
 
 All objects created in the application context will be injected after their creation. This
-is done by using Objective-C's [KVC](http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html "Key-Value Coding Programming Guide")
+is done as explained before by *constructor injection* and/or by using Objective-C's 
+[KVC](http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html "Key-Value Coding Programming Guide")
 mechanism. Reliant will scan your object's properties. If a writable property's name
 matches with a key or alias for an object in the application context, and if it's current
 value is nil, the matching object will be injected in this property. All other properties
@@ -137,9 +229,46 @@ will be left alone.
 #### Injecting objects that are not know to the application context
 
 You can use the injection mechanism described above on objects which are not setup in the 
-application context. A good example would be a UIViewController. This is what you need to do:
+application context. A good example would be a UIViewController. In order to make things
+easier, you kan make use of the fact that we have bootstrapped our application context in
+the UIApplicationDelegate. Since the UIApplication is a shared object (hey, another
+singleton!) we can do our injection from here.
+
+This is what you need to do:
 
 ```objective-c
+//In your UIApplicationDelegate
+@implementation MyAppDelegate {
+	OCSApplicationContext *_context;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	//...
+	
+	//Initialize a configurator
+	id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[YourObjectFactory class]];
+
+	//Initialize the application context with the configurator
+	_context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+
+	//Start the context
+	[_context start];
+	
+	//...
+
+}
+
+- (void) performInjectionOn:(id) object {
+	[_context performInjectionOn:object];
+}
+
+@end;
+
+//In your UIViewController
+@implementation MyViewController
+
+@synthesize foo;
+
 - (void) setup {
     AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
     [appDelegate performInjectionOn:self];
@@ -153,7 +282,11 @@ application context. A good example would be a UIViewController. This is what yo
     }
     return self;
 }
+
+@end
 ```
+
+And that's all there is to it. The property foo will be injected.
 
 ### The configurator
 
@@ -168,7 +301,7 @@ contextLoaded: message is send to it. Only after all work is done should the con
 return objects through its objectForKey:inContext: method. When work is done, the
 initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
 
-*Remark* Although the framework is extendible, we encourage the use of the provided
+*Remark* Although the framework is extendible, we encourage you to use the provided
 configurator.
 
 #### Example
@@ -228,3 +361,8 @@ Special thanks
 Contact
 -------
 If not via GitHub, find me on twitter: @mikeseghers
+
+Licence
+-------
+
+Reliant is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
