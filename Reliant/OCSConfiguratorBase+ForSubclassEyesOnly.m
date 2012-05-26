@@ -55,8 +55,8 @@
     _initializing = initializing;
 }
 
-- (id) internalObjectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
-    [NSException raise:@"OCSConfiguratorException" format:@"You should implement internalObjectForKey:inContext: on subclasses of OCSBaseConfigurator"];
+- (id) createObjectInstanceForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
+    [NSException raise:@"OCSConfiguratorException" format:@"You should implement createObjectInstanceForKey:inContext: on subclasses of OCSBaseConfigurator"];
     return nil;
 }
 

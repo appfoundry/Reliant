@@ -24,15 +24,10 @@
 #import "OCSScope.h"
 
 /**
- Singletong scope. Scope for holding singleton objects. This class is a singleton as well.
+ Singleton scope. Scope for holding singleton objects.
  
  @author Mike Seghers
  */
 @interface OCSSingletonScope : NSObject<OCSScope>
-
-/**
- Retrieves the singleton instance.
- */
-+ (OCSSingletonScope *) sharedOCSSingletonScope;
 
 @end

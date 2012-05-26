@@ -10,6 +10,7 @@
 
 #import "OCSApplicationContext.h"
 #import "OCSConfiguratorBase.h"
+#import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
 #import "OCSDefinition.h"
 
 #import "OCSConfiguratorBaseTests.h"
@@ -20,7 +21,19 @@
 
 @implementation DummyBaseConfiguratorExtension
 
-- (id) internalObjectForKey:(NSString *) keyOrAlias inContext:(OCSApplicationContext *) context {
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        OCSDefinition *def = [[OCSDefinition alloc] init];
+        def.key = @"SomeKey";
+        [self registerDefinition:def];
+        [def release];
+    }
+    return self;
+}
+
+- (id) createObjectInstanceForKey:(NSString *)key inContext:(OCSApplicationContext *)context {
     return nil;
 }
 - (void) internalContextLoaded:(OCSApplicationContext *) context {
@@ -82,7 +95,8 @@
 - (void) testObjectForKeyAfterLoaded {
     BOOL noo = NO;
     [[[dummyConfigurator stub] andReturnValue:OCMOCK_VALUE(noo)] initializing];
-    [[[dummyConfigurator expect] andReturn:@"ReturnedObject"] internalObjectForKey:@"SomeKey" inContext:context];
+    [[[dummyConfigurator expect] andReturn:@"ReturnedObject"] createObjectInstanceForKey:@"SomeKey" inContext:context];
+    [[context expect] performInjectionOn:@"ReturnedObject"];
     
     id result = [dummyConfigurator objectForKey:@"SomeKey" inContext:context];
     
@@ -140,7 +154,7 @@
     [self addDefinitions:dummyConfigurator];
 
     NSObject *fakeObject = [[NSObject alloc] init];
-    [[[dummyConfigurator expect] andReturn:fakeObject] internalObjectForKey:@"EagerSingletonKey" inContext:context];
+    [[[dummyConfigurator expect] andReturn:fakeObject] createObjectInstanceForKey:@"EagerSingletonKey" inContext:context];
     
     
     [[dummyConfigurator expect] internalContextLoaded:context];

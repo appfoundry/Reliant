@@ -41,16 +41,11 @@
     id _configInstance;
 }
 
-
 /**
- Create an object instance for the given key. This method will delegate to the configurator class.
+ Register aliases for a definition. Registers an upper cased alias, a "first small letter" alias and all aliases found in the factory class for this definition (through calling aliasesForXXX:).
  
- @param key the key
- 
- @return the object for the given key. Returns nil while still initializing or when the object for the given key was not found.
+ @param the defintion which will receive the aliases
  */
-- (id) _createObjectInstanceForKey:(NSString *) key;
-
 - (void) _registerAliasesForDefinition:(OCSDefinition *) definition;
 
 
@@ -117,33 +112,22 @@
     return self;
 }
 
-
-
-
-- (id) _createObjectInstanceForKey:(NSString *) key {
-    OCSDefinition *definition = [self definitionForKeyOrAlias:key];
-    id result = nil;
-    if (definition) {
-        NSString *methodPrefix = definition.singleton ? (definition.lazy ? LAZY_SINGLETON_PREFIX : EAGER_SINGLETON_PREFIX) : PROTOTYPE_PREFIX;
-        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", methodPrefix, key]);
-        if ([_configInstance respondsToSelector:selector]) {
-            result = [_configInstance performSelector:selector];
-        }
-    }
-    
-    return result;
-}
-
 - (void) _registerAliasesForDefinition:(OCSDefinition *) definition
 {
     NSString *key = definition.key;
     
-    //Alias where all letters are upper cased
-    [definition addAlias:[key uppercaseString]];
-    //Alias where first letter is lower case
-    [definition addAlias:[key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[key substringWithRange:NSMakeRange(0, 1)] lowercaseString]]];
-
+    //Alias where all letters are upper cased, if equal to key, don't add!
+    NSString *upperCased = [key uppercaseString];
+    if (![upperCased isEqualToString:key]) {
+        [definition addAlias:upperCased];
+    }
     
+    //Alias where first letter is lower case, if equal to key, don't add! Cannot be equal to upper cased alias, since first letter will always be lower case (DUH!)
+    NSString *smallLetterAlias = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[key substringWithRange:NSMakeRange(0, 1)] lowercaseString]];
+    if (![smallLetterAlias isEqualToString:key]) {
+        [definition addAlias:smallLetterAlias];
+    }
+
     NSString *aliasMethodName = [NSString stringWithFormat:@"%@%@", ALIAS_METHOD_PREFIX, key];
     Method aliasMethod = class_getInstanceMethod([_configInstance class], NSSelectorFromString(aliasMethodName));
     if (aliasMethod) {
@@ -164,41 +148,22 @@
     }
 }
 
-
-- (id) internalObjectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
-    OCSDefinition *definition = [self definitionForKeyOrAlias:keyOrAlias];
-    id result = nil;
-    if (definition) {
-        //If singleton, check if we already have it in our registry. If not load it and put it there.
-        //DO NOT do anything different for lazy or eager singletons. If demanded, we must always load!
-        if (definition.singleton) {
-            //TODO since the configurator class is extended, does the singleton sope make sence here. Shouldn't we use it in the dynamic subclass instead?
-            result = [[OCSSingletonScope sharedOCSSingletonScope] objectForKey:definition.key];
-            if (result == nil) {
-                result = [self _createObjectInstanceForKey:definition.key];
-                
-                [[OCSSingletonScope sharedOCSSingletonScope] registerObject:result forKey:definition.key];
-                
-                //If we are still initializing, postpone the injection process
-                //Ohterwise we can do injection.
-                if (!self.initializing) {
-                    [context performInjectionOn:result];
-                }
-            }
-        } else {
-            result = [self _createObjectInstanceForKey:definition.key];
-            
-            [context performInjectionOn:result];
-        }
-    }     
-    return result;
-}
-
-
-
-
 - (void) internalContextLoaded:(OCSApplicationContext *) context {
     //NO OP
+}
+
+- (id) createObjectInstanceForKey:(NSString *) key inContext:(OCSApplicationContext *)context {
+    OCSDefinition *definition = [self definitionForKeyOrAlias:key];
+    id result = nil;
+    if (definition) {
+        NSString *methodPrefix = definition.singleton ? (definition.lazy ? LAZY_SINGLETON_PREFIX : EAGER_SINGLETON_PREFIX) : PROTOTYPE_PREFIX;
+        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", methodPrefix, key]);
+        if ([_configInstance respondsToSelector:selector]) {
+            result = [_configInstance performSelector:selector];
+        }
+    }
+    
+    return result;
 }
 
 - (void)dealloc

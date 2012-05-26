@@ -14,6 +14,8 @@
  @author Mike Seghers
 */
 
+#import "OCSScope.h"
+
 @interface OCSConfiguratorBase : NSObject<OCSConfigurator> {
     @private
     
@@ -32,6 +34,11 @@
      Flag to check if we are still initializing. While initialization is going on, we should not return any objects yet as there state might be unpredictable.
      */
     BOOL _initializing;
+    
+    /**
+     A scope holding singletons
+     */
+    id<OCSScope> _singletonScope;
 }
 
 @end

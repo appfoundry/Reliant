@@ -38,16 +38,16 @@
 - (OCSDefinition *) definitionForKeyOrAlias:(NSString *) keyOrAlias;
 
 /**
- Templated method. Will always attempt a lookup, even if still initializing. This is ok since internally we know what we are doing. This method is called from the objectForKey:inContext: method.
+ Called by the configurator base whenever it decides that an actual creation is needed. eg. for a prototype or a singleton that has never been created before.
  
- @param key the key
+ @param key the key.
  @param context the application context this configurator belongs to.
  
- @return the object with the given key, or nil if not found
+ @return the object with the given key, or nil if not found.
  
  @see OCSConfigurator::objectForKey:inContext:
  */
-- (id) internalObjectForKey:(NSString *)key inContext:(OCSApplicationContext *)context;
+- (id) createObjectInstanceForKey:(NSString *)key inContext:(OCSApplicationContext *)context;
 
 /**
  Templated method. Will be called from the contextLoaded: method.

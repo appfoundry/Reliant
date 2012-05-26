@@ -22,41 +22,13 @@
 @implementation OCSSingletonScope {
     NSMutableDictionary *_objectRegistry;
 }
-
-static OCSSingletonScope *sharedOCSSingletonScope = nil;
-
-+ (OCSSingletonScope *) sharedOCSSingletonScope {
-	@synchronized(self)	{
-		if (sharedOCSSingletonScope == nil) {
-			sharedOCSSingletonScope = [[self alloc] init];
-		}
-	}
-    
-    return sharedOCSSingletonScope;
-}
-
-+ (id) allocWithZone:(NSZone *)zone {
-	@synchronized(self)	{
-		if (sharedOCSSingletonScope == nil)	{
-			sharedOCSSingletonScope = [super allocWithZone:zone];
-			return sharedOCSSingletonScope;
-		}
-	}
-   
-	return nil;
-}
-
-- (id) copyWithZone:(NSZone *)zone {
-	return self;
-}
-
  
 - (id) init {
     self = [super init];
     if (self) {
         _objectRegistry = [[NSMutableDictionary alloc] init];
 #if (TARGET_OS_IPHONE)
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hanldeMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
 #endif
     }
     return self;
@@ -70,9 +42,11 @@ static OCSSingletonScope *sharedOCSSingletonScope = nil;
     [_objectRegistry setObject:object forKey:key];
 }
 
+#if (TARGET_OS_IPHONE)
 - (void) _handleMemoryWarning:(NSNotification *) notification {
     [_objectRegistry removeAllObjects];
 }
+#endif
 
 - (void)dealloc
 {
