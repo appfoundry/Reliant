@@ -80,10 +80,14 @@
     OCSApplicationContext *context;
     
     id configurator;
+    
+    NSArray *accessibilityProperties;
 }
 
 - (void) setUp {
     [super setUp];
+    
+    accessibilityProperties = [NSArray arrayWithObjects:@"accessibilityHint", @"accessibilityLabel", @"accessibilityLanguage", @"accessibilityValue", nil];
     
     // Set-up code here.
     configurator = [OCMockObject mockForProtocol:@protocol(OCSConfigurator)];
@@ -92,8 +96,11 @@
 
 - (void) tearDown {
     // Tear-down code here.
+    
     configurator = nil;
+    [context release];
     context = nil;
+    accessibilityProperties = nil;
     
     [super tearDown];
 }
@@ -124,6 +131,9 @@
     [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
     [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
     [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
+    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
+    }];
     
     
     [context performInjectionOn:dummy];
@@ -149,7 +159,9 @@
     [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
     [[[configurator expect] andReturn:@"PP"] objectForKey:@"prototypeProperty" inContext:context];
     [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
-    
+    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
+    }];
     
     [context performInjectionOn:dummy];
     
@@ -169,6 +181,10 @@
     //We must be able to try to inject classes that on their own have no dependencies. No actual injection should happen. The configurator should never be called.
     EmptyClass *dummy = [[EmptyClass alloc] init];
     
+    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
+    }];
+    
     [context performInjectionOn:dummy];
     
     [configurator verify];
@@ -185,6 +201,9 @@
     [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
     [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
     [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
+    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
+    }];
     
     [context performInjectionOn:dummy];
     

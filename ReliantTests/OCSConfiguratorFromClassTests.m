@@ -78,6 +78,7 @@
 
 - (void) tearDown {
     // Tear-down code here.
+    [configurator release];
     configurator = nil;
     
     [super tearDown];

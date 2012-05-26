@@ -55,7 +55,9 @@ static OCSSingletonScope *sharedOCSSingletonScope = nil;
     self = [super init];
     if (self) {
         _objectRegistry = [[NSMutableDictionary alloc] init];
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hanldeMemoryWarning:) name:@"UIApplicationDidReceiveMemoryWarningNotification" object:[UIApplication sharedApplication]];
+#if (TARGET_OS_IPHONE)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hanldeMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
+#endif
     }
     return self;
 }
@@ -74,7 +76,9 @@ static OCSSingletonScope *sharedOCSSingletonScope = nil;
 
 - (void)dealloc
 {
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
+#if (TARGET_OS_IPHONE)
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+#endif
     [_objectRegistry release];
     [super dealloc];
 }

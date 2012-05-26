@@ -96,7 +96,7 @@ static id createExtendedConfiguratorInstance(Class baseClass, BOOL (^filter)(NSS
             Method m = methods[i];
             char *returnType = method_copyReturnType(m);
             //Only take methods which have object as return type, no arguments and are evaluated as valid by the filter block
-            if (returnType[0] == '@' && method_getNumberOfArguments(m) == 2 && filter(NSStringFromSelector(method_getName(m)))) {
+            if (returnType[0] == _C_ID && method_getNumberOfArguments(m) == 2 && filter(NSStringFromSelector(method_getName(m)))) {
                 class_addMethod(extendedClass, method_getName(m), (IMP) dynamicIDMethodIMP, method_getTypeEncoding(m));
             } 
             free(returnType);
@@ -104,7 +104,7 @@ static id createExtendedConfiguratorInstance(Class baseClass, BOOL (^filter)(NSS
         
         free(methods);
         
-        class_addMethod(extendedClass, @selector(dealloc), (IMP) dynamicDealloc, "v");
+        class_addMethod(extendedClass, @selector(dealloc), (IMP) dynamicDealloc, @encode(void));
     } else {
         extendedClass = objc_getClass(name);
     }

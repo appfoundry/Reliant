@@ -20,6 +20,8 @@
 
 #import "ProxyTest.h"
 
+#import <objc/runtime.h>
+
 @interface ProxyTestProxy : NSProxy
 
 - (id) initWithProxyTest:(ProxyTest *) test;
@@ -78,10 +80,10 @@
     NSUInteger length = [[invocation methodSignature] methodReturnLength];
     const char *type = [[invocation methodSignature] methodReturnType];
     switch (type[0]) {
-        case 'v':
+        case _C_VOID:
             NSLog(@"void");
             break;
-        case '@':
+        case _C_ID:
             NSLog(@"Object");
             break;
         default:
