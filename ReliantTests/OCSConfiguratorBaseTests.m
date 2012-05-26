@@ -59,7 +59,7 @@
 @implementation OCSConfiguratorBase (TestAdditions)
 
 - (void) addDefinition:(OCSDefinition *) def  {
-    [_definitionRegistry setObject:def forKey:def.key];
+    [self registerDefinition:def];
 }
 
 @end

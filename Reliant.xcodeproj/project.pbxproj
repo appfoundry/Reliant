@@ -50,6 +50,26 @@
 		2765CB7915716B0900ABE59C /* OCSDefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */; };
 		2765CB7A15716B0900ABE59C /* OCSApplicationContext.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */; };
 		2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
+		2765CB97157184EC00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CB95157184EC00ABE59C /* InfoPlist.strings */; };
+		2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
+		2765CBA6157184ED00ABE59C /* Reliant OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant OSX.framework */; };
+		2765CBAC157184ED00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CBAA157184ED00ABE59C /* InfoPlist.strings */; };
+		2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
+		2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
+		2765CBB81571854100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
+		2765CBB91571854100ABE59C /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; };
+		2765CBBA1571854100ABE59C /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */; };
+		2765CBBB1571854100ABE59C /* OCSApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */; };
+		2765CBBC1571861400ABE59C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
+		2765CBBD157186E400ABE59C /* OCSApplicationContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */; };
+		2765CBBE157186E400ABE59C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
+		2765CBBF157186E400ABE59C /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
+		2765CBC0157186E400ABE59C /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
+		2765CBC1157186E400ABE59C /* ProxyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C112EB156546C800499664 /* ProxyTest.m */; };
+		2765CBC2157186E400ABE59C /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
+		2765CBC3157186E400ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
+		2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
+		2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CBC81571893C00ABE59C /* OCMock.framework */; };
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
@@ -71,6 +91,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 274D7B8C1563BF2E0007C1C8;
 			remoteInfo = Reliant;
+		};
+		2765CBA4157184ED00ABE59C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274D7B841563BF2E0007C1C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2765CB8A157184EC00ABE59C;
+			remoteInfo = "Reliant OSX";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -118,6 +145,15 @@
 		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
 		2765CB7F1571717200ABE59C /* OCSSingletonScopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSingletonScopeTests.h; sourceTree = "<group>"; };
 		2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSingletonScopeTests.m; sourceTree = "<group>"; };
+		2765CB8B157184EC00ABE59C /* Reliant OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Reliant OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2765CB94157184EC00ABE59C /* Reliant OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSX-Info.plist"; sourceTree = "<group>"; };
+		2765CB96157184EC00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2765CB98157184EC00ABE59C /* Reliant OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant OSX-Prefix.pch"; sourceTree = "<group>"; };
+		2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reliant OSXTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2765CBA9157184ED00ABE59C /* Reliant OSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSXTests-Info.plist"; sourceTree = "<group>"; };
+		2765CBAB157184ED00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2765CBC61571889600ABE59C /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = OCMock; path = ../../../../../Library/Developer/libs/OCMock.framework/Versions/A/OCMock; sourceTree = "<group>"; };
+		2765CBC81571893C00ABE59C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../../../../../Library/Developer/libs/OCMock.framework; sourceTree = "<group>"; };
 		2780EDCF156FE48A00CFD38C /* OCSConfiguratorBaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBaseTests.h; sourceTree = "<group>"; };
 		2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBaseTests.m; sourceTree = "<group>"; };
 		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
@@ -158,14 +194,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2765CB87157184EC00ABE59C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2765CBBC1571861400ABE59C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2765CB9D157184ED00ABE59C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */,
+				2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */,
+				2765CBA6157184ED00ABE59C /* Reliant OSX.framework in Frameworks */,
+				2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		274D7B821563BF2E0007C1C8 = {
 			isa = PBXGroup;
 			children = (
+				2765CBC81571893C00ABE59C /* OCMock.framework */,
+				2765CBC61571889600ABE59C /* OCMock */,
 				274D7B921563BF2E0007C1C8 /* Reliant */,
 				274D7BA61563BF2E0007C1C8 /* ReliantTests */,
+				2765CB92157184EC00ABE59C /* Reliant OSX */,
+				2765CBA7157184ED00ABE59C /* Reliant OSXTests */,
 				274D7B8F1563BF2E0007C1C8 /* Frameworks */,
 				274D7B8E1563BF2E0007C1C8 /* Products */,
 			);
@@ -176,6 +235,8 @@
 			children = (
 				274D7B8D1563BF2E0007C1C8 /* libReliant.a */,
 				274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */,
+				2765CB8B157184EC00ABE59C /* Reliant OSX.framework */,
+				2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,6 +323,41 @@
 			name = Scopes;
 			sourceTree = "<group>";
 		};
+		2765CB92157184EC00ABE59C /* Reliant OSX */ = {
+			isa = PBXGroup;
+			children = (
+				2765CB93157184EC00ABE59C /* Supporting Files */,
+			);
+			path = "Reliant OSX";
+			sourceTree = "<group>";
+		};
+		2765CB93157184EC00ABE59C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2765CB94157184EC00ABE59C /* Reliant OSX-Info.plist */,
+				2765CB95157184EC00ABE59C /* InfoPlist.strings */,
+				2765CB98157184EC00ABE59C /* Reliant OSX-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2765CBA7157184ED00ABE59C /* Reliant OSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				2765CBA8157184ED00ABE59C /* Supporting Files */,
+			);
+			path = "Reliant OSXTests";
+			sourceTree = "<group>";
+		};
+		2765CBA8157184ED00ABE59C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2765CBA9157184ED00ABE59C /* Reliant OSXTests-Info.plist */,
+				2765CBAA157184ED00ABE59C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2795FD7F156D556A00E7F6FA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +385,13 @@
 				2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */,
 				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
 				2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2765CB88157184EC00ABE59C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +434,43 @@
 			productReference = 274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		2765CB8A157184EC00ABE59C /* Reliant OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2765CBB0157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSX" */;
+			buildPhases = (
+				2765CB86157184EC00ABE59C /* Sources */,
+				2765CB87157184EC00ABE59C /* Frameworks */,
+				2765CB88157184EC00ABE59C /* Headers */,
+				2765CB89157184EC00ABE59C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Reliant OSX";
+			productName = "Reliant OSX";
+			productReference = 2765CB8B157184EC00ABE59C /* Reliant OSX.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2765CBA0157184ED00ABE59C /* Reliant OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2765CBB3157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSXTests" */;
+			buildPhases = (
+				2765CB9C157184ED00ABE59C /* Sources */,
+				2765CB9D157184ED00ABE59C /* Frameworks */,
+				2765CB9E157184ED00ABE59C /* Resources */,
+				2765CB9F157184ED00ABE59C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2765CBA5157184ED00ABE59C /* PBXTargetDependency */,
+			);
+			name = "Reliant OSXTests";
+			productName = "Reliant OSXTests";
+			productReference = 2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -354,6 +494,8 @@
 				274D7B8C1563BF2E0007C1C8 /* Reliant */,
 				274D7B9C1563BF2E0007C1C8 /* ReliantTests */,
 				2765CB6C157169E700ABE59C /* Reliant iOS */,
+				2765CB8A157184EC00ABE59C /* Reliant OSX */,
+				2765CBA0157184ED00ABE59C /* Reliant OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -364,6 +506,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2765CB89157184EC00ABE59C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2765CB97157184EC00ABE59C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2765CB9E157184ED00ABE59C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2765CBAC157184ED00ABE59C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +571,19 @@
 			shellScript = "SIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Headers\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary for the device and simulator.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\"";
 			showEnvVarsInLog = 0;
 		};
+		2765CB9F157184ED00ABE59C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -443,6 +614,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2765CB86157184EC00ABE59C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */,
+				2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */,
+				2765CBB81571854100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
+				2765CBB91571854100ABE59C /* OCSConfiguratorFromClass.m in Sources */,
+				2765CBBA1571854100ABE59C /* OCSDefinition.m in Sources */,
+				2765CBBB1571854100ABE59C /* OCSApplicationContext.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2765CB9C157184ED00ABE59C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2765CBBD157186E400ABE59C /* OCSApplicationContextTests.m in Sources */,
+				2765CBBE157186E400ABE59C /* OCSConfiguratorBaseTests.m in Sources */,
+				2765CBBF157186E400ABE59C /* OCSConfiguratorFromClassTests.m in Sources */,
+				2765CBC0157186E400ABE59C /* OCSSwizzlerTests.m in Sources */,
+				2765CBC1157186E400ABE59C /* ProxyTest.m in Sources */,
+				2765CBC2157186E400ABE59C /* DummyConfigurator+External.m in Sources */,
+				2765CBC3157186E400ABE59C /* OCSSingletonScopeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -451,6 +649,11 @@
 			target = 274D7B8C1563BF2E0007C1C8 /* Reliant */;
 			targetProxy = 274D7BA31563BF2E0007C1C8 /* PBXContainerItemProxy */;
 		};
+		2765CBA5157184ED00ABE59C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2765CB8A157184EC00ABE59C /* Reliant OSX */;
+			targetProxy = 2765CBA4157184ED00ABE59C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -458,6 +661,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				274D7BAA1563BF2E0007C1C8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2765CB95157184EC00ABE59C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2765CB96157184EC00ABE59C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2765CBAA157184ED00ABE59C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2765CBAB157184ED00ABE59C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -599,6 +818,112 @@
 			};
 			name = Release;
 		};
+		2765CBB1157184ED00ABE59C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_OBJCPP_ARC_ABI = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Reliant OSX/Reliant OSX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		2765CBB2157184ED00ABE59C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_OBJCPP_ARC_ABI = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Reliant OSX/Reliant OSX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		2765CBB4157184ED00ABE59C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				HEADER_SEARCH_PATHS = /Library/Developer/libs;
+				INFOPLIST_FILE = "Reliant OSXTests/Reliant OSXTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Developer/libs,
+					"\"$(LOCAL_DEVELOPER_DIR)/libs/OCMock.framework/Versions/A\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2765CBB5157184ED00ABE59C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				HEADER_SEARCH_PATHS = /Library/Developer/libs;
+				INFOPLIST_FILE = "Reliant OSXTests/Reliant OSXTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Developer/libs,
+					"\"$(LOCAL_DEVELOPER_DIR)/libs/OCMock.framework/Versions/A\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -634,6 +959,22 @@
 			buildConfigurations = (
 				2765CB6E157169E700ABE59C /* Debug */,
 				2765CB6F157169E700ABE59C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2765CBB0157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2765CBB1157184ED00ABE59C /* Debug */,
+				2765CBB2157184ED00ABE59C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2765CBB3157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2765CBB4157184ED00ABE59C /* Debug */,
+				2765CBB5157184ED00ABE59C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

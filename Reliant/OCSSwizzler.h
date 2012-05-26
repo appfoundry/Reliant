@@ -60,9 +60,7 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
 static void dynamicDealloc(id self, SEL _cmd) {
     Ivar var = class_getInstanceVariable([self class], OCS_CAHCE_IVAR);
     NSMutableDictionary *cache = object_getIvar(self, var);
-    NSLog(@"Before %d", cache.retainCount);
     [cache release];
-    NSLog(@"After %d", cache.retainCount);
     
     //Call super dealloc
     struct objc_super superData;
