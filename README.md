@@ -14,7 +14,7 @@ all classes in your project, which is a rather large footprint. Before starting 
 library, I looked for opinions about DI in dynamic languages at the one hand, and in
 frontend driven solutions at the other hand. Reliant is an answer to these questions.
 
-*Remark* at the moment, Reliant is still under development, and put here for review by the
+**Remark:** at the moment, Reliant is still under development, and put here for review by the
 community. Although we consider the latest version to be pretty complete, there is still
 room for improvement. Obviously, since this is open source, do feel free to add your own
 insights/ideas/remarks/opinions.
@@ -58,10 +58,12 @@ configurators later, bare with us for now.
 
 ```objective-c
 //Initialize a configurator
-id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[YourObjectFactory class]];
+id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] 
+	initWithClass:[YourObjectFactory class]];
 
 //Initialize the application context with the configurator
-OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+OCSApplicationContext *context = [[OCSApplicationContext alloc] 
+	initWithConfigurator:configurator];
 
 //Start the context
 [context start];
@@ -160,7 +162,7 @@ with a certain signature:
 }
 ```
 
-*Remark:* by default, two aliases are already registered for each object. They take the
+**Remark:** by default, two aliases are already registered for each object. They take the
 form of the key in uppercase (eg. FOO, BAR, FOOBAR, ...) and the key starting with a
 lowercase (eg. foo, bar, fooBar, ...). Aliases must be unique, and should also never be
 equal to an object key. If an attempt is made to add a duplicate, an exception will be
@@ -242,11 +244,13 @@ This is what you need to do:
 	OCSApplicationContext *_context;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application 
+	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	//...
 	
 	//Initialize a configurator
-	id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[YourObjectFactory class]];
+	id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] 
+		initWithClass:[YourObjectFactory class]];
 
 	//Initialize the application context with the configurator
 	_context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
@@ -301,7 +305,7 @@ contextLoaded: message is send to it. Only after all work is done should the con
 return objects through its objectForKey:inContext: method. When work is done, the
 initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
 
-*Remark* Although the framework is extendible, we encourage you to use the provided
+**Remark:** Although the framework is extendible, we encourage you to use the provided
 configurator.
 
 #### Example
