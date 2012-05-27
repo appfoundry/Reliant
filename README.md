@@ -1,18 +1,21 @@
 Reliant
 =======
 
-Reliant is a Dependency Injection (DI) framework for Objective-C, both for OS X and iOS. It's
-goal is to make it's use as simple as possible, while not limiting it's possibilities. It
-aims to have as little impact as possible on your project code.
+Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies") 
+framework for Objective-C, both for OS X and iOS. It's goal is to make it's use as simple
+as possible, while not limiting it's possibilities. It aims to have as little impact as
+possible on your project code. It also aims to be loyal to Objective-C's [dynamic](http://stackoverflow.com/questions/125367/dynamic-type-languages-versus-static-type-languages) 
+nature.
 
 The motivation for this library came from being used to a highly testable infrastructure
 in other languages thanks to DI. Looking at the typical design pattern to solve the loose
-coupling problem, the Factory pattern is the natural solution. Although factories, in
-conjunction with mock libraries provide a fairly nice and testable solution, the pure
-loose coupling is never reached, since you still have a dependency to a factory in almost
-all classes in your project, which is a rather large footprint. Before starting this
-library, I looked for opinions about DI in dynamic languages at the one hand, and in
-frontend driven solutions at the other hand. Reliant is an answer to these questions.
+coupling problem, the [Abstract Factory pattern](http://en.wikipedia.org/wiki/Abstract_factory_pattern)
+is the natural solution. Although factories, in conjunction with mock libraries provide a
+fairly nice and testable solution, the pure loose coupling is never reached, since you
+still have a dependency to a factory in almost all classes in your project, which is a
+rather large footprint. Before starting this library, I looked for opinions about DI in
+dynamic languages at the one hand, and in frontend driven solutions at the other hand.
+Reliant is an answer to these questions.
 
 **Remark:** at the moment, Reliant is still under development, and put here for review by the
 community. Although we consider the latest version to be pretty complete, there is still
@@ -31,11 +34,14 @@ under the application context's control.
 At the moment, Reliant identifies two types of objects: singletons and prototypes. (*These
 names are taken from the well know [design patterns](http://en.wikipedia.org/wiki/Software_design_pattern#Classification_and_list)*)
 
-- A singleton is a stateless shared object, which is created only once (might be more then
-once cfr. memory warnings). Objects created as singleton should be thread safe! Reliant
-further identifies eager and lazy singletons. Eager means that they will be instantiated
-when the application context boots up, lazy means they will be instantiated
-*Just-in-Time*, when they are requested.
+- A singleton is a stateless shared object, which is created only once. Objects created as
+singleton should be thread safe! Reliant further identifies eager and lazy singletons.
+Eager means that they will be instantiated when the application context boots up, lazy
+means they will be instantiated *Just-in-Time*, when they are requested.
+
+**Remark:** For iOS, Reliant also reacts to memory warnings, by clearing it's singleton
+scope. In this case, all singletons become lazy singletons and will be initialized again
+when requested.
 
 - A prototype will be created each time it is requested from the application context. Be
 carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
@@ -143,12 +149,12 @@ To create eager singletons, add this kind of method:
 For creating prototypes we can use a similar approach. Only the method name changes a bit:
 
 ```objective-c
-- (id) createPrototype {
+- (id) createPrototypeFooBar {
 	return [[[FooBar alloc] init] autorelease];
 }
 ```
 
-**Remember:** each time a prototype is requested this method will be called. You should 
+**Remember:** each time a prototype is requested, this method will be called. You should 
 therefore consider to keep the initialization as performant as possible.
 
 #### Registering aliases for an object
@@ -177,7 +183,7 @@ ignored by the framework, but you can obviously use them in your create methods.
 #### Dealing with larger applications
 
 In larger applications, the factory class can quickly become huge. This is where you can
-and should use Objective C's
+and should use Objective-C's
 [category](http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/chapters/occategories.html "Objective-C programming language reference")
 mechanism. For each logical group of objects you can create a category, named after this
 logical group. All methods in all categories of your factory class will be taken into
@@ -226,7 +232,7 @@ is done as explained before by *constructor injection* and/or by using Objective
 mechanism. Reliant will scan your object's properties. If a writable property's name
 matches with a key or alias for an object in the application context, and if it's current
 value is nil, the matching object will be injected in this property. All other properties
-will be left alone.
+will be left alone. This will be done for the entire class hierarchy of the instance.
 
 #### Injecting objects that are not know to the application context
 
@@ -290,11 +296,17 @@ This is what you need to do:
 @end
 ```
 
-And that's all there is to it. The property foo will be injected.
+And that's all there is to it. The property foo will be injected by Reliant.
+
+**Remark:** We already discussed that Reliant will clear it's singleton cache whenever a
+memory warning occurs. Reliant thereby releases it's ownership of the instances. However,
+it can not be held responsible for the objects injected outside of it's scope as discussed
+above. You should therefore retain any injected objects yourself. For property injection,
+this means that your dependent properties should have the retain attribute on it.
 
 ### The configurator
 
-As we already saw, a configurator is responsible for setting up definitions and creating
+As we already saw a configurator is responsible for setting up definitions and creating
 object instance based on those definitions. Although a default class configurator
 (*OCSConfiguratorFromClass*) is provided by Reliant, you can always build your own. Your
 custom configurator should conform to the *OCSConfigurator* protocol. In the
@@ -305,8 +317,19 @@ contextLoaded: message is send to it. Only after all work is done should the con
 return objects through its objectForKey:inContext: method. When work is done, the
 initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
 
+An abstract implementation is also provided. This is the *OCSConfiguratorBase* which deals
+with the boiler plate code for keeping track of registered definitions and object. If you
+extend this class, you should import the *OCSConfiguratorBase+ForSubclassEyesOnly.h*
+header in your implementation (.m file). This will alow you to call "protected" methods
+and properties, hidden for non-extending classes. You should never use
+this category outside of a subclass, doing so will cause unexpected behaviour.
+
+If you extend OCSConfiguratorBase, you should not override the methods defined in
+OCSConfigurator. You must instead implement createObjectInstanceForKey:inContext: and
+internalContextLoaded: (See API documentation for more information)
+
 **Remark:** Although the framework is extendible, we encourage you to use the provided
-configurator.
+OCSConfiguratorFromClass or extend via the OCSConfiguratorBase.
 
 #### Example
 
@@ -346,10 +369,10 @@ Although Guice is a very well thought of DI framework, which should be marvelled
 simplicity and light-weightness, I personally feel that basing a DI framework for a dynamic 
 language on Guice is a bridge too far. It breaks down too many of the main goals of Guice, 
 namely type safety. I'm not saying type safety is unimportant, I'm just saying that
-Objective C (and other dynamic languages for that matter) take a different approach.
+Objective-C (and other dynamic languages for that matter) take a different approach.
 
 - [Objection](http://objection-framework.org/ "AtomicObject Objection"). Another DI
-framework for Objective C, based on Guice. As stated before, the "binding" approach did
+framework for Objective-C, based on Guice. As stated before, the "binding" approach did
 look appealing to me at first, but after considering that the *type safety* isn't really
 there. But still, a very well made port.
 
@@ -357,6 +380,7 @@ Special thanks
 --------------
 
 - Filip Maelbrancke: for second opinions and rubber ducking
+- Bart Vandeweerdt: For reviewing this documentation
 - iDA MediaFoundry: for letting me use this in production code
 - Oak Consultancy Services: for necessary resources
 - Liesbet Gouwy: for unconditional support
