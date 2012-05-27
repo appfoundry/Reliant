@@ -385,7 +385,7 @@ Special thanks
 --------------
 
 - Filip Maelbrancke: for second opinions and rubber ducking
-- Bart Vandeweerdt: For reviewing this documentation
+- Bart Vandeweerdt: for reviewing this documentation
 - iDA MediaFoundry: for letting me use this in production code
 - Oak Consultancy Services: for necessary resources
 - Liesbet Gouwy: for unconditional support
