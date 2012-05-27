@@ -56,6 +56,10 @@ Now let's look at a Quick start example.
 Quick start
 -----------
 
+### Including Reliant in your project
+
+TODO
+
 ### Bootstrapping Reliant
 
 To get started with Reliant, you need to tell the *OCSApplicationContext* to start up. You
@@ -366,15 +370,16 @@ builds on this principle.
 solution. Partially as an answer to spring, which was not very strong on the type-safety 
 side of things at that time. Spring fixed this in version 3.0.
 Although Guice is a very well thought of DI framework, which should be marvelled for it's
-simplicity and light-weightness, I personally feel that basing a DI framework for a dynamic 
-language on Guice is a bridge too far. It breaks down too many of the main goals of Guice, 
-namely type safety. I'm not saying type safety is unimportant, I'm just saying that
-Objective-C (and other dynamic languages for that matter) take a different approach.
+simplicity and light-weightness, I personally feel that basing a DI framework for a
+dynamic language on Guice is a bridge too far. It would break down too many of the main
+goals of Guice, namely type safety. I'm not saying type safety is unimportant, I'm just
+saying that Objective-C (and other dynamic languages for that matter) needs a different
+approach.
 
 - [Objection](http://objection-framework.org/ "AtomicObject Objection"). Another DI
 framework for Objective-C, based on Guice. As stated before, the "binding" approach did
-look appealing to me at first, but after considering that the *type safety* isn't really
-there. But still, a very well made port.
+look appealing to me at first, but I don't think binding to types works very well in
+Objective-C. But still, a very well made port.
 
 Special thanks
 --------------
