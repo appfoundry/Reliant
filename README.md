@@ -242,6 +242,12 @@ easier, you kan make use of the fact that we have bootstrapped our application c
 the UIApplicationDelegate. Since the UIApplication is a shared object (hey, another
 singleton!) we can do our injection from here.
 
+**Remark:** We already discussed that Reliant will clear it's singleton cache whenever a
+memory warning occurs. Reliant thereby releases it's ownership of the instances. However,
+it can not be held responsible for the objects injected outside of it's scope as discussed
+above. You should therefore retain/release any injected objects yourself. For property injection,
+this means that your dependent properties should have the retain attribute on it.
+
 This is what you need to do:
 
 ```objective-c
@@ -279,30 +285,24 @@ This is what you need to do:
 
 @synthesize foo;
 
-- (void) setup {
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
     AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
     [appDelegate performInjectionOn:self];
 }
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self setup];
-    }
-    return self;
+- (void) viewDidUnload {
+	//Set any injected property to nil here!
+	self.foo = nil
+	
+	[super viewDidUnload];
 }
 
 @end
 ```
 
 And that's all there is to it. The property foo will be injected by Reliant.
-
-**Remark:** We already discussed that Reliant will clear it's singleton cache whenever a
-memory warning occurs. Reliant thereby releases it's ownership of the instances. However,
-it can not be held responsible for the objects injected outside of it's scope as discussed
-above. You should therefore retain any injected objects yourself. For property injection,
-this means that your dependent properties should have the retain attribute on it.
 
 ### The configurator
 
