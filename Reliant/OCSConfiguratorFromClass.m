@@ -30,6 +30,48 @@
 #import "OCSSingletonScope.h"
 #import "OCSSwizzler.h"
 
+//Fully dynamic method for swizzle replacement
+static id dynamicIDMethodIMP(id self, SEL _cmd) {
+    NSString *selector = NSStringFromSelector(_cmd); 
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];  
+    
+    //If the method was previously called, it's result should have been cached.
+    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK); 
+    KeyGenerator keyGenerator = object_getIvar(self, var);
+    NSString *key = keyGenerator(selector);
+    
+    //If the object is already in the singleton scope, return that version, singletons never get recreated!
+    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    id<OCSScope> singletonScope = object_getIvar(self, var);
+    id result = [singletonScope objectForKey:key];
+    if (!result) {
+        result = objc_msgSendSuper(&superData, _cmd);
+        
+        [singletonScope registerObject:result forKey:key];
+    }
+    
+    return result;
+}
+
+static void dynamicDealloc(id self, SEL _cmd) {
+    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    id<OCSScope> scope = object_getIvar(self, var);
+    [scope release];
+    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    KeyGenerator generator = object_getIvar(self, var);
+    [generator release];
+    
+    //Call super dealloc
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];
+    
+    objc_msgSendSuper(&superData, _cmd);
+}
+
+
 /**
  Configurator private category. Holds private ivars and methods.
  */
@@ -58,10 +100,19 @@
 {
     self = [super init];
     if (self) {
-        _configInstance = createExtendedConfiguratorInstance(factoryClass, ^(NSString *name) {
+        _configInstance = createExtendedConfiguratorInstance(factoryClass, [self singletonScope],  ^(NSString *name) {
             BOOL result = ([name hasPrefix:LAZY_SINGLETON_PREFIX] || [name hasPrefix:EAGER_SINGLETON_PREFIX]);
             return result;
-        });
+        }, ^(NSString *name) {
+            NSUInteger offset;
+            if ([name hasPrefix:LAZY_SINGLETON_PREFIX]) {
+                offset = LAZY_SINGLETON_PREFIX.length;
+            } else {
+                offset = EAGER_SINGLETON_PREFIX.length;
+            } 
+            
+            return [name substringFromIndex:offset];
+        }, (IMP) dynamicIDMethodIMP, (IMP) dynamicDealloc);
         unsigned int count;
         Method * methods = class_copyMethodList(factoryClass, &count);
         if (count > 0) {

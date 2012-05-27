@@ -69,10 +69,19 @@
 		2765CBC3157186E400ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
 		2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CBC81571893C00ABE59C /* OCMock.framework */; };
+		2765CBD01572A7C100ABE59C /* OCSConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD11572A7C100ABE59C /* OCSScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB91563BFA10007C1C8 /* OCSScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD21572A7C100ABE59C /* OCSSingletonScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */; };
+		2765CBD31572A7C100ABE59C /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD41572A7C100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD51572A7C100ABE59C /* OCSConfiguratorFromClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD61572A7C100ABE59C /* OCSDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD71572A7C100ABE59C /* OCSApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2765CBD81572A7C100ABE59C /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; };
+		2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
-		2795FD80156D560E00E7F6FA /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7B951563BF2E0007C1C8 /* Reliant.h */; settings = {ATTRIBUTES = (); }; };
 		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (); }; };
 		2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
@@ -122,7 +131,6 @@
 		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
-		274D7B951563BF2E0007C1C8 /* Reliant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reliant.h; sourceTree = "<group>"; };
 		274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReliantTests-Info.plist"; sourceTree = "<group>"; };
@@ -263,7 +271,6 @@
 				274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */,
 				274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */,
 				274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */,
-				274D7B951563BF2E0007C1C8 /* Reliant.h */,
 				274D7B931563BF2E0007C1C8 /* Supporting Files */,
 			);
 			path = Reliant;
@@ -375,7 +382,6 @@
 				274D7BC91563BFA10007C1C8 /* OCSConfiguratorFromClass.h in Headers */,
 				274D7BC51563BFA10007C1C8 /* OCSApplicationContext.h in Headers */,
 				274D7BC71563BFA10007C1C8 /* OCSDefinition.h in Headers */,
-				2795FD80156D560E00E7F6FA /* Reliant.h in Headers */,
 				2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */,
 				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
 				2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */,
@@ -386,6 +392,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2765CBD71572A7C100ABE59C /* OCSApplicationContext.h in Headers */,
+				2765CBD01572A7C100ABE59C /* OCSConfigurator.h in Headers */,
+				2765CBD11572A7C100ABE59C /* OCSScope.h in Headers */,
+				2765CBD31572A7C100ABE59C /* OCSConfiguratorBase.h in Headers */,
+				2765CBD41572A7C100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */,
+				2765CBD51572A7C100ABE59C /* OCSConfiguratorFromClass.h in Headers */,
+				2765CBD61572A7C100ABE59C /* OCSDefinition.h in Headers */,
+				2765CBD21572A7C100ABE59C /* OCSSingletonScope.h in Headers */,
+				2765CBD81572A7C100ABE59C /* OCSSwizzler.h in Headers */,
+				2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -953,6 +969,7 @@
 				2765CB6F157169E700ABE59C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2765CBB0157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSX" */ = {
 			isa = XCConfigurationList;
@@ -961,6 +978,7 @@
 				2765CBB2157184ED00ABE59C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2765CBB3157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -969,6 +987,7 @@
 				2765CBB5157184ED00ABE59C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

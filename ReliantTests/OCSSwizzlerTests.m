@@ -18,9 +18,20 @@
 //  limitations under the License.
 
 
+#import <OCMock/OCMock.h>
+
 #import "OCSSwizzlerTests.h"
 
 #import "OCSSwizzler.h"
+
+//Fully dynamic method for swizzle replacement, uber awesomeness ;-)
+static id dynamicJustCallSuper(id self, SEL _cmd) {
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];//[metaclass superclass];    
+    
+    return objc_msgSendSuper(&superData, _cmd);
+}
 
 @interface SwizzlerClass : NSObject
 
@@ -156,9 +167,12 @@ typedef struct {
 }
 */
 - (void) testExtendedClassCreation {
-    id instance = createExtendedConfiguratorInstance([SwizzlerClass class], ^(NSString *name) {
+    id singletonScope = [OCMockObject mockForProtocol:@protocol(OCSScope)];
+    id instance = createExtendedConfiguratorInstance([SwizzlerClass class], singletonScope, ^(NSString *name) {
         return YES;
-    });
+    }, ^(NSString *name) {
+        return name;
+    }, (IMP) dynamicJustCallSuper, (IMP) dynamicJustCallSuper);
     
     id returned = [instance objectMethodNoArgs];
     NSLog(@"%@", returned);

@@ -64,4 +64,8 @@
     [NSException raise:@"OCSConfiguratorException" format:@"You should implement internalContextLoaded: on subclasses of OCSBaseConfigurator"];
 }
 
+- (id<OCSScope>)singletonScope {
+    return _singletonScope;
+}
+
 @end

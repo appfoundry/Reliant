@@ -19,6 +19,8 @@
 
 @property (nonatomic, readwrite) BOOL initializing;
 
+@property (nonatomic, readonly) id<OCSScope> singletonScope;
+
 /**
  Call this method for each definition you have in your configurator.
  
