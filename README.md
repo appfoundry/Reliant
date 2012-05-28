@@ -2,7 +2,7 @@ Reliant
 =======
 
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies") 
-framework for Objective-C, both for OS X and iOS. It's goal is to make it's use as simple
+framework for Objective-C, both for OS X and iOS. Its goal is to make it's use as simple
 as possible, while not limiting it's possibilities. It aims to have as little impact as
 possible on your project code. It also aims to be loyal to Objective-C's [dynamic](http://stackoverflow.com/questions/125367/dynamic-type-languages-versus-static-type-languages) 
 nature.
@@ -25,7 +25,7 @@ insights/ideas/remarks/opinions.
 Overall architecture
 --------------------
 
-The framework is setup to be lightweight, you basically need an OCSApplicationContext
+The framework is set up to be lightweight, you basically need an OCSApplicationContext
 which serves as the container of the managed objects. To register managed objects in this
 container, the application context uses an OCSConfigurator instance. The OCSConfigurator
 is responsible for creating OCSDefinitions, which describe the objects you want to put
@@ -134,7 +134,7 @@ You can also use what is called *constructor injection* by calling another
 ```
 
 Don't worry about calling the same *createSingleton* method more then once, the framework
-will only realy call each method once and reuse the same result on the succeeding calls,
+will only really call each method once and reuse the same result on the succeeding calls,
 making the results true singletons.
 
 You don't necessarily need to inject your objects through constructor injection. Later on
@@ -242,7 +242,7 @@ will be left alone. This will be done for the entire class hierarchy of the inst
 
 You can use the injection mechanism described above on objects which are not setup in the 
 application context. A good example would be a UIViewController. In order to make things
-easier, you kan make use of the fact that we have bootstrapped our application context in
+easier, you can make use of the fact that we have bootstrapped our application context in
 the UIApplicationDelegate. Since the UIApplication is a shared object (hey, another
 singleton!) we can do our injection from here.
 
@@ -310,8 +310,8 @@ And that's all there is to it. The property foo will be injected by Reliant.
 
 ### The configurator
 
-As we already saw a configurator is responsible for setting up definitions and creating
-object instance based on those definitions. Although a default class configurator
+As we already saw, a configurator is responsible for setting up definitions and creating
+object instances based on those definitions. Although a default class configurator
 (*OCSConfiguratorFromClass*) is provided by Reliant, you can always build your own. Your
 custom configurator should conform to the *OCSConfigurator* protocol. In the
 configurator's designated initializer, you should start building your object definitions.
@@ -326,7 +326,7 @@ with the boiler plate code for keeping track of registered definitions and objec
 extend this class, you should import the *OCSConfiguratorBase+ForSubclassEyesOnly.h*
 header in your implementation (.m file). This will alow you to call "protected" methods
 and properties, hidden for non-extending classes. You should never use
-this category outside of a subclass, doing so will cause unexpected behaviour.
+this category outside of a subclass, doing so will cause unexpected behavior.
 
 If you extend OCSConfiguratorBase, you should not override the methods defined in
 OCSConfigurator. You must instead implement createObjectInstanceForKey:inContext: and
