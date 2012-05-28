@@ -86,9 +86,9 @@
 
 - (void) setUp {
     [super setUp];
-    
+#if (TARGET_OS_IPHONE)
     accessibilityProperties = [NSArray arrayWithObjects:@"accessibilityHint", @"accessibilityLabel", @"accessibilityLanguage", @"accessibilityValue", nil];
-    
+#endif
     // Set-up code here.
     configurator = [OCMockObject mockForProtocol:@protocol(OCSConfigurator)];
     context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];

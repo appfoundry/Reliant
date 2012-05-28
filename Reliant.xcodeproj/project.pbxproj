@@ -82,6 +82,7 @@
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
+		27877B631574118D00C7D871 /* OCMock.framework in Copy OCMock Framework to Product Directory */ = {isa = PBXBuildFile; fileRef = 2765CBC81571893C00ABE59C /* OCMock.framework */; };
 		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (); }; };
 		2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
@@ -125,6 +126,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27877B621574116B00C7D871 /* Copy OCMock Framework to Product Directory */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				27877B631574118D00C7D871 /* OCMock.framework in Copy OCMock Framework to Product Directory */,
+			);
+			name = "Copy OCMock Framework to Product Directory";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -158,8 +170,8 @@
 		2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reliant OSXTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2765CBA9157184ED00ABE59C /* Reliant OSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSXTests-Info.plist"; sourceTree = "<group>"; };
 		2765CBAB157184ED00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2765CBC61571889600ABE59C /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = OCMock; path = ../../../../../Library/Developer/libs/OCMock.framework/Versions/A/OCMock; sourceTree = "<group>"; };
-		2765CBC81571893C00ABE59C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../../../../../Library/Developer/libs/OCMock.framework; sourceTree = "<group>"; };
+		2765CBC61571889600ABE59C /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = OCMock; path = /Library/Developer/libs/OCMock.framework/Versions/A/OCMock; sourceTree = "<absolute>"; };
+		2765CBC81571893C00ABE59C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = /Library/Developer/libs/OCMock.framework; sourceTree = "<absolute>"; };
 		2780EDCF156FE48A00CFD38C /* OCSConfiguratorBaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBaseTests.h; sourceTree = "<group>"; };
 		2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBaseTests.m; sourceTree = "<group>"; };
 		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
@@ -223,8 +235,6 @@
 		274D7B821563BF2E0007C1C8 = {
 			isa = PBXGroup;
 			children = (
-				2765CBC81571893C00ABE59C /* OCMock.framework */,
-				2765CBC61571889600ABE59C /* OCMock */,
 				274D7B921563BF2E0007C1C8 /* Reliant */,
 				274D7BA61563BF2E0007C1C8 /* ReliantTests */,
 				2765CB92157184EC00ABE59C /* Reliant OSX */,
@@ -248,6 +258,8 @@
 		274D7B8F1563BF2E0007C1C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2765CBC81571893C00ABE59C /* OCMock.framework */,
+				2765CBC61571889600ABE59C /* OCMock */,
 				274D7BCF1563CB9A0007C1C8 /* libOCMock.a */,
 				2780EDDB1571052200CFD38C /* UIKit.framework */,
 				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
@@ -452,6 +464,7 @@
 				2765CB87157184EC00ABE59C /* Frameworks */,
 				2765CB88157184EC00ABE59C /* Headers */,
 				2765CB89157184EC00ABE59C /* Resources */,
+				27877B5E1574070200C7D871 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -469,6 +482,7 @@
 				2765CB9C157184ED00ABE59C /* Sources */,
 				2765CB9D157184ED00ABE59C /* Frameworks */,
 				2765CB9E157184ED00ABE59C /* Resources */,
+				27877B621574116B00C7D871 /* Copy OCMock Framework to Product Directory */,
 				2765CB9F157184ED00ABE59C /* ShellScript */,
 			);
 			buildRules = (
@@ -593,6 +607,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		27877B5E1574070200C7D871 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo 'test';";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -901,6 +928,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_AFTER_BUILD = NO;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -928,6 +956,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_AFTER_BUILD = NO;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
