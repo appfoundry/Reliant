@@ -1,7 +1,7 @@
 Reliant
 =======
 
-Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies") 
+Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies")) 
 framework for Objective-C, both for OS X and iOS. Its goal is to make it's use as simple
 as possible, while not limiting it's possibilities. It aims to have as little impact as
 possible on your project code. It also aims to be loyal to Objective-C's [dynamic](http://stackoverflow.com/questions/125367/dynamic-type-languages-versus-static-type-languages) 
