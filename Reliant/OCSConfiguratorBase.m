@@ -39,7 +39,6 @@
         //If singleton, check if we already have it in our registry. If not load it and put it there.
         //DO NOT do anything different for lazy or eager singletons. If demanded, we must always load!
         if (definition.singleton) {
-            //TODO since the configurator class is extended, does the singleton sope make sence here. Shouldn't we use it in the dynamic subclass instead?
             result = [_singletonScope objectForKey:definition.key];
             if (result == nil) {
                 result = [self createObjectInstanceForKey:definition.key inContext:context];

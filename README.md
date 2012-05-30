@@ -17,33 +17,33 @@ rather large footprint. Before starting this library, I looked for opinions abou
 dynamic languages at the one hand, and in frontend driven solutions at the other hand.
 Reliant is an answer to these questions.
 
-**Remark:** at the moment, Reliant is still under development, and put here for review by the
-community. Although we consider the latest version to be pretty complete, there is still
-room for improvement. Obviously, since this is open source, do feel free to add your own
-insights/ideas/remarks/opinions.
+    At the moment, Reliant is still under development, and put here for review by the
+    community. Although we consider the latest version to be pretty complete, there is
+    still room for improvement. Obviously, since this is open source, do feel free to add
+    your own insights/ideas/remarks/opinions.
 
 Overall architecture
 --------------------
 
 The framework is set up to be lightweight, you basically need an OCSApplicationContext
 which serves as the container of the managed objects. To register managed objects in this
-container, the application context uses an OCSConfigurator instance. The OCSConfigurator
-is responsible for creating OCSDefinitions, which describe the objects you want to put
+container, the application context uses an `OCSConfigurator` instance. The `OCSConfigurator`
+is responsible for creating `OCSDefinitions`, which describe the objects you want to put
 under the application context's control.
 
 At the moment, Reliant identifies two types of objects: singletons and prototypes. (*These
 names are taken from the well know [design patterns](http://en.wikipedia.org/wiki/Software_design_pattern#Classification_and_list)*)
 
-- A singleton is a stateless shared object, which is created only once. Objects created as
+- A `singleton` is a stateless shared object, which is created only once. Objects created as
 singleton should be thread safe! Reliant further identifies eager and lazy singletons.
 Eager means that they will be instantiated when the application context boots up, lazy
 means they will be instantiated *Just-in-Time*, when they are requested.
 
-**Remark:** For iOS, Reliant also reacts to memory warnings, by clearing it's singleton
-scope. In this case, all singletons become lazy singletons and will be initialized again
-when requested.
+    For iOS, Reliant also reacts to memory warnings, by clearing it's  singleton scope. In
+    this case, all singletons become lazy singletons and will be initialized again when
+    requested.
 
-- A prototype will be created each time it is requested from the application context. Be
+- A `prototype` will be created each time it is requested from the application context. Be
 carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
 bound to the singleton!
 
@@ -58,7 +58,61 @@ Quick start
 
 ### Including Reliant in your project
 
-TODO
+A ready made package of the last stable build is available on Reliant's GitHub 
+[Downloads](https://github.com/mikeseghers/Reliant/downloads) section (`Reliant
+vX.Y.zip`). Download the zip file. Inside it, you will find a directory for iOS, one for
+OS X and a Docs directory with the Reliant DocSet in it. Depending on what you need, you
+should do the following:
+
+#### iOS
+
+Move the iOS contents to you library folder (eg. ~/Library/Developer/libs). The static
+library must be added to the application target in the `Link Binaries With Libraries`
+build phase. Click the (+) icon, choose `Add other...` and locate the library in the just
+extracted library.
+
+Next you also need to add a `Header Search Path` in the build settings of you application
+target (the Library Search Path should have been updated automatically by Xcode after the
+previous step). Go to your target's Build Settings and search for Header. Locate the
+`Header Search Paths`. Double click it and add a line by clicking the (+) button. Enter
+the search path (eg. ~/Library/Developer/libs).
+
+    If you are collaborating with others on your project, everyone should have the same
+    path, as these settings are global. (I couldn't find another way, so if you do, please
+    let us know!)
+
+Goto the [static library documentation](http://developer.apple.com/library/ios/#DOCUMENTATION/Xcode/Conceptual/ios_development_workflow/AA-Developing_a_Static_Library_and_Incorporating_It_in_Your_Application/archiving_an_application_that_uses_a_static_library.html) for more options.
+
+#### OS X
+
+For Cocoa projects you move the framework folder to /Library/Frameworks. 
+
+Add the framework to your project. Go to your application's target settings and go to
+Build Phases. Select the `Link Binaries With Libraries` build phase. Click the (+) icon,
+choose `Add other...` and locate Reliant.framework (if you restart Xcode after copying the
+framework, you should directly find it in the proposed list).
+
+There are other ways to install frameworks. Check the [framework documentation](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183-SW1).
+
+#### General
+    
+Now you are ready to import the headers in your own code:
+
+```objective-c
+#import <Reliant/OCSApplicationContext.h>
+```
+#### The DocSet
+
+In order to use the DocSet within Xcode, you should copy it to
+/Library/Developer/Shared/Documentation/DocSets. After copying, you should restart Xcode.
+If you then open the organizer, and go to the Documentation tab, you should see Reliant as
+one of the documentation bundles.
+
+
+    This DocSet also includes information about non-visible classes. This information is
+    meant for collaborators on Reliant, you should not rely on these classes, categories
+    and methods, as they might change in the future. Only use Reliant's publicly available
+    headers in your own projects.
 
 ### Bootstrapping Reliant
 

@@ -86,7 +86,7 @@ static void dynamicDealloc(id self, SEL _cmd) {
 /**
  Register aliases for a definition. Registers an upper cased alias, a "first small letter" alias and all aliases found in the factory class for this definition (through calling aliasesForXXX:).
  
- @param the defintion which will receive the aliases
+ @param definition the defintion which will receive the aliases
  */
 - (void) _registerAliasesForDefinition:(OCSDefinition *) definition;
 
@@ -124,7 +124,6 @@ static void dynamicDealloc(id self, SEL _cmd) {
                 NSLog(@"Method %@ with %d arguments found", objcStringName, paramCount);
                 if ([objcStringName hasPrefix:@"create"] &&  paramCount == 2) {
                     OCSDefinition *def = [[OCSDefinition alloc] init];
-                    //TODO put more info on definition
                     NSUInteger offset = 0;
                     if ([objcStringName hasPrefix:LAZY_SINGLETON_PREFIX]) {
                         def.singleton = YES;

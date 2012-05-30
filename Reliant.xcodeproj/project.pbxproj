@@ -20,6 +20,17 @@
 			name = "Reliant iOS";
 			productName = "Reliant-iOS";
 		};
+		27877BDA1575E53C00C7D871 /* Reliant docs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27877BDB1575E53C00C7D871 /* Build configuration list for PBXAggregateTarget "Reliant docs" */;
+			buildPhases = (
+				27DAE12D15767B910063D620 /* Build AppleDoc DocSet */,
+			);
+			dependencies = (
+			);
+			name = "Reliant docs";
+			productName = "Reliant docs";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -52,7 +63,7 @@
 		2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
 		2765CB97157184EC00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CB95157184EC00ABE59C /* InfoPlist.strings */; };
 		2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
-		2765CBA6157184ED00ABE59C /* Reliant OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant OSX.framework */; };
+		2765CBA6157184ED00ABE59C /* Reliant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant.framework */; };
 		2765CBAC157184ED00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CBAA157184ED00ABE59C /* InfoPlist.strings */; };
 		2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
 		2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
@@ -163,7 +174,7 @@
 		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
 		2765CB7F1571717200ABE59C /* OCSSingletonScopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSingletonScopeTests.h; sourceTree = "<group>"; };
 		2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSingletonScopeTests.m; sourceTree = "<group>"; };
-		2765CB8B157184EC00ABE59C /* Reliant OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Reliant OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2765CB8B157184EC00ABE59C /* Reliant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reliant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2765CB94157184EC00ABE59C /* Reliant OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSX-Info.plist"; sourceTree = "<group>"; };
 		2765CB96157184EC00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2765CB98157184EC00ABE59C /* Reliant OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant OSX-Prefix.pch"; sourceTree = "<group>"; };
@@ -224,7 +235,7 @@
 			files = (
 				2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */,
 				2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */,
-				2765CBA6157184ED00ABE59C /* Reliant OSX.framework in Frameworks */,
+				2765CBA6157184ED00ABE59C /* Reliant.framework in Frameworks */,
 				2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,7 +260,7 @@
 			children = (
 				274D7B8D1563BF2E0007C1C8 /* libReliant.a */,
 				274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */,
-				2765CB8B157184EC00ABE59C /* Reliant OSX.framework */,
+				2765CB8B157184EC00ABE59C /* Reliant.framework */,
 				2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */,
 			);
 			name = Products;
@@ -472,7 +483,7 @@
 			);
 			name = "Reliant OSX";
 			productName = "Reliant OSX";
-			productReference = 2765CB8B157184EC00ABE59C /* Reliant OSX.framework */;
+			productReference = 2765CB8B157184EC00ABE59C /* Reliant.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		2765CBA0157184ED00ABE59C /* Reliant OSXTests */ = {
@@ -520,6 +531,7 @@
 				2765CB6C157169E700ABE59C /* Reliant iOS */,
 				2765CB8A157184EC00ABE59C /* Reliant OSX */,
 				2765CBA0157184ED00ABE59C /* Reliant OSXTests */,
+				27877BDA1575E53C00C7D871 /* Reliant docs */,
 			);
 		};
 /* End PBXProject section */
@@ -620,6 +632,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo 'test';";
+		};
+		27DAE12D15767B910063D620 /* Build AppleDoc DocSet */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build AppleDoc DocSet";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name ${PRODUCT_NAME} --project-company \"Oak Consultancy Services\" --company-id be.oakcs --output ~/help --logformat xcode --exit-threshold 2 --no-merge-categories .";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -873,7 +899,7 @@
 				INFOPLIST_FILE = "Reliant OSX/Reliant OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Reliant;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -899,7 +925,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Reliant OSX/Reliant OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Reliant;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -961,6 +987,20 @@
 			};
 			name = Release;
 		};
+		27877BDC1575E53C00C7D871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Reliant;
+			};
+			name = Debug;
+		};
+		27877BDD1575E53C00C7D871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Reliant;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1014,6 +1054,15 @@
 			buildConfigurations = (
 				2765CBB4157184ED00ABE59C /* Debug */,
 				2765CBB5157184ED00ABE59C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27877BDB1575E53C00C7D871 /* Build configuration list for PBXAggregateTarget "Reliant docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27877BDC1575E53C00C7D871 /* Debug */,
+				27877BDD1575E53C00C7D871 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
