@@ -18,7 +18,7 @@
 //  limitations under the License.
 
 /**
- Describes a scope. A scope represent TODO describe better
+ Describes a scope. A scope represent a context in which objects are contained.
  
  @author Mike Seghers
  */

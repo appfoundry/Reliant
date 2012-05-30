@@ -20,6 +20,17 @@
 			name = "Reliant iOS";
 			productName = "Reliant-iOS";
 		};
+		27877BDA1575E53C00C7D871 /* Reliant docs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27877BDB1575E53C00C7D871 /* Build configuration list for PBXAggregateTarget "Reliant docs" */;
+			buildPhases = (
+				27DAE12D15767B910063D620 /* Build AppleDoc DocSet */,
+			);
+			dependencies = (
+			);
+			name = "Reliant docs";
+			productName = "Reliant docs";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -520,6 +531,7 @@
 				2765CB6C157169E700ABE59C /* Reliant iOS */,
 				2765CB8A157184EC00ABE59C /* Reliant OSX */,
 				2765CBA0157184ED00ABE59C /* Reliant OSXTests */,
+				27877BDA1575E53C00C7D871 /* Reliant docs */,
 			);
 		};
 /* End PBXProject section */
@@ -620,6 +632,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo 'test';";
+		};
+		27DAE12D15767B910063D620 /* Build AppleDoc DocSet */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build AppleDoc DocSet";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name ${PRODUCT_NAME} --project-company \"Oak Consultancy Services\" --company-id be.oakcs --output ~/help --logformat xcode --exit-threshold 2 --no-merge-categories .";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -961,6 +987,20 @@
 			};
 			name = Release;
 		};
+		27877BDC1575E53C00C7D871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Reliant;
+			};
+			name = Debug;
+		};
+		27877BDD1575E53C00C7D871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Reliant;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1014,6 +1054,15 @@
 			buildConfigurations = (
 				2765CBB4157184ED00ABE59C /* Debug */,
 				2765CBB5157184ED00ABE59C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27877BDB1575E53C00C7D871 /* Build configuration list for PBXAggregateTarget "Reliant docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27877BDC1575E53C00C7D871 /* Debug */,
+				27877BDD1575E53C00C7D871 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

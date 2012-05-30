@@ -29,7 +29,6 @@
  
  @author Mike Seghers
  */
-//TODO make an abstract class for this
 @protocol OCSConfigurator <NSObject>
 
 /**

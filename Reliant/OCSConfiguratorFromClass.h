@@ -30,9 +30,11 @@
 @interface OCSConfiguratorFromClass : OCSConfiguratorBase
 
 /**
- Designated initializer.
+ Designated initializer. Creates OCSDefinition instances depending on methods found in the factoryClass.
  
- @param factoryClass the factory class. This class will be  which holds methods, able to create objects TODO rewrite.
+ The factory class methods returning an id, without arguments and starting with createSingleton, createEagerSingleton and createPrototype are evaluated. The remainder of the method name is taken as the definition's key.
+ 
+ @param factoryClass the factory class. This class holds methods for creating singletons and prototypes as well as methods to define aliases for these singletons and prototypes.
  @return self
  */
 - (id)initWithClass:(Class) factoryClass;
