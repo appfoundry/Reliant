@@ -17,10 +17,10 @@ rather large footprint. Before starting this library, I looked for opinions abou
 dynamic languages at the one hand, and in frontend driven solutions at the other hand.
 Reliant is an answer to these questions.
 
-    At the moment, Reliant is still under development, and put here for review by the
-    community. Although we consider the latest version to be pretty complete, there is
-    still room for improvement. Obviously, since this is open source, do feel free to add
-    your own insights/ideas/remarks/opinions.
+> At the moment, Reliant is still under development, and put here for review by the
+> community. Although we consider the latest version to be pretty complete, there is
+> still room for improvement. Obviously, since this is open source, do feel free to add
+> your own insights/ideas/remarks/opinions.
 
 Overall architecture
 --------------------
@@ -39,9 +39,9 @@ singleton should be thread safe! Reliant further identifies eager and lazy singl
 Eager means that they will be instantiated when the application context boots up, lazy
 means they will be instantiated *Just-in-Time*, when they are requested.
 
-    For iOS, Reliant also reacts to memory warnings, by clearing it's  singleton scope. In
-    this case, all singletons become lazy singletons and will be initialized again when
-    requested.
+> For iOS, Reliant also reacts to memory warnings, by clearing it's  singleton scope. In
+> this case, all singletons become lazy singletons and will be initialized again when
+> requested.
 
 - A `prototype` will be created each time it is requested from the application context. Be
 carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
@@ -77,9 +77,9 @@ previous step). Go to your target's Build Settings and search for Header. Locate
 `Header Search Paths`. Double click it and add a line by clicking the (+) button. Enter
 the search path (eg. ~/Library/Developer/libs).
 
-    If you are collaborating with others on your project, everyone should have the same
-    path, as these settings are global. (I couldn't find another way, so if you do, please
-    let us know!)
+> If you are collaborating with others on your project, everyone should have the same
+> path, as these settings are global. (I couldn't find another way, so if you do, please
+> let us know!)
 
 Goto the [static library documentation](http://developer.apple.com/library/ios/#DOCUMENTATION/Xcode/Conceptual/ios_development_workflow/AA-Developing_a_Static_Library_and_Incorporating_It_in_Your_Application/archiving_an_application_that_uses_a_static_library.html) for more options.
 
@@ -109,10 +109,10 @@ If you then open the organizer, and go to the Documentation tab, you should see 
 one of the documentation bundles.
 
 
-    This DocSet also includes information about non-visible classes. This information is
-    meant for collaborators on Reliant, you should not rely on these classes, categories
-    and methods, as they might change in the future. Only use Reliant's publicly available
-    headers in your own projects.
+> This DocSet also includes information about non-visible classes. This information is
+> meant for collaborators on Reliant, you should not rely on these classes, categories
+> and methods, as they might change in the future. Only use Reliant's publicly available
+> headers in your own projects.
 
 ### Bootstrapping Reliant
 
