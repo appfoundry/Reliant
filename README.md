@@ -212,8 +212,8 @@ For creating prototypes we can use a similar approach. Only the method name chan
 }
 ```
 
-**Remember:** each time a prototype is requested, this method will be called. You should 
-therefore consider to keep the initialization as performant as possible.
+> **Remember!** Each time a prototype is requested, this method will be called. You should 
+> therefore consider to keep the initialization as performant as possible.
 
 #### Registering aliases for an object
 
@@ -226,12 +226,12 @@ with a certain signature:
 }
 ```
 
-**Remark:** by default, two aliases are already registered for each object. They take the
-form of the key in uppercase (eg. FOO, BAR, FOOBAR, ...) and the key starting with a
-lowercase (eg. foo, bar, fooBar, ...). Aliases must be unique, and should also never be
-equal to an object key. If an attempt is made to add a duplicate, an exception will be
-raised. The automatically added aliases, will only be added if they are not a duplicate of
-the key.
+> By default, two aliases are already registered for each object. They take the
+> form of the key in uppercase (eg. FOO, BAR, FOOBAR, ...) and the key starting with a
+> lowercase (eg. foo, bar, fooBar, ...). Aliases must be unique, and should also never be
+> equal to an object key. If an attempt is made to add a duplicate, an exception will be
+> raised. The automatically added aliases, will only be added if they are not a duplicate of
+> the key.
 
 #### Other methods in your factory class
 
@@ -300,11 +300,11 @@ easier, you can make use of the fact that we have bootstrapped our application c
 the UIApplicationDelegate. Since the UIApplication is a shared object (hey, another
 singleton!) we can do our injection from here.
 
-**Remark:** We already discussed that Reliant will clear it's singleton cache whenever a
-memory warning occurs. Reliant thereby releases it's ownership of the instances. However,
-it can not be held responsible for the objects injected outside of it's scope as discussed
-above. You should therefore retain/release any injected objects yourself. For property injection,
-this means that your dependent properties should have the retain attribute on it.
+> We already discussed that Reliant will clear it's singleton cache whenever a
+> memory warning occurs. Reliant thereby releases it's ownership of the instances. However,
+> it can not be held responsible for the objects injected outside of it's scope as discussed
+> above. You should therefore retain/release any injected objects yourself. For property injection,
+> this means that your dependent properties should have the retain attribute on it.
 
 This is what you need to do:
 
@@ -386,8 +386,8 @@ If you extend OCSConfiguratorBase, you should not override the methods defined i
 OCSConfigurator. You must instead implement createObjectInstanceForKey:inContext: and
 internalContextLoaded: (See API documentation for more information)
 
-**Remark:** Although the framework is extendible, we encourage you to use the provided
-OCSConfiguratorFromClass or extend via the OCSConfiguratorBase.
+> Although the framework is extendible, we encourage you to use the provided
+> OCSConfiguratorFromClass or extend via the OCSConfiguratorBase.
 
 #### Example
 
