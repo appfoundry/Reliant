@@ -57,6 +57,7 @@ static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singl
     char *dest = malloc(strlen(OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX) + strlen(class_getName(baseClass)) + 1);
     dest = strcpy(dest, OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX);
     const char *name = strcat(dest, class_getName(baseClass));
+    free(dest);
     Class extendedClass = objc_allocateClassPair(baseClass, name, sizeof(id));
     if (extendedClass) {
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE, sizeof(id), log2(sizeof(id)), @encode(id));

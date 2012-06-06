@@ -121,7 +121,6 @@ static void dynamicDealloc(id self, SEL _cmd) {
                 const char* methodName = sel_getName(selector);
                 NSString *objcStringName = [NSString  stringWithCString:methodName encoding:NSUTF8StringEncoding];
                 unsigned int paramCount = method_getNumberOfArguments(methods[i]);
-                NSLog(@"Method %@ with %d arguments found", objcStringName, paramCount);
                 if ([objcStringName hasPrefix:@"create"] &&  paramCount == 2) {
                     OCSDefinition *def = [[OCSDefinition alloc] init];
                     NSUInteger offset = 0;
@@ -139,23 +138,31 @@ static void dynamicDealloc(id self, SEL _cmd) {
                     }
                     
                     if (offset) {
+#if DEBUG
                         NSLog(@"Registering definition %@", def);
+#endif
                         NSString *key = [objcStringName substringFromIndex:offset];
                         if (key.length > 0) {
                             def.key = key;
                             [self _registerAliasesForDefinition:def];
                             [self registerDefinition:def];
                         }
+#if DEBUG
                     } else {
                         NSLog(@"Create method found, but not as expected, ignoring it (%@)", objcStringName);
+#endif
                     }
                     [def release];
+#if DEBUG
                 } else {
                     NSLog(@"Ignoring non-create method (%@)", objcStringName);
+#endif
                 }
             }
+#if DEBUG
         } else {
             NSLog(@"No methods found on class...");
+#endif
         }
         free(methods);
     }

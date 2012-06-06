@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27072166157CFF5900A05222 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27072165157CFF5900A05222 /* UIKit.framework */; };
+		27072168157CFF5900A05222 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27072167157CFF5900A05222 /* Foundation.framework */; };
+		2707216A157CFF5900A05222 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27072169157CFF5900A05222 /* CoreGraphics.framework */; };
+		27072170157CFF5900A05222 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2707216E157CFF5900A05222 /* InfoPlist.strings */; };
+		27072172157CFF5900A05222 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27072171157CFF5900A05222 /* main.m */; };
+		27072176157CFF5900A05222 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27072175157CFF5900A05222 /* AppDelegate.m */; };
+		27072179157CFF5900A05222 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27072177157CFF5900A05222 /* MainStoryboard_iPhone.storyboard */; };
+		2707217C157CFF5900A05222 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2707217A157CFF5900A05222 /* MainStoryboard_iPad.storyboard */; };
+		2707217F157CFF5900A05222 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2707217E157CFF5900A05222 /* MasterViewController.m */; };
+		27072182157CFF5900A05222 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27072181157CFF5900A05222 /* DetailViewController.m */; };
+		2707218D157D001800A05222 /* libReliant iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2707218C157D001800A05222 /* libReliant iOS.a */; };
+		27072190157D020800A05222 /* ReliantDemoFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2707218F157D020800A05222 /* ReliantDemoFactory.m */; };
+		27072195157D064C00A05222 /* InMemoryListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 27072194157D064C00A05222 /* InMemoryListService.m */; };
+		27072198157D069900A05222 /* PersonMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 27072197157D069900A05222 /* PersonMemoryCache.m */; };
+		2707219B157D07CD00A05222 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 2707219A157D07CD00A05222 /* Person.m */; };
+		2707219E157D0C1E00A05222 /* InMemoryDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2707219D157D0C1E00A05222 /* InMemoryDetailService.m */; };
+		270721A1157D0E1800A05222 /* ControllerTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 270721A0157D0E1800A05222 /* ControllerTracker.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27072161157CFF5900A05222 /* ReliantDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReliantDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27072165157CFF5900A05222 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		27072167157CFF5900A05222 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27072169157CFF5900A05222 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2707216D157CFF5900A05222 /* ReliantDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReliantDemo-Info.plist"; sourceTree = "<group>"; };
+		2707216F157CFF5900A05222 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		27072171157CFF5900A05222 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27072173157CFF5900A05222 /* ReliantDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReliantDemo-Prefix.pch"; sourceTree = "<group>"; };
+		27072174157CFF5900A05222 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		27072175157CFF5900A05222 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		27072178157CFF5900A05222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		2707217B157CFF5900A05222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		2707217D157CFF5900A05222 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		2707217E157CFF5900A05222 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		27072180157CFF5900A05222 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		27072181157CFF5900A05222 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		2707218C157D001800A05222 /* libReliant iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libReliant iOS.a"; path = "../../../../../../../Library/Developer/libs/libReliant iOS.a"; sourceTree = "<group>"; };
+		2707218E157D020800A05222 /* ReliantDemoFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReliantDemoFactory.h; sourceTree = "<group>"; };
+		2707218F157D020800A05222 /* ReliantDemoFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReliantDemoFactory.m; sourceTree = "<group>"; };
+		27072191157D05C000A05222 /* ListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListService.h; sourceTree = "<group>"; };
+		27072192157D05FB00A05222 /* DetailService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailService.h; sourceTree = "<group>"; };
+		27072193157D064C00A05222 /* InMemoryListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryListService.h; sourceTree = "<group>"; };
+		27072194157D064C00A05222 /* InMemoryListService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryListService.m; sourceTree = "<group>"; };
+		27072196157D069900A05222 /* PersonMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMemoryCache.h; sourceTree = "<group>"; };
+		27072197157D069900A05222 /* PersonMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMemoryCache.m; sourceTree = "<group>"; };
+		27072199157D07CD00A05222 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		2707219A157D07CD00A05222 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		2707219C157D0C1E00A05222 /* InMemoryDetailService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryDetailService.h; sourceTree = "<group>"; };
+		2707219D157D0C1E00A05222 /* InMemoryDetailService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryDetailService.m; sourceTree = "<group>"; };
+		2707219F157D0E1800A05222 /* ControllerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerTracker.h; sourceTree = "<group>"; };
+		270721A0157D0E1800A05222 /* ControllerTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerTracker.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2707215E157CFF5900A05222 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2707218D157D001800A05222 /* libReliant iOS.a in Frameworks */,
+				27072166157CFF5900A05222 /* UIKit.framework in Frameworks */,
+				27072168157CFF5900A05222 /* Foundation.framework in Frameworks */,
+				2707216A157CFF5900A05222 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27072156157CFF5900A05222 = {
+			isa = PBXGroup;
+			children = (
+				2707218C157D001800A05222 /* libReliant iOS.a */,
+				2707216B157CFF5900A05222 /* ReliantDemo */,
+				27072164157CFF5900A05222 /* Frameworks */,
+				27072162157CFF5900A05222 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27072162157CFF5900A05222 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27072161157CFF5900A05222 /* ReliantDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27072164157CFF5900A05222 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27072165157CFF5900A05222 /* UIKit.framework */,
+				27072167157CFF5900A05222 /* Foundation.framework */,
+				27072169157CFF5900A05222 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2707216B157CFF5900A05222 /* ReliantDemo */ = {
+			isa = PBXGroup;
+			children = (
+				27072174157CFF5900A05222 /* AppDelegate.h */,
+				27072175157CFF5900A05222 /* AppDelegate.m */,
+				27072177157CFF5900A05222 /* MainStoryboard_iPhone.storyboard */,
+				2707217A157CFF5900A05222 /* MainStoryboard_iPad.storyboard */,
+				2707217D157CFF5900A05222 /* MasterViewController.h */,
+				2707217E157CFF5900A05222 /* MasterViewController.m */,
+				27072180157CFF5900A05222 /* DetailViewController.h */,
+				27072181157CFF5900A05222 /* DetailViewController.m */,
+				2707216C157CFF5900A05222 /* Supporting Files */,
+				2707218E157D020800A05222 /* ReliantDemoFactory.h */,
+				2707218F157D020800A05222 /* ReliantDemoFactory.m */,
+				27072191157D05C000A05222 /* ListService.h */,
+				27072192157D05FB00A05222 /* DetailService.h */,
+				27072196157D069900A05222 /* PersonMemoryCache.h */,
+				27072197157D069900A05222 /* PersonMemoryCache.m */,
+				27072199157D07CD00A05222 /* Person.h */,
+				2707219A157D07CD00A05222 /* Person.m */,
+				27072193157D064C00A05222 /* InMemoryListService.h */,
+				27072194157D064C00A05222 /* InMemoryListService.m */,
+				2707219C157D0C1E00A05222 /* InMemoryDetailService.h */,
+				2707219D157D0C1E00A05222 /* InMemoryDetailService.m */,
+				2707219F157D0E1800A05222 /* ControllerTracker.h */,
+				270721A0157D0E1800A05222 /* ControllerTracker.m */,
+			);
+			path = ReliantDemo;
+			sourceTree = "<group>";
+		};
+		2707216C157CFF5900A05222 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2707216D157CFF5900A05222 /* ReliantDemo-Info.plist */,
+				2707216E157CFF5900A05222 /* InfoPlist.strings */,
+				27072171157CFF5900A05222 /* main.m */,
+				27072173157CFF5900A05222 /* ReliantDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27072160157CFF5900A05222 /* ReliantDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27072185157CFF5900A05222 /* Build configuration list for PBXNativeTarget "ReliantDemo" */;
+			buildPhases = (
+				2707215D157CFF5900A05222 /* Sources */,
+				2707215E157CFF5900A05222 /* Frameworks */,
+				2707215F157CFF5900A05222 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReliantDemo;
+			productName = ReliantDemo;
+			productReference = 27072161157CFF5900A05222 /* ReliantDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27072158157CFF5900A05222 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 2707215B157CFF5900A05222 /* Build configuration list for PBXProject "ReliantDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27072156157CFF5900A05222;
+			productRefGroup = 27072162157CFF5900A05222 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27072160157CFF5900A05222 /* ReliantDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2707215F157CFF5900A05222 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27072170157CFF5900A05222 /* InfoPlist.strings in Resources */,
+				27072179157CFF5900A05222 /* MainStoryboard_iPhone.storyboard in Resources */,
+				2707217C157CFF5900A05222 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2707215D157CFF5900A05222 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27072172157CFF5900A05222 /* main.m in Sources */,
+				27072176157CFF5900A05222 /* AppDelegate.m in Sources */,
+				2707217F157CFF5900A05222 /* MasterViewController.m in Sources */,
+				27072182157CFF5900A05222 /* DetailViewController.m in Sources */,
+				27072190157D020800A05222 /* ReliantDemoFactory.m in Sources */,
+				27072195157D064C00A05222 /* InMemoryListService.m in Sources */,
+				27072198157D069900A05222 /* PersonMemoryCache.m in Sources */,
+				2707219B157D07CD00A05222 /* Person.m in Sources */,
+				2707219E157D0C1E00A05222 /* InMemoryDetailService.m in Sources */,
+				270721A1157D0E1800A05222 /* ControllerTracker.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2707216E157CFF5900A05222 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2707216F157CFF5900A05222 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		27072177157CFF5900A05222 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27072178157CFF5900A05222 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		2707217A157CFF5900A05222 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2707217B157CFF5900A05222 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		27072183157CFF5900A05222 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27072184157CFF5900A05222 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27072186157CFF5900A05222 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReliantDemo/ReliantDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(LOCAL_DEVELOPER_DIR)/libs\"";
+				INFOPLIST_FILE = "ReliantDemo/ReliantDemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		27072187157CFF5900A05222 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReliantDemo/ReliantDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(LOCAL_DEVELOPER_DIR)/libs\"";
+				INFOPLIST_FILE = "ReliantDemo/ReliantDemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2707215B157CFF5900A05222 /* Build configuration list for PBXProject "ReliantDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27072183157CFF5900A05222 /* Debug */,
+				27072184157CFF5900A05222 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27072185157CFF5900A05222 /* Build configuration list for PBXNativeTarget "ReliantDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27072186157CFF5900A05222 /* Debug */,
+				27072187157CFF5900A05222 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27072158157CFF5900A05222 /* Project object */;
+}

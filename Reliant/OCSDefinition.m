@@ -61,6 +61,7 @@
 - (void)dealloc
 {
     [_aliases release];
+    [key release];
     [super dealloc];
 }
 

@@ -69,10 +69,7 @@
 
 - (BOOL) start {
     //Done registering all objects, now do injections for singletons using KVC
-    NSLog(@"Starting application context...");
     [_configurator contextLoaded:self];
-    NSLog(@"Application context started...");
-    
     
     return YES;
 }
@@ -97,11 +94,18 @@
             id instance = [_configurator objectForKey:name inContext:self];
             if (instance) {
                 [object setValue:instance forKey:name];
+            
+            
+#if DEBUG
             } else {
                 NSLog(@"Property %@ for object %@ could not be injected, nothing found in the configurator's registry", name, object);
+#endif
             }
+        
+#if DEBUG
         } else {
             NSLog(@"Property %@ for object %@ was not injected, not an object or readonly", name, object);
+#endif
         }
     }
     free(properties);

@@ -95,6 +95,9 @@ framework, you should directly find it in the proposed list).
 There are other ways to install frameworks. Check the [framework documentation](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183-SW1).
 
 #### General
+
+Add -ObjC to `Other Linker Flags` in the build settings of your target, otherwise
+Reliant's categories will not be detected by the linker.
     
 Now you are ready to import the headers in your own code:
 
