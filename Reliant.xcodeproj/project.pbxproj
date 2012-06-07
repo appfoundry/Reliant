@@ -13,7 +13,6 @@
 			buildPhases = (
 				2765CB7015716A0F00ABE59C /* Build Static Libs */,
 				2765CB7115716A8300ABE59C /* Merge Libs */,
-				2765CB7215716AD000ABE59C /* CopyFiles */,
 			);
 			dependencies = (
 			);
@@ -67,13 +66,6 @@
 		274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BCF1563CB9A0007C1C8 /* libOCMock.a */; };
 		2765CB621571554600ABE59C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780EDDB1571052200CFD38C /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2765CB631571563200ABE59C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780EDDB1571052200CFD38C /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		2765CB7315716B0900ABE59C /* OCSConfigurator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */; };
-		2765CB7415716B0900ABE59C /* OCSScope.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BB91563BFA10007C1C8 /* OCSScope.h */; };
-		2765CB7615716B0900ABE59C /* OCSConfiguratorBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; };
-		2765CB7715716B0900ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; };
-		2765CB7815716B0900ABE59C /* OCSConfiguratorFromClass.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */; };
-		2765CB7915716B0900ABE59C /* OCSDefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */; };
-		2765CB7A15716B0900ABE59C /* OCSApplicationContext.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */; };
 		2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
 		2765CB97157184EC00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CB95157184EC00ABE59C /* InfoPlist.strings */; };
 		2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
@@ -135,22 +127,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2765CB7215716AD000ABE59C /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${PRODUCT_NAME}.framework/Versions/A/Headers/";
-			dstSubfolderSpec = 0;
-			files = (
-				2765CB7315716B0900ABE59C /* OCSConfigurator.h in CopyFiles */,
-				2765CB7415716B0900ABE59C /* OCSScope.h in CopyFiles */,
-				2765CB7615716B0900ABE59C /* OCSConfiguratorBase.h in CopyFiles */,
-				2765CB7715716B0900ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in CopyFiles */,
-				2765CB7815716B0900ABE59C /* OCSConfiguratorFromClass.h in CopyFiles */,
-				2765CB7915716B0900ABE59C /* OCSDefinition.h in CopyFiles */,
-				2765CB7A15716B0900ABE59C /* OCSApplicationContext.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		27877B621574116B00C7D871 /* Copy OCMock Framework to Product Directory */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -706,7 +682,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Headers\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary for the device and simulator.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\"";
+			shellScript = "SIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\n\n# Create framework directory structure.\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\n# Generate universal binary for the device and simulator.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp -R \"${DEVICE_LIBRARY}\"/usr  \"${UNIVERSAL_LIBRARY_DIR}\"";
 			showEnvVarsInLog = 0;
 		};
 		2765CB9F157184ED00ABE59C /* ShellScript */ = {
