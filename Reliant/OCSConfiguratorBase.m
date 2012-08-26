@@ -74,7 +74,9 @@
         //Load eager singletons directly
         if (definition.singleton && !definition.lazy) {
             id instance = [self _internalObjectForKey:key inContext:context];
+            _initializing = NO;
             [context performInjectionOn:instance];
+            _initializing = YES;
         }
     }
     
