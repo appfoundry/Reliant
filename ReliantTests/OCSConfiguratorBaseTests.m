@@ -37,7 +37,7 @@
     return nil;
 }
 - (void) internalContextLoaded:(OCSApplicationContext *) context {
-    
+    NSLog(@"internal context loaded called");
 }
 
 @end

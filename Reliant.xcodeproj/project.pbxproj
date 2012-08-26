@@ -40,7 +40,6 @@
 		270721F0157F4AE400A05222 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 270721E9157F4AE400A05222 /* Credits.rtf */; };
 		270721F1157F4AE400A05222 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 270721EB157F4AE400A05222 /* InfoPlist.strings */; };
 		270721F2157F4AE400A05222 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 270721ED157F4AE400A05222 /* main.m */; };
-		270721F3157F4AE400A05222 /* OCSReliantAnalyser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 270721EE157F4AE400A05222 /* OCSReliantAnalyser-Info.plist */; };
 		270721FA157F4CB800A05222 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		270721FB157F4CB800A05222 /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		270721FC157F4CB800A05222 /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -577,7 +576,7 @@
 		274D7B841563BF2E0007C1C8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = 274D7B871563BF2E0007C1C8 /* Build configuration list for PBXProject "Reliant" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -611,7 +610,6 @@
 				270721E1157F4ABB00A05222 /* MainMenu.xib in Resources */,
 				270721F0157F4AE400A05222 /* Credits.rtf in Resources */,
 				270721F1157F4AE400A05222 /* InfoPlist.strings in Resources */,
-				270721F3157F4AE400A05222 /* OCSReliantAnalyser-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +872,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -895,6 +894,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -967,6 +967,7 @@
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -987,6 +988,7 @@
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1054,6 +1056,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1080,6 +1083,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1105,6 +1109,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
@@ -1133,6 +1138,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
