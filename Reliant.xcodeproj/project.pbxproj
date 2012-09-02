@@ -105,6 +105,8 @@
 		2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
 		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
+		27B2C85415F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
+		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +198,8 @@
 		2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBase.m; sourceTree = "<group>"; };
 		27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzlerTests.h; sourceTree = "<group>"; };
 		27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSwizzlerTests.m; sourceTree = "<group>"; };
+		27B2C85215F402C1001954BD /* Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setup.h; sourceTree = "<group>"; };
+		27B2C85315F402C1001954BD /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		27C112ED1565912700499664 /* OCSSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzler.h; sourceTree = "<group>"; };
 		27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClassTests.h; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
@@ -359,6 +363,8 @@
 		274D7BA61563BF2E0007C1C8 /* ReliantTests */ = {
 			isa = PBXGroup;
 			children = (
+				27B2C85215F402C1001954BD /* Setup.h */,
+				27B2C85315F402C1001954BD /* Setup.m */,
 				274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */,
 				274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */,
 				2780EDCF156FE48A00CFD38C /* OCSConfiguratorBaseTests.h */,
@@ -764,6 +770,7 @@
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
 				2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */,
 				2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */,
+				27B2C85415F402C1001954BD /* Setup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +797,7 @@
 				2765CBC0157186E400ABE59C /* OCSSwizzlerTests.m in Sources */,
 				2765CBC2157186E400ABE59C /* DummyConfigurator+External.m in Sources */,
 				2765CBC3157186E400ABE59C /* OCSSingletonScopeTests.m in Sources */,
+				27B2C85515F402C1001954BD /* Setup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,6 +974,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -988,6 +997,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -1007,6 +1017,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				HEADER_SEARCH_PATHS = /Library/Developer/libs;
@@ -1028,6 +1039,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				HEADER_SEARCH_PATHS = /Library/Developer/libs;
@@ -1070,6 +1082,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1099,6 +1112,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1122,6 +1136,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1153,6 +1168,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
