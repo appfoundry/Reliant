@@ -968,6 +968,7 @@
 				ARCHS = (
 					armv6,
 					armv7,
+					armv7s,
 					i386,
 				);
 				BUNDLE_LOADER = "";
@@ -991,13 +992,14 @@
 				ARCHS = (
 					armv6,
 					armv7,
+					armv7s,
 					i386,
 				);
 				BUNDLE_LOADER = "";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/Reliant.dst;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
