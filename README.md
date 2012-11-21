@@ -2,8 +2,8 @@ Reliant
 =======
 
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies")) 
-framework for Objective-C, both for OS X and iOS. Its goal is to make it's use as simple
-as possible, while not limiting it's possibilities. It aims to have as little impact as
+framework for Objective-C, both for OS X and iOS. Its goal is to make its use as simple
+as possible, while not limiting its possibilities. It aims to have as little impact as
 possible on your project code. It also aims to be loyal to Objective-C's [dynamic](http://stackoverflow.com/questions/125367/dynamic-type-languages-versus-static-type-languages) 
 nature.
 
@@ -39,7 +39,7 @@ singleton should be thread safe! Reliant further identifies eager and lazy singl
 Eager means that they will be instantiated when the application context boots up, lazy
 means they will be instantiated *Just-in-Time*, when they are requested.
 
-> For iOS, Reliant also reacts to memory warnings, by clearing it's  singleton scope. In
+> For iOS, Reliant also reacts to memory warnings, by clearing its singleton scope. In
 > this case, all singletons become lazy singletons and will be initialized again when
 > requested.
 
@@ -71,7 +71,7 @@ library must be added to the application target in the `Link Binaries With Libra
 build phase. Click the (+) icon, choose `Add other...` and locate the library in the just
 extracted library.
 
-Next you also need to add a `Header Search Path` in the build settings of you application
+Next you also need to add a `Header Search Path` in the build settings of your application
 target (the Library Search Path should have been updated automatically by Xcode after the
 previous step). Go to your target's Build Settings and search for Header. Locate the
 `Header Search Paths`. Double click it and add a line by clicking the (+) button. Enter
@@ -81,7 +81,7 @@ the search path (eg. ~/Library/Developer/libs).
 > path, as these settings are global. (I couldn't find another way, so if you do, please
 > let us know!)
 
-Goto the [static library documentation](http://developer.apple.com/library/ios/#DOCUMENTATION/Xcode/Conceptual/ios_development_workflow/AA-Developing_a_Static_Library_and_Incorporating_It_in_Your_Application/archiving_an_application_that_uses_a_static_library.html) for more options.
+Go to the [static library documentation](http://developer.apple.com/library/ios/#DOCUMENTATION/Xcode/Conceptual/ios_development_workflow/AA-Developing_a_Static_Library_and_Incorporating_It_in_Your_Application/archiving_an_application_that_uses_a_static_library.html) for more options.
 
 #### OS X
 
@@ -139,7 +139,7 @@ OCSApplicationContext *context = [[OCSApplicationContext alloc]
 ```
 
 This will bootstrap the entire application context. At the time the start method finishes
-it's job, it will have loaded your defintions and it will have instantiated and injected
+its job, it will have loaded your defintions and it will have instantiated and injected
 your eager singletons.
 
 Now where should you put this peace of code? As close as possible to where the application
@@ -157,7 +157,7 @@ you a programatic way to define objects, and make the configuration itself subje
 testing. This makes the use of external configuration files and/or macros obsolete, which
 yields more robust code.
 
-So what you need to use this configurator is a factory class. The methods in this class
+So what you need to use in this configurator, is a factory class. The methods in this class
 will be responsible for creating your objects. In order for the framework to detect these
 methods, you will need to follow some naming conventions on them.
 
@@ -190,7 +190,7 @@ You can also use what is called *constructor injection* by calling another
 }
 ```
 
-Don't worry about calling the same *createSingleton* method more then once, the framework
+Don't worry about calling the same *createSingleton* method more than once, the framework
 will only really call each method once and reuse the same result on the succeeding calls,
 making the results true singletons.
 
@@ -291,7 +291,7 @@ All objects created in the application context will be injected after their crea
 is done as explained before by *constructor injection* and/or by using Objective-C's 
 [KVC](http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html "Key-Value Coding Programming Guide")
 mechanism. Reliant will scan your object's properties. If a writable property's name
-matches with a key or alias for an object in the application context, and if it's current
+matches with a key or an alias for an object in the application context, and if its current
 value is nil, the matching object will be injected in this property. All other properties
 will be left alone. This will be done for the entire class hierarchy of the instance.
 
@@ -303,9 +303,9 @@ easier, you can make use of the fact that we have bootstrapped our application c
 the UIApplicationDelegate. Since the UIApplication is a shared object (hey, another
 singleton!) we can do our injection from here.
 
-> We already discussed that Reliant will clear it's singleton cache whenever a
-> memory warning occurs. Reliant thereby releases it's ownership of the instances. However,
-> it can not be held responsible for the objects injected outside of it's scope as discussed
+> We already discussed that Reliant will clear its singleton cache whenever a
+> memory warning occurs. Reliant thereby releases its ownership of the instances. However,
+> it can not be held responsible for the objects injected outside of its scope as discussed
 > above. You should therefore retain/release any injected objects yourself. For property injection,
 > this means that your dependent properties should have the retain attribute on it.
 
@@ -372,16 +372,16 @@ object instances based on those definitions. Although a default class configurat
 (*OCSConfiguratorFromClass*) is provided by Reliant, you can always build your own. Your
 custom configurator should conform to the *OCSConfigurator* protocol. In the
 configurator's designated initializer, you should start building your object definitions.
-A configurator, although not enforced, should maintain it's own definition registry. A
+A configurator, although not enforced, should maintain its own definition registry. A
 configurator should not start creating instances for these definitions just until the
-contextLoaded: message is send to it. Only after all work is done should the configurator
+contextLoaded: message is send to it. Only after all work is done, the configurator should
 return objects through its objectForKey:inContext: method. When work is done, the
 initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
 
 An abstract implementation is also provided. This is the *OCSConfiguratorBase* which deals
-with the boiler plate code for keeping track of registered definitions and object. If you
+with the boilerplate code for keeping track of registered definitions and objects. If you
 extend this class, you should import the *OCSConfiguratorBase+ForSubclassEyesOnly.h*
-header in your implementation (.m file). This will alow you to call "protected" methods
+header in your implementation (.m file). This will allow you to call "protected" methods
 and properties, hidden for non-extending classes. You should never use
 this category outside of a subclass, doing so will cause unexpected behavior.
 
@@ -426,7 +426,7 @@ builds on this principle.
 - [Guice](http://code.google.com/p/google-guice/ "Google Guice"). Google's type safe DI 
 solution. Partially as an answer to spring, which was not very strong on the type-safety 
 side of things at that time. Spring fixed this in version 3.0.
-Although Guice is a very well thought of DI framework, which should be marvelled for it's
+Although Guice is a very well thought of DI framework, which should be marvelled for its
 simplicity and light-weightness, I personally feel that basing a DI framework for a
 dynamic language on Guice is a bridge too far. It would break down too many of the main
 goals of Guice, namely type safety. I'm not saying type safety is unimportant, I'm just
@@ -442,7 +442,7 @@ Special thanks
 --------------
 
 - Filip Maelbrancke: for second opinions and rubber ducking
-- Bart Vandeweerdt: for reviewing this documentation
+- Bart Vandeweerdt and Willem Van Pelt: for reviewing this documentation
 - iDA MediaFoundry: for letting me use this in production code
 - Oak Consultancy Services: for necessary resources
 - Liesbet Gouwy: for unconditional support
