@@ -33,19 +33,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		270721C0157F4A4F00A05222 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270721BF157F4A4F00A05222 /* Cocoa.framework */; };
-		270721CA157F4A4F00A05222 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 270721C8157F4A4F00A05222 /* InfoPlist.strings */; };
-		270721DE157F4A8600A05222 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 270721DD157F4A8600A05222 /* AppDelegate.m */; };
-		270721E1157F4ABB00A05222 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 270721DF157F4ABB00A05222 /* MainMenu.xib */; };
-		270721F0157F4AE400A05222 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 270721E9157F4AE400A05222 /* Credits.rtf */; };
-		270721F1157F4AE400A05222 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 270721EB157F4AE400A05222 /* InfoPlist.strings */; };
-		270721F2157F4AE400A05222 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 270721ED157F4AE400A05222 /* main.m */; };
-		270721FA157F4CB800A05222 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		270721FB157F4CB800A05222 /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		270721FC157F4CB800A05222 /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		270721FD157F4CB800A05222 /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		270721FE157F4CB800A05222 /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		270721FF157F4CB800A05222 /* OCSApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
@@ -68,7 +55,6 @@
 		2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
 		2765CB97157184EC00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CB95157184EC00ABE59C /* InfoPlist.strings */; };
 		2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
-		2765CBA6157184ED00ABE59C /* Reliant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant.framework */; };
 		2765CBAC157184ED00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CBAA157184ED00ABE59C /* InfoPlist.strings */; };
 		2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
 		2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
@@ -107,6 +93,7 @@
 		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
 		27B2C85415F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
+		27CF7782175FD8CC00D308DD /* Reliant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant.framework */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
 /* End PBXBuildFile section */
 
@@ -142,19 +129,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		270721BD157F4A4F00A05222 /* OCSReliantAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCSReliantAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		270721BF157F4A4F00A05222 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		270721C2157F4A4F00A05222 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		270721C3157F4A4F00A05222 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		270721C4157F4A4F00A05222 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		270721DC157F4A8600A05222 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		270721DD157F4A8600A05222 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		270721E0157F4ABB00A05222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		270721EA157F4AE400A05222 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		270721EC157F4AE400A05222 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		270721ED157F4AE400A05222 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		270721EE157F4AE400A05222 /* OCSReliantAnalyser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OCSReliantAnalyser-Info.plist"; sourceTree = "<group>"; };
-		270721EF157F4AE400A05222 /* OCSReliantAnalyser-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSReliantAnalyser-Prefix.pch"; sourceTree = "<group>"; };
 		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
@@ -206,14 +183,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		270721BA157F4A4F00A05222 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				270721C0157F4A4F00A05222 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		274D7B8A1563BF2E0007C1C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,8 +218,8 @@
 			files = (
 				2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */,
 				2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */,
-				2765CBA6157184ED00ABE59C /* Reliant.framework in Frameworks */,
 				2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */,
+				27CF7782175FD8CC00D308DD /* Reliant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,29 +236,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		270721C5157F4A4F00A05222 /* OCSReliantAnalyser */ = {
-			isa = PBXGroup;
-			children = (
-				270721DC157F4A8600A05222 /* AppDelegate.h */,
-				270721DD157F4A8600A05222 /* AppDelegate.m */,
-				270721DF157F4ABB00A05222 /* MainMenu.xib */,
-				270721C6157F4A4F00A05222 /* Supporting Files */,
-			);
-			path = OCSReliantAnalyser;
-			sourceTree = "<group>";
-		};
-		270721C6157F4A4F00A05222 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				270721E9157F4AE400A05222 /* Credits.rtf */,
-				270721EB157F4AE400A05222 /* InfoPlist.strings */,
-				270721ED157F4AE400A05222 /* main.m */,
-				270721EE157F4AE400A05222 /* OCSReliantAnalyser-Info.plist */,
-				270721EF157F4AE400A05222 /* OCSReliantAnalyser-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		274D7B821563BF2E0007C1C8 = {
 			isa = PBXGroup;
 			children = (
@@ -297,7 +243,6 @@
 				274D7BA61563BF2E0007C1C8 /* ReliantTests */,
 				2765CB92157184EC00ABE59C /* Reliant OSX */,
 				2765CBA7157184ED00ABE59C /* Reliant OSXTests */,
-				270721C5157F4A4F00A05222 /* OCSReliantAnalyser */,
 				274D7B8F1563BF2E0007C1C8 /* Frameworks */,
 				274D7B8E1563BF2E0007C1C8 /* Products */,
 			);
@@ -310,7 +255,6 @@
 				274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */,
 				2765CB8B157184EC00ABE59C /* Reliant.framework */,
 				2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */,
-				270721BD157F4A4F00A05222 /* OCSReliantAnalyser.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,7 +268,6 @@
 				2780EDDB1571052200CFD38C /* UIKit.framework */,
 				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
 				274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */,
-				270721BF157F4A4F00A05222 /* Cocoa.framework */,
 				270721C1157F4A4F00A05222 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -484,23 +427,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		270721BC157F4A4F00A05222 /* OCSReliantAnalyser */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 270721D7157F4A4F00A05222 /* Build configuration list for PBXNativeTarget "OCSReliantAnalyser" */;
-			buildPhases = (
-				270721B9157F4A4F00A05222 /* Sources */,
-				270721BA157F4A4F00A05222 /* Frameworks */,
-				270721BB157F4A4F00A05222 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = OCSReliantAnalyser;
-			productName = OCSReliantAnalyser;
-			productReference = 270721BD157F4A4F00A05222 /* OCSReliantAnalyser.app */;
-			productType = "com.apple.product-type.application";
-		};
 		274D7B8C1563BF2E0007C1C8 /* Reliant */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 274D7BB11563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "Reliant" */;
@@ -582,7 +508,7 @@
 		274D7B841563BF2E0007C1C8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 274D7B871563BF2E0007C1C8 /* Build configuration list for PBXProject "Reliant" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -602,23 +528,11 @@
 				2765CB8A157184EC00ABE59C /* Reliant OSX */,
 				2765CBA0157184ED00ABE59C /* Reliant OSXTests */,
 				27877BDA1575E53C00C7D871 /* Reliant docs */,
-				270721BC157F4A4F00A05222 /* OCSReliantAnalyser */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		270721BB157F4A4F00A05222 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				270721CA157F4A4F00A05222 /* InfoPlist.strings in Resources */,
-				270721E1157F4ABB00A05222 /* MainMenu.xib in Resources */,
-				270721F0157F4AE400A05222 /* Credits.rtf in Resources */,
-				270721F1157F4AE400A05222 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		274D7B9A1563BF2E0007C1C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -732,21 +646,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		270721B9157F4A4F00A05222 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				270721FA157F4CB800A05222 /* OCSSingletonScope.m in Sources */,
-				270721FB157F4CB800A05222 /* OCSConfiguratorBase.m in Sources */,
-				270721FC157F4CB800A05222 /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
-				270721FD157F4CB800A05222 /* OCSConfiguratorFromClass.m in Sources */,
-				270721FE157F4CB800A05222 /* OCSDefinition.m in Sources */,
-				270721FF157F4CB800A05222 /* OCSApplicationContext.m in Sources */,
-				270721DE157F4A8600A05222 /* AppDelegate.m in Sources */,
-				270721F2157F4AE400A05222 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		274D7B891563BF2E0007C1C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -817,38 +716,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		270721C8157F4A4F00A05222 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = InfoPlist.strings;
-			path = /Customers/OAKCS/Project/Reliant/Reliant/OCSReliantAnalyser;
-			sourceTree = "<absolute>";
-		};
-		270721DF157F4ABB00A05222 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				270721E0157F4ABB00A05222 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		270721E9157F4AE400A05222 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				270721EA157F4AE400A05222 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		270721EB157F4AE400A05222 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				270721EC157F4AE400A05222 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -876,56 +743,16 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		270721D8157F4A4F00A05222 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OCSReliantAnalyser/OCSReliantAnalyser-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "OCSReliantAnalyser/OCSReliantAnalyser-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		270721D9157F4A4F00A05222 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OCSReliantAnalyser/OCSReliantAnalyser-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "OCSReliantAnalyser/OCSReliantAnalyser-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		274D7BAF1563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -950,6 +777,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1073,7 +904,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1102,7 +932,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1205,15 +1034,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		270721D7157F4A4F00A05222 /* Build configuration list for PBXNativeTarget "OCSReliantAnalyser" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				270721D8157F4A4F00A05222 /* Debug */,
-				270721D9157F4A4F00A05222 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		274D7B871563BF2E0007C1C8 /* Build configuration list for PBXProject "Reliant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
