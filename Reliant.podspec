@@ -13,8 +13,5 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Reliant/OCSScope.h', 'Reliant/OCSConfigurator.h', 'Reliant/OCSConfiguratorBase.h', 'Reliant/OCSConfiguratorBase+ForSubclassEyesOnly.h', 'Reliant/OCSConfiguratorFromClass.h', 'Reliant/OCSApplicationContext.h', 'Reliant/OCSDefinition.h'
   s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = false
-
-  # s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
-
   s.dependency 'OCMock', '~> 2.0'
 end
