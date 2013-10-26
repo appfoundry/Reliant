@@ -85,12 +85,5 @@
     _initializing = NO;
 }
 
-- (void)dealloc
-{
-    [_keysAndAliasRegistry release];
-    [_definitionRegistry release];
-    [_singletonScope release];
-    [super dealloc];
-}
 
 @end

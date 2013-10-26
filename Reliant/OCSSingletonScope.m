@@ -53,7 +53,5 @@
 #if (TARGET_OS_IPHONE)
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
-    [_objectRegistry release];
-    [super dealloc];
 }
 @end

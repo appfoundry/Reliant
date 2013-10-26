@@ -36,7 +36,7 @@
 
 @interface ObjectWithInjectables : NSObject
 
-@property (nonatomic, retain) NSObject *verySmartName;
+@property (nonatomic, strong) NSObject *verySmartName;
 
 - (id) initWithVerySmartName:(NSObject *) verySmartName;
 
@@ -44,7 +44,7 @@
 
 @interface ExtendedObjectWithInjectables : ObjectWithInjectables
 
-@property (nonatomic, retain) id unbelievableOtherSmartName;
+@property (nonatomic, strong) id unbelievableOtherSmartName;
 
 @end
 
@@ -83,7 +83,6 @@
 
 - (void) tearDown {
     // Tear-down code here.
-    [configurator release];
     configurator = nil;
     
     [super tearDown];
@@ -248,7 +247,7 @@
 @implementation DummyConfigurator 
 
 - (NSObject *) createEagerSingletonVerySmartName {
-    return [[[NSObject alloc] init] autorelease];
+    return [[NSObject alloc] init];
 }
 
 - (NSArray *) aliasesForVerySmartName {
@@ -256,19 +255,19 @@
 }
 
 - (NSArray *) createPrototypeUnbelievableOtherSmartName {
-    return [[[NSMutableArray alloc] init] autorelease];
+    return [[NSMutableArray alloc] init];
 }
 
 - (NSDictionary *) createSingletonLazyOne {
-    return [[[NSMutableDictionary alloc] init] autorelease];
+    return [[NSMutableDictionary alloc] init];
 }
 
 - (ObjectWithInjectables *) createEagerSingletonSuper {
-    return [[[ObjectWithInjectables alloc] initWithVerySmartName:[self createEagerSingletonVerySmartName]] autorelease];
+    return [[ObjectWithInjectables alloc] initWithVerySmartName:[self createEagerSingletonVerySmartName]];
 }
 
 - (ExtendedObjectWithInjectables *) createEagerSingletonExtended {
-    return [[[ExtendedObjectWithInjectables alloc] init] autorelease];
+    return [[ExtendedObjectWithInjectables alloc] init];
 }
 
 - (id) createWithBadName {

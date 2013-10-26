@@ -28,7 +28,6 @@
         OCSDefinition *def = [[OCSDefinition alloc] init];
         def.key = @"SomeKey";
         [self registerDefinition:def];
-        [def release];
     }
     return self;
 }
@@ -75,8 +74,8 @@
 - (void) setUp {
     [super setUp];
 
-    dummyConfigurator = [OCMockObject partialMockForObject:[[[DummyBaseConfiguratorExtension alloc] init] autorelease]];
-    badDummyConfigurator = [OCMockObject partialMockForObject:[[[BadDummyBaseConfiguratorExtension alloc] init] autorelease]];
+    dummyConfigurator = [OCMockObject partialMockForObject:[[DummyBaseConfiguratorExtension alloc] init]];
+    badDummyConfigurator = [OCMockObject partialMockForObject:[[BadDummyBaseConfiguratorExtension alloc] init]];
     context = [OCMockObject mockForClass:[OCSApplicationContext class]];
 }
 
@@ -123,21 +122,21 @@
 }
 
 - (void) addDefinitions:(OCSConfiguratorBase *) configurator {
-    OCSDefinition *lazy = [[[OCSDefinition alloc] init] autorelease];
+    OCSDefinition *lazy = [[OCSDefinition alloc] init];
     lazy.singleton = YES;
     lazy.lazy = YES;
     lazy.key = @"LazySingletonKey";
     
     [configurator addDefinition:lazy];
     
-    OCSDefinition *eager = [[[OCSDefinition alloc] init] autorelease];
+    OCSDefinition *eager = [[OCSDefinition alloc] init];
     eager.singleton = YES;
     eager.lazy = NO;
     eager.key = @"EagerSingletonKey";
     
     [configurator addDefinition:eager];
     
-    OCSDefinition *prototype = [[[OCSDefinition alloc] init] autorelease];
+    OCSDefinition *prototype = [[OCSDefinition alloc] init];
     prototype.singleton = NO;
     prototype.key = @"PrototypeKey";
     

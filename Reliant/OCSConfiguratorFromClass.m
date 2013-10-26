@@ -55,23 +55,6 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
     return result;
 }
 
-static void dynamicDealloc(id self, SEL _cmd) {
-    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
-    id<OCSScope> scope = object_getIvar(self, var);
-    [scope release];
-    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
-    KeyGenerator generator = object_getIvar(self, var);
-    [generator release];
-    
-    //Call super dealloc
-    struct objc_super superData;
-    superData.receiver = self;
-    superData.super_class = [self superclass];
-    
-    objc_msgSendSuper(&superData, _cmd);
-}
-
-
 /**
  Configurator private category. Holds private ivars and methods.
  */
@@ -112,7 +95,7 @@ static void dynamicDealloc(id self, SEL _cmd) {
             } 
             
             return [name substringFromIndex:offset];
-        }, (IMP) dynamicIDMethodIMP, (IMP) dynamicDealloc);
+        }, (IMP) dynamicIDMethodIMP);
         unsigned int count;
         Method * methods = class_copyMethodList(factoryClass, &count);
         if (count > 0) {
@@ -152,7 +135,6 @@ static void dynamicDealloc(id self, SEL _cmd) {
                         NSLog(@"Create method found, but not as expected, ignoring it (%@)", objcStringName);
 #endif
                     }
-                    [def release];
 #if DEBUG
                 } else {
                     NSLog(@"Ignoring non-create method (%@)", objcStringName);
@@ -216,16 +198,14 @@ static void dynamicDealloc(id self, SEL _cmd) {
         NSString *methodPrefix = definition.singleton ? (definition.lazy ? LAZY_SINGLETON_PREFIX : EAGER_SINGLETON_PREFIX) : PROTOTYPE_PREFIX;
         SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", methodPrefix, key]);
         if ([_configInstance respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             result = [_configInstance performSelector:selector];
+#pragma clang diagnostic pop
         }
     }
     
     return result;
 }
 
-- (void)dealloc
-{
-    [_configInstance release];
-    [super dealloc];
-}
 @end

@@ -34,33 +34,20 @@
 typedef BOOL(^MethodFilter)(NSString *);
 typedef NSString *(^KeyGenerator)(NSString *);
 
-//C function to swizzle, taken from http://cocoadev.com/wiki/MethodSwizzling
-static void Swizzle(Class c, SEL original, Class o, SEL replacement) {
-    Method origMethod = class_getInstanceMethod(c, original);
-    Method newMethod = class_getInstanceMethod(o, replacement);
-    if(class_addMethod(c, original, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-        class_replaceMethod(c, replacement, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
-    } else {
-        method_exchangeImplementations(origMethod, newMethod);
-    }
-}
-
-
-
-
-
-
 //Extend a class, overriding all it's "createSingleton" methods which return an object and have no arguments with a dynamic one
 //The dynamic methods will call the super classes implementation and store some result's so we can cahce their result.
-static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singletonScope, MethodFilter methodFilter, KeyGenerator keyGenerator, IMP noArgIdMethodImplementation, IMP deallocImplementation) {
+static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singletonScope, MethodFilter methodFilter, KeyGenerator keyGenerator, IMP noArgIdMethodImplementation) {
     //Get the base class, we will extend this class
     char *dest = malloc(strlen(OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX) + strlen(class_getName(baseClass)) + 1);
     dest = strcpy(dest, OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX);
     const char *name = strcat(dest, class_getName(baseClass));
     Class extendedClass = objc_allocateClassPair(baseClass, name, sizeof(id));
+    id instance = nil;
     if (extendedClass) {
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE, sizeof(id), log2(sizeof(id)), @encode(id));
+        
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK, sizeof(KeyGenerator), log2(sizeof(KeyGenerator)), @encode(KeyGenerator));
+        
         
         objc_registerClassPair(extendedClass);
         
@@ -77,19 +64,17 @@ static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singl
             } 
             free(returnType);
         }
+
+        instance = [[extendedClass alloc] init];
+        Ivar singletonScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+        object_setIvar(instance, singletonScopeIvar, singletonScope);
+        Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+        object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
+        
         
         free(methods);
-        
-        class_addMethod(extendedClass, @selector(dealloc), deallocImplementation, @encode(void));
-    } else {
-        extendedClass = objc_getClass(name);
     }
     free(dest);
-    
-    
-    id instance = [[extendedClass alloc] init];
-    object_setInstanceVariable(instance, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE, [singletonScope retain]);
-    object_setInstanceVariable(instance, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK, keyGenerator);
     return instance;
 }
 

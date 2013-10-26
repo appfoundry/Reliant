@@ -58,7 +58,7 @@
 - (id) initWithConfigurator:(id<OCSConfigurator>)configurator {
     self = [self init];
     if (self) {
-        _configurator = [configurator retain];
+        _configurator = configurator;
     }
     return self;
 }
@@ -116,11 +116,6 @@
     }
 }
 
-- (void)dealloc
-{
-    [_configurator release];
-    [super dealloc];
-}
 
 
 @end

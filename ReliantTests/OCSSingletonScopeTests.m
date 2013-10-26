@@ -24,7 +24,6 @@
 }
 
 - (void) tearDown {
-    [scope release];
     scope = nil;
     
     [super tearDown];

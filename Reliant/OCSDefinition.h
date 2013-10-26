@@ -27,7 +27,7 @@
 /**
  The key for the definition. This key will also be the key for looking up the object.
  */
-@property (nonatomic, retain) NSString *key;
+@property (nonatomic, strong) NSString *key;
 
 /**
  The aliases for the definition. These aliases also identify this definition.
@@ -37,7 +37,7 @@
 /**
  The class of the object that this definition represents.
  */
-@property (nonatomic, assign) Class implementingClass;
+@property (nonatomic, weak) Class implementingClass;
 
 /**
  Flag to indicate if the object is a singleton or a prototype. Singletons, as the words says, will only be initialized once in a context. Prototypes will be created each time they are requested.

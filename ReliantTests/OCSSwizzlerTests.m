@@ -36,7 +36,7 @@ static id dynamicJustCallSuper(id self, SEL _cmd) {
 @interface SwizzlerClass : NSObject
 
 @property (nonatomic, assign) SEL called;
-@property (nonatomic, retain) id object;
+@property (nonatomic, strong) id object;
 @property (nonatomic, assign) long scalar;
 @property (nonatomic, assign) NSRange range;
 
@@ -104,7 +104,6 @@ typedef struct {
 }
 
 - (void) tearDown {
-    [dummy release];
     dummy = nil;
 }
 /*
@@ -172,14 +171,13 @@ typedef struct {
         return YES;
     }, ^(NSString *name) {
         return name;
-    }, (IMP) dynamicJustCallSuper, (IMP) dynamicJustCallSuper);
+    }, (IMP) dynamicJustCallSuper);
     
     id returned = [instance objectMethodNoArgs];
     NSLog(@"%@", returned);
     returned = [instance objectMethodNoArgsEither];
     returned = [instance objectMethodNoArgs];
     
-    [instance release];
     /*SwizzlerClass *instance = [[SwizzlerClassExtended alloc] init];
     id returned = [instance objectMethodObjectArg:@"TestObject" andScalarArg:2039480293l andRange:NSMakeRange(394082, 9083)];
     NSLog(@"%@", returned);*/
@@ -309,9 +307,7 @@ typedef struct {
 }
 - (void)dealloc
 {
-    self.object = nil;
     self.called = nil;
-    [super dealloc];
 }
 
 @end

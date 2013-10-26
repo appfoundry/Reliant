@@ -36,9 +36,9 @@
     NSString *publiclyKnownPrivate;
 }
 
-@property (nonatomic, retain) NSString *publiclyKnownPrivate;
-@property (nonatomic, retain) NSString *publiclyKnownProperty;
-@property (nonatomic, readonly) NSString *readOnlyProperty;
+@property (nonatomic, strong) NSString *publiclyKnownPrivate;
+@property (nonatomic, strong) NSString *publiclyKnownProperty;
+@property (weak, nonatomic, readonly) NSString *readOnlyProperty;
 @property (nonatomic, assign) BOOL boolProperty;
 @property (nonatomic, assign) char charProperty;
 @property (nonatomic, assign) int intProperty;
@@ -50,9 +50,9 @@
 
 @interface DummyClass () 
 
-@property (nonatomic, retain) NSString *privateProperty;
-@property (nonatomic, retain) id privatePropertyWithCustomVarName;
-@property (nonatomic, retain) id unknownProperty;
+@property (nonatomic, strong) NSString *privateProperty;
+@property (nonatomic, strong) id privatePropertyWithCustomVarName;
+@property (nonatomic, strong) id unknownProperty;
 
 @end
 
@@ -60,11 +60,14 @@
 
 @property (nonatomic, retain) NSString *prototypeProperty;
 
+@optional
+@property (nonatomic, retain) NSString *optionalProperty;
+
 @end
 
 @interface ExtendedDummyClass : DummyClass<SomeProtocol>
 
-@property (nonatomic, retain) NSString *extendedProperty;
+@property (nonatomic, strong) NSString *extendedProperty;
 
 @end
 
@@ -98,7 +101,6 @@
     // Tear-down code here.
     
     configurator = nil;
-    [context release];
     context = nil;
     accessibilityProperties = nil;
     
