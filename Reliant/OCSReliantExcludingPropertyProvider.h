@@ -10,6 +10,6 @@
 
 @protocol OCSReliantExcludingPropertyProvider <NSObject>
 
-+ (NSArray *) OCS_propertiesReliantShouldIgnore;
++ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name;
 
 @end

@@ -11,13 +11,13 @@
 
 @implementation UIViewController (OCSReliantExcludingPropertyProvider)
 
-+ (NSArray *)OCS_propertiesReliantShouldIgnore {
++ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name {
     static NSArray *excludedProps;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        excludedProps = [[super OCS_propertiesReliantShouldIgnore] arrayByAddingObjectsFromArray:@[@"tabBarItem", @"title", @"toolbarItems", @"view"]];
+        excludedProps = @[@"tabBarItem", @"title", @"toolbarItems", @"view", @"aggregateStatisticsDisplayCountKey", @"nibName", @"storyboard", @"parentViewController", @"modalTransitionView", @"mutableChildViewControllers", @"childModalViewController", @"parentModalViewController", @"searchDisplayController", @"dropShadowView", @"afterAppearanceBlock", @"transitioningDelegate", @"customTransitioningView"];
     });
-    return excludedProps;
+    return [name hasPrefix:@"_"] || [super OCS_reliantShouldIgnorePropertyWithName:name] || [excludedProps containsObject:name];
 }
 
 @end

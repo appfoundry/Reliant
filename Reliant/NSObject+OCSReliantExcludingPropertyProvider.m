@@ -10,13 +10,14 @@
 
 @implementation NSObject (OCSReliantExcludingPropertiesProvider)
 
-+ (NSArray *)OCS_propertiesReliantShouldIgnore {
++ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name {
     static NSArray *excludedProps;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         excludedProps = @[@"accessibilityPath", @"accessibilityLabel", @"accessibilityHint", @"accessibilityValue", @"accessibilityLanguage"];
     });
-    return excludedProps;
+    
+    return [excludedProps containsObject:name];
 }
 
 @end

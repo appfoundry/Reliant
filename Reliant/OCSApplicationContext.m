@@ -84,12 +84,8 @@
     objc_property_t *properties = class_copyPropertyList(thisClass, &propertyCount);
     id classAsID = thisClass;
     
-    NSArray *ignoredProperties;
-    if ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_propertiesReliantShouldIgnore)]) {
-        ignoredProperties = [classAsID OCS_propertiesReliantShouldIgnore];
-    } else {
-        ignoredProperties = @[];
-    }
+    BOOL checkIgnoredProperties = ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_reliantShouldIgnorePropertyWithName:)]);
+    
     
 
     for (int i = 0; i < propertyCount; i++) {
@@ -99,11 +95,9 @@
         BOOL readOnly = [components containsObject:@"R"];
         NSString *objectType = [[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"T.*"]] lastObject];
         BOOL isObject = [objectType characterAtIndex:1] == '@';
-        BOOL isIgnoredProperty = [ignoredProperties containsObject:name];
+        BOOL isIgnoredProperty = checkIgnoredProperties && [classAsID OCS_reliantShouldIgnorePropertyWithName:name];
         NSString *customGetter = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"G.*"]] lastObject] substringFromIndex:1];
         NSString *customSetter = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"S.*"]] lastObject] substringFromIndex:1];
-
-        
 
         if (isObject && !readOnly && !isIgnoredProperty) {
             id currentValue = nil;
