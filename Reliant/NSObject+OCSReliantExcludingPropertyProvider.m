@@ -14,7 +14,7 @@
     static NSArray *excludedProps;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        excludedProps = @[@"accessibilityPath"];
+        excludedProps = @[@"accessibilityPath", @"accessibilityLabel", @"accessibilityHint", @"accessibilityValue", @"accessibilityLanguage"];
     });
     return excludedProps;
 }

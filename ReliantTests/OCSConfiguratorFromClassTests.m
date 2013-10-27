@@ -18,7 +18,10 @@
 //  limitations under the License.
 
 
-#import <OCMock/OCMock.h>
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
 
 #if (TARGET_OS_IPHONE) 
 #import <UIKit/UIApplication.h>
@@ -68,16 +71,6 @@
 
 - (void) setUp {
     [super setUp];
-    
-    // Set-up code here.
-    verySmartNameInjected = 0;
-    unbelievableOtherSmartNameInjected = 0;
-    lazyOneInjected = 0;
-    superInjected = 0;
-    extendedInjected = 0;
-    categoryInjected = 0;
-    externalCategoryInjected = 0;
-    
     configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DummyConfigurator class]];
 }
 
@@ -89,8 +82,7 @@
 }
 
 - (void) testBeforeLoaded {
-    id context = [OCMockObject mockForClass:[OCSApplicationContext class]];
-    
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
     id object = [configurator objectForKey:@"VerySmartName" inContext:context];
     STAssertNil(object, @"No objects should ever be returned when still initializing");
     
@@ -107,138 +99,69 @@
     return singleton;
 }
 
-- (void) testAfterLoaded {
-    id context = [OCMockObject mockForClass:[OCSApplicationContext class]];
-    
-    //5 eager singletons to be loaded (3 from main class, 2 from category" -> 5 injection attempts
-    //Remaining object is not a singleton or is lazy loaded and should not have been loaded, nor injected after a contetLoaded
-    for (int i = 0; i < 5; i++) {
-        [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
-    }
-    
+
+- (void) testLoadShouldInjectLoadedObjects {
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
     [configurator contextLoaded:context];
-    STAssertEquals(verySmartNameInjected, 1, @"Very smart object should have been injected once by now");
-    STAssertEquals(superInjected, 1, @"Super object should have been injected once by now");
-    STAssertEquals(extendedInjected, 1, @"Extended object should have been injected once by now");
-    STAssertEquals(categoryInjected, 1, @"Category object should have been injected once by now");
-    STAssertEquals(externalCategoryInjected, 1, @"External Category object should have been injected once by now");
-    STAssertEquals(unbelievableOtherSmartNameInjected, 0, @"Ubelievable object should not have been injected yet");
-    STAssertEquals(lazyOneInjected, 0, @"Lazy object should not have been injected yet");
+    [verifyCount(context, times(5)) performInjectionOn:anything()];
     
-    //Now fetching the singletons, with aliases should work, they should not be re-injected
-    id firstVerySmartName = [self doTestSingletonRetrievalWithKey:@"VerySmartName" andAliases:[NSArray arrayWithObjects:@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil] inContext:context];
-    [self doTestSingletonRetrievalWithKey:@"Super" andAliases:[NSArray arrayWithObjects:@"super", @"SUPER", nil] inContext:context];
-    [self doTestSingletonRetrievalWithKey:@"Extended" andAliases:[NSArray arrayWithObjects:@"extended", @"EXTENDED", nil] inContext:context];
-    
-    //Check that constructor injections are done as expected (should yield same singletons)
-    id verySmartItself = [configurator objectForKey:@"VerySmartName" inContext:context];
-    id verySmartInjected = [[configurator objectForKey:@"Super" inContext:context] verySmartName];
-    STAssertTrue(verySmartItself == verySmartInjected, @"The dynamic extension did not do a great job!");
-        
-    //Fetch a prototype
-    [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
-    id unbelievableObject = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
-    STAssertNotNil(unbelievableObject, @"Unbelievable object shoud be available");
-    STAssertEquals(verySmartNameInjected, 1, @"Very smart object should still be injected only once");
-    STAssertEquals(superInjected, 1, @"Super object should still be injected only once");
-    STAssertEquals(extendedInjected, 1, @"Extended object should still be injected only once");
-    STAssertEquals(categoryInjected, 1, @"Category object should still be injected only once");
-    STAssertEquals(externalCategoryInjected, 1, @"External Category object should still be injected only once");
-    STAssertEquals(unbelievableOtherSmartNameInjected, 1, @"Ubelievable object should have been injected this time");
-    STAssertEquals(lazyOneInjected, 0, @"Lazy object should not have been injected yet");
-    
-    //Re-fetch a prototype
-    [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
-    id otherUnbelievableObject = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
-    STAssertNotNil(otherUnbelievableObject, @"Unbelievable object shoud be available");
-    STAssertFalse(unbelievableObject == otherUnbelievableObject, @"Prototypes should always be different instances, each time they are requested");
-    STAssertEquals(verySmartNameInjected, 1, @"Very smart object should still be injected only once");
-    STAssertEquals(superInjected, 1, @"Super object should still be injected only once");
-    STAssertEquals(extendedInjected, 1, @"Extended object should still be injected only once");
-    STAssertEquals(categoryInjected, 1, @"Category object should still be injected only once");
-    STAssertEquals(externalCategoryInjected, 1, @"External Category object should still be injected only once");
-    STAssertEquals(unbelievableOtherSmartNameInjected, 2, @"Ubelievable object should have been injected again");
-    STAssertEquals(lazyOneInjected, 0, @"Lazy object should not have been injected yet");
-    
-    //Fetch lazy object
-    [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
-    id lazyObject = [configurator objectForKey:@"LazyOne" inContext:context];
+    //TODO check which methods were called exactly, after refactoring the object storage to the context / scopes
+}
+
+- (void) testSameInstanceIsReturnedForKeyAndAliases {
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
+    [configurator contextLoaded:context];
+    [self doTestSingletonRetrievalWithKey:@"Super" andAliases:@[@"super", @"SUPER"] inContext:context];
+    [self doTestSingletonRetrievalWithKey:@"Extended" andAliases:@[@"extended", @"EXTENDED"] inContext:context];
+}
+
+- (void) testDifferentInjectedObjectsShouldHaveSameInstanceForSingleton {
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
+    [configurator contextLoaded:context];
+    NSObject *verySmartItself = [configurator objectForKey:@"VerySmartName" inContext:context];
+    ObjectWithInjectables *owi = [configurator objectForKey:@"Super" inContext:context];
+    STAssertTrue(verySmartItself == owi.verySmartName, @"The constructor injected instance should be the same as the instance created by the base method");
+}
+
+- (void) testRetrievePrototypeObject {
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
+    [configurator contextLoaded:context];
+    NSMutableArray *firstProto = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
+    STAssertNotNil(firstProto, @"Prototype should have been created");
+    NSMutableArray *secondProto = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
+    STAssertNotNil(secondProto, @"Prototype should have been created");
+    STAssertFalse(firstProto == secondProto, @"Prototype instances should be different");
+}
+
+- (void) testLazyLoading {
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
+    [configurator contextLoaded:context];
+    NSDictionary *lazyObject = [configurator objectForKey:@"LazyOne" inContext:context];
+    NSDictionary *newlyFetched = [configurator objectForKey:@"LazyOne" inContext:context];
     STAssertNotNil(lazyObject, @"lazyObject should not be nil");
-    STAssertEquals(verySmartNameInjected, 1, @"Very smart object should still be injected only once");
-    STAssertEquals(superInjected, 1, @"Super object should still be injected only once");
-    STAssertEquals(extendedInjected, 1, @"Extended object should still be injected only once");
-    STAssertEquals(categoryInjected, 1, @"Category object should still be injected only once");
-    STAssertEquals(externalCategoryInjected, 1, @"External Category object should still be injected only once");
-    STAssertEquals(unbelievableOtherSmartNameInjected, 2, @"Ubelievable object should not have been injected again");
-    STAssertEquals(lazyOneInjected, 1, @"Lazy object should have been injected now");
-    
-    id lazyObjectAgain = [configurator objectForKey:@"LazyOne" inContext:context];
-    STAssertNotNil(lazyObjectAgain, @"lazyObject should not be nil");
-    STAssertTrue(lazyObject == lazyObjectAgain, @"Singletons should always be the same instance");
-    STAssertEquals(verySmartNameInjected, 1, @"Very smart object should still be injected only once");
-    STAssertEquals(superInjected, 1, @"Super object should still be injected only once");
-    STAssertEquals(extendedInjected, 1, @"Extended object should still be injected only once");
-    STAssertEquals(categoryInjected, 1, @"Category object should still be injected only once");
-    STAssertEquals(externalCategoryInjected, 1, @"External Category object should still be injected only once");
-    STAssertEquals(unbelievableOtherSmartNameInjected, 2, @"Ubelievable object should not have been injected again");
-    STAssertEquals(lazyOneInjected, 1, @"Lazy object should have been injected now");
-    
-    //We also know by now that the "wrong" configurator methods did not yield an object...
-    
+    STAssertNotNil(newlyFetched, @"lazyObject should not be nil");
+    STAssertTrue(lazyObject == newlyFetched, @"Instance should be the same when singleton");
+    [verify(context) performInjectionOn:lazyObject];
+}
+
 #if (TARGET_OS_IPHONE)
-    //For iOS, simulate mem warning, since we depend on OCSSingletonScope, we should check if re-instantiation is done again after such a warning
-    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
+- (void) testMemoryWarning {
+    OCSApplicationContext *context = mock([OCSApplicationContext class]);
+    [configurator contextLoaded:context];
+    id firstVerySmartName = [self doTestSingletonRetrievalWithKey:@"VerySmartName" andAliases:[NSArray arrayWithObjects:@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil] inContext:context];
     
-    [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
     id secondVerySmartName = [self doTestSingletonRetrievalWithKey:@"VerySmartName" andAliases:[NSArray arrayWithObjects:@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil] inContext:context];
     
-    STAssertEquals(verySmartNameInjected, 2, @"Very smart object should be re-injected");
+    
     STAssertFalse(secondVerySmartName == firstVerySmartName, @"after memory warnings, objects should have been re-initialized");
-    
-    //Retest constructor injection
-    [[context expect] performInjectionOn:[OCMArg checkWithSelector:@selector(checkInjection:) onObject:self]];
-    [self doTestSingletonRetrievalWithKey:@"Super" andAliases:[NSArray arrayWithObjects:@"super", @"SUPER", nil] inContext:context];
-    STAssertEquals(verySmartNameInjected, 2, @"Very smart object should not have been re-injected again");
-    STAssertEquals(superInjected, 2, @"Super object should still be re-injected");
-    
-    verySmartInjected = [[configurator objectForKey:@"Super" inContext:context] verySmartName];
-    STAssertTrue(secondVerySmartName == verySmartInjected, @"The dynamic extension did not do a great job!");
-#endif
-    [context verify];
-    
+    [verify(context) performInjectionOn:firstVerySmartName];
+    [verify(context) performInjectionOn:secondVerySmartName];
 }
+#endif
 
 - (void) testBadAliases {
     STAssertThrowsSpecificNamed([[OCSConfiguratorFromClass alloc] initWithClass:[BadAliasFactoryClass class]], NSException, @"OCSConfiguratorException", @"Should throw exception, aliases are bad");
-    
-    
-}
-
-- (BOOL) checkInjection:(id<NSObject>) injectedObject {
-    BOOL result = YES;
-    
-    if ([injectedObject isMemberOfClass:[NSObject class]]) {
-        verySmartNameInjected++;
-    } else if ([injectedObject isKindOfClass:[NSArray class]]) {
-        unbelievableOtherSmartNameInjected++;
-    } else if ([injectedObject isKindOfClass:[NSDictionary class]]) {
-        lazyOneInjected++;
-    } else if ([injectedObject isMemberOfClass:[ObjectWithInjectables class]]) {
-        superInjected++;
-    } else if ([injectedObject isMemberOfClass:[ExtendedObjectWithInjectables class]]) {
-        extendedInjected++;
-    } else if ([injectedObject isKindOfClass:[NSString class]]) {
-        NSString *value = (NSString *) injectedObject;
-        if ([@"FromCategory" isEqualToString:value]) {
-            categoryInjected++;
-        } else if ([@"ExternalCategory" isEqualToString:value]) {
-            externalCategoryInjected++;
-        }
-    } else {
-        result = NO;
-    }
-                                          
-    return result;
 }
 
 

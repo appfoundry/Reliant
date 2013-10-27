@@ -18,7 +18,10 @@
 //  limitations under the License.
 
 
-#import <OCMock/OCMock.h>
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
 
 #import "OCSApplicationContextTests.h"
 
@@ -79,21 +82,14 @@
 
 @implementation OCSApplicationContextTests {
     //SUT
-    
     OCSApplicationContext *context;
-    
     id configurator;
-    
-    NSArray *accessibilityProperties;
 }
 
 - (void) setUp {
     [super setUp];
-#if (TARGET_OS_IPHONE)
-    accessibilityProperties = [NSArray arrayWithObjects:@"accessibilityHint", @"accessibilityLabel", @"accessibilityLanguage", @"accessibilityValue", nil];
-#endif
     // Set-up code here.
-    configurator = [OCMockObject mockForProtocol:@protocol(OCSConfigurator)];
+    configurator = mockProtocol(@protocol(OCSConfigurator));
     context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
 }
 
@@ -102,23 +98,18 @@
     
     configurator = nil;
     context = nil;
-    accessibilityProperties = nil;
     
     [super tearDown];
 }
 
 - (void) testStart {
-    [[configurator expect] contextLoaded:context];
-    
     BOOL result = [context start];
     STAssertTrue(result, @"Application context startup is expected to succeed");
-    
-    [configurator verify];
+    [verify(configurator) contextLoaded:context];
 }
 
 - (void) testObjectForKey {
-    [[[configurator stub] andReturn:@"StringObject"] objectForKey:@"SomeKey" inContext:context];
-    [[[configurator stub] andReturn:nil] objectForKey:@"UnknownKey" inContext:context];
+    [given([configurator objectForKey:@"SomeKey" inContext:context]) willReturn:@"StringObject"];
     
     STAssertTrue([@"StringObject" isEqualToString:[context objectForKey:@"SomeKey"]], @"SomeKey key should return the configurator's StringObject");
     STAssertNil([context objectForKey:@"UnknownKey"], @"UnknownKey should return nil");
@@ -127,17 +118,12 @@
 - (void) testPerformInjection {
     DummyClass *dummy = [[DummyClass alloc] init];
     
-    [[[configurator expect] andReturn:@"PRKP"] objectForKey:@"publiclyKnownPrivate" inContext:context];
-    [[[configurator expect] andReturn:@"PUKP"] objectForKey:@"publiclyKnownProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PP"] objectForKey:@"privateProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
-    [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
-    [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
-    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
-    }];
-    
-    
+    [given([configurator objectForKey:@"publiclyKnownPrivate" inContext:context]) willReturn:@"PRKP"];
+    [given([configurator objectForKey:@"publiclyKnownProperty" inContext:context]) willReturn:@"PUKP"];
+    [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
+    [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
+    [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
+
     [context performInjectionOn:dummy];
     
     STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
@@ -146,26 +132,20 @@
     STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
     STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
     STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
-    
-    [configurator verify];
 }
 
 - (void) testPerformInjectionOnExtendedObject {
     ExtendedDummyClass *dummy = [[ExtendedDummyClass alloc] init];
     
-    [[[configurator expect] andReturn:@"PRKP"] objectForKey:@"publiclyKnownPrivate" inContext:context];
-    [[[configurator expect] andReturn:@"PUKP"] objectForKey:@"publiclyKnownProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PrivP"] objectForKey:@"privateProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
-    [[[configurator expect] andReturn:@"EP"] objectForKey:@"extendedProperty" inContext:context];
-    [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PP"] objectForKey:@"prototypeProperty" inContext:context];
-    [[[configurator expect] andReturn:@"opP"] objectForKey:@"optionalProperty" inContext:context];
-    [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
-    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
-    }];
-    
+    [given([configurator objectForKey:@"publiclyKnownPrivate" inContext:context]) willReturn:@"PRKP"];
+    [given([configurator objectForKey:@"publiclyKnownProperty" inContext:context]) willReturn:@"PUKP"];
+    [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
+    [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
+    [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
+    [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PrivP"];
+    [given([configurator objectForKey:@"extendedProperty" inContext:context]) willReturn:@"EP"];
+    [given([configurator objectForKey:@"prototypeProperty" inContext:context]) willReturn:@"PrP"];
+
     [context performInjectionOn:dummy];
     
     STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
@@ -174,23 +154,15 @@
     STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
     STAssertTrue([@"EP" isEqualToString:[dummy valueForKey:@"extendedProperty"]], @"extendedProperty should be set to EP");
     STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
-    STAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"prototypeProperty"]], @"prototypeProperty should be set to PP");
+    STAssertTrue([@"PrP" isEqualToString:[dummy valueForKey:@"prototypeProperty"]], @"prototypeProperty should be set to PrP");
     STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
-    
-    [configurator verify];
 }
 
 - (void) testPerformInjectionOnEmptyClass {
     //We must be able to try to inject classes that on their own have no dependencies. No actual injection should happen. The configurator should never be called.
     EmptyClass *dummy = [[EmptyClass alloc] init];
-    
-    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
-    }];
-    
     [context performInjectionOn:dummy];
-    
-    [configurator verify];
+    [verifyCount(configurator, times(0)) objectForKey:anything() inContext:anything()];
 }
 
 - (void) testPerformInjectionOnAlreadyInjectedClass {
@@ -198,16 +170,12 @@
     DummyClass *dummy = [[DummyClass alloc] init];
     dummy.publiclyKnownProperty = @"AlreadyThere";
     
-    [[[configurator expect] andReturn:@"PRKP"] objectForKey:@"publiclyKnownPrivate" inContext:context];
-    [[[configurator stub] andReturn:@"PUKP"] objectForKey:@"publiclyKnownProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PP"] objectForKey:@"privateProperty" inContext:context];
-    [[[configurator expect] andReturn:@"PPCN"] objectForKey:@"privatePropertyWithCustomVarName" inContext:context];
-    [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
-    [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
-    [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];
-    }];
-    
+    [given([configurator objectForKey:@"publiclyKnownPrivate" inContext:context]) willReturn:@"PRKP"];
+    [given([configurator objectForKey:@"publiclyKnownProperty" inContext:context]) willReturn:@"PUKP"];
+    [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
+    [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
+    [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
+
     [context performInjectionOn:dummy];
     
     STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
@@ -216,8 +184,6 @@
     STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
     STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
     STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
-    
-    [configurator verify];
 }
 
 @end

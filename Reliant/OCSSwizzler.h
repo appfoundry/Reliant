@@ -64,17 +64,17 @@ static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singl
             } 
             free(returnType);
         }
-
-        instance = [[extendedClass alloc] init];
-        Ivar singletonScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
-        object_setIvar(instance, singletonScopeIvar, singletonScope);
-        Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
-        object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
-        
-        
         free(methods);
+    } else {
+        extendedClass = objc_getClass(name);
     }
     free(dest);
+    
+    instance = [[extendedClass alloc] init];
+    Ivar singletonScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    object_setIvar(instance, singletonScopeIvar, singletonScope);
+    Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
     return instance;
 }
 

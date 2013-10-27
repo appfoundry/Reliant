@@ -52,7 +52,9 @@
 }
 
 - (void) setInitializing:(BOOL)initializing {
-    _initializing = initializing;
+    if (initializing != _initializing) {
+        _initializing = initializing;
+    }
 }
 
 - (id) createObjectInstanceForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {

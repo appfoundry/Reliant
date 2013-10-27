@@ -17,7 +17,7 @@
  */
 @interface OCSConfiguratorBase (ForSubclassEyesOnly)
 
-@property (nonatomic, readwrite) BOOL initializing;
+@property (nonatomic, assign) BOOL initializing;
 
 @property (nonatomic, readonly) id<OCSScope> singletonScope;
 

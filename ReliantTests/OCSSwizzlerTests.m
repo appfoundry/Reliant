@@ -17,11 +17,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-
-#import <OCMock/OCMock.h>
-
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
 #import "OCSSwizzlerTests.h"
-
 #import "OCSSwizzler.h"
 
 //Fully dynamic method for swizzle replacement, uber awesomeness ;-)
@@ -166,7 +164,7 @@ typedef struct {
 }
 */
 - (void) testExtendedClassCreation {
-    id singletonScope = [OCMockObject mockForProtocol:@protocol(OCSScope)];
+    id<OCSScope> singletonScope = mockProtocol(@protocol(OCSScope));
     id instance = createExtendedConfiguratorInstance([SwizzlerClass class], singletonScope, ^(NSString *name) {
         return YES;
     }, ^(NSString *name) {

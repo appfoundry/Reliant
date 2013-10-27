@@ -6,7 +6,10 @@
 //  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
 //
 
-#import <OCMock/OCMock.h>
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
 
 #import "OCSApplicationContext.h"
 #import "OCSConfiguratorBase.h"
@@ -16,6 +19,9 @@
 #import "OCSConfiguratorBaseTests.h"
 
 @interface DummyBaseConfiguratorExtension : OCSConfiguratorBase
+
+@property(nonatomic) BOOL internalInitCalled;
+@property(nonatomic, strong) NSDictionary *objectRegistry;
 
 @end
 
@@ -33,11 +39,17 @@
 }
 
 - (id) createObjectInstanceForKey:(NSString *)key inContext:(OCSApplicationContext *)context {
-    return nil;
+    return self.objectRegistry[key];
 }
 - (void) internalContextLoaded:(OCSApplicationContext *) context {
-    NSLog(@"internal context loaded called");
+    self.internalInitCalled = YES;
 }
+
+@end
+
+@interface SimpleObjectHolder : NSObject
+
+@property (nonatomic, strong) id object;
 
 @end
 
@@ -66,17 +78,16 @@
 
 
 @implementation OCSConfiguratorBaseTests {
-    id dummyConfigurator;
-    id badDummyConfigurator;
-    id context;
+    DummyBaseConfiguratorExtension *dummyConfigurator;
+    BadDummyBaseConfiguratorExtension *badDummyConfigurator;
+    OCSApplicationContext *context;
 }
 
 - (void) setUp {
     [super setUp];
-
-    dummyConfigurator = [OCMockObject partialMockForObject:[[DummyBaseConfiguratorExtension alloc] init]];
-    badDummyConfigurator = [OCMockObject partialMockForObject:[[BadDummyBaseConfiguratorExtension alloc] init]];
-    context = [OCMockObject mockForClass:[OCSApplicationContext class]];
+    dummyConfigurator = [[DummyBaseConfiguratorExtension alloc] init];
+    badDummyConfigurator = [[BadDummyBaseConfiguratorExtension alloc] init];
+    context = mock([OCSApplicationContext class]);
 }
 
 - (void) tearDown {
@@ -86,22 +97,21 @@
 }
 
 - (void) testObjectForKeyBeforeLoaded {
-    id result = [dummyConfigurator objectForKey:@"SomeKey" inContext:context];
-    
+    id result = [dummyConfigurator objectForKey:@"object" inContext:context];
     STAssertNil(result, @"Result should always be nil before the context has been marked as loaded");
 }
 
 - (void) testObjectForKeyAfterLoaded {
-    BOOL noo = NO;
-    [[[dummyConfigurator stub] andReturnValue:OCMOCK_VALUE(noo)] initializing];
-    [[[dummyConfigurator expect] andReturn:@"ReturnedObject"] createObjectInstanceForKey:@"SomeKey" inContext:context];
-    [[context expect] performInjectionOn:@"ReturnedObject"];
+    OCSDefinition *def = [[OCSDefinition alloc] init];
+    def.key = @"object";
+    [dummyConfigurator registerDefinition:def];
     
+    dummyConfigurator.initializing = NO;
+    SimpleObjectHolder *holder = [[SimpleObjectHolder alloc] init];
+    [dummyConfigurator setObjectRegistry:@{@"SomeKey" : holder, @"object" : @"injected"}];
     id result = [dummyConfigurator objectForKey:@"SomeKey" inContext:context];
-    
-    [dummyConfigurator verify];
-    
-    STAssertEqualObjects(result, @"ReturnedObject", @"The result of the internal function should have been returned");
+    STAssertEqualObjects(result, holder, @"The result of the internal function should have been returned");
+    [verify(context) performInjectionOn:holder];
 }
 
 
@@ -110,15 +120,10 @@
 }
 
 - (void) testContextLoadedWithGoodSubclass {
-    [[dummyConfigurator expect] internalContextLoaded:context];
-    
     STAssertTrue([dummyConfigurator initializing], @"Initializing flag should be true by default.");
-    
     [dummyConfigurator contextLoaded:context];
-    
     STAssertFalse([dummyConfigurator initializing], @"Initializing flag should have been switched off.");
-    
-    [dummyConfigurator verify];
+    STAssertTrue([dummyConfigurator internalInitCalled], @"Internal init should have been called.");
 }
 
 - (void) addDefinitions:(OCSConfiguratorBase *) configurator {
@@ -153,27 +158,16 @@
     [self addDefinitions:dummyConfigurator];
 
     NSObject *fakeObject = [[NSObject alloc] init];
-    [[[dummyConfigurator expect] andReturn:fakeObject] createObjectInstanceForKey:@"EagerSingletonKey" inContext:context];
-    
-    
-    [[dummyConfigurator expect] internalContextLoaded:context];
-    
-    [[context expect] performInjectionOn:fakeObject];
-    
+    [dummyConfigurator setObjectRegistry:@{@"EagerSingletonKey" : fakeObject}];
     STAssertTrue([dummyConfigurator initializing], @"Initializing flag should be true by default.");
-    
     [dummyConfigurator contextLoaded:context];
-    
     STAssertFalse([dummyConfigurator initializing], @"Initializing flag should have been switched off.");
-    
-    [dummyConfigurator verify];
-    [context verify];
+    STAssertTrue([dummyConfigurator internalInitCalled], @"Internal init should have been called.");
+    [verify(context) performInjectionOn:fakeObject];
 }
 
+@end
 
-
-
-
-
+@implementation SimpleObjectHolder
 
 @end
