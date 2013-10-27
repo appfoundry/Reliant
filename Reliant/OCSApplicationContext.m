@@ -22,6 +22,7 @@
 
 #import "OCSApplicationContext.h"
 #import "OCSConfigurator.h"
+#import "OCSReliantExcludingPropertyProvider.h"
 
 /**
  Application context private category. Holds private ivars and methods.
@@ -81,31 +82,79 @@
 - (void) _recursiveInjectionOn:(id) object forMetaClass:(Class) thisClass {
     unsigned int propertyCount;
     objc_property_t *properties = class_copyPropertyList(thisClass, &propertyCount);
+    id classAsID = thisClass;
     
+    NSArray *ignoredProperties;
+    if ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_propertiesReliantShouldIgnore)]) {
+        ignoredProperties = [classAsID OCS_propertiesReliantShouldIgnore];
+    } else {
+        ignoredProperties = @[];
+    }
+    
+
     for (int i = 0; i < propertyCount; i++) {
         NSString *propertyAttributes = [NSString stringWithCString:property_getAttributes(properties[i]) encoding:NSUTF8StringEncoding];
         NSString *name = [NSString stringWithUTF8String:property_getName(properties[i])];
+        NSArray *components = [propertyAttributes componentsSeparatedByString:@","];
+        BOOL readOnly = [components containsObject:@"R"];
+        NSString *objectType = [[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"T.*"]] lastObject];
+        BOOL isObject = [objectType characterAtIndex:1] == '@';
+        BOOL isIgnoredProperty = [ignoredProperties containsObject:name];
+        NSString *customGetter = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"G.*"]] lastObject] substringFromIndex:1];
+        NSString *customSetter = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"S.*"]] lastObject] substringFromIndex:1];
+
         
-        //Only support readwrite object properties, ignore all other
-        NSRange objectRange = [propertyAttributes rangeOfString:@"T@"];
-        NSRange readOnlyRange = [propertyAttributes rangeOfString:@",R"];
-        
-        if (objectRange.location != NSNotFound && readOnlyRange.location == NSNotFound && [object valueForKey:name] == nil) {
-            id instance = [_configurator objectForKey:name inContext:self];
-            if (instance) {
-                [object setValue:instance forKey:name];
-            
-            
-#if DEBUG
+
+        if (isObject && !readOnly && !isIgnoredProperty) {
+            id currentValue = nil;
+            if (customGetter) {
+                SEL customGetterSelector = NSSelectorFromString(customGetter);
+                if ([object respondsToSelector:customGetterSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                    currentValue = [object performSelector:customGetterSelector];
+#pragma clang diagnostic pop
+                }
             } else {
-                NSLog(@"Property %@ for object %@ could not be injected, nothing found in the configurator's registry", name, object);
-#endif
+                SEL standardGetterSelector = NSSelectorFromString(name);
+                if ([object respondsToSelector:standardGetterSelector]) {
+                    currentValue = [object valueForKey:name];
+                }
             }
-        
-#if DEBUG
+            
+            
+            if (!currentValue) {
+                id instance = [_configurator objectForKey:name inContext:self];
+                if (instance) {
+                    if (customSetter) {
+                        SEL customSetterSelector = NSSelectorFromString(customSetter);
+                        if ([object respondsToSelector:customSetterSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                            [object performSelector:customSetterSelector withObject:instance];
+#pragma clang diagnostic pop
+                        } else {
+                            DLog(@"Property %@ for object %@ could not be injected, the setter %@ is not implemented", name, object, customSetter);
+                        }
+                    } else {
+                        NSString *allButFirst = [name substringFromIndex:1];
+                        NSString *first = [[name substringToIndex:1] uppercaseString];
+                        
+                        SEL standardSetterSelector = NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", first, allButFirst]);
+                        if ([object respondsToSelector:standardSetterSelector]) {
+                            [object setValue:instance forKey:name];
+                        } else {
+                            DLog(@"Property %@ for object %@ could not be injected, the setter %@ is not implemented", name, object, customSetter);
+                        }
+                    }
+                } else {
+                    DLog(@"Property %@ for object %@ could not be injected, nothing found in the configurator's registry", name, object);
+                }
+            } else {
+               DLog(@"Property %@ for object %@ was not injected, the property has already been set", name, object);
+            }
         } else {
-            NSLog(@"Property %@ for object %@ was not injected, not an object or readonly", name, object);
-#endif
+            DLog(@"Property %@ for object %@ was not injected, it is not an object, it is readonly and/or it is excluded", name, object);
         }
     }
     free(properties);

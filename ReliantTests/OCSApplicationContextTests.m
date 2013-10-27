@@ -38,7 +38,7 @@
 
 @property (nonatomic, strong) NSString *publiclyKnownPrivate;
 @property (nonatomic, strong) NSString *publiclyKnownProperty;
-@property (weak, nonatomic, readonly) NSString *readOnlyProperty;
+@property (nonatomic, readonly) NSString *readOnlyProperty;
 @property (nonatomic, assign) BOOL boolProperty;
 @property (nonatomic, assign) char charProperty;
 @property (nonatomic, assign) int intProperty;
@@ -160,6 +160,7 @@
     [[[configurator expect] andReturn:@"EP"] objectForKey:@"extendedProperty" inContext:context];
     [[[configurator expect] andReturn:@"SPP"] objectForKey:@"superProtocolProperty" inContext:context];
     [[[configurator expect] andReturn:@"PP"] objectForKey:@"prototypeProperty" inContext:context];
+    [[[configurator expect] andReturn:@"opP"] objectForKey:@"optionalProperty" inContext:context];
     [[[configurator expect] andReturn:nil] objectForKey:@"unknownProperty" inContext:context];
     [accessibilityProperties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [[[configurator expect] andReturn:nil] objectForKey:obj inContext:context];

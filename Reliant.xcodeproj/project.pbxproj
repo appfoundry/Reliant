@@ -33,6 +33,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0ED3A4451A8E486BA4F4EFFE /* libPods-Reliant OSX-Reliant OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */; };
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
@@ -107,6 +108,7 @@
 		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27CF7782175FD8CC00D308DD /* Reliant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant.framework */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
+		FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +194,10 @@
 		27C112ED1565912700499664 /* OCSSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzler.h; sourceTree = "<group>"; };
 		27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClassTests.h; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
+		3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant-ReliantTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
+		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
+		9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant OSX-Reliant OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +219,7 @@
 				2765CB631571563200ABE59C /* UIKit.framework in Frameworks */,
 				274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */,
 				274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */,
+				FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +239,7 @@
 				2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */,
 				2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */,
 				27CF7782175FD8CC00D308DD /* Reliant.framework in Frameworks */,
+				0ED3A4451A8E486BA4F4EFFE /* libPods-Reliant OSX-Reliant OSXTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +265,8 @@
 				2765CBA7157184ED00ABE59C /* Reliant OSXTests */,
 				274D7B8F1563BF2E0007C1C8 /* Frameworks */,
 				274D7B8E1563BF2E0007C1C8 /* Products */,
+				8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */,
+				67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -281,6 +291,8 @@
 				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
 				274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */,
 				270721C1157F4A4F00A05222 /* Other Frameworks */,
+				9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */,
+				3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -460,9 +472,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 274D7BB41563BF2E0007C1C8 /* Build configuration list for PBXNativeTarget "ReliantTests" */;
 			buildPhases = (
+				BD3B8C5A86D941B7B2345999 /* Check Pods Manifest.lock */,
 				274D7B981563BF2E0007C1C8 /* Sources */,
 				274D7B991563BF2E0007C1C8 /* Frameworks */,
 				274D7B9A1563BF2E0007C1C8 /* Resources */,
+				98AAAC25CDA248F4A5686C0D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -497,11 +511,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2765CBB3157184ED00ABE59C /* Build configuration list for PBXNativeTarget "Reliant OSXTests" */;
 			buildPhases = (
+				3C315EBA61354FA2A5470F03 /* Check Pods Manifest.lock */,
 				2765CB9C157184ED00ABE59C /* Sources */,
 				2765CB9D157184ED00ABE59C /* Frameworks */,
 				2765CB9E157184ED00ABE59C /* Resources */,
 				27877B621574116B00C7D871 /* Copy OCMock Framework to Product Directory */,
 				2765CB9F157184ED00ABE59C /* ShellScript */,
+				337CFC3C185E48D096542F69 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -640,6 +656,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc --project-name ${PRODUCT_NAME} --project-company \"Oak Consultancy Services\" --company-id be.oakcs --output ~/help --logformat xcode --exit-threshold 2 --no-merge-categories .";
+		};
+		337CFC3C185E48D096542F69 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Reliant OSX-Reliant OSXTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C315EBA61354FA2A5470F03 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		98AAAC25CDA248F4A5686C0D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Reliant-ReliantTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD3B8C5A86D941B7B2345999 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -854,6 +930,7 @@
 		};
 		274D7BB51563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -864,9 +941,9 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
-				HEADER_SEARCH_PATHS = /Library/Developer/libs;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = /Library/Developer/libs;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
@@ -876,6 +953,7 @@
 		};
 		274D7BB61563BF2E0007C1C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -886,9 +964,9 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant/Reliant-Prefix.pch";
-				HEADER_SEARCH_PATHS = /Library/Developer/libs;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = /Library/Developer/libs;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
@@ -968,26 +1046,21 @@
 		};
 		2765CBB4157184ED00ABE59C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				HEADER_SEARCH_PATHS = /Library/Developer/libs;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Reliant OSXTests/Reliant OSXTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					/Library/Developer/libs,
-					"\"$(LOCAL_DEVELOPER_DIR)/libs/OCMock.framework/Versions/A\"",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -999,27 +1072,22 @@
 		};
 		2765CBB5157184ED00ABE59C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(LOCAL_DEVELOPER_DIR)/libs\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reliant OSX/Reliant OSX-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				HEADER_SEARCH_PATHS = /Library/Developer/libs;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Reliant OSXTests/Reliant OSXTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					/Library/Developer/libs,
-					"\"$(LOCAL_DEVELOPER_DIR)/libs/OCMock.framework/Versions/A\"",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

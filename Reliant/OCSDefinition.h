@@ -37,7 +37,7 @@
 /**
  The class of the object that this definition represents.
  */
-@property (nonatomic, weak) Class implementingClass;
+@property (weak, nonatomic) Class implementingClass;
 
 /**
  Flag to indicate if the object is a singleton or a prototype. Singletons, as the words says, will only be initialized once in a context. Prototypes will be created each time they are requested.
