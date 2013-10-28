@@ -18,8 +18,8 @@
 //  limitations under the License.
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface OCSApplicationContextTests : SenTestCase 
+@interface OCSApplicationContextTests : XCTestCase 
 
 @end

@@ -6,7 +6,7 @@
 //
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <UIKit/UIKit.h>
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
@@ -24,7 +24,7 @@
 
 @end
 
-@interface OCSViewControllerInjectionTest : SenTestCase {
+@interface OCSViewControllerInjectionTest : XCTestCase {
     id<OCSConfigurator> _configurator;
     OCSApplicationContext *_context;
 }
@@ -42,14 +42,14 @@
 
 - (void) testViewShouldNotLoad {
     SimpleViewController *svc = [[SimpleViewController alloc] initWithContext:_context];
-    STAssertFalse(svc.viewWasLoaded, @"View should not be loaded after mere initialization");
+    XCTAssertFalse(svc.viewWasLoaded, @"View should not be loaded after mere initialization");
 }
 
 - (void) testViewControllerIsBeingInjected {
     [given([_configurator objectForKey:@"injected" inContext:_context]) willReturn:@"InjectedString"];
     
     SimpleViewController *svc = [[SimpleViewController alloc] initWithContext:_context];
-    STAssertEquals(svc.injected, @"InjectedString", @"The injectable property was not injected");
+    XCTAssertEqual(svc.injected, @"InjectedString", @"The injectable property was not injected");
 }
 
 - (void) testViewControllerInjectionExcludesExcludedProperties {

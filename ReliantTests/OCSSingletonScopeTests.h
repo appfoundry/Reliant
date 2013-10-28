@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface OCSSingletonScopeTests : SenTestCase
+@interface OCSSingletonScopeTests : XCTestCase
 
 @end

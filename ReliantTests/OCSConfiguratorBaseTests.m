@@ -98,7 +98,7 @@
 
 - (void) testObjectForKeyBeforeLoaded {
     id result = [dummyConfigurator objectForKey:@"object" inContext:context];
-    STAssertNil(result, @"Result should always be nil before the context has been marked as loaded");
+    XCTAssertNil(result, @"Result should always be nil before the context has been marked as loaded");
 }
 
 - (void) testObjectForKeyAfterLoaded {
@@ -110,20 +110,20 @@
     SimpleObjectHolder *holder = [[SimpleObjectHolder alloc] init];
     [dummyConfigurator setObjectRegistry:@{@"SomeKey" : holder, @"object" : @"injected"}];
     id result = [dummyConfigurator objectForKey:@"SomeKey" inContext:context];
-    STAssertEqualObjects(result, holder, @"The result of the internal function should have been returned");
+    XCTAssertEqualObjects(result, holder, @"The result of the internal function should have been returned");
     [verify(context) performInjectionOn:holder];
 }
 
 
 - (void) testContextLoadedBadSubclass {
-    STAssertThrowsSpecificNamed([badDummyConfigurator contextLoaded:context], NSException, @"OCSConfiguratorException", @"OCSConfiguratorException expected when directly calling this (abstract)");
+    XCTAssertThrowsSpecificNamed([badDummyConfigurator contextLoaded:context], NSException, @"OCSConfiguratorException", @"OCSConfiguratorException expected when directly calling this (abstract)");
 }
 
 - (void) testContextLoadedWithGoodSubclass {
-    STAssertTrue([dummyConfigurator initializing], @"Initializing flag should be true by default.");
+    XCTAssertTrue([dummyConfigurator initializing], @"Initializing flag should be true by default.");
     [dummyConfigurator contextLoaded:context];
-    STAssertFalse([dummyConfigurator initializing], @"Initializing flag should have been switched off.");
-    STAssertTrue([dummyConfigurator internalInitCalled], @"Internal init should have been called.");
+    XCTAssertFalse([dummyConfigurator initializing], @"Initializing flag should have been switched off.");
+    XCTAssertTrue([dummyConfigurator internalInitCalled], @"Internal init should have been called.");
 }
 
 - (void) addDefinitions:(OCSConfiguratorBase *) configurator {
@@ -151,7 +151,7 @@
 - (void) testContextLoadedBadSubclassHavingDefinitions {
     [self addDefinitions:badDummyConfigurator];
     
-    STAssertThrowsSpecificNamed([badDummyConfigurator contextLoaded:context], NSException, @"OCSConfiguratorException", @"OCSConfiguratorException expected when directly calling this (abstract)");
+    XCTAssertThrowsSpecificNamed([badDummyConfigurator contextLoaded:context], NSException, @"OCSConfiguratorException", @"OCSConfiguratorException expected when directly calling this (abstract)");
 }
 
 - (void) testContextLoadedWithGoodSubclassHavingDefinitions {
@@ -159,10 +159,10 @@
 
     NSObject *fakeObject = [[NSObject alloc] init];
     [dummyConfigurator setObjectRegistry:@{@"EagerSingletonKey" : fakeObject}];
-    STAssertTrue([dummyConfigurator initializing], @"Initializing flag should be true by default.");
+    XCTAssertTrue([dummyConfigurator initializing], @"Initializing flag should be true by default.");
     [dummyConfigurator contextLoaded:context];
-    STAssertFalse([dummyConfigurator initializing], @"Initializing flag should have been switched off.");
-    STAssertTrue([dummyConfigurator internalInitCalled], @"Internal init should have been called.");
+    XCTAssertFalse([dummyConfigurator initializing], @"Initializing flag should have been switched off.");
+    XCTAssertTrue([dummyConfigurator internalInitCalled], @"Internal init should have been called.");
     [verify(context) performInjectionOn:fakeObject];
 }
 

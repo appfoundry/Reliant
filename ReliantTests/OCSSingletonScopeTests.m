@@ -34,7 +34,7 @@
     [scope registerObject:object forKey:@"SomeObjectKey"];
     
     id result =  [scope objectForKey:@"SomeObjectKey"];
-    STAssertEquals(object, result, @"object should be returned as is");
+    XCTAssertEqual(object, result, @"object should be returned as is");
 }
 
 #if (TARGET_OS_IPHONE) 
@@ -43,12 +43,12 @@
     [scope registerObject:object forKey:@"SomeObjectKey"];
     
     id result =  [scope objectForKey:@"SomeObjectKey"];
-    STAssertEquals(object, result, @"object should be returned as is");
+    XCTAssertEqual(object, result, @"object should be returned as is");
     
     [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
     
     result =  [scope objectForKey:@"SomeObjectKey"];
-    STAssertNil(result, @"Singleton Scope must not hold any objects after a mem warning");
+    XCTAssertNil(result, @"Singleton Scope must not hold any objects after a mem warning");
 }
 #endif
 

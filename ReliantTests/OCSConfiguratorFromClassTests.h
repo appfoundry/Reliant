@@ -18,9 +18,9 @@
 //  limitations under the License.
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface OCSConfiguratorFromClassTests : SenTestCase
+@interface OCSConfiguratorFromClassTests : XCTestCase
 
 @end
 

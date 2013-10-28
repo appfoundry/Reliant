@@ -18,8 +18,8 @@
 //  limitations under the License.
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface OCSSwizzlerTests : SenTestCase
+@interface OCSSwizzlerTests : XCTestCase
 
 @end

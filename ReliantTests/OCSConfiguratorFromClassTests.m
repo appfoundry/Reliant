@@ -84,16 +84,16 @@
 - (void) testBeforeLoaded {
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     id object = [configurator objectForKey:@"VerySmartName" inContext:context];
-    STAssertNil(object, @"No objects should ever be returned when still initializing");
+    XCTAssertNil(object, @"No objects should ever be returned when still initializing");
     
 }
 
 - (id) doTestSingletonRetrievalWithKey:(NSString *) key andAliases:(NSArray *) aliases inContext:(OCSApplicationContext *) context {
     id singleton = [configurator objectForKey:key inContext:context];
-    STAssertNotNil(singleton, @"Singleton %@ shoud be available", key);
-    STAssertTrue(singleton == [configurator objectForKey:key inContext:context], @"Retrieving a singleton by key from the configurator should always return the same instance");
+    XCTAssertNotNil(singleton, @"Singleton %@ shoud be available", key);
+    XCTAssertTrue(singleton == [configurator objectForKey:key inContext:context], @"Retrieving a singleton by key from the configurator should always return the same instance");
     [aliases enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        STAssertTrue(singleton == [configurator objectForKey:obj inContext:context], @"Retrieving a singleton by alias from the configurator should always return the same instance");
+        XCTAssertTrue(singleton == [configurator objectForKey:obj inContext:context], @"Retrieving a singleton by alias from the configurator should always return the same instance");
         
     }];
     return singleton;
@@ -120,17 +120,17 @@
     [configurator contextLoaded:context];
     NSObject *verySmartItself = [configurator objectForKey:@"VerySmartName" inContext:context];
     ObjectWithInjectables *owi = [configurator objectForKey:@"Super" inContext:context];
-    STAssertTrue(verySmartItself == owi.verySmartName, @"The constructor injected instance should be the same as the instance created by the base method");
+    XCTAssertTrue(verySmartItself == owi.verySmartName, @"The constructor injected instance should be the same as the instance created by the base method");
 }
 
 - (void) testRetrievePrototypeObject {
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     [configurator contextLoaded:context];
     NSMutableArray *firstProto = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
-    STAssertNotNil(firstProto, @"Prototype should have been created");
+    XCTAssertNotNil(firstProto, @"Prototype should have been created");
     NSMutableArray *secondProto = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
-    STAssertNotNil(secondProto, @"Prototype should have been created");
-    STAssertFalse(firstProto == secondProto, @"Prototype instances should be different");
+    XCTAssertNotNil(secondProto, @"Prototype should have been created");
+    XCTAssertFalse(firstProto == secondProto, @"Prototype instances should be different");
 }
 
 - (void) testLazyLoading {
@@ -138,9 +138,9 @@
     [configurator contextLoaded:context];
     NSDictionary *lazyObject = [configurator objectForKey:@"LazyOne" inContext:context];
     NSDictionary *newlyFetched = [configurator objectForKey:@"LazyOne" inContext:context];
-    STAssertNotNil(lazyObject, @"lazyObject should not be nil");
-    STAssertNotNil(newlyFetched, @"lazyObject should not be nil");
-    STAssertTrue(lazyObject == newlyFetched, @"Instance should be the same when singleton");
+    XCTAssertNotNil(lazyObject, @"lazyObject should not be nil");
+    XCTAssertNotNil(newlyFetched, @"lazyObject should not be nil");
+    XCTAssertTrue(lazyObject == newlyFetched, @"Instance should be the same when singleton");
     [verify(context) performInjectionOn:lazyObject];
 }
 
@@ -154,14 +154,14 @@
     id secondVerySmartName = [self doTestSingletonRetrievalWithKey:@"VerySmartName" andAliases:[NSArray arrayWithObjects:@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil] inContext:context];
     
     
-    STAssertFalse(secondVerySmartName == firstVerySmartName, @"after memory warnings, objects should have been re-initialized");
+    XCTAssertFalse(secondVerySmartName == firstVerySmartName, @"after memory warnings, objects should have been re-initialized");
     [verify(context) performInjectionOn:firstVerySmartName];
     [verify(context) performInjectionOn:secondVerySmartName];
 }
 #endif
 
 - (void) testBadAliases {
-    STAssertThrowsSpecificNamed([[OCSConfiguratorFromClass alloc] initWithClass:[BadAliasFactoryClass class]], NSException, @"OCSConfiguratorException", @"Should throw exception, aliases are bad");
+    XCTAssertThrowsSpecificNamed([[OCSConfiguratorFromClass alloc] initWithClass:[BadAliasFactoryClass class]], NSException, @"OCSConfiguratorException", @"Should throw exception, aliases are bad");
 }
 
 

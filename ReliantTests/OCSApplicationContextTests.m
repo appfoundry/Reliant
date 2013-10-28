@@ -104,15 +104,15 @@
 
 - (void) testStart {
     BOOL result = [context start];
-    STAssertTrue(result, @"Application context startup is expected to succeed");
+    XCTAssertTrue(result, @"Application context startup is expected to succeed");
     [verify(configurator) contextLoaded:context];
 }
 
 - (void) testObjectForKey {
     [given([configurator objectForKey:@"SomeKey" inContext:context]) willReturn:@"StringObject"];
     
-    STAssertTrue([@"StringObject" isEqualToString:[context objectForKey:@"SomeKey"]], @"SomeKey key should return the configurator's StringObject");
-    STAssertNil([context objectForKey:@"UnknownKey"], @"UnknownKey should return nil");
+    XCTAssertTrue([@"StringObject" isEqualToString:[context objectForKey:@"SomeKey"]], @"SomeKey key should return the configurator's StringObject");
+    XCTAssertNil([context objectForKey:@"UnknownKey"], @"UnknownKey should return nil");
 }
 
 - (void) testPerformInjection {
@@ -126,12 +126,12 @@
 
     [context performInjectionOn:dummy];
     
-    STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
-    STAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
-    STAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
-    STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
-    STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
-    STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
+    XCTAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
+    XCTAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
+    XCTAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
+    XCTAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
+    XCTAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
+    XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
 - (void) testPerformInjectionOnExtendedObject {
@@ -148,21 +148,21 @@
 
     [context performInjectionOn:dummy];
     
-    STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
-    STAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
-    STAssertTrue([@"PrivP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
-    STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
-    STAssertTrue([@"EP" isEqualToString:[dummy valueForKey:@"extendedProperty"]], @"extendedProperty should be set to EP");
-    STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
-    STAssertTrue([@"PrP" isEqualToString:[dummy valueForKey:@"prototypeProperty"]], @"prototypeProperty should be set to PrP");
-    STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
+    XCTAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
+    XCTAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
+    XCTAssertTrue([@"PrivP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
+    XCTAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
+    XCTAssertTrue([@"EP" isEqualToString:[dummy valueForKey:@"extendedProperty"]], @"extendedProperty should be set to EP");
+    XCTAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
+    XCTAssertTrue([@"PrP" isEqualToString:[dummy valueForKey:@"prototypeProperty"]], @"prototypeProperty should be set to PrP");
+    XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
 - (void) testPerformInjectionOnEmptyClass {
     //We must be able to try to inject classes that on their own have no dependencies. No actual injection should happen. The configurator should never be called.
     EmptyClass *dummy = [[EmptyClass alloc] init];
     [context performInjectionOn:dummy];
-    [verifyCount(configurator, times(0)) objectForKey:anything() inContext:anything()];
+    [verifyCount(configurator, times(0)) objectForKey:(id)anything() inContext:anything()];
 }
 
 - (void) testPerformInjectionOnAlreadyInjectedClass {
@@ -178,12 +178,12 @@
 
     [context performInjectionOn:dummy];
     
-    STAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
-    STAssertTrue([@"AlreadyThere" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should not have been overriden!");
-    STAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
-    STAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
-    STAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
-    STAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
+    XCTAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
+    XCTAssertTrue([@"AlreadyThere" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should not have been overriden!");
+    XCTAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
+    XCTAssertTrue([@"PPCN" isEqualToString:[dummy valueForKey:@"privatePropertyWithCustomVarName"]], @"privatePropertyWithCustomVarName should be set to PPCN");
+    XCTAssertTrue([@"SPP" isEqualToString:[dummy valueForKey:@"superProtocolProperty"]], @"superProrocolProperty should be set to SPP");
+    XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
 @end
