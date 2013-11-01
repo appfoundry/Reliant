@@ -12,6 +12,5 @@ Pod::Spec.new do |s|
   s.exclude_files = 'Classes/Exclude'
   s.public_header_files = 'Reliant/OCSScope.h', 'Reliant/OCSConfigurator.h', 'Reliant/OCSConfiguratorBase.h', 'Reliant/OCSConfiguratorBase+ForSubclassEyesOnly.h', 'Reliant/OCSConfiguratorFromClass.h', 'Reliant/OCSApplicationContext.h', 'Reliant/OCSDefinition.h'
   s.frameworks = 'UIKit', 'Foundation'
-  s.requires_arc = false
-  s.dependency 'OCMock', '~> 2.0'
+  s.requires_arc = true
 end

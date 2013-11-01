@@ -25,6 +25,7 @@
 
 #import "OCSApplicationContextTests.h"
 
+#define LOG_RELIANT 1
 #import "OCSConfigurator.h"
 #import "OCSApplicationContext.h"
 

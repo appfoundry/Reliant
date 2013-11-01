@@ -18,8 +18,7 @@
 //  limitations under the License.
 
 
-#import <objc/runtime.h>
-#import <objc/message.h>
+#import <objc/objc-runtime.h>
 
 #import "OCSConfiguratorConstants.h"
 #import "OCSScope.h"
@@ -31,12 +30,53 @@
 #define OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK "__ocs_factory_class_generatorBlock"
 #define OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX "OCSReliantExtended_"
 
+
+
 typedef BOOL(^MethodFilter)(NSString *);
 typedef NSString *(^KeyGenerator)(NSString *);
 
+/*static void dynamicDealloc(id self, SEL _cmd) {
+    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    object_setIvar(self, var, nil);
+    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    object_setIvar(self, var, nil);
+    
+    //Call super dealloc
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];
+    
+    objc_msgSendSuper(&superData, _cmd);
+//}*/
+
+//Fully dynamic method for swizzle replacement
+static id dynamicIDMethodIMP(id self, SEL _cmd) {
+    NSString *selector = NSStringFromSelector(_cmd);
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];
+    
+    //If the method was previously called, it's result should have been cached.
+    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    KeyGenerator keyGenerator = object_getIvar(self, var);
+    NSString *key = keyGenerator(selector);
+    
+    //If the object is already in the singleton scope, return that version, singletons never get recreated!
+    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    id<OCSScope> singletonScope = object_getIvar(self, var);
+    id result = [singletonScope objectForKey:key];
+    if (!result) {
+        result = objc_msgSendSuper(&superData, _cmd);
+        [singletonScope registerObject:result forKey:key];
+    }
+    
+    return result;
+}
+
+
 //Extend a class, overriding all it's "createSingleton" methods which return an object and have no arguments with a dynamic one
 //The dynamic methods will call the super classes implementation and store some result's so we can cahce their result.
-static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singletonScope, MethodFilter methodFilter, KeyGenerator keyGenerator, IMP noArgIdMethodImplementation) {
+static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singletonScope, MethodFilter methodFilter, KeyGenerator keyGenerator) {
     //Get the base class, we will extend this class
     char *dest = malloc(strlen(OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX) + strlen(class_getName(baseClass)) + 1);
     dest = strcpy(dest, OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX);
@@ -45,10 +85,7 @@ static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singl
     id instance = nil;
     if (extendedClass) {
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE, sizeof(id), log2(sizeof(id)), @encode(id));
-        
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK, sizeof(KeyGenerator), log2(sizeof(KeyGenerator)), @encode(KeyGenerator));
-        
-        
         objc_registerClassPair(extendedClass);
         
         unsigned int methodCount;
@@ -60,11 +97,14 @@ static id createExtendedConfiguratorInstance(Class baseClass, id<OCSScope> singl
             char *returnType = method_copyReturnType(m);
             //Only take methods which have object as return type, no arguments and are evaluated as valid by the filter block
             if (returnType[0] == _C_ID && method_getNumberOfArguments(m) == 2 && methodFilter(NSStringFromSelector(method_getName(m)))) {
-                class_addMethod(extendedClass, method_getName(m), noArgIdMethodImplementation, method_getTypeEncoding(m));
+                class_addMethod(extendedClass, method_getName(m), (IMP) dynamicIDMethodIMP, method_getTypeEncoding(m));
             } 
             free(returnType);
         }
         free(methods);
+        
+        //class_addMethod(extendedClass, NSSelectorFromString(@"dealloc"), (IMP) dynamicDealloc, @encode(void));
+
     } else {
         extendedClass = objc_getClass(name);
     }

@@ -27,29 +27,18 @@
 #import <UIKit/UIApplication.h>
 #endif
 
-
+#define LOG_RELIANT 1
 #import "OCSConfiguratorFromClassTests.h"
 
 #import "OCSConfiguratorFromClass.h"
 #import "OCSApplicationContext.h"
+#import "DummyConfigurator.h"
 
 @interface DummyConfigurator (SomeDummyCategory)
 
 @end
 
-@interface ObjectWithInjectables : NSObject
 
-@property (nonatomic, strong) NSObject *verySmartName;
-
-- (id) initWithVerySmartName:(NSObject *) verySmartName;
-
-@end
-
-@interface ExtendedObjectWithInjectables : ObjectWithInjectables
-
-@property (nonatomic, strong) id unbelievableOtherSmartName;
-
-@end
 
 @interface BadAliasFactoryClass : NSObject
 
@@ -103,7 +92,7 @@
 - (void) testLoadShouldInjectLoadedObjects {
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     [configurator contextLoaded:context];
-    [verifyCount(context, times(5)) performInjectionOn:anything()];
+    [verifyCount(context, times(6)) performInjectionOn:anything()];
     
     //TODO check which methods were called exactly, after refactoring the object storage to the context / scopes
 }
@@ -148,15 +137,16 @@
 - (void) testMemoryWarning {
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     [configurator contextLoaded:context];
-    id firstVerySmartName = [self doTestSingletonRetrievalWithKey:@"VerySmartName" andAliases:[NSArray arrayWithObjects:@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil] inContext:context];
+    id firstNeverInjectedByOthers = [configurator objectForKey:@"NeverInjectedByOthers" inContext:context];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
-    id secondVerySmartName = [self doTestSingletonRetrievalWithKey:@"VerySmartName" andAliases:[NSArray arrayWithObjects:@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil] inContext:context];
+    
+    id secondNeverInjectedByOthers = [self doTestSingletonRetrievalWithKey:@"NeverInjectedByOthers" andAliases:[NSArray arrayWithObjects:@"neverInjectedByOthers", @"NEVERINJECTEDBYOTHERS", nil] inContext:context];
     
     
-    XCTAssertFalse(secondVerySmartName == firstVerySmartName, @"after memory warnings, objects should have been re-initialized");
-    [verify(context) performInjectionOn:firstVerySmartName];
-    [verify(context) performInjectionOn:secondVerySmartName];
+    XCTAssertFalse(secondNeverInjectedByOthers == firstNeverInjectedByOthers, @"after memory warnings, objects should have been re-initialized");
+    [verify(context) performInjectionOn:firstNeverInjectedByOthers];
+    [verify(context) performInjectionOn:secondNeverInjectedByOthers];
 }
 #endif
 
@@ -167,47 +157,6 @@
 
 @end
 
-@implementation DummyConfigurator 
-
-- (NSObject *) createEagerSingletonVerySmartName {
-    return [[NSObject alloc] init];
-}
-
-- (NSArray *) aliasesForVerySmartName {
-    return [NSArray arrayWithObjects:@"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil];
-}
-
-- (NSArray *) createPrototypeUnbelievableOtherSmartName {
-    return [[NSMutableArray alloc] init];
-}
-
-- (NSDictionary *) createSingletonLazyOne {
-    return [[NSMutableDictionary alloc] init];
-}
-
-- (ObjectWithInjectables *) createEagerSingletonSuper {
-    return [[ObjectWithInjectables alloc] initWithVerySmartName:[self createEagerSingletonVerySmartName]];
-}
-
-- (ExtendedObjectWithInjectables *) createEagerSingletonExtended {
-    return [[ExtendedObjectWithInjectables alloc] init];
-}
-
-- (id) createWithBadName {
-    return @"WRONG";
-}
-
-
-- (id) createSingletonSomeObjectWithSuper:(ObjectWithInjectables *) super andExtended:(ExtendedObjectWithInjectables *) extended {
-    return @"WRONG AGAIN";
-}
-
-- (id) createPrototypeWithParameter:(id) param {
-    return @"WRONG AGAIN AGAIN";
-}
-
-
-@end
 
 @implementation DummyConfigurator (SomeDummyCategory)
 
@@ -217,26 +166,7 @@
 
 @end
 
-@implementation ObjectWithInjectables
 
-@synthesize verySmartName;
-
-- (id) initWithVerySmartName:(NSObject *)averySmartName {
-    self = [super init];
-    if (self) {
-        verySmartName = averySmartName;
-    }
-    return self;
-}
-
-@end
-
-
-@implementation ExtendedObjectWithInjectables
-
-@synthesize unbelievableOtherSmartName;
-
-@end
 
 @implementation BadAliasFactoryClass
 

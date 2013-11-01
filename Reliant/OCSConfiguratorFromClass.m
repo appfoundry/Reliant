@@ -29,31 +29,7 @@
 #import "OCSDefinition.h"
 #import "OCSSingletonScope.h"
 #import "OCSSwizzler.h"
-
-//Fully dynamic method for swizzle replacement
-static id dynamicIDMethodIMP(id self, SEL _cmd) {
-    NSString *selector = NSStringFromSelector(_cmd); 
-    struct objc_super superData;
-    superData.receiver = self;
-    superData.super_class = [self superclass];  
-    
-    //If the method was previously called, it's result should have been cached.
-    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK); 
-    KeyGenerator keyGenerator = object_getIvar(self, var);
-    NSString *key = keyGenerator(selector);
-    
-    //If the object is already in the singleton scope, return that version, singletons never get recreated!
-    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
-    id<OCSScope> singletonScope = object_getIvar(self, var);
-    id result = [singletonScope objectForKey:key];
-    if (!result) {
-        result = objc_msgSendSuper(&superData, _cmd);
-        
-        [singletonScope registerObject:result forKey:key];
-    }
-    
-    return result;
-}
+#import "OCSDLogger.h"
 
 /**
  Configurator private category. Holds private ivars and methods.
@@ -95,7 +71,7 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
             } 
             
             return [name substringFromIndex:offset];
-        }, (IMP) dynamicIDMethodIMP);
+        });
         unsigned int count;
         Method * methods = class_copyMethodList(factoryClass, &count);
         if (count > 0) {
@@ -121,30 +97,22 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
                     }
                     
                     if (offset) {
-#if DEBUG
-                        NSLog(@"Registering definition %@", def);
-#endif
+                        DLog(@"Registering definition %@", def);
                         NSString *key = [objcStringName substringFromIndex:offset];
                         if (key.length > 0) {
                             def.key = key;
                             [self _registerAliasesForDefinition:def];
                             [self registerDefinition:def];
                         }
-#if DEBUG
                     } else {
-                        NSLog(@"Create method found, but not as expected, ignoring it (%@)", objcStringName);
-#endif
+                        DLog(@"Create method found, but not as expected, ignoring it (%@)", objcStringName);
                     }
-#if DEBUG
                 } else {
-                    NSLog(@"Ignoring non-create method (%@)", objcStringName);
-#endif
+                    DLog(@"Ignoring non-create method (%@)", objcStringName);
                 }
             }
-#if DEBUG
         } else {
-            NSLog(@"No methods found on class...");
-#endif
+            DLog(@"No methods found on class...");
         }
         free(methods);
     }

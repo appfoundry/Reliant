@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
 //
 
-#import "OCSConfiguratorFromClassTests.h"
+#import "DummyConfigurator.h"
 
 @interface DummyConfigurator (External)
 

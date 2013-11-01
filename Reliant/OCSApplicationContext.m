@@ -23,6 +23,7 @@
 #import "OCSApplicationContext.h"
 #import "OCSConfigurator.h"
 #import "OCSReliantExcludingPropertyProvider.h"
+#import "OCSDLogger.h"
 
 /**
  Application context private category. Holds private ivars and methods.
@@ -158,7 +159,5 @@
         [self _recursiveInjectionOn:object forMetaClass:superClass];
     }
 }
-
-
 
 @end

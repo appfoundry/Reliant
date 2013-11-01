@@ -35,9 +35,7 @@
 /* Begin PBXBuildFile section */
 		0ED3A4451A8E486BA4F4EFFE /* libPods-Reliant OSX-Reliant OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */; };
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
-		274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
-		274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B8D1563BF2E0007C1C8 /* libReliant.a */; };
 		274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */; };
 		274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */; settings = {ATTRIBUTES = (); }; };
 		274D7BC21563BFA10007C1C8 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
@@ -50,12 +48,10 @@
 		274D7BC91563BFA10007C1C8 /* OCSConfiguratorFromClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */; };
 		274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */; };
-		274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7BCF1563CB9A0007C1C8 /* libOCMock.a */; };
 		2765CB621571554600ABE59C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780EDDB1571052200CFD38C /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2765CB631571563200ABE59C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780EDDB1571052200CFD38C /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
 		2765CB97157184EC00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CB95157184EC00ABE59C /* InfoPlist.strings */; };
-		2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */; };
 		2765CBAC157184ED00ABE59C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2765CBAA157184ED00ABE59C /* InfoPlist.strings */; };
 		2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
 		2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
@@ -71,7 +67,6 @@
 		2765CBC2157186E400ABE59C /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
 		2765CBC3157186E400ABE59C /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */; };
 		2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
-		2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CBC81571893C00ABE59C /* OCMock.framework */; };
 		2765CBD01572A7C100ABE59C /* OCSConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2765CBD11572A7C100ABE59C /* OCSScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB91563BFA10007C1C8 /* OCSScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2765CBD21572A7C100ABE59C /* OCSSingletonScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */; };
@@ -82,6 +77,7 @@
 		2765CBD71572A7C100ABE59C /* OCSApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2765CBD81572A7C100ABE59C /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; };
 		2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
+		277001CA1823C36B00FC366A /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AB43B418207A360088A187 /* TestObject.m */; };
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */; };
@@ -97,16 +93,32 @@
 		278155E5181C6D2400295410 /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
 		278155E6181C6D3400295410 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
 		278155E7181C6D3500295410 /* OCSSingletonScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */; };
-		27877B631574118D00C7D871 /* OCMock.framework in Copy OCMock Framework to Product Directory */ = {isa = PBXBuildFile; fileRef = 2765CBC81571893C00ABE59C /* OCMock.framework */; };
+		27861568181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27861566181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h */; };
+		27861569181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27861566181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h */; };
+		2786156A181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861567181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m */; };
+		2786156B181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861567181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m */; };
+		27861570181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2786156E181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h */; };
+		27861571181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786156F181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m */; };
+		27861572181D11D700B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861567181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m */; };
+		27861573181D11DA00B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786156F181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m */; };
+		27861574181D11DE00B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861567181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m */; };
+		27861576181DBAE700B7A755 /* OCSViewControllerInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861575181DBAE700B7A755 /* OCSViewControllerInjectionTest.m */; };
+		27861579181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27861577181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h */; };
+		2786157A181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861578181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m */; };
+		2786157B181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27861578181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m */; };
+		27861588181F11E000B7A755 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27861587181F11E000B7A755 /* XCTest.framework */; };
+		27861589181F126B00B7A755 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27861587181F11E000B7A755 /* XCTest.framework */; };
+		2786158F181F954A00B7A755 /* DummyConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786158E181F954A00B7A755 /* DummyConfigurator.m */; };
+		27861590181F954A00B7A755 /* DummyConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786158E181F954A00B7A755 /* DummyConfigurator.m */; };
 		2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C112ED1565912700499664 /* OCSSwizzler.h */; settings = {ATTRIBUTES = (); }; };
 		2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */; };
 		2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
 		27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */; };
+		27AB43B518207A360088A187 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AB43B418207A360088A187 /* TestObject.m */; };
 		27B2C85415F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
-		27CF7782175FD8CC00D308DD /* Reliant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2765CB8B157184EC00ABE59C /* Reliant.framework */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
 		FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */; };
 /* End PBXBuildFile section */
@@ -128,20 +140,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		27877B621574116B00C7D871 /* Copy OCMock Framework to Product Directory */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				27877B631574118D00C7D871 /* OCMock.framework in Copy OCMock Framework to Product Directory */,
-			);
-			name = "Copy OCMock Framework to Product Directory";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		270721C2157F4A4F00A05222 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		270721C3157F4A4F00A05222 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -149,8 +147,7 @@
 		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7B901563BF2E0007C1C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant-Prefix.pch"; sourceTree = "<group>"; };
-		274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		274D7B9D1563BF2E0007C1C8 /* ReliantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D7BA81563BF2E0007C1C8 /* ReliantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReliantTests-Info.plist"; sourceTree = "<group>"; };
 		274D7BAA1563BF2E0007C1C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSingletonScope.h; sourceTree = "<group>"; };
@@ -158,14 +155,13 @@
 		274D7BB91563BFA10007C1C8 /* OCSScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSScope.h; sourceTree = "<group>"; };
 		274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfigurator.h; sourceTree = "<group>"; };
 		274D7BBB1563BFA10007C1C8 /* OCSApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSApplicationContext.h; sourceTree = "<group>"; };
-		274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OCSApplicationContext.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		274D7BBC1563BFA10007C1C8 /* OCSApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OCSApplicationContext.m; sourceTree = "<group>"; };
 		274D7BBD1563BFA10007C1C8 /* OCSDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSDefinition.h; sourceTree = "<group>"; };
 		274D7BBE1563BFA10007C1C8 /* OCSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinition.m; sourceTree = "<group>"; };
 		274D7BBF1563BFA10007C1C8 /* OCSConfiguratorFromClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClass.h; sourceTree = "<group>"; };
 		274D7BC01563BFA10007C1C8 /* OCSConfiguratorFromClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClass.m; sourceTree = "<group>"; };
 		274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSApplicationContextTests.h; sourceTree = "<group>"; };
 		274D7BCD1563C2D10007C1C8 /* OCSApplicationContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSApplicationContextTests.m; sourceTree = "<group>"; };
-		274D7BCF1563CB9A0007C1C8 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = /Library/Developer/libs/libOCMock.a; sourceTree = "<absolute>"; };
 		2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorConstants.h; sourceTree = "<group>"; };
 		2765CB7F1571717200ABE59C /* OCSSingletonScopeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSingletonScopeTests.h; sourceTree = "<group>"; };
 		2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSingletonScopeTests.m; sourceTree = "<group>"; };
@@ -173,22 +169,34 @@
 		2765CB94157184EC00ABE59C /* Reliant OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSX-Info.plist"; sourceTree = "<group>"; };
 		2765CB96157184EC00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2765CB98157184EC00ABE59C /* Reliant OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reliant OSX-Prefix.pch"; sourceTree = "<group>"; };
-		2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reliant OSXTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2765CBA1157184ED00ABE59C /* Reliant OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reliant OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2765CBA9157184ED00ABE59C /* Reliant OSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSXTests-Info.plist"; sourceTree = "<group>"; };
 		2765CBAB157184ED00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2765CBC61571889600ABE59C /* OCMock */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = OCMock; path = /Library/Developer/libs/OCMock.framework/Versions/A/OCMock; sourceTree = "<absolute>"; };
-		2765CBC81571893C00ABE59C /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = /Library/Developer/libs/OCMock.framework; sourceTree = "<absolute>"; };
 		2780EDCF156FE48A00CFD38C /* OCSConfiguratorBaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBaseTests.h; sourceTree = "<group>"; };
 		2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBaseTests.m; sourceTree = "<group>"; };
 		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
 		2780EDD8157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCSConfiguratorBase+ForSubclassEyesOnly.m"; sourceTree = "<group>"; };
 		2780EDDB1571052200CFD38C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		27861566181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+OCSReliantExcludingPropertyProvider.h"; sourceTree = "<group>"; };
+		27861567181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OCSReliantExcludingPropertyProvider.m"; sourceTree = "<group>"; };
+		2786156D181D0C4300B7A755 /* OCSReliantExcludingPropertyProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSReliantExcludingPropertyProvider.h; sourceTree = "<group>"; };
+		2786156E181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+OCSReliantExcludingPropertyProvider.h"; sourceTree = "<group>"; };
+		2786156F181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+OCSReliantExcludingPropertyProvider.m"; sourceTree = "<group>"; };
+		27861575181DBAE700B7A755 /* OCSViewControllerInjectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSViewControllerInjectionTest.m; sourceTree = "<group>"; };
+		27861577181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+OCSReliantExcludingPropertyProvider.h"; sourceTree = "<group>"; };
+		27861578181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+OCSReliantExcludingPropertyProvider.m"; sourceTree = "<group>"; };
+		27861587181F11E000B7A755 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		2786158D181F954A00B7A755 /* DummyConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyConfigurator.h; sourceTree = "<group>"; };
+		2786158E181F954A00B7A755 /* DummyConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyConfigurator.m; sourceTree = "<group>"; };
 		2795FD83156EE3DC00E7F6FA /* DummyConfigurator+External.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DummyConfigurator+External.h"; sourceTree = "<group>"; };
 		2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DummyConfigurator+External.m"; sourceTree = "<group>"; };
 		2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorBase.h; sourceTree = "<group>"; };
 		2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBase.m; sourceTree = "<group>"; };
 		27A9E11F1565AC67004933E6 /* OCSSwizzlerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzlerTests.h; sourceTree = "<group>"; };
 		27A9E1201565AC67004933E6 /* OCSSwizzlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSwizzlerTests.m; sourceTree = "<group>"; };
+		27AB43B318207A360088A187 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		27AB43B418207A360088A187 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
+		27AB43C01823C1AA0088A187 /* OCSDLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSDLogger.h; sourceTree = "<group>"; };
 		27B2C85215F402C1001954BD /* Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setup.h; sourceTree = "<group>"; };
 		27B2C85315F402C1001954BD /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		27C112ED1565912700499664 /* OCSSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSSwizzler.h; sourceTree = "<group>"; };
@@ -214,11 +222,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274D7BD01563CB9A0007C1C8 /* libOCMock.a in Frameworks */,
-				274D7B9F1563BF2E0007C1C8 /* SenTestingKit.framework in Frameworks */,
+				27861588181F11E000B7A755 /* XCTest.framework in Frameworks */,
 				2765CB631571563200ABE59C /* UIKit.framework in Frameworks */,
 				274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */,
-				274D7BA51563BF2E0007C1C8 /* libReliant.a in Frameworks */,
 				FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,10 +241,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2765CBC91571893C00ABE59C /* OCMock.framework in Frameworks */,
-				2765CBA2157184ED00ABE59C /* SenTestingKit.framework in Frameworks */,
+				27861589181F126B00B7A755 /* XCTest.framework in Frameworks */,
 				2765CBC4157187CA00ABE59C /* Foundation.framework in Frameworks */,
-				27CF7782175FD8CC00D308DD /* Reliant.framework in Frameworks */,
 				0ED3A4451A8E486BA4F4EFFE /* libPods-Reliant OSX-Reliant OSXTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,9 +278,9 @@
 			isa = PBXGroup;
 			children = (
 				274D7B8D1563BF2E0007C1C8 /* libReliant.a */,
-				274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */,
+				274D7B9D1563BF2E0007C1C8 /* ReliantTests.xctest */,
 				2765CB8B157184EC00ABE59C /* Reliant.framework */,
-				2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */,
+				2765CBA1157184ED00ABE59C /* Reliant OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -284,12 +288,9 @@
 		274D7B8F1563BF2E0007C1C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2765CBC81571893C00ABE59C /* OCMock.framework */,
-				2765CBC61571889600ABE59C /* OCMock */,
-				274D7BCF1563CB9A0007C1C8 /* libOCMock.a */,
+				27861587181F11E000B7A755 /* XCTest.framework */,
 				2780EDDB1571052200CFD38C /* UIKit.framework */,
 				274D7B901563BF2E0007C1C8 /* Foundation.framework */,
-				274D7B9E1563BF2E0007C1C8 /* SenTestingKit.framework */,
 				270721C1157F4A4F00A05222 /* Other Frameworks */,
 				9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */,
 				3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */,
@@ -300,6 +301,7 @@
 		274D7B921563BF2E0007C1C8 /* Reliant */ = {
 			isa = PBXGroup;
 			children = (
+				27861565181D0B5E00B7A755 /* Categories */,
 				2795FD7F156D556A00E7F6FA /* Protocols */,
 				274D7BCB1563BFBA0007C1C8 /* Scopes */,
 				2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */,
@@ -320,6 +322,7 @@
 		274D7B931563BF2E0007C1C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27AB43C01823C1AA0088A187 /* OCSDLogger.h */,
 				27C112ED1565912700499664 /* OCSSwizzler.h */,
 				2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */,
 				274D7B941563BF2E0007C1C8 /* Reliant-Prefix.pch */,
@@ -330,6 +333,8 @@
 		274D7BA61563BF2E0007C1C8 /* ReliantTests */ = {
 			isa = PBXGroup;
 			children = (
+				27AB43B318207A360088A187 /* TestObject.h */,
+				27AB43B418207A360088A187 /* TestObject.m */,
 				27B2C85215F402C1001954BD /* Setup.h */,
 				27B2C85315F402C1001954BD /* Setup.m */,
 				274D7BCC1563C2D10007C1C8 /* OCSApplicationContextTests.h */,
@@ -345,6 +350,9 @@
 				2795FD84156EE3DC00E7F6FA /* DummyConfigurator+External.m */,
 				2765CB7F1571717200ABE59C /* OCSSingletonScopeTests.h */,
 				2765CB801571717200ABE59C /* OCSSingletonScopeTests.m */,
+				27861575181DBAE700B7A755 /* OCSViewControllerInjectionTest.m */,
+				2786158D181F954A00B7A755 /* DummyConfigurator.h */,
+				2786158E181F954A00B7A755 /* DummyConfigurator.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -402,11 +410,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		27861565181D0B5E00B7A755 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				27861566181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h */,
+				27861567181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m */,
+				2786156E181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h */,
+				2786156F181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m */,
+				27861577181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h */,
+				27861578181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		2795FD7F156D556A00E7F6FA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				274D7BBA1563BFA10007C1C8 /* OCSConfigurator.h */,
 				274D7BB91563BFA10007C1C8 /* OCSScope.h */,
+				2786156D181D0C4300B7A755 /* OCSReliantExcludingPropertyProvider.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -419,6 +441,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				274D7BC31563BFA10007C1C8 /* OCSScope.h in Headers */,
+				27861579181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h in Headers */,
+				27861568181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h in Headers */,
 				274D7BC41563BFA10007C1C8 /* OCSConfigurator.h in Headers */,
 				2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */,
 				2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */,
@@ -428,6 +452,7 @@
 				2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */,
 				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
 				2795FD82156D570000E7F6FA /* OCSSwizzler.h in Headers */,
+				27861570181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2765CBD71572A7C100ABE59C /* OCSApplicationContext.h in Headers */,
+				27861569181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h in Headers */,
 				2765CBD01572A7C100ABE59C /* OCSConfigurator.h in Headers */,
 				2765CBD11572A7C100ABE59C /* OCSScope.h in Headers */,
 				2765CBD31572A7C100ABE59C /* OCSConfiguratorBase.h in Headers */,
@@ -485,8 +511,8 @@
 			);
 			name = ReliantTests;
 			productName = ReliantTests;
-			productReference = 274D7B9D1563BF2E0007C1C8 /* ReliantTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 274D7B9D1563BF2E0007C1C8 /* ReliantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2765CB8A157184EC00ABE59C /* Reliant OSX */ = {
 			isa = PBXNativeTarget;
@@ -515,7 +541,6 @@
 				2765CB9C157184ED00ABE59C /* Sources */,
 				2765CB9D157184ED00ABE59C /* Frameworks */,
 				2765CB9E157184ED00ABE59C /* Resources */,
-				27877B621574116B00C7D871 /* Copy OCMock Framework to Product Directory */,
 				2765CB9F157184ED00ABE59C /* ShellScript */,
 				337CFC3C185E48D096542F69 /* Copy Pods Resources */,
 			);
@@ -526,8 +551,8 @@
 			);
 			name = "Reliant OSXTests";
 			productName = "Reliant OSXTests";
-			productReference = 2765CBA1157184ED00ABE59C /* Reliant OSXTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 2765CBA1157184ED00ABE59C /* Reliant OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -724,9 +749,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27861571181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m in Sources */,
 				274D7BC21563BFA10007C1C8 /* OCSSingletonScope.m in Sources */,
 				274D7BC61563BFA10007C1C8 /* OCSApplicationContext.m in Sources */,
+				2786157A181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */,
 				274D7BC81563BFA10007C1C8 /* OCSDefinition.m in Sources */,
+				2786156A181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */,
 				2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */,
 				2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
@@ -741,15 +769,21 @@
 				278155E2181C6D1E00295410 /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
 				274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */,
 				27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */,
+				27861576181DBAE700B7A755 /* OCSViewControllerInjectionTest.m in Sources */,
 				27A9E1211565AC67004933E6 /* OCSSwizzlerTests.m in Sources */,
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
+				27861573181D11DA00B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m in Sources */,
 				2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */,
+				27AB43B518207A360088A187 /* TestObject.m in Sources */,
 				2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */,
 				278155E6181C6D3400295410 /* OCSSingletonScope.m in Sources */,
 				278155DE181C6D1300295410 /* OCSDefinition.m in Sources */,
+				2786158F181F954A00B7A755 /* DummyConfigurator.m in Sources */,
+				2786157B181DC6E000B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */,
 				27B2C85415F402C1001954BD /* Setup.m in Sources */,
 				278155E0181C6D1900295410 /* OCSConfiguratorFromClass.m in Sources */,
 				278155E4181C6D2300295410 /* OCSConfiguratorBase.m in Sources */,
+				27861572181D11D700B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +794,7 @@
 				2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */,
 				2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */,
 				2765CBB81571854100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
+				2786156B181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				2765CBB91571854100ABE59C /* OCSConfiguratorFromClass.m in Sources */,
 				2765CBBA1571854100ABE59C /* OCSDefinition.m in Sources */,
 				2765CBBB1571854100ABE59C /* OCSApplicationContext.m in Sources */,
@@ -782,7 +817,10 @@
 				278155DF181C6D1500295410 /* OCSDefinition.m in Sources */,
 				27B2C85515F402C1001954BD /* Setup.m in Sources */,
 				278155E1181C6D1A00295410 /* OCSConfiguratorFromClass.m in Sources */,
+				27861590181F954A00B7A755 /* DummyConfigurator.m in Sources */,
 				278155E5181C6D2400295410 /* OCSConfiguratorBase.m in Sources */,
+				277001CA1823C36B00FC366A /* TestObject.m in Sources */,
+				27861574181D11DE00B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,7 +973,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -946,8 +984,6 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -958,7 +994,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -969,8 +1005,6 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -992,7 +1026,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1020,7 +1054,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1049,9 +1083,12 @@
 			baseConfigurationReference = 8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -1065,8 +1102,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_AFTER_BUILD = NO;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1075,10 +1110,13 @@
 			baseConfigurationReference = 8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -1091,8 +1129,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_AFTER_BUILD = NO;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

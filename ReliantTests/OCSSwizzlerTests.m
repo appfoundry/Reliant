@@ -169,7 +169,7 @@ typedef struct {
         return YES;
     }, ^(NSString *name) {
         return name;
-    }, (IMP) dynamicJustCallSuper);
+    });
     
     id returned = [instance objectMethodNoArgs];
     NSLog(@"%@", returned);

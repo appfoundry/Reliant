@@ -23,7 +23,3 @@
 @interface OCSConfiguratorFromClassTests : XCTestCase
 
 @end
-
-@interface DummyConfigurator : NSObject
-
-@end
