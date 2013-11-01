@@ -113,9 +113,19 @@
 		2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
 		27AB43B518207A360088A187 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AB43B418207A360088A187 /* TestObject.m */; };
+		27B0A9331824006C00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
+		27B0A9341824006D00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
+		27B0A9351824006E00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
+		27B0A9361824007100DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
+		27B0A9371824007200DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
+		27B0A9381824007300DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		27B2C85415F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
+		3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */; };
+		3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
+		3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */; };
+		3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +205,10 @@
 		27B2C85315F402C1001954BD /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClassTests.h; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
+		3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSClassRuntimeInfo.h; sourceTree = "<group>"; };
+		3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSPropertyRuntimeInfo.h; sourceTree = "<group>"; };
+		3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSClassRuntimeInfo.m; sourceTree = "<group>"; };
+		3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSPropertyRuntimeInfo.m; sourceTree = "<group>"; };
 		3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant-ReliantTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
 		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
@@ -296,6 +310,7 @@
 			children = (
 				27861565181D0B5E00B7A755 /* Categories */,
 				2795FD7F156D556A00E7F6FA /* Protocols */,
+				27B0A9321823F81C00DFEEB9 /* Runtime */,
 				274D7BCB1563BFBA0007C1C8 /* Scopes */,
 				2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */,
 				2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */,
@@ -423,6 +438,17 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		27B0A9321823F81C00DFEEB9 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */,
+				3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */,
+				3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */,
+				3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */,
+			);
+			name = Runtime;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -442,6 +468,8 @@
 				2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */,
 				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
 				27861570181D0D4400B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h in Headers */,
+				3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */,
+				3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +774,8 @@
 				274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */,
 				2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */,
 				2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
+				3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */,
+				3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,12 +784,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				278155DC181C6D0D00295410 /* OCSApplicationContext.m in Sources */,
+				27B0A9361824007100DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,
 				278155E2181C6D1E00295410 /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
 				274D7BCE1563C2D10007C1C8 /* OCSApplicationContextTests.m in Sources */,
 				27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */,
 				27861576181DBAE700B7A755 /* OCSViewControllerInjectionTest.m in Sources */,
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
 				27861573181D11DA00B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m in Sources */,
+				27B0A9351824006E00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */,
 				2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */,
 				27AB43B518207A360088A187 /* TestObject.m in Sources */,
 				2765CB811571717200ABE59C /* OCSSingletonScopeTests.m in Sources */,
@@ -781,6 +813,8 @@
 				2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */,
 				2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */,
 				2765CBB81571854100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
+				27B0A9331824006C00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */,
+				27B0A9371824007200DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,
 				2786156B181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				2765CBB91571854100ABE59C /* OCSConfiguratorFromClass.m in Sources */,
 				2765CBBA1571854100ABE59C /* OCSDefinition.m in Sources */,
@@ -803,8 +837,10 @@
 				278155DF181C6D1500295410 /* OCSDefinition.m in Sources */,
 				27B2C85515F402C1001954BD /* Setup.m in Sources */,
 				278155E1181C6D1A00295410 /* OCSConfiguratorFromClass.m in Sources */,
+				27B0A9341824006D00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */,
 				27861590181F954A00B7A755 /* DummyConfigurator.m in Sources */,
 				278155E5181C6D2400295410 /* OCSConfiguratorBase.m in Sources */,
+				27B0A9381824007300DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,
 				277001CA1823C36B00FC366A /* TestObject.m in Sources */,
 				27861574181D11DE00B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 			);
