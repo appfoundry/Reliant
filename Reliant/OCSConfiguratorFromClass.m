@@ -22,14 +22,17 @@
 #import "OCSConfiguratorFromClass.h"
 #import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
 
-#import <objc/runtime.h>
+#import <objc/objc-runtime.h>
 
 #import "OCSConfiguratorConstants.h"
 #import "OCSApplicationContext.h"
 #import "OCSDefinition.h"
 #import "OCSSingletonScope.h"
-#import "OCSSwizzler.h"
 #import "OCSDLogger.h"
+
+#define OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE "__ocs_factory_class_singletonScope"
+#define OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK "__ocs_factory_class_generatorBlock"
+#define OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX "OCSReliantExtended_"
 
 /**
  Configurator private category. Holds private ivars and methods.
@@ -52,6 +55,33 @@
 
 @end
 
+typedef BOOL(^MethodFilter)(NSString *);
+typedef NSString *(^KeyGenerator)(NSString *);
+
+//Fully dynamic method for swizzle replacement
+static id dynamicIDMethodIMP(id self, SEL _cmd) {
+    NSString *selector = NSStringFromSelector(_cmd);
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];
+    
+    //If the method was previously called, it's result should have been cached.
+    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    KeyGenerator keyGenerator = object_getIvar(self, var);
+    NSString *key = keyGenerator(selector);
+    
+    //If the object is already in the singleton scope, return that version, singletons never get recreated!
+    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    id<OCSScope> singletonScope = object_getIvar(self, var);
+    id result = [singletonScope objectForKey:key];
+    if (!result) {
+        result = objc_msgSendSuper(&superData, _cmd);
+        [singletonScope registerObject:result forKey:key];
+    }
+    
+    return result;
+}
+
 @implementation OCSConfiguratorFromClass
 
 
@@ -59,19 +89,20 @@
 {
     self = [super init];
     if (self) {
-        _configInstance = createExtendedConfiguratorInstance(factoryClass, [self singletonScope],  ^(NSString *name) {
+        _configInstance = [self _createExtendedConfiguratorInstance:factoryClass inSingletonScope:[self singletonScope] filteringMethodsBy:^(NSString *name) {
             BOOL result = ([name hasPrefix:LAZY_SINGLETON_PREFIX] || [name hasPrefix:EAGER_SINGLETON_PREFIX]);
             return result;
-        }, ^(NSString *name) {
+        } generatingKeysWith:^(NSString *name) {
             NSUInteger offset;
             if ([name hasPrefix:LAZY_SINGLETON_PREFIX]) {
                 offset = LAZY_SINGLETON_PREFIX.length;
             } else {
                 offset = EAGER_SINGLETON_PREFIX.length;
-            } 
+            }
             
             return [name substringFromIndex:offset];
-        });
+        }];
+
         unsigned int count;
         Method * methods = class_copyMethodList(factoryClass, &count);
         if (count > 0) {
@@ -174,6 +205,45 @@
     }
     
     return result;
+}
+
+- (id) _createExtendedConfiguratorInstance:(Class) baseClass inSingletonScope:(id<OCSScope>) singletonScope filteringMethodsBy:(MethodFilter) methodFilter generatingKeysWith:(KeyGenerator) keyGenerator {
+    //Get the base class, we will extend this class
+    char *dest = malloc(strlen(OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX) + strlen(class_getName(baseClass)) + 1);
+    dest = strcpy(dest, OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX);
+    const char *name = strcat(dest, class_getName(baseClass));
+    Class extendedClass = objc_allocateClassPair(baseClass, name, sizeof(id));
+    id instance = nil;
+    if (extendedClass) {
+        class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE, sizeof(id), log2(sizeof(id)), @encode(id));
+        class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK, sizeof(KeyGenerator), log2(sizeof(KeyGenerator)), @encode(KeyGenerator));
+        objc_registerClassPair(extendedClass);
+        
+        unsigned int methodCount;
+        Method *methods = class_copyMethodList(baseClass, &methodCount);
+        
+        //For each method wich returns an object, add an override
+        for (int i = 0; i < methodCount; i++) {
+            Method m = methods[i];
+            char *returnType = method_copyReturnType(m);
+            //Only take methods which have object as return type, no arguments and are evaluated as valid by the filter block
+            if (returnType[0] == _C_ID && method_getNumberOfArguments(m) == 2 && methodFilter(NSStringFromSelector(method_getName(m)))) {
+                class_addMethod(extendedClass, method_getName(m), (IMP) dynamicIDMethodIMP, method_getTypeEncoding(m));
+            }
+            free(returnType);
+        }
+        free(methods);
+    } else {
+        extendedClass = objc_getClass(name);
+    }
+    free(dest);
+    
+    instance = [[extendedClass alloc] init];
+    Ivar singletonScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+    object_setIvar(instance, singletonScopeIvar, singletonScope);
+    Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
+    return instance;
 }
 
 @end
