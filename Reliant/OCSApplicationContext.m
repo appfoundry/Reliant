@@ -26,6 +26,7 @@
 #import "OCSDLogger.h"
 #import "OCSClassRuntimeInfo.h"
 #import "OCSPropertyRuntimeInfo.h"
+#import "OCSConfiguratorFromClass.h"
 
 /**
  Application context private category. Holds private ivars and methods.
@@ -51,17 +52,16 @@
 
 
 - (id)init {
-    self = [super init];
-    if (self) {
-
-    }
-    return self;
+    OCSConfiguratorFromClass *autoConfig = [[OCSConfiguratorFromClass alloc] init];
+    return [self initWithConfigurator:autoConfig];
 }
 
 - (id)initWithConfigurator:(id<OCSConfigurator>)configurator {
-    self = [self init];
-    if (self) {
+    self = [super init];
+    if (self && configurator) {
         _configurator = configurator;
+    } else {
+        self = nil;
     }
     return self;
 }
@@ -97,7 +97,7 @@
         if (pi.isObject && !pi.readOnly && !isIgnoredProperty) {
             [self _chekCurrentPropertyValueOnObject:object withProperty:pi];
         } else {
-            DLog(@"Property %@ for object %@ was not injected, it is not an object, it is readonly and/or it is excluded", name, object);
+            DLog(@"Property %@ for object %@ was not injected, it is not an object, it is readonly and/or it is excluded", [pi name], object);
         }
     }];
 }
@@ -107,7 +107,7 @@
     if (!currentValue) {
         [self _injectPropertyOnObject:object withProperty:pi];
     } else {
-        DLog(@"Property %@ for object %@ was not injected, the property has already been set", name, object);
+        DLog(@"Property %@ for object %@ was not injected, the property has already been set", [pi name], object);
     }
 }
 
@@ -116,7 +116,7 @@
     if (value) {
         [self _setPropertyValue:value onObject:object property:pi];
     } else {
-        DLog(@"Property %@ for object %@ could not be injected, nothing found in the configurator's registry", name, object);
+        DLog(@"Property %@ for object %@ could not be injected, nothing found in the configurator's registry", [pi name], object);
     }
 }
 
@@ -133,11 +133,12 @@
     NSString *allButFirst = [name substringFromIndex:1];
     NSString *first = [[name substringToIndex:1] uppercaseString];
 
-    SEL standardSetterSelector = NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", first, allButFirst]);
+    NSString *setterName = [NSString stringWithFormat:@"set%@%@:", first, allButFirst];
+    SEL standardSetterSelector = NSSelectorFromString([NSString stringWithFormat:setterName, first, allButFirst]);
     if ([object respondsToSelector:standardSetterSelector]) {
         [object setValue:value forKey:name];
     } else {
-        DLog(@"Property %@ for object %@ could not be injected, the setter %@ is not implemented", name, object, customSetter);
+        DLog(@"Property %@ for object %@ could not be injected, the setter %@ is not implemented", name, object, setterName);
     }
 }
 
@@ -149,7 +150,7 @@
         [object performSelector:customSetterSelector withObject:value];
 #pragma clang diagnostic pop
     } else {
-        DLog(@"Property %@ for object %@ could not be injected, the setter %@ is not implemented", name, object, customSetter);
+        DLog(@"The setter %@ is not implemented", customSetter);
     }
 }
 

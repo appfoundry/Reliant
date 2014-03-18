@@ -38,7 +38,7 @@
 @synthesize implementingClass, key, singleton, lazy;
 
 - (NSArray *) aliases {
-    return [NSArray arrayWithArray:_aliases];
+    return [_aliases copy];
 }
 
 - (id) init

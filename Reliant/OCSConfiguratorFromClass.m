@@ -22,7 +22,7 @@
 #import "OCSConfiguratorFromClass.h"
 #import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
 
-#import <objc/objc-runtime.h>
+#import <objc/message.h>
 
 #import "OCSConfiguratorConstants.h"
 #import "OCSApplicationContext.h"
@@ -83,6 +83,18 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
 }
 
 @implementation OCSConfiguratorFromClass
+
+- (instancetype)init
+{
+    Class factoryClass = [self _lookForConfigurationClass];
+    if (factoryClass) {
+        self = [self initWithClass:factoryClass];
+    } else {
+        self = nil;
+    }
+    return self;
+
+}
 
 
 - (id)initWithClass:(Class) factoryClass
@@ -244,6 +256,26 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
     Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
     object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
     return instance;
+}
+
+- (Class) _lookForConfigurationClass {
+    Class* classes = NULL;
+    Class result = nil;
+    int numClasses = objc_getClassList(NULL, 0);
+    if (numClasses > 0 ) {
+        classes = (Class*) malloc(sizeof(Class) * numClasses);
+        numClasses = objc_getClassList(classes, numClasses);
+        for (int index = 0; index < numClasses; index++) {
+            Class nextClass = classes[index];
+            NSString *name = [NSString stringWithCString:class_getName(nextClass) encoding:NSUTF8StringEncoding];
+            if ([name hasSuffix:@"ReliantConfiguration"]) {
+                result = nextClass;
+                break;
+            }
+        }
+        free(classes);
+    }
+    return result;
 }
 
 @end

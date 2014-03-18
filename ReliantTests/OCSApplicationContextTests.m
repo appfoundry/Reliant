@@ -187,6 +187,16 @@
     XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
+- (void) testLoadContextDefault {
+    OCSApplicationContext *autoContext = [[OCSApplicationContext alloc] init];
+    XCTAssertNotNil(autoContext, @"Context should have initialized with the auto configured configuration");
+}
+
+- (void) testInitContextWithoutConfigShouldReturnNull {
+    OCSApplicationContext *nilContext = [[OCSApplicationContext alloc] initWithConfigurator:nil];
+    XCTAssertNil(nilContext, @"Context should not have initialized with the auto configured configuration");
+}
+
 @end
 
 @implementation DummyClass

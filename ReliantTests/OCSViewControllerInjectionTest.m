@@ -53,7 +53,8 @@
 }
 
 - (void) testViewControllerInjectionExcludesExcludedProperties {
-    [[SimpleViewController alloc] initWithContext:_context];
+    UIViewController *controller = [[SimpleViewController alloc] initWithContext:_context];
+    XCTAssertNotNil(controller, @"Controller should init");
     [verify(_configurator) objectForKey:@"injected" inContext:_context];
     [verifyCount(_configurator, never()) objectForKey:(id)isNot(@"injected") inContext:_context];
 }

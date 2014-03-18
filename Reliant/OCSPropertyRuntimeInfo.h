@@ -4,7 +4,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import <objc/objc-runtime.h>
+#import <objc/message.h>
 
 
 @interface OCSPropertyRuntimeInfo : NSObject

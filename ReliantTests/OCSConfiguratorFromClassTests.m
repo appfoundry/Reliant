@@ -38,9 +38,11 @@
 
 @end
 
-
-
 @interface BadAliasFactoryClass : NSObject
+
+@end
+
+@interface AutoDetectedReliantConfiguration : NSObject
 
 @end
 
@@ -154,6 +156,11 @@
     XCTAssertThrowsSpecificNamed([[OCSConfiguratorFromClass alloc] initWithClass:[BadAliasFactoryClass class]], NSException, @"OCSConfiguratorException", @"Should throw exception, aliases are bad");
 }
 
+- (void) testAutodetectConfiguration {
+    OCSConfiguratorFromClass *autoDetectedConfig = [[OCSConfiguratorFromClass alloc] init];
+    XCTAssertNotNil(autoDetectedConfig, @"Should init");
+}
+
 
 @end
 
@@ -166,7 +173,9 @@
 
 @end
 
+@implementation AutoDetectedReliantConfiguration
 
+@end
 
 @implementation BadAliasFactoryClass
 

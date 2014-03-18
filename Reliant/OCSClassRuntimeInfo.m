@@ -5,7 +5,7 @@
 
 #import "OCSClassRuntimeInfo.h"
 #import "OCSPropertyRuntimeInfo.h"
-#import <objc/objc-runtime.h>
+#import <objc/message.h>
 
 
 @interface OCSClassRuntimeInfo () {

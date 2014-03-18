@@ -55,4 +55,5 @@ Call this method if you want to inject an object with objects known in the conte
  Bootstrap the application context. This will load object definitions via the given configurator. Eager singletons will be loaded as well. Loads any necesarry resources, and notifies the configurator that it has been loaded.
  */
 - (BOOL) start;
+
 @end
