@@ -168,7 +168,7 @@
 }
 
 - (id)_currentValueThroughDefaultGetter:(NSString *)name fromObject:(id)object {
-    id currentValue;
+    id currentValue = nil;
     SEL standardGetterSelector = NSSelectorFromString(name);
     if ([object respondsToSelector:standardGetterSelector]) {
         currentValue = [object valueForKey:name];

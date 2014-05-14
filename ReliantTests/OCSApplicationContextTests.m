@@ -52,6 +52,21 @@
 
 @end
 
+@protocol OptionalPropertyProtocol <NSObject>
+
+@optional
+@property (nonatomic, strong) NSString *optional;
+
+@end
+
+@interface ProtocolAdoptingWithoutImplementingOptionalPropertyClass : NSObject <OptionalPropertyProtocol>
+
+@end
+
+@interface ProtocolAdoptingAndImplementingOptionalPropertyClass : NSObject <OptionalPropertyProtocol>
+
+@end
+
 @interface DummyClass () 
 
 @property (nonatomic, strong) NSString *privateProperty;
@@ -201,6 +216,26 @@
     XCTAssertNil(nilContext, @"Context should not have initialized with the auto configured configuration");
 }
 
+- (void) testPerformInjectionOnOptionalProperty {
+    ProtocolAdoptingWithoutImplementingOptionalPropertyClass *dummy = [[ProtocolAdoptingWithoutImplementingOptionalPropertyClass alloc] init];
+    
+    [given([configurator objectForKey:@"optional" inContext:context]) willReturn:@"PRKP"];
+    [given([configurator objectKeys]) willReturn:@[@"optional"]];
+    
+    XCTAssertNoThrow([context performInjectionOn:dummy],@"This expression should not throw an exception");
+}
+
+- (void) testPerformInjectionOnOptionalImplementedProperty {
+    ProtocolAdoptingAndImplementingOptionalPropertyClass *dummy = [[ProtocolAdoptingAndImplementingOptionalPropertyClass alloc] init];
+    
+    [given([configurator objectForKey:@"optional" inContext:context]) willReturn:@"PRKP"];
+    [given([configurator objectKeys]) willReturn:@[@"optional"]];
+    
+    [context performInjectionOn:dummy];
+    
+    XCTAssertEqual(@"PRKP", dummy.optional, @"Optional was not set by reliant");
+}
+
 @end
 
 @implementation DummyClass
@@ -212,6 +247,17 @@
 @synthesize unknownProperty;
 @synthesize superProtocolProperty;
 @synthesize intProperty, boolProperty, longProperty, charProperty, floatProperty, doubleProperty, readOnlyProperty;
+
+@end
+
+@implementation ProtocolAdoptingAndImplementingOptionalPropertyClass
+
+@synthesize optional;
+
+@end
+
+
+@implementation  ProtocolAdoptingWithoutImplementingOptionalPropertyClass
 
 @end
 
