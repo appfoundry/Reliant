@@ -58,47 +58,20 @@ Quick start
 
 ### Including Reliant in your project
 
-A ready made package of the last stable build is available on Reliant's GitHub 
-[Downloads](https://github.com/mikeseghers/Reliant/downloads) section (`Reliant
-vX.Y.zip`). Download the zip file. Inside it, you will find a directory for iOS, one for
-OS X and a Docs directory with the Reliant DocSet in it. Depending on what you need, you
-should do the following:
+Reliant is available via CocoaPods, you can add this line to your podfile:
 
-#### iOS
+```
+pod 'Reliant'
+```
 
-Move the iOS contents to you library folder (eg. ~/Library/Developer/libs). The static
-library must be added to the application target in the `Link Binaries With Libraries`
-build phase. Click the (+) icon, choose `Add other...` and locate the library in the just
-extracted library.
+Then run 
 
-Next you also need to add a `Header Search Path` in the build settings of your application
-target (the Library Search Path should have been updated automatically by Xcode after the
-previous step). Go to your target's Build Settings and search for Header. Locate the
-`Header Search Paths`. Double click it and add a line by clicking the (+) button. Enter
-the search path (eg. ~/Library/Developer/libs).
+```
+pod install
+```
 
-> If you are collaborating with others on your project, everyone should have the same
-> path, as these settings are global. (I couldn't find another way, so if you do, please
-> let us know!)
+for more information about CocoaPods, refer to http://cocoapods.org
 
-Go to the [static library documentation](http://developer.apple.com/library/ios/#DOCUMENTATION/Xcode/Conceptual/ios_development_workflow/AA-Developing_a_Static_Library_and_Incorporating_It_in_Your_Application/archiving_an_application_that_uses_a_static_library.html) for more options.
-
-#### OS X
-
-For Cocoa projects you move the framework folder to /Library/Frameworks. 
-
-Add the framework to your project. Go to your application's target settings and go to
-Build Phases. Select the `Link Binaries With Libraries` build phase. Click the (+) icon,
-choose `Add other...` and locate Reliant.framework (if you restart Xcode after copying the
-framework, you should directly find it in the proposed list).
-
-There are other ways to install frameworks. Check the [framework documentation](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183-SW1).
-
-#### General
-
-Add -ObjC to `Other Linker Flags` in the build settings of your target, otherwise
-Reliant's categories will not be detected by the linker.
-    
 Now you are ready to import the headers in your own code:
 
 ```objective-c
@@ -106,16 +79,8 @@ Now you are ready to import the headers in your own code:
 ```
 #### The DocSet
 
-In order to use the DocSet within Xcode, you should copy it to
-/Library/Developer/Shared/Documentation/DocSets. After copying, you should restart Xcode.
-If you then open the organizer, and go to the Documentation tab, you should see Reliant as
-one of the documentation bundles.
-
-
-> This DocSet also includes information about non-visible classes. This information is
-> meant for collaborators on Reliant, you should not rely on these classes, categories
-> and methods, as they might change in the future. Only use Reliant's publicly available
-> headers in your own projects.
+Documentation is available through CocoaDocs:
+http://cocoadocs.org/docsets/Reliant/
 
 ### Bootstrapping Reliant
 
@@ -364,6 +329,52 @@ This is what you need to do:
 ```
 
 And that's all there is to it. The property foo will be injected by Reliant.
+
+### Preventing injection on specific properties
+
+Reliant will, by default, not try to inject properties like view on UIViewController.
+However if your implementation has the need for ignoring extra properties you can implement the following method in your class:
+
+```objective
++ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name {
+    static NSArray *excludedProps;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        excludedProps = @[@"ignoredProperty1", @"ignoredProperty2"];
+    });
+    
+    //it's important here to call this method on super, as reliant has it's own category on NSObject
+    return [super OCS_reliantShouldIgnorePropertyWithName:name] || [excludedProps containsObject:name];
+}
+```
+
+For your information here are the default ignored properties on the classes they belong to:
+* NSObject
+  * accessibilityLanguage
+  * accessibilityValue
+  * accessibilityHint
+  * accessibilityLabel
+  * accessibilityPath
+* UIResponder
+  * restorationIdentifier
+* UIViewController
+  * tabBarItem
+  * title
+  * toolbarItems
+  * view
+  * aggregateStatisticsDisplayCountKey
+  * nibName
+  * storyboard 
+  * parentViewController
+  * modalTransitionView
+  * mutableChildViewControllers
+  * childModalViewController
+  * parentModalViewController
+  * searchDisplayController
+  * dropShadowView
+  * afterAppearanceBlock
+  * transitioningDelegate
+  * customTransitioningView
 
 ### The configurator
 
