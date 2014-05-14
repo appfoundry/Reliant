@@ -32,6 +32,10 @@
     return self;
 }
 
+- (NSArray *)objectKeys {
+    return [_keysAndAliasRegistry copy];
+}
+
 - (id) _internalObjectForKey:(NSString *) keyOrAlias inContext:(OCSApplicationContext *) context {
     OCSDefinition *definition = [self definitionForKeyOrAlias:keyOrAlias];
     id result = nil;

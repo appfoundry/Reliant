@@ -166,6 +166,18 @@
     [verify(context) performInjectionOn:fakeObject];
 }
 
+- (void)testConfiguratorReturnKnownKeysAndAliases {
+    OCSDefinition *def = [[OCSDefinition alloc] init];
+    def.key = @"OtherKey";
+    [def addAlias:@"alias1"];
+    [def addAlias:@"alias2"];
+    [dummyConfigurator registerDefinition:def];
+    NSArray *objectKeys = [dummyConfigurator objectKeys];
+    NSArray *expected = @[@"SomeKey",@"OtherKey",@"alias1",@"alias2"];
+
+    XCTAssertTrue([objectKeys isEqualToArray:expected], @"The expected objects keys %@ were returned as %@",expected.description,objectKeys.description);
+}
+
 @end
 
 @implementation SimpleObjectHolder

@@ -84,7 +84,7 @@
 @implementation OCSApplicationContextTests {
     //SUT
     OCSApplicationContext *context;
-    id configurator;
+    id <OCSConfigurator> configurator;
 }
 
 - (void) setUp {
@@ -124,6 +124,7 @@
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
     [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
     [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
+    [given([configurator objectKeys])willReturn:@[@"publiclyKnownPrivate",@"publiclyKnownProperty",@"privateProperty",@"privatePropertyWithCustomVarName",@"superProtocolProperty"]];
 
     [context performInjectionOn:dummy];
     
@@ -146,6 +147,7 @@
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PrivP"];
     [given([configurator objectForKey:@"extendedProperty" inContext:context]) willReturn:@"EP"];
     [given([configurator objectForKey:@"prototypeProperty" inContext:context]) willReturn:@"PrP"];
+    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate",@"publiclyKnownProperty", @"privateProperty",@"privatePropertyWithCustomVarName",@"superProtocolProperty",@"privateProperty",@"extendedProperty",@"prototypeProperty"]];
 
     [context performInjectionOn:dummy];
     
@@ -176,6 +178,8 @@
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
     [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
     [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
+    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate",@"publiclyKnownProperty", @"privateProperty",@"privatePropertyWithCustomVarName",@"superProtocolProperty"]];
+
 
     [context performInjectionOn:dummy];
     

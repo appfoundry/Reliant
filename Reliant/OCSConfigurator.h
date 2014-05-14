@@ -39,6 +39,8 @@
  */
 @property (readonly, nonatomic, assign) BOOL initializing;
 
+@property (readonly, nonatomic, copy) NSArray *objectKeys;
+
 /**
  Notifies the configurator that the context is fully loaded and ready to be configured. You should never call this method yourself!
  

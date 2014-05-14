@@ -38,6 +38,8 @@
     [super setUp];
     _configurator = mockProtocol(@protocol(OCSConfigurator));
     _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator];
+    [given([_configurator objectKeys]) willReturn:@[@"injected"]];
+
 }
 
 - (void) testViewShouldNotLoad {
@@ -47,6 +49,7 @@
 
 - (void) testViewControllerIsBeingInjected {
     [given([_configurator objectForKey:@"injected" inContext:_context]) willReturn:@"InjectedString"];
+
     
     SimpleViewController *svc = [[SimpleViewController alloc] initWithContext:_context];
     XCTAssertEqual(svc.injected, @"InjectedString", @"The injectable property was not injected");

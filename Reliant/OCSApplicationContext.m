@@ -91,13 +91,16 @@
 - (void)_injectObject:(id)object forClass:(Class)thisClass {
     id classAsID = thisClass;
     BOOL checkIgnoredProperties = ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_reliantShouldIgnorePropertyWithName:)]);
-    OCSClassRuntimeInfo *classInfo = [[OCSClassRuntimeInfo alloc] initWithClass:thisClass];
-    [classInfo enumeratePropertiesWithBlock:^(OCSPropertyRuntimeInfo *pi) {
-        BOOL isIgnoredProperty = checkIgnoredProperties && [classAsID OCS_reliantShouldIgnorePropertyWithName:pi.name];
-        if (pi.isObject && !pi.readOnly && !isIgnoredProperty) {
-            [self _chekCurrentPropertyValueOnObject:object withProperty:pi];
-        } else {
-            DLog(@"Property %@ for object %@ was not injected, it is not an object, it is readonly and/or it is excluded", [pi name], object);
+    [_configurator.objectKeys enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL *stop) {
+        objc_property_t foundProperty = class_getProperty(thisClass, [key cStringUsingEncoding:NSUTF8StringEncoding]);
+        if (foundProperty) {
+            OCSPropertyRuntimeInfo *pi = [[OCSPropertyRuntimeInfo alloc] initWithProperty:foundProperty];
+            BOOL isIgnoredProperty = checkIgnoredProperties && [classAsID OCS_reliantShouldIgnorePropertyWithName:pi.name];
+            if (pi.isObject && !pi.readOnly && !isIgnoredProperty) {
+                [self _chekCurrentPropertyValueOnObject:object withProperty:pi];
+            } else {
+                DLog(@"Property %@ for object %@ was not injected, it is not an object, it is readonly and/or it is excluded", [pi name], object);
+            }
         }
     }];
 }
