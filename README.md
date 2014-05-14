@@ -142,7 +142,7 @@ For each lazy singleton you need, you should add a method with the following sig
 
 ```objective-c
 - (id) createSingletonFoo {
-	return [[[Foo alloc] init] autorelease];
+	return [[Foo alloc] init];
 }
 ```
 
@@ -151,7 +151,7 @@ You can also use what is called *constructor injection* by calling another
 
 ```objective-c
 - (id) createSingletonBar {
-	return [[[Bar alloc] initWithSomeObject:[self createSingletonFoo]] autorelease];
+	return [[Bar alloc] initWithSomeObject:[self createSingletonFoo]];
 }
 ```
 
@@ -166,7 +166,7 @@ To create eager singletons, add this kind of method:
 
 ```objective-c
 - (id) createEagerSingletonFooBar {
-	return [[[FooBar alloc] init] autorelease];
+	return [[FooBar alloc] init];
 }
 ```
 
@@ -176,7 +176,7 @@ For creating prototypes we can use a similar approach. Only the method name chan
 
 ```objective-c
 - (id) createPrototypeFooBar {
-	return [[[FooBar alloc] init] autorelease];
+	return [[FooBar alloc] init];
 }
 ```
 
@@ -190,7 +190,7 @@ with a certain signature:
 
 ```objective-c
 - (NSArray *) aliasesForFoo {
-	return [NSSet setWithObjects:@"_foo", @"_fuu", nil];
+	return @[@"_foo",@"_fuu"];
 }
 ```
 
@@ -227,11 +227,11 @@ account. It might look something like this (interfaces will be omitted for brevi
 @implementation ReliantFactory (Services)
 
 - (id) createEagerSingletonServiceA {
-	return [[[ServiceA alloc] init] autorelease];
+	return [[ServiceA alloc] init];
 }
 
 - (id) createEagerSingletonServiceB {
-	return [[[ServiceB alloc] init] autorelease];
+	return [[ServiceB alloc] init];
 }
 
 @end
@@ -239,11 +239,11 @@ account. It might look something like this (interfaces will be omitted for brevi
 @implementation ReliantFactory (Repositories)
 
 - (id) createEagerSingletonRepositoryA {
-	return [[[RepositoryA alloc] init] autorelease];
+	return [[RepositoryA alloc] init];
 }
 
 - (id) createEagerSingletonRepositoryB {
-	return [[[RepositoryB alloc] init] autorelease];
+	return [[RepositoryB alloc] init];
 }
 
 @end
