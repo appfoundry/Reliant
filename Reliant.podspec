@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = 'Reliant'
-  s.version      = '1.0.0'
+  s.version      = '1.1.0'
   s.summary      = 'Reliant is a light-weight Dependency Injection (DI) framework for Objective-C, both for OS X and iOS.'
   s.homepage     = 'https://github.com/idamediafoundry/Reliant'
-  s.license      = 'Apache Licence 2.0'
+  s.license      = 'MIT'
   s.authors      = { 'iDA MediaFoundry' => 'info@ida-mediafoundry.be', 'Mike Seghers' => 'mike@oakcs.be' }
   s.source       = { :git => 'https://github.com/idamediafoundry/Reliant.git', :tag => '1.0.0' }
   s.ios.deployment_target = '5.0'
