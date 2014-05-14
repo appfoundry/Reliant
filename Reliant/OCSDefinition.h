@@ -42,12 +42,14 @@
 /**
  Flag to indicate if the object is a singleton or a prototype. Singletons, as the words says, will only be initialized once in a context. Prototypes will be created each time they are requested.
  */
-@property (nonatomic, assign) BOOL singleton;
+@property (nonatomic, assign, readonly) BOOL singleton;
 
 /**
  Flag to indicate when the object should be loaded in the application context. Lazy means only when first requested, eager means directly at startup. This only makes sence for singleton objects. Prototypes are always lazily loaded.
  */
 @property (nonatomic, assign) BOOL lazy;
+
+@property(nonatomic, weak) Class scopeClass;
 
 /**
  Adds an alias for the object. An object can be retrieved through one of these aliases.

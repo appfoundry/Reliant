@@ -127,15 +127,14 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
                     OCSDefinition *def = [[OCSDefinition alloc] init];
                     NSUInteger offset = 0;
                     if ([objcStringName hasPrefix:LAZY_SINGLETON_PREFIX]) {
-                        def.singleton = YES;
+                        def.scopeClass = [OCSSingletonScope class];
                         def.lazy = YES;
                         offset = LAZY_SINGLETON_PREFIX.length;
                     } else if ([objcStringName hasPrefix:EAGER_SINGLETON_PREFIX]) {
-                        def.singleton = YES;
+                        def.scopeClass= [OCSSingletonScope class];
                         def.lazy = NO;
                         offset = EAGER_SINGLETON_PREFIX.length;
                     } else if ([objcStringName hasPrefix:PROTOTYPE_PREFIX]) {
-                        def.singleton = NO;
                         offset = PROTOTYPE_PREFIX.length;
                     }
                     

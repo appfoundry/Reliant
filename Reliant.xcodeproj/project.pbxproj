@@ -126,6 +126,8 @@
 		3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
 		3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */; };
 		3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
+		C1A5618E21999FD8B10D5F61 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
+		C1A564FE428FFBCEF6DAC579 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
 		FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +217,7 @@
 		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
 		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
 		9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant OSX-Reliant OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinitionTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +365,7 @@
 				27861575181DBAE700B7A755 /* OCSViewControllerInjectionTest.m */,
 				2786158D181F954A00B7A755 /* DummyConfigurator.h */,
 				2786158E181F954A00B7A755 /* DummyConfigurator.m */,
+				C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -807,6 +811,7 @@
 				278155E0181C6D1900295410 /* OCSConfiguratorFromClass.m in Sources */,
 				278155E4181C6D2300295410 /* OCSConfiguratorBase.m in Sources */,
 				27861572181D11D700B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
+				C1A564FE428FFBCEF6DAC579 /* OCSDefinitionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +852,7 @@
 				27B0A9381824007300DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,
 				277001CA1823C36B00FC366A /* TestObject.m in Sources */,
 				27861574181D11DE00B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
+				C1A5618E21999FD8B10D5F61 /* OCSDefinitionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

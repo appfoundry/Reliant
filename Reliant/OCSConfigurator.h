@@ -39,6 +39,9 @@
  */
 @property (readonly, nonatomic, assign) BOOL initializing;
 
+/**
+
+*/
 @property (readonly, nonatomic, copy) NSArray *objectKeys;
 
 /**

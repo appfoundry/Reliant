@@ -15,6 +15,7 @@
 #import "OCSConfiguratorBase.h"
 #import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
 #import "OCSDefinition.h"
+#import "OCSSingletonScope.h"
 
 #import "OCSConfiguratorBaseTests.h"
 
@@ -128,21 +129,20 @@
 
 - (void) addDefinitions:(OCSConfiguratorBase *) configurator {
     OCSDefinition *lazy = [[OCSDefinition alloc] init];
-    lazy.singleton = YES;
+    lazy.scopeClass = [OCSSingletonScope class];
     lazy.lazy = YES;
     lazy.key = @"LazySingletonKey";
     
     [configurator addDefinition:lazy];
     
     OCSDefinition *eager = [[OCSDefinition alloc] init];
-    eager.singleton = YES;
+    eager.scopeClass = [OCSSingletonScope class];
     eager.lazy = NO;
     eager.key = @"EagerSingletonKey";
     
     [configurator addDefinition:eager];
     
     OCSDefinition *prototype = [[OCSDefinition alloc] init];
-    prototype.singleton = NO;
     prototype.key = @"PrototypeKey";
     
     [configurator addDefinition:prototype];

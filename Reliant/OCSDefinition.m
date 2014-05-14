@@ -18,8 +18,10 @@
 //  limitations under the License.
 
 
+#import <objc/runtime.h>
 #import "OCSDefinition.h"
-
+#import "OCSScope.h"
+#import "OCSSingletonScope.h"
 
 /**
  Definition private category. Holds private ivars and methods.
@@ -31,6 +33,10 @@
     NSMutableArray *_aliases;
 }
 
+/**
+ Flag to indicate if the object is a singleton or a prototype. Singletons, as the words says, will only be initialized once in a context. Prototypes will be created each time they are requested.
+ */
+@property (nonatomic, assign, readwrite) BOOL singleton;
 @end
 
 @implementation OCSDefinition
@@ -48,6 +54,17 @@
         _aliases = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(BOOL)singleton {
+    return _scopeClass == [OCSSingletonScope class];
+}
+
+- (void)setScopeClass:(Class)scopeClass {
+    if (!class_conformsToProtocol(scopeClass, @protocol(OCSScope))){
+        [NSException raise:@"NonScopeClassError" format:@"The given class %@ does not conform to the OCSScope protocol",scopeClass];
+    }
+    _scopeClass = scopeClass;
 }
 
 - (void)addAlias:(NSString *)alias {
