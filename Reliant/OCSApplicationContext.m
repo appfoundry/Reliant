@@ -97,7 +97,7 @@
             OCSPropertyRuntimeInfo *pi = [[OCSPropertyRuntimeInfo alloc] initWithProperty:foundProperty];
             BOOL isIgnoredProperty = checkIgnoredProperties && [classAsID OCS_reliantShouldIgnorePropertyWithName:pi.name];
             if (pi.isObject && !pi.readOnly && !isIgnoredProperty) {
-                [self _chekCurrentPropertyValueOnObject:object withProperty:pi];
+                [self _checkCurrentPropertyValueOnObject:object withProperty:pi];
             } else {
                 DLog(@"Property %@ for object %@ was not injected, it is not an object, it is readonly and/or it is excluded", [pi name], object);
             }
@@ -105,7 +105,7 @@
     }];
 }
 
-- (void)_chekCurrentPropertyValueOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *) pi {
+- (void)_checkCurrentPropertyValueOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *) pi {
     id currentValue = [self _currentValueFromObject:object property:pi];
     if (!currentValue) {
         [self _injectPropertyOnObject:object withProperty:pi];
