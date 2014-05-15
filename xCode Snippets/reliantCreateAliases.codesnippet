@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>createAliases</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (NSArray *)aliasesFor&lt;#ObjectName#&gt; {
+	return @[@"&lt;#_alias#&gt;",@"&lt;#_alias2#&gt;"];
+	}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>be.idamf.reliant.snippet.createAliases</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>This snippet allows you to create aliases for your defined singletons</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Reliant: create aliases</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
