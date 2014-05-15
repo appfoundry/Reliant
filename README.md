@@ -135,7 +135,7 @@ OCSConfiguratorFromClass will detect 4 kinds of methods. (Replace YourObjectKey 
 - (NSArray *) aliasesFor/*YourObjectKey*/;//Alias definitions
 ```
 
-for your convenience we create some [xCode snippets](#xcode-snippets) to help you create these methods 
+For your convenience we created some [xCode snippets](#xcode-snippets) to help you create these methods.
 
 Let's look at them in more detail:
 
@@ -425,11 +425,11 @@ TODO
 
 ### xCode Snippets
 
-We have provided some snippets to easly create the signature to create singletons in the configurator class
+We have provided some snippets to easily create the signature to create singletons in the configurator class.
 
 These can be found here: [xCode Snippets](https://github.com/idamediafoundry/Reliant/tree/master/xCode%20Snippets)
 
-You can install these by downloading these snippets and placing them in the following folder
+You can install these by downloading these snippets and placing them in the following folder:
 
 ```
 ~/Library/Developer/Xcode/UserData/CodeSnippets/
