@@ -134,6 +134,9 @@ OCSConfiguratorFromClass will detect 4 kinds of methods. (Replace YourObjectKey 
 - (id) createPrototype/*YourObjectKey*/;//Prototype definition
 - (NSArray *) aliasesFor/*YourObjectKey*/;//Alias definitions
 ```
+
+for your convenience we create some [xCode snippets](#xcode-snippets) to help you create these methods 
+
 Let's look at them in more detail:
 
 #### Defining singletons
@@ -419,6 +422,22 @@ TODO
 
 @end
 ```
+
+### xCode Snippets
+
+We have provided some snippets to easly create the signature to create singletons in the configurator class
+
+These can be found here: [xCode Snippets](https://github.com/idamediafoundry/Reliant/tree/master/xCode%20Snippets)
+
+You can install these by downloading these snippets and placing them in the following folder
+
+```
+~/Library/Developer/Xcode/UserData/CodeSnippets/
+```
+If the folder doesn't exist you can create it.
+Restart xCode and you should be ready to start using the snippets.
+
+In the class implementation of your configurator start typing 'create' and all of the snippets for create singletons, prototypes, and aliases should be at your finger tips.
 
 Interesting references/discussions
 ----------------------------------
