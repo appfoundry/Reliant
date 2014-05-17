@@ -333,6 +333,15 @@ This is what you need to do:
 
 And that's all there is to it. The property foo will be injected by Reliant.
 
+
+> **Warning:** when using storyboards you should load your storyboard manually.
+> You can accomplish this by removing your storyboard in the project settings and loading the storyboard in code.
+
+```objective-c
+UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"myViewController"];
+```
+
 ### Preventing injection on specific properties
 
 Reliant will, by default, not try to inject properties like view on UIViewController.
