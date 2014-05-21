@@ -34,14 +34,12 @@
 #import "OCSApplicationContext.h"
 #import "OCSScope.h"
 #import "OCSApplicationContext+Protected.h"
+#import "DummyScope.h"
 
 @protocol SomeSuperProtocol <NSObject>
 
 @property(nonatomic, retain) NSString *superProtocolProperty;
 
-@end
-
-@interface DummyScope : NSObject <OCSScope>
 @end
 
 @interface DummyClass : NSObject <SomeSuperProtocol> {
@@ -273,16 +271,6 @@
 @synthesize unknownProperty;
 @synthesize superProtocolProperty;
 @synthesize intProperty, boolProperty, longProperty, charProperty, floatProperty, doubleProperty, readOnlyProperty;
-
-@end
-
-@implementation DummyScope
-- (id)objectForKey:(NSString *)key {
-    return nil;
-}
-
-- (void)registerObject:(id)object forKey:(NSString *)key {
-}
 
 @end
 

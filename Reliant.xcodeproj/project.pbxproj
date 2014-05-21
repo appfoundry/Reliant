@@ -127,9 +127,19 @@
 		3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */; };
 		3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		C1A5618E21999FD8B10D5F61 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
+		C1A563EA8B029ED28AFA72FD /* OCSPrototypeScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */; };
 		C1A564FE428FFBCEF6DAC579 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
+		C1A56618B95A5E6372ED8985 /* OCSPrototypeScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56561066DE02A82BB243F /* OCSPrototypeScopeTests.m */; };
+		C1A56694F731E94F09B34736 /* DummyScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56FDC1EE6D82F56DA2CCE /* DummyScope.m */; };
+		C1A566FF35982EB4585933BA /* DummyScope.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A561520E4B812B6E61E469 /* DummyScope.h */; };
+		C1A567368001E62A12E3AD4C /* DummyScope.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A561520E4B812B6E61E469 /* DummyScope.h */; };
+		C1A5675A0D6D36C417721515 /* DummyScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56FDC1EE6D82F56DA2CCE /* DummyScope.m */; };
+		C1A5678F5E7AAD7226E4B73F /* OCSPrototypeScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56561066DE02A82BB243F /* OCSPrototypeScopeTests.m */; };
+		C1A567CD866ABF2413562EAE /* OCSPrototypeScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */; };
 		C1A568C119A5988F28BD4767 /* OCSApplicationContext+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */; };
+		C1A5690710C534862D0A660F /* OCSPrototypeScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */; };
 		C1A56B9E82E961532902526F /* OCSApplicationContext+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */; };
+		C1A56D451A511B840CAF58CF /* OCSPrototypeScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */; };
 		FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */; };
 /* End PBXBuildFile section */
 
@@ -219,8 +229,13 @@
 		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
 		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
 		9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant OSX-Reliant OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A561520E4B812B6E61E469 /* DummyScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyScope.h; sourceTree = "<group>"; };
 		C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSApplicationContext+Protected.h"; sourceTree = "<group>"; };
+		C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSPrototypeScope.m; sourceTree = "<group>"; };
+		C1A56561066DE02A82BB243F /* OCSPrototypeScopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSPrototypeScopeTests.m; sourceTree = "<group>"; };
+		C1A5698CC773F01C35508A5A /* OCSPrototypeScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSPrototypeScope.h; sourceTree = "<group>"; };
 		C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinitionTest.m; sourceTree = "<group>"; };
+		C1A56FDC1EE6D82F56DA2CCE /* DummyScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyScope.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +384,9 @@
 				2786158D181F954A00B7A755 /* DummyConfigurator.h */,
 				2786158E181F954A00B7A755 /* DummyConfigurator.m */,
 				C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */,
+				C1A56FDC1EE6D82F56DA2CCE /* DummyScope.m */,
+				C1A561520E4B812B6E61E469 /* DummyScope.h */,
+				C1A56561066DE02A82BB243F /* OCSPrototypeScopeTests.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -387,6 +405,8 @@
 			children = (
 				274D7BB71563BFA10007C1C8 /* OCSSingletonScope.h */,
 				274D7BB81563BFA10007C1C8 /* OCSSingletonScope.m */,
+				C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */,
+				C1A5698CC773F01C35508A5A /* OCSPrototypeScope.h */,
 			);
 			name = Scopes;
 			sourceTree = "<group>";
@@ -483,6 +503,7 @@
 				3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */,
 				3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */,
 				C1A568C119A5988F28BD4767 /* OCSApplicationContext+Protected.h in Headers */,
+				C1A567368001E62A12E3AD4C /* DummyScope.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +522,7 @@
 				2765CBD21572A7C100ABE59C /* OCSSingletonScope.h in Headers */,
 				2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */,
 				C1A56B9E82E961532902526F /* OCSApplicationContext+Protected.h in Headers */,
+				C1A566FF35982EB4585933BA /* DummyScope.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +812,7 @@
 				2780EDDA157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.m in Sources */,
 				3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */,
 				3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */,
+				C1A567CD866ABF2413562EAE /* OCSPrototypeScope.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +841,9 @@
 				278155E4181C6D2300295410 /* OCSConfiguratorBase.m in Sources */,
 				27861572181D11D700B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				C1A564FE428FFBCEF6DAC579 /* OCSDefinitionTest.m in Sources */,
+				C1A5675A0D6D36C417721515 /* DummyScope.m in Sources */,
+				C1A563EA8B029ED28AFA72FD /* OCSPrototypeScope.m in Sources */,
+				C1A5678F5E7AAD7226E4B73F /* OCSPrototypeScopeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +860,7 @@
 				2765CBB91571854100ABE59C /* OCSConfiguratorFromClass.m in Sources */,
 				2765CBBA1571854100ABE59C /* OCSDefinition.m in Sources */,
 				2765CBBB1571854100ABE59C /* OCSApplicationContext.m in Sources */,
+				C1A5690710C534862D0A660F /* OCSPrototypeScope.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +886,9 @@
 				277001CA1823C36B00FC366A /* TestObject.m in Sources */,
 				27861574181D11DE00B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				C1A5618E21999FD8B10D5F61 /* OCSDefinitionTest.m in Sources */,
+				C1A56694F731E94F09B34736 /* DummyScope.m in Sources */,
+				C1A56D451A511B840CAF58CF /* OCSPrototypeScope.m in Sources */,
+				C1A56618B95A5E6372ED8985 /* OCSPrototypeScopeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

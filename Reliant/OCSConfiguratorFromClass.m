@@ -29,6 +29,7 @@
 #import "OCSDefinition.h"
 #import "OCSSingletonScope.h"
 #import "OCSDLogger.h"
+#import "OCSPrototypeScope.h"
 
 #define OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE "__ocs_factory_class_singletonScope"
 #define OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK "__ocs_factory_class_generatorBlock"
@@ -125,6 +126,7 @@ static id dynamicIDMethodIMP(id self, SEL _cmd) {
                 unsigned int paramCount = method_getNumberOfArguments(methods[i]);
                 if ([objcStringName hasPrefix:@"create"] &&  paramCount == 2) {
                     OCSDefinition *def = [[OCSDefinition alloc] init];
+                    def.scopeClass = [OCSPrototypeScope class];
                     NSUInteger offset = 0;
                     if ([objcStringName hasPrefix:LAZY_SINGLETON_PREFIX]) {
                         def.scopeClass = [OCSSingletonScope class];

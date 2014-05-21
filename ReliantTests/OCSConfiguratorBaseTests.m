@@ -16,6 +16,8 @@
 #import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
 #import "OCSDefinition.h"
 #import "OCSSingletonScope.h"
+#import "DummyScope.h"
+#import "OCSApplicationContext+Protected.h"
 
 #import "OCSConfiguratorBaseTests.h"
 
@@ -34,6 +36,7 @@
     if (self) {
         OCSDefinition *def = [[OCSDefinition alloc] init];
         def.key = @"SomeKey";
+        def.scopeClass = [DummyScope class];
         [self registerDefinition:def];
     }
     return self;
@@ -105,6 +108,7 @@
 - (void) testObjectForKeyAfterLoaded {
     OCSDefinition *def = [[OCSDefinition alloc] init];
     def.key = @"object";
+    def.scopeClass = [DummyScope class];
     [dummyConfigurator registerDefinition:def];
     
     dummyConfigurator.initializing = NO;
@@ -176,6 +180,18 @@
     NSArray *expected = @[@"SomeKey",@"OtherKey",@"alias1",@"alias2"];
 
     XCTAssertTrue([objectKeys isEqualToArray:expected], @"The expected objects keys %@ were returned as %@",expected.description,objectKeys.description);
+}
+
+- (void)testObjectForKeyInContextShouldGetTheObjectFromTheScopeFoundInApplicationContext {
+    OCSDefinition *definition = [[OCSDefinition alloc] init];
+    definition.key = @"theKey";
+    definition.scopeClass = [DummyScope class];
+    [dummyConfigurator registerDefinition:definition];
+    dummyConfigurator.initializing = NO;
+    [dummyConfigurator objectForKey:@"theKey" inContext:context];
+    [verify(context) scopeForClass:[DummyScope class]];
+
+
 }
 
 @end

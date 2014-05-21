@@ -13,6 +13,7 @@
 #import "OCSApplicationContext.h"
 
 #import "OCSSingletonScope.h"
+#import "OCSApplicationContext+Protected.h"
 
 @implementation OCSConfiguratorBase
 
@@ -42,6 +43,8 @@
     if (definition) {
         //If singleton, check if we already have it in our registry. If not load it and put it there.
         //DO NOT do anything different for lazy or eager singletons. If demanded, we must always load!
+        id <OCSScope> scope = [context scopeForClass:definition.scopeClass];
+
         if (definition.singleton) {
             result = [_singletonScope objectForKey:definition.key];
             if (result == nil) {
@@ -67,7 +70,7 @@
 - (id) objectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
     id result = nil;
     if (!self.initializing) {
-        result = [self _internalObjectForKey:keyOrAlias inContext:context];   
+        result = [self _internalObjectForKey:keyOrAlias inContext:context];
     }
     return result;
 }
