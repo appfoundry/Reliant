@@ -24,42 +24,42 @@
 #import "OCSConfigurator.h"
 #import "OCSReliantExcludingPropertyProvider.h"
 #import "OCSDLogger.h"
-#import "OCSClassRuntimeInfo.h"
 #import "OCSPropertyRuntimeInfo.h"
 #import "OCSConfiguratorFromClass.h"
 
 /**
- Application context private category. Holds private ivars and methods.
- */
+Application context private category. Holds private ivars and methods.
+*/
 @interface OCSApplicationContext () {
     /**
-     The configurator instance.
-     */
-    id<OCSConfigurator> _configurator;
+    The configurator instance.
+    */
+    id <OCSConfigurator> _configurator;
+    NSMutableDictionary *_scopeRegistry;
 }
 
 /**
- Recursive method for injecting objects with their dependencies. This method recurse over parent classes, so all properties on parrent classes are injected as well.
- 
- @param object the object to inject
- @param metaClass the metaClass for the current iteration. 
- */
+Recursive method for injecting objects with their dependencies. This method recurse over parent classes, so all properties on parrent classes are injected as well.
+
+@param object the object to inject
+@param metaClass the metaClass for the current iteration.
+*/
 - (void)_recursiveInjectionOn:(id)object forMetaClass:(Class)metaClass;
 
 @end
 
 @implementation OCSApplicationContext
 
-
 - (id)init {
     OCSConfiguratorFromClass *autoConfig = [[OCSConfiguratorFromClass alloc] init];
     return [self initWithConfigurator:autoConfig];
 }
 
-- (id)initWithConfigurator:(id<OCSConfigurator>)configurator {
+- (id)initWithConfigurator:(id <OCSConfigurator>)configurator {
     self = [super init];
     if (self && configurator) {
         _configurator = configurator;
+        _scopeRegistry = [[NSMutableDictionary alloc] init];
     } else {
         self = nil;
     }
@@ -88,10 +88,11 @@
         [self _recursiveInjectionOn:object forMetaClass:superClass];
     }
 }
+
 - (void)_injectObject:(id)object forClass:(Class)thisClass {
     id classAsID = thisClass;
     BOOL checkIgnoredProperties = ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_reliantShouldIgnorePropertyWithName:)]);
-    [_configurator.objectKeys enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL *stop) {
+    [_configurator.objectKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         objc_property_t foundProperty = class_getProperty(thisClass, [key cStringUsingEncoding:NSUTF8StringEncoding]);
         if (foundProperty) {
             OCSPropertyRuntimeInfo *pi = [[OCSPropertyRuntimeInfo alloc] initWithProperty:foundProperty];
@@ -105,7 +106,7 @@
     }];
 }
 
-- (void)_checkCurrentPropertyValueOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *) pi {
+- (void)_checkCurrentPropertyValueOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *)pi {
     id currentValue = [self _currentValueFromObject:object property:pi];
     if (!currentValue) {
         [self _injectPropertyOnObject:object withProperty:pi];
@@ -114,7 +115,7 @@
     }
 }
 
-- (void)_injectPropertyOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *) pi {
+- (void)_injectPropertyOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *)pi {
     id value = [_configurator objectForKey:pi.name inContext:self];
     if (value) {
         [self _setPropertyValue:value onObject:object property:pi];
@@ -123,14 +124,13 @@
     }
 }
 
-- (void)_setPropertyValue:(id)value onObject:(id)object property:(OCSPropertyRuntimeInfo *) pi {
+- (void)_setPropertyValue:(id)value onObject:(id)object property:(OCSPropertyRuntimeInfo *)pi {
     if (pi.customSetter) {
         [self _setPropertyValue:value onObject:object withCustomSetter:pi.customSetter];
     } else {
         [self _setPropertyValue:value onObject:object withDefaultSetter:pi.name];
     }
 }
-
 
 - (void)_setPropertyValue:(id)value onObject:(id)object withDefaultSetter:(NSString *)name {
     NSString *allButFirst = [name substringFromIndex:1];
@@ -157,7 +157,7 @@
     }
 }
 
-- (id)_currentValueFromObject:(id)object property:(OCSPropertyRuntimeInfo *) pi {
+- (id)_currentValueFromObject:(id)object property:(OCSPropertyRuntimeInfo *)pi {
     id currentValue = nil;
     if (pi.customGetter) {
         currentValue = [self _currentValueThroughCustomGetter:pi.customGetter fromObject:object];
@@ -186,6 +186,20 @@
 #pragma clang diagnostic pop
     }
     return currentValue;
+}
+
+- (id <OCSScope>)scopeForClass:(Class)refClass {
+    if (![refClass conformsToProtocol:@protocol(OCSScope)]){
+        @throw [NSException exceptionWithName:@"OCSInvalidScopeException" reason:@"Given scope does not conform to the OCSScope protocol" userInfo:nil];
+    }
+
+    NSString *nameOfScope = NSStringFromClass(refClass);
+    id <OCSScope> foundScope = _scopeRegistry[nameOfScope];
+    if (!foundScope){
+        foundScope = [[refClass alloc] init];
+        _scopeRegistry[nameOfScope] = foundScope;
+    }
+    return foundScope;
 }
 
 @end

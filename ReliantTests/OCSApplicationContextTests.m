@@ -19,43 +19,52 @@
 
 
 #define MOCKITO_SHORTHAND
+
 #import <OCMockito/OCMockito.h>
+
 #define HC_SHORTHAND
+
 #import <OCHamcrest/OCHamcrest.h>
 
 #import "OCSApplicationContextTests.h"
 
 #define LOG_RELIANT 1
+
 #import "OCSConfigurator.h"
 #import "OCSApplicationContext.h"
+#import "OCSScope.h"
+#import "OCSApplicationContext+Protected.h"
 
 @protocol SomeSuperProtocol <NSObject>
 
-@property (nonatomic, retain) NSString *superProtocolProperty;
+@property(nonatomic, retain) NSString *superProtocolProperty;
 
 @end
 
-@interface DummyClass : NSObject<SomeSuperProtocol> {
-    @private
+@interface DummyScope : NSObject <OCSScope>
+@end
+
+@interface DummyClass : NSObject <SomeSuperProtocol> {
+@private
     NSString *publiclyKnownPrivate;
 }
 
-@property (nonatomic, strong) NSString *publiclyKnownPrivate;
-@property (nonatomic, strong) NSString *publiclyKnownProperty;
-@property (nonatomic, readonly) NSString *readOnlyProperty;
-@property (nonatomic, assign) BOOL boolProperty;
-@property (nonatomic, assign) char charProperty;
-@property (nonatomic, assign) int intProperty;
-@property (nonatomic, assign) float floatProperty;
-@property (nonatomic, assign) double doubleProperty;
-@property (nonatomic, assign) long longProperty;
+@property(nonatomic, strong) NSString *publiclyKnownPrivate;
+@property(nonatomic, strong) NSString *publiclyKnownProperty;
+@property(nonatomic, readonly) NSString *readOnlyProperty;
+@property(nonatomic, assign) BOOL boolProperty;
+@property(nonatomic, assign) char charProperty;
+@property(nonatomic, assign) int intProperty;
+@property(nonatomic, assign) float floatProperty;
+@property(nonatomic, assign) double doubleProperty;
+@property(nonatomic, assign) long longProperty;
 
 @end
 
 @protocol OptionalPropertyProtocol <NSObject>
 
 @optional
-@property (nonatomic, strong) NSString *optional;
+@property(nonatomic, strong) NSString *optional;
 
 @end
 
@@ -67,26 +76,26 @@
 
 @end
 
-@interface DummyClass () 
+@interface DummyClass ()
 
-@property (nonatomic, strong) NSString *privateProperty;
-@property (nonatomic, strong) id privatePropertyWithCustomVarName;
-@property (nonatomic, strong) id unknownProperty;
+@property(nonatomic, strong) NSString *privateProperty;
+@property(nonatomic, strong) id privatePropertyWithCustomVarName;
+@property(nonatomic, strong) id unknownProperty;
 
 @end
 
 @protocol SomeProtocol <NSObject>
 
-@property (nonatomic, retain) NSString *prototypeProperty;
+@property(nonatomic, retain) NSString *prototypeProperty;
 
 @optional
-@property (nonatomic, retain) NSString *optionalProperty;
+@property(nonatomic, retain) NSString *optionalProperty;
 
 @end
 
-@interface ExtendedDummyClass : DummyClass<SomeProtocol>
+@interface ExtendedDummyClass : DummyClass <SomeProtocol>
 
-@property (nonatomic, strong) NSString *extendedProperty;
+@property(nonatomic, strong) NSString *extendedProperty;
 
 @end
 
@@ -94,55 +103,53 @@
 
 @end
 
-
-
 @implementation OCSApplicationContextTests {
     //SUT
     OCSApplicationContext *context;
     id <OCSConfigurator> configurator;
 }
 
-- (void) setUp {
+- (void)setUp {
     [super setUp];
     // Set-up code here.
     configurator = mockProtocol(@protocol(OCSConfigurator));
     context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
 }
 
-- (void) tearDown {
+- (void)tearDown {
     // Tear-down code here.
-    
+
     configurator = nil;
     context = nil;
-    
+
     [super tearDown];
 }
 
-- (void) testStart {
+- (void)testStart {
     BOOL result = [context start];
     XCTAssertTrue(result, @"Application context startup is expected to succeed");
     [verify(configurator) contextLoaded:context];
 }
 
-- (void) testObjectForKey {
+- (void)testObjectForKey {
     [given([configurator objectForKey:@"SomeKey" inContext:context]) willReturn:@"StringObject"];
-    
+
     XCTAssertTrue([@"StringObject" isEqualToString:[context objectForKey:@"SomeKey"]], @"SomeKey key should return the configurator's StringObject");
     XCTAssertNil([context objectForKey:@"UnknownKey"], @"UnknownKey should return nil");
 }
 
-- (void) testPerformInjection {
+- (void)testPerformInjection {
     DummyClass *dummy = [[DummyClass alloc] init];
-    
+
     [given([configurator objectForKey:@"publiclyKnownPrivate" inContext:context]) willReturn:@"PRKP"];
     [given([configurator objectForKey:@"publiclyKnownProperty" inContext:context]) willReturn:@"PUKP"];
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
     [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
     [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
-    [given([configurator objectKeys])willReturn:@[@"publiclyKnownPrivate",@"publiclyKnownProperty",@"privateProperty",@"privatePropertyWithCustomVarName",@"superProtocolProperty"]];
+    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate", @"publiclyKnownProperty", @"privateProperty", @"privatePropertyWithCustomVarName", @"superProtocolProperty"]];
 
     [context performInjectionOn:dummy];
-    
+
     XCTAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
     XCTAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
     XCTAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
@@ -151,9 +158,9 @@
     XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
-- (void) testPerformInjectionOnExtendedObject {
+- (void)testPerformInjectionOnExtendedObject {
     ExtendedDummyClass *dummy = [[ExtendedDummyClass alloc] init];
-    
+
     [given([configurator objectForKey:@"publiclyKnownPrivate" inContext:context]) willReturn:@"PRKP"];
     [given([configurator objectForKey:@"publiclyKnownProperty" inContext:context]) willReturn:@"PUKP"];
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
@@ -162,10 +169,10 @@
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PrivP"];
     [given([configurator objectForKey:@"extendedProperty" inContext:context]) willReturn:@"EP"];
     [given([configurator objectForKey:@"prototypeProperty" inContext:context]) willReturn:@"PrP"];
-    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate",@"publiclyKnownProperty", @"privateProperty",@"privatePropertyWithCustomVarName",@"superProtocolProperty",@"privateProperty",@"extendedProperty",@"prototypeProperty"]];
+    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate", @"publiclyKnownProperty", @"privateProperty", @"privatePropertyWithCustomVarName", @"superProtocolProperty", @"privateProperty", @"extendedProperty", @"prototypeProperty"]];
 
     [context performInjectionOn:dummy];
-    
+
     XCTAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
     XCTAssertTrue([@"PUKP" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should be set to PUKP");
     XCTAssertTrue([@"PrivP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
@@ -176,28 +183,27 @@
     XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
-- (void) testPerformInjectionOnEmptyClass {
+- (void)testPerformInjectionOnEmptyClass {
     //We must be able to try to inject classes that on their own have no dependencies. No actual injection should happen. The configurator should never be called.
     EmptyClass *dummy = [[EmptyClass alloc] init];
     [context performInjectionOn:dummy];
-    [verifyCount(configurator, times(0)) objectForKey:(id)anything() inContext:anything()];
+    [verifyCount(configurator, times(0)) objectForKey:(id) anything() inContext:anything()];
 }
 
-- (void) testPerformInjectionOnAlreadyInjectedClass {
+- (void)testPerformInjectionOnAlreadyInjectedClass {
     //We must be able to try to inject classes that on their own have no dependencies. No actual injection should happen. The configurator should never be called.
     DummyClass *dummy = [[DummyClass alloc] init];
     dummy.publiclyKnownProperty = @"AlreadyThere";
-    
+
     [given([configurator objectForKey:@"publiclyKnownPrivate" inContext:context]) willReturn:@"PRKP"];
     [given([configurator objectForKey:@"publiclyKnownProperty" inContext:context]) willReturn:@"PUKP"];
     [given([configurator objectForKey:@"privateProperty" inContext:context]) willReturn:@"PP"];
     [given([configurator objectForKey:@"privatePropertyWithCustomVarName" inContext:context]) willReturn:@"PPCN"];
     [given([configurator objectForKey:@"superProtocolProperty" inContext:context]) willReturn:@"SPP"];
-    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate",@"publiclyKnownProperty", @"privateProperty",@"privatePropertyWithCustomVarName",@"superProtocolProperty"]];
-
+    [given([configurator objectKeys]) willReturn:@[@"publiclyKnownPrivate", @"publiclyKnownProperty", @"privateProperty", @"privatePropertyWithCustomVarName", @"superProtocolProperty"]];
 
     [context performInjectionOn:dummy];
-    
+
     XCTAssertTrue([@"PRKP" isEqualToString:[dummy valueForKey:@"publiclyKnownPrivate"]], @"publiclyKnownPrivate should be set to PRKP");
     XCTAssertTrue([@"AlreadyThere" isEqualToString:[dummy valueForKey:@"publiclyKnownProperty"]], @"publiclyKnownProperty should not have been overriden!");
     XCTAssertTrue([@"PP" isEqualToString:[dummy valueForKey:@"privateProperty"]], @"privateProperty should be set to PP");
@@ -206,34 +212,54 @@
     XCTAssertNil(dummy.unknownProperty, @"unknownProperty should be nil");
 }
 
-- (void) testLoadContextDefault {
+- (void)testLoadContextDefault {
     OCSApplicationContext *autoContext = [[OCSApplicationContext alloc] init];
     XCTAssertNotNil(autoContext, @"Context should have initialized with the auto configured configuration");
 }
 
-- (void) testInitContextWithoutConfigShouldReturnNull {
+- (void)testInitContextWithoutConfigShouldReturnNull {
     OCSApplicationContext *nilContext = [[OCSApplicationContext alloc] initWithConfigurator:nil];
     XCTAssertNil(nilContext, @"Context should not have initialized with the auto configured configuration");
 }
 
-- (void) testPerformInjectionOnOptionalProperty {
+- (void)testPerformInjectionOnOptionalProperty {
     ProtocolAdoptingWithoutImplementingOptionalPropertyClass *dummy = [[ProtocolAdoptingWithoutImplementingOptionalPropertyClass alloc] init];
-    
+
     [given([configurator objectForKey:@"optional" inContext:context]) willReturn:@"PRKP"];
     [given([configurator objectKeys]) willReturn:@[@"optional"]];
-    
-    XCTAssertNoThrow([context performInjectionOn:dummy],@"This expression should not throw an exception");
+
+    XCTAssertNoThrow([context performInjectionOn:dummy], @"This expression should not throw an exception");
 }
 
-- (void) testPerformInjectionOnOptionalImplementedProperty {
+- (void)testPerformInjectionOnOptionalImplementedProperty {
     ProtocolAdoptingAndImplementingOptionalPropertyClass *dummy = [[ProtocolAdoptingAndImplementingOptionalPropertyClass alloc] init];
-    
+
     [given([configurator objectForKey:@"optional" inContext:context]) willReturn:@"PRKP"];
     [given([configurator objectKeys]) willReturn:@[@"optional"]];
-    
+
     [context performInjectionOn:dummy];
-    
+
     XCTAssertEqual(@"PRKP", dummy.optional, @"Optional was not set by reliant");
+}
+
+- (void)testScopeForClassShouldCreateNewScopeIfScopeNotAvailable {
+    id <OCSScope> foundScope = [context scopeForClass:[DummyScope class]];
+    XCTAssertNotNil(foundScope);
+}
+
+- (void)testScopeForClassShouldReturnScopeOfSpecifiedType {
+    id <OCSScope> foundScope = [context scopeForClass:[DummyScope class]];
+    XCTAssertEqual([foundScope class], [DummyScope class]);
+}
+
+- (void)testScopeForClassShouldReturnAvailableScopeIfAlreadyCreated {
+    id <OCSScope> foundScope = [context scopeForClass:[DummyScope class]];
+    id <OCSScope> secondFoundScope = [context scopeForClass:[DummyScope class]];
+    XCTAssertTrue(foundScope == secondFoundScope);
+}
+
+- (void)testScopeOfClassShouldThrowExceptionWhenPassingNonOCSScopeClass {
+    XCTAssertThrowsSpecificNamed([context scopeForClass:[NSString class]], NSException, @"OCSInvalidScopeException");
 }
 
 @end
@@ -250,14 +276,23 @@
 
 @end
 
+@implementation DummyScope
+- (id)objectForKey:(NSString *)key {
+    return nil;
+}
+
+- (void)registerObject:(id)object forKey:(NSString *)key {
+}
+
+@end
+
 @implementation ProtocolAdoptingAndImplementingOptionalPropertyClass
 
 @synthesize optional;
 
 @end
 
-
-@implementation  ProtocolAdoptingWithoutImplementingOptionalPropertyClass
+@implementation ProtocolAdoptingWithoutImplementingOptionalPropertyClass
 
 @end
 

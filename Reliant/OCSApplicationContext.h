@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 @protocol OCSConfigurator;
+@protocol OCSScope;
 
 /**
  The application's dependency injection (DI) context. To bootstrap Reliant, you should use this class, or one of it's derivatives.

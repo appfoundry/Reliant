@@ -128,6 +128,8 @@
 		3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		C1A5618E21999FD8B10D5F61 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
 		C1A564FE428FFBCEF6DAC579 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
+		C1A568C119A5988F28BD4767 /* OCSApplicationContext+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */; };
+		C1A56B9E82E961532902526F /* OCSApplicationContext+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */; };
 		FCBA43DED9964326995423F9 /* libPods-Reliant-ReliantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +219,7 @@
 		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
 		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
 		9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant OSX-Reliant OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSApplicationContext+Protected.h"; sourceTree = "<group>"; };
 		C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinitionTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -432,6 +435,7 @@
 				2786156F181D0D4400B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m */,
 				27861577181DC6E000B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h */,
 				27861578181DC6E000B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.m */,
+				C1A5615D3327260526D2B64E /* OCSApplicationContext+Protected.h */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -478,6 +482,7 @@
 				27861570181D0D4400B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h in Headers */,
 				3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */,
 				3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */,
+				C1A568C119A5988F28BD4767 /* OCSApplicationContext+Protected.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +500,7 @@
 				2765CBD61572A7C100ABE59C /* OCSDefinition.h in Headers */,
 				2765CBD21572A7C100ABE59C /* OCSSingletonScope.h in Headers */,
 				2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */,
+				C1A56B9E82E961532902526F /* OCSApplicationContext+Protected.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
