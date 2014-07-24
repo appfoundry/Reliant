@@ -1,6 +1,8 @@
 Reliant
 =======
 
+[![Reliant build status](https://travis-ci.org/appfoundry/Reliant.svg?branch=master)](https://travis-ci.org/appfoundry/reliant)   [![Cocoapods Version](https://cocoapod-badges.herokuapp.com/v/Reliant/badge.png)](http://cocoadocs.org/docsets/Reliant/)
+
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies")) 
 framework for Objective-C, both for OS X and iOS. Its goal is to make its use as simple
 as possible, while not limiting its possibilities. It aims to have as little impact as
