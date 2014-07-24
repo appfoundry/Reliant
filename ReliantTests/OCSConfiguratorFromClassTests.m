@@ -23,7 +23,7 @@
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
 
-#if (TARGET_OS_IPHONE) 
+#if (TARGET_OS_IPHONE)
 #import <UIKit/UIApplication.h>
 #endif
 
@@ -33,6 +33,8 @@
 #import "OCSConfiguratorFromClass.h"
 #import "OCSApplicationContext.h"
 #import "DummyConfigurator.h"
+#import "OCSApplicationContext+Protected.h"
+#import "OCSSingletonScope.h"
 
 @interface DummyConfigurator (SomeDummyCategory)
 
@@ -50,7 +52,7 @@
 
 @implementation OCSConfiguratorFromClassTests {
     OCSConfiguratorFromClass *configurator;
-    
+
     int verySmartNameInjected;
     int unbelievableOtherSmartNameInjected;
     int lazyOneInjected;
@@ -68,7 +70,7 @@
 - (void) tearDown {
     // Tear-down code here.
     configurator = nil;
-    
+
     [super tearDown];
 }
 
@@ -76,7 +78,7 @@
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     id object = [configurator objectForKey:@"VerySmartName" inContext:context];
     XCTAssertNil(object, @"No objects should ever be returned when still initializing");
-    
+
 }
 
 - (id) doTestSingletonRetrievalWithKey:(NSString *) key andAliases:(NSArray *) aliases inContext:(OCSApplicationContext *) context {
@@ -85,7 +87,7 @@
     XCTAssertTrue(singleton == [configurator objectForKey:key inContext:context], @"Retrieving a singleton by key from the configurator should always return the same instance");
     [aliases enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XCTAssertTrue(singleton == [configurator objectForKey:obj inContext:context], @"Retrieving a singleton by alias from the configurator should always return the same instance");
-        
+
     }];
     return singleton;
 }
@@ -95,7 +97,7 @@
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     [configurator contextLoaded:context];
     [verifyCount(context, times(6)) performInjectionOn:anything()];
-    
+
     //TODO check which methods were called exactly, after refactoring the object storage to the context / scopes
 }
 
@@ -126,6 +128,10 @@
 
 - (void) testLazyLoading {
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
+
+    OCSSingletonScope *scope = [[OCSSingletonScope alloc] init];
+    [given([context scopeForClass:anything()]) willReturn:scope];
+
     [configurator contextLoaded:context];
     NSDictionary *lazyObject = [configurator objectForKey:@"LazyOne" inContext:context];
     NSDictionary *newlyFetched = [configurator objectForKey:@"LazyOne" inContext:context];
@@ -140,12 +146,12 @@
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     [configurator contextLoaded:context];
     id firstNeverInjectedByOthers = [configurator objectForKey:@"NeverInjectedByOthers" inContext:context];
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
-    
+
     id secondNeverInjectedByOthers = [self doTestSingletonRetrievalWithKey:@"NeverInjectedByOthers" andAliases:[NSArray arrayWithObjects:@"neverInjectedByOthers", @"NEVERINJECTEDBYOTHERS", nil] inContext:context];
-    
-    
+
+
     XCTAssertFalse(secondNeverInjectedByOthers == firstNeverInjectedByOthers, @"after memory warnings, objects should have been re-initialized");
     [verify(context) performInjectionOn:firstNeverInjectedByOthers];
     [verify(context) performInjectionOn:secondNeverInjectedByOthers];
