@@ -1,4 +1,4 @@
 language: objective-c
 xcode_workspace: Reliant.xcworkspace
 xcode_scheme: Reliant 
-xcode_sdk: iphonesimulator6.1
+xcode_sdk: iphonesimulator
