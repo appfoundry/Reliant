@@ -1,6 +1,8 @@
 Reliant
 =======
 
+[![Reliant build status](https://travis-ci.org/appfoundry/Reliant.svg?branch=master)](https://travis-ci.org/appfoundry/reliant)   [![Cocoapods Version](https://cocoapod-badges.herokuapp.com/v/Reliant/badge.png)](http://cocoadocs.org/docsets/Reliant/)
+
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies")) 
 framework for Objective-C, both for OS X and iOS. Its goal is to make its use as simple
 as possible, while not limiting its possibilities. It aims to have as little impact as
@@ -134,6 +136,9 @@ OCSConfiguratorFromClass will detect 4 kinds of methods. (Replace YourObjectKey 
 - (id) createPrototype/*YourObjectKey*/;//Prototype definition
 - (NSArray *) aliasesFor/*YourObjectKey*/;//Alias definitions
 ```
+
+For your convenience we created some [xCode snippets](#xcode-snippets) to help you create these methods.
+
 Let's look at them in more detail:
 
 #### Defining singletons
@@ -330,6 +335,15 @@ This is what you need to do:
 
 And that's all there is to it. The property foo will be injected by Reliant.
 
+
+> **Warning:** when using storyboards you should load your storyboard manually.
+> You can accomplish this by removing your storyboard in the project settings and loading the storyboard in code.
+
+```objective-c
+UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"myViewController"];
+```
+
 ### Preventing injection on specific properties
 
 Reliant will, by default, not try to inject properties like view on UIViewController.
@@ -419,6 +433,22 @@ TODO
 
 @end
 ```
+
+### xCode Snippets
+
+We have provided some snippets to easily create the signature to create singletons in the configurator class.
+
+These can be found here: [xCode Snippets](https://github.com/idamediafoundry/Reliant/tree/master/xCode%20Snippets)
+
+You can install these by downloading these snippets and placing them in the following folder:
+
+```
+~/Library/Developer/Xcode/UserData/CodeSnippets/
+```
+If the folder doesn't exist you can create it.
+Restart xCode and you should be ready to start using the snippets.
+
+In the class implementation of your configurator start typing 'create' and all of the snippets for create singletons, prototypes, and aliases should be at your finger tips.
 
 Interesting references/discussions
 ----------------------------------
