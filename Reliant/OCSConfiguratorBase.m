@@ -28,6 +28,7 @@
         _keysAndAliasRegistry = [[NSMutableArray alloc] init];
         _definitionRegistry = [[NSMutableDictionary alloc] init];
         _initializing = YES;
+        _singletonScope = [[OCSSingletonScope alloc] init];
     }
     return self;
 }
@@ -45,10 +46,10 @@
         id <OCSScope> scope = [context scopeForClass:definition.scopeClass];
 
         if (definition.singleton) {
-            result = [scope objectForKey:definition.key];
+            result = [_singletonScope objectForKey:definition.key];
             if (result == nil) {
                 result = [self createObjectInstanceForKey:definition.key inContext:context];
-                [scope registerObject:result forKey:definition.key];
+                [_singletonScope registerObject:result forKey:definition.key];
                 
                 //If we are still initializing, postpone the injection process
                 //Ohterwise we can do injection.

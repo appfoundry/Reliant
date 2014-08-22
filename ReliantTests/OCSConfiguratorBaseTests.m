@@ -182,21 +182,6 @@
     XCTAssertTrue([objectKeys isEqualToArray:expected], @"The expected objects keys %@ were returned as %@",expected.description,objectKeys.description);
 }
 
-- (void)testObjectForKeyInContextShouldGetTheObjectFromTheScopeFoundInApplicationContext {
-    OCSDefinition *definition = [[OCSDefinition alloc] init];
-    definition.key = @"theKey";
-    definition.scopeClass = [DummyScope class];
-    [dummyConfigurator registerDefinition:definition];
-    dummyConfigurator.initializing = NO;
-
-    DummyScope *dummyScope = mock([DummyScope class]);
-    [given([context scopeForClass:[DummyScope class]]) willReturn:dummyScope];
-    [given([dummyScope objectForKey:@"theKey"]) willReturn:@"TheObject"];
-
-    id object = [dummyConfigurator objectForKey:@"theKey" inContext:context];
-    XCTAssertEqual(object, @"TheObject");
-}
-
 @end
 
 @implementation SimpleObjectHolder
