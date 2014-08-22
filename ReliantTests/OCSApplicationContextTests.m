@@ -25,6 +25,7 @@
 #define HC_SHORTHAND
 
 #import <OCHamcrest/OCHamcrest.h>
+#import <objc/runtime.h>
 
 #import "OCSApplicationContextTests.h"
 
@@ -32,9 +33,11 @@
 
 #import "OCSConfigurator.h"
 #import "OCSApplicationContext.h"
+#import "OCSScopeFactory.h"
+#import "OCSDefaultScopeFactory.h"
+#import "OCSDefinition.h"
 #import "OCSScope.h"
-#import "OCSApplicationContext+Protected.h"
-#import "DummyScope.h"
+#import "OCSObjectFactory.h"
 
 @protocol SomeSuperProtocol <NSObject>
 
@@ -103,39 +106,134 @@
 
 @implementation OCSApplicationContextTests {
     //SUT
-    OCSApplicationContext *context;
-    id <OCSConfigurator> configurator;
+    OCSApplicationContext *_context;
+    id<OCSConfigurator> _configurator;
+    id<OCSScopeFactory> _scopeFactory;
+    id<OCSObjectFactory> _objectFactory;
+    id<OCSScope> _scope;
+    NSMutableArray *_knownKeys;
 }
 
 - (void)setUp {
     [super setUp];
-    // Set-up code here.
-    configurator = mockProtocol(@protocol(OCSConfigurator));
-    context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    _configurator = mockProtocol(@protocol(OCSConfigurator));
+    _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
+    _objectFactory = mockProtocol(@protocol(OCSObjectFactory));
+    _scope = mockProtocol(@protocol(OCSScope));
+    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
+    _knownKeys = [[NSMutableArray alloc] init];
+
+    [given([_configurator objectFactory]) willReturn:_objectFactory];
+    [given([_configurator objectKeys]) willReturn:_knownKeys];
+
 }
 
-- (void)tearDown {
-    // Tear-down code here.
-
-    configurator = nil;
-    context = nil;
-
-    [super tearDown];
+- (void)testShouldNotInitWithoutConfig {
+    _context = [[OCSApplicationContext alloc] initWithConfigurator:nil scopeFactory:_scopeFactory];
+    assertThat(_context, is(nilValue()));
 }
+
+- (void)testShouldNotInitWithoutScopeFactory {
+    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:nil];
+    assertThat(_context, is(nilValue()));
+}
+
+- (void)testConvenienceInitFailsWhenNoReliantConfigurationClassFound {
+    _context = [[OCSApplicationContext alloc] init];
+    assertThat(_context, is(nilValue()));
+}
+
+- (void)testConvenienceInitSucceedsWhenReliantConfigurationClassFound {
+    Class reliantConfigurationClass = [self _createAutoDetectedReliantConfigurationClass];
+    _context = [[OCSApplicationContext alloc] init];
+    assertThat(_context, is(notNilValue()));
+    objc_disposeClassPair(NSClassFromString(@"OCSReliantExtended_DummyTestReliantConfiguration"));
+    objc_disposeClassPair(reliantConfigurationClass);
+
+}
+
+- (Class)_createAutoDetectedReliantConfigurationClass {
+    Class reliantConfigurationClass = objc_allocateClassPair([NSObject class], "DummyTestReliantConfiguration", sizeof(id));
+    objc_registerClassPair(reliantConfigurationClass);
+    return reliantConfigurationClass;
+}
+
+- (void)testConvenienceInitWithConfiguratorCreatesSetsScopeFactoryToDefaultImplementation {
+    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator];
+    assertThat(_context.scopeFactory, is(instanceOf([OCSDefaultScopeFactory class])));
+}
+
 
 - (void)testStart {
-    BOOL result = [context start];
+    BOOL result = [_context start];
     XCTAssertTrue(result, @"Application context startup is expected to succeed");
-    [verify(configurator) contextLoaded:context];
 }
 
-- (void)testObjectForKey {
-    [given([configurator objectForKey:@"SomeKey" inContext:context]) willReturn:@"StringObject"];
+- (void)testObjectForKeyReturnsObjectFromScopeIfAvailable {
+    NSString *objectKey = @"SomeKey";
+    id expectedObject = @"StringObject";
 
-    XCTAssertTrue([@"StringObject" isEqualToString:[context objectForKey:@"SomeKey"]], @"SomeKey key should return the configurator's StringObject");
-    XCTAssertNil([context objectForKey:@"UnknownKey"], @"UnknownKey should return nil");
+    [self _prepareContextToFindObjectForKey:objectKey inScopeNamed:@"scope" withValue:expectedObject];
+
+    id result = [_context objectForKey:objectKey];
+    assertThat(result, is(equalTo(expectedObject)));
 }
 
+- (void)testObjectForKeyReturnsNilIfKeyNotFoundInDefinition {
+    assertThat([_context objectForKey:@"UnknownKey"], is(nilValue()));
+}
+
+- (void)testObjectForKeyDoesNotAskForScopeWhenDefinitionIsMissing {
+    [_context objectForKey:@"UnknownKey"];
+    [verifyCount(_scopeFactory, never()) scopeForName:anything()];
+}
+
+- (void) testObjectForKeyShouldCallObjectFactoryWhenScopeIsMissingValue {
+    NSString *objectKey = @"SomeKey";
+    NSString *scopeName = @"scope";
+    id expectedObject = @"StringObject";
+
+    OCSDefinition *def = [self _prepareContextToNotFindObjectForKey:objectKey inScopeNamed:scopeName expectedObject:expectedObject];
+
+    [_context objectForKey:objectKey];
+    [verify(_objectFactory) createObjectForDefinition:def inContext:_context];
+}
+
+- (void)testObjectForKeyShouldStoreObjectFactoryCreatedValueInScopeWhenScopeIsMissingValue {
+    NSString *objectKey = @"SomeKey";
+    NSString *scopeName = @"scope";
+    id expectedObject = @"StringObject";
+
+    [self _prepareContextToNotFindObjectForKey:objectKey inScopeNamed:scopeName expectedObject:expectedObject];
+
+    [_context objectForKey:objectKey];
+    [verify(_scope) registerObject:expectedObject forKey:objectKey];
+}
+
+- (void)testObjectForKeyShouldReturnObjectFactoryCreatedValueInScopeWhenScopeIsMissingValue {
+    NSString *objectKey = @"SomeKey";
+    NSString *scopeName = @"scope";
+    id expectedObject = @"StringObject";
+    [self _prepareContextToNotFindObjectForKey:objectKey inScopeNamed:scopeName expectedObject:expectedObject];
+    assertThat([_context objectForKey:objectKey], is(equalTo(expectedObject)));
+}
+
+- (void)testInjectionShouldHaveHappenedWhenObjectIsNewlyCreated {
+    NSString *objectKey = @"SomeKey";
+    NSString *scopeName = @"scope";
+    id expectedObject = [[DummyClass alloc] init];
+    [self _prepareContextToNotFindObjectForKey:objectKey inScopeNamed:scopeName expectedObject:expectedObject];
+    [self _prepareContextToFindObjectForKey:@"publiclyKnownProperty" inScopeNamed:@"scope" withValue:@"InjectedString"];
+    DummyClass *result = [_context objectForKey:objectKey];
+    assertThat(result.publiclyKnownProperty, is(@"InjectedString"));
+}
+
+- (void)test {
+
+}
+
+
+/*
 - (void)testPerformInjection {
     DummyClass *dummy = [[DummyClass alloc] init];
 
@@ -259,18 +357,32 @@
 - (void)testScopeOfClassShouldThrowExceptionWhenPassingNonOCSScopeClass {
     XCTAssertThrowsSpecificNamed([context scopeForClass:[NSString class]], NSException, @"OCSInvalidScopeException");
 }
+   */
+
+- (OCSDefinition *)_prepareContextToFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName withValue:(id)expectedObject {
+    OCSDefinition *def = [[OCSDefinition alloc] init];
+    def.key = objectKey;
+    def.scope = scopeName;
+    [given([_configurator definitionForKeyOrAlias:objectKey]) willReturn:def];
+    [given([_scopeFactory scopeForName:scopeName]) willReturn:_scope];
+    [given([_scope objectForKey:objectKey]) willReturn:expectedObject];
+
+    [_knownKeys addObject:objectKey];
+    return def;
+}
+
+- (OCSDefinition *)_prepareContextToNotFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName expectedObject:(id)expectedObject {
+    OCSDefinition *def = [self _prepareContextToFindObjectForKey:objectKey inScopeNamed:scopeName withValue:nil];
+    [given([_objectFactory createObjectForDefinition:def inContext:_context]) willReturn:expectedObject];
+    return def;
+}
+
 
 @end
 
 @implementation DummyClass
 
-@synthesize publiclyKnownPrivate;
-@synthesize publiclyKnownProperty;
-@synthesize privateProperty;
 @synthesize privatePropertyWithCustomVarName = _customVarName;
-@synthesize unknownProperty;
-@synthesize superProtocolProperty;
-@synthesize intProperty, boolProperty, longProperty, charProperty, floatProperty, doubleProperty, readOnlyProperty;
 
 @end
 

@@ -19,6 +19,8 @@
 
 @protocol OCSConfigurator;
 @protocol OCSScope;
+@protocol OCSObjectFactory;
+@protocol OCSScopeFactory;
 
 /**
  The application's dependency injection (DI) context. To bootstrap Reliant, you should use this class, or one of it's derivatives.
@@ -31,12 +33,16 @@
  */
 @interface OCSApplicationContext : NSObject
 
+@property (nonatomic, readonly) id<OCSScopeFactory> scopeFactory;
+
 /**
- Designated initializer. Prepares the application context with the configurator, so it can start.
+ Designated initializer. Prepares the application context with the given configurator.
  
  @param configurator The configurator that will be used to setup the context.
  */
-- (id) initWithConfigurator:(id<OCSConfigurator>) configurator;
+- (instancetype) initWithConfigurator:(id<OCSConfigurator>) configurator;
+
+- (instancetype) initWithConfigurator:(id<OCSConfigurator>) configurator scopeFactory:(id<OCSScopeFactory>) scopeFactory;
 
 /**
  Returns the object know by the key (might be an alias to). If an object for the given key (or an alias) is not found, nil is returned.

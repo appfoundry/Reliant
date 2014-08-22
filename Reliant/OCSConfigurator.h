@@ -18,6 +18,8 @@
 //  limitations under the License.
 
 @class OCSApplicationContext;
+@protocol OCSObjectFactory;
+@class OCSDefinition;
 
 /**
  Describes the possibilities of a configurator. 
@@ -32,37 +34,23 @@
 @protocol OCSConfigurator <NSObject>
 
 /**
- Flag indicating wether this configurator is still initializing.
- 
- While initializing, you should not try to retrieve any objects from the configurator, as it will always return nil in this situation.
- @return YES if still initializing, no otherwise.
- */
-@property (readonly, nonatomic, assign) BOOL initializing;
+ A configurator decides which object factory the application context will use to create objects based on the definitions found in this configurator.
+*/
+@property (readonly, nonatomic) id<OCSObjectFactory> objectFactory;
 
 /**
-
+ All keys of the definitions found in this configurator. This list includes both keys and aliases.
 */
 @property (readonly, nonatomic, copy) NSArray *objectKeys;
 
 /**
- Notifies the configurator that the context is fully loaded and ready to be configured. You should never call this method yourself!
- 
- Implementations must set the initializing flag to YES at the end of this method.
- 
- TODO Consider this to be hidden in the implementation!
- 
- @param context the context which was loaded
- */
-- (void) contextLoaded:(OCSApplicationContext *) context;
+Get a definition for the given key or alias.
 
-/**
- Returns the object for the given key or alias for the given context. While the configurator is initializing, this method will return nil. Also, when an object for the given key or alias can not be found, nil is returned. Callers can distinguish nil significatne with the initializing flag.
- 
- @param keyOrAlias The key or alias to look for.
- @param context The context in which this object is asked.
- 
- @return the object, or nil if we are still initializing or if the object for the given key or alias is not found.
- */
-- (id) objectForKey:(NSString *) keyOrAlias inContext:(OCSApplicationContext *) context;
+@param keyOrAlias the key or alias of the definition you are looking for
+
+@return the definition with the given key or alias, or nil if no such definition exists.
+*/
+- (OCSDefinition *) definitionForKeyOrAlias:(NSString *) keyOrAlias;
+
 
 @end

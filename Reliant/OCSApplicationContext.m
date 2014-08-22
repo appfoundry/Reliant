@@ -26,6 +26,10 @@
 #import "OCSDLogger.h"
 #import "OCSPropertyRuntimeInfo.h"
 #import "OCSConfiguratorFromClass.h"
+#import "OCSObjectFactory.h"
+#import "OCSDefinition.h"
+#import "OCSScopeFactory.h"
+#import "OCSDefaultScopeFactory.h"
 
 /**
 Application context private category. Holds private ivars and methods.
@@ -34,12 +38,12 @@ Application context private category. Holds private ivars and methods.
     /**
     The configurator instance.
     */
-    id <OCSConfigurator> _configurator;
-    NSMutableDictionary *_scopeRegistry;
+    id<OCSConfigurator> _configurator;
+    id<OCSScopeFactory> _scopeFactory;
 }
 
 /**
-Recursive method for injecting objects with their dependencies. This method recurse over parent classes, so all properties on parrent classes are injected as well.
+Recursive method for injecting objects with their dependencies. This method iterates over parent classes, so all properties on parent classes are injected as well.
 
 @param object the object to inject
 @param metaClass the metaClass for the current iteration.
@@ -56,10 +60,15 @@ Recursive method for injecting objects with their dependencies. This method recu
 }
 
 - (id)initWithConfigurator:(id <OCSConfigurator>)configurator {
+    OCSDefaultScopeFactory *defaultScopeFactory = [[OCSDefaultScopeFactory alloc] init];
+    return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory];
+}
+
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory {
     self = [super init];
-    if (self && configurator) {
+    if (self && configurator && scopeFactory) {
         _configurator = configurator;
-        _scopeRegistry = [[NSMutableDictionary alloc] init];
+        _scopeFactory = scopeFactory;
     } else {
         self = nil;
     }
@@ -67,14 +76,36 @@ Recursive method for injecting objects with their dependencies. This method recu
 }
 
 - (id)objectForKey:(NSString *)key {
-    return [_configurator objectForKey:key inContext:self];
+    id result = nil;
+    OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
+    if (definition) {
+        id <OCSScope> scope = [_scopeFactory scopeForName:definition.scope];
+        if (scope) {
+            result = [scope objectForKey:definition.key];
+            if (!result) {
+                result = [_configurator.objectFactory createObjectForDefinition:
+                        definition                                    inContext:self];
+                [self performInjectionOn:result];
+                [scope registerObject:result forKey:definition.key];
+            }
+        }
+    }
+    return result;
 }
 
 - (BOOL)start {
-    //Done registering all objects, now do injections for singletons using KVC
-    [_configurator contextLoaded:self];
+    [self _initAndInjectNonLazyObjects];
 
     return YES;
+}
+
+- (void)_initAndInjectNonLazyObjects {
+    for (NSString *key in [_configurator objectKeys]) {
+        OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
+        if (definition.singleton && !definition.lazy) {
+            [self objectForKey:key];
+        }
+    }
 }
 
 - (void)performInjectionOn:(id)object {
@@ -116,7 +147,7 @@ Recursive method for injecting objects with their dependencies. This method recu
 }
 
 - (void)_injectPropertyOnObject:(id)object withProperty:(OCSPropertyRuntimeInfo *)pi {
-    id value = [_configurator objectForKey:pi.name inContext:self];
+    id value = [self objectForKey:pi.name];
     if (value) {
         [self _setPropertyValue:value onObject:object property:pi];
     } else {
@@ -186,20 +217,6 @@ Recursive method for injecting objects with their dependencies. This method recu
 #pragma clang diagnostic pop
     }
     return currentValue;
-}
-
-- (id <OCSScope>)scopeForClass:(Class)refClass {
-    if (![refClass conformsToProtocol:@protocol(OCSScope)]){
-        @throw [NSException exceptionWithName:@"OCSInvalidScopeException" reason:@"Given scope does not conform to the OCSScope protocol" userInfo:nil];
-    }
-
-    NSString *nameOfScope = NSStringFromClass(refClass);
-    id <OCSScope> foundScope = _scopeRegistry[nameOfScope];
-    if (!foundScope){
-        foundScope = [[refClass alloc] init];
-        _scopeRegistry[nameOfScope] = foundScope;
-    }
-    return foundScope;
 }
 
 @end

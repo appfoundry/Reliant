@@ -44,7 +44,7 @@
 }
 
 
-- (id) createSingletonSomeObjectWithSuper:(ObjectWithInjectables *) super andExtended:(ExtendedObjectWithInjectables *) extended {
+- (id) createSingletonSomeObjectWithSuper:(ObjectWithInjectables *) someSuper andExtended:(ExtendedObjectWithInjectables *) extended {
     return @"WRONG AGAIN";
 }
 

@@ -19,29 +19,8 @@
 
 #import "OCSScope.h"
 
-@interface OCSConfiguratorBase : NSObject<OCSConfigurator> {
-    @private
-    
-    /**
-     Used during initialisation to make sure aliases and keys are all unique.
-     */
-    NSMutableArray *_keysAndAliasRegistry;
-    
-    /**
-     Registry of object definitions, derived from the configurator instance.
-     @see OCSDefinition
-     */
-    NSMutableDictionary *_definitionRegistry;
-    
-    /**
-     Flag to check if we are still initializing. While initialization is going on, we should not return any objects yet as there state might be unpredictable.
-     */
-    BOOL _initializing;
-    
-    /**
-     A scope holding singletons
-     */
-    id<OCSScope> _singletonScope;
-}
+@protocol OCSObjectFactory;
+
+@interface OCSConfiguratorBase : NSObject<OCSConfigurator>
 
 @end

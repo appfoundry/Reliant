@@ -27,7 +27,7 @@
     _definition.key = @"key";
     _definition.implementingClass = [NSString class];
     _definition.lazy = YES;
-    _definition.scopeClass = [OCSSingletonScope class];
+    _definition.scope = @"singleton";
 }
 
 - (void)testInitShouldCreateDefinition
@@ -61,11 +61,7 @@
 }
 
 - (void)testScopeClassIsAsSet{
-    XCTAssertEqual(_definition.scopeClass, [OCSSingletonScope class]);
-}
-
-- (void)testSetScopeClassShouldNotAllowNonScopeClasses{
-    XCTAssertThrows([_definition setScopeClass:[NSString class]]);
+    XCTAssertEqual(_definition.scope, @"singleton");
 }
 
 @end

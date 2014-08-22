@@ -6,90 +6,73 @@
 //  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
 //
 
-#import "OCSConfiguratorBase.h"
 #import "OCSConfiguratorBase+ForSubclassEyesOnly.h"
-
 #import "OCSDefinition.h"
-#import "OCSApplicationContext.h"
 
-#import "OCSSingletonScope.h"
-#import "OCSApplicationContext+Protected.h"
+@interface OCSConfiguratorBase () {
+    /**
+    Used during initialisation to make sure aliases and keys are all unique.
+    */
+    NSMutableArray *_keysAndAliasesRegistry;
+
+    /**
+    Registry of object definitions, derived from the configurator instance.
+    @see OCSDefinition
+    */
+    NSMutableDictionary *_definitionRegistry;
+}
+
+@end
 
 @implementation OCSConfiguratorBase
 
-- (BOOL) initializing {
-    return _initializing;
-}
-
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
-        _keysAndAliasRegistry = [[NSMutableArray alloc] init];
+        _keysAndAliasesRegistry = [[NSMutableArray alloc] init];
         _definitionRegistry = [[NSMutableDictionary alloc] init];
-        _initializing = YES;
-        _singletonScope = [[OCSSingletonScope alloc] init];
     }
     return self;
 }
 
 - (NSArray *)objectKeys {
-    return [_keysAndAliasRegistry copy];
+    return [_keysAndAliasesRegistry copy];
 }
 
-- (id) _internalObjectForKey:(NSString *) keyOrAlias inContext:(OCSApplicationContext *) context {
-    OCSDefinition *definition = [self definitionForKeyOrAlias:keyOrAlias];
-    id result = nil;
-    if (definition) {
-        //If singleton, check if we already have it in our registry. If not load it and put it there.
-        //DO NOT do anything different for lazy or eager singletons. If demanded, we must always load!
-        id <OCSScope> scope = [context scopeForClass:definition.scopeClass];
-
-        if (definition.singleton) {
-            result = [_singletonScope objectForKey:definition.key];
-            if (result == nil) {
-                result = [self createObjectInstanceForKey:definition.key inContext:context];
-                [_singletonScope registerObject:result forKey:definition.key];
-                
-                //If we are still initializing, postpone the injection process
-                //Ohterwise we can do injection.
-                if (!self.initializing) {
-                    [context performInjectionOn:result];
-                }
+- (OCSDefinition *)definitionForKeyOrAlias:(NSString *)keyOrAlias {
+    OCSDefinition *def = _definitionRegistry[keyOrAlias];
+    if (!def) {
+        for (OCSDefinition *definition in [_definitionRegistry allValues]) {
+            if ([definition.key isEqualToString:keyOrAlias] || [definition isAlsoKnownWithAlias:keyOrAlias]) {
+                def = definition;
+                break;
             }
-        } else {
-            //Prototype, always create a new one
-            result = [self createObjectInstanceForKey:definition.key inContext:context];
-            
-            [context performInjectionOn:result];
         }
     }
-    return result;
+
+    return def;
 }
 
-- (id) objectForKey:(NSString *)keyOrAlias inContext:(OCSApplicationContext *)context {
-    id result = nil;
-    if (!self.initializing) {
-        result = [self _internalObjectForKey:keyOrAlias inContext:context];
+/**
+Register a key or alias. This method will raise an exception if the key or alias is already regsiterd. Keys and aliases should all be unique. This method is called in the definitionForKeyOrAlias: method.
+
+@param keyOrAlias the key or alias to register
+*/
+- (void) _registerKeyOrAlias:(NSString *)keyOrAlias {
+    if ([_keysAndAliasesRegistry containsObject:keyOrAlias]) {
+        [NSException raise:@"OCSConfiguratorException" format:@"A key or alias with value %@ already exists, you should check your namings in your configurator", keyOrAlias];
     }
-    return result;
+
+    [_keysAndAliasesRegistry addObject:keyOrAlias];
 }
 
-- (void) contextLoaded:(OCSApplicationContext *) context {
-    for (NSString *key in [_definitionRegistry allKeys]) {
-        OCSDefinition *definition = [_definitionRegistry objectForKey:key];
-        //Load eager singletons directly
-        if (definition.singleton && !definition.lazy) {
-            id instance = [self _internalObjectForKey:key inContext:context];
-            _initializing = NO;
-            [context performInjectionOn:instance];
-            _initializing = YES;
-        }
-    }
-    
-    [self internalContextLoaded:context];
-    
-    _initializing = NO;
+- (void) registerDefinition:(OCSDefinition *)definition {
+    [self _registerKeyOrAlias:definition.key];
+    [definition.aliases enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self _registerKeyOrAlias:obj];
+    }];
+
+    _definitionRegistry[definition.key] = definition;
 }
 
 

@@ -33,8 +33,10 @@
 #import "OCSConfiguratorFromClass.h"
 #import "OCSApplicationContext.h"
 #import "DummyConfigurator.h"
-#import "OCSApplicationContext+Protected.h"
 #import "OCSSingletonScope.h"
+#import "OCSDefinition.h"
+#import "OCSObjectFactory.h"
+#import "OCSScopeFactory.h"
 
 @interface DummyConfigurator (SomeDummyCategory)
 
@@ -44,14 +46,15 @@
 
 @end
 
-@interface AutoDetectedReliantConfiguration : NSObject
+/*@interface AutoDetectedReliantConfiguration : NSObject
 
-@end
+@end*/
 
 
 
 @implementation OCSConfiguratorFromClassTests {
-    OCSConfiguratorFromClass *configurator;
+    OCSConfiguratorFromClass *_configurator;
+    OCSApplicationContext *_context;
 
     int verySmartNameInjected;
     int unbelievableOtherSmartNameInjected;
@@ -64,16 +67,67 @@
 
 - (void) setUp {
     [super setUp];
-    configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DummyConfigurator class]];
+    _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DummyConfigurator class]];
+    _context = mock([OCSApplicationContext class]);
 }
 
-- (void) tearDown {
-    // Tear-down code here.
-    configurator = nil;
-
-    [super tearDown];
+- (void)testHasDefinitionForVerySmartName {
+    assertThat(_configurator.objectKeys, hasItem(@"VerySmartName"));
+    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"VerySmartName"];
+    assertThat(def.key, is(equalTo(@"VerySmartName")));
+    assertThat(def.scope, is(equalTo(@"singleton")));
+    assertThat(def.aliases, hasItems(@"verySmartName", @"VERYSMARTNAME", @"aliasForVerySmartName", @"justAnotherNameForVerySmartName", nil));
 }
 
+- (void)testObjectFactoryIsGeneratedSubclassOfConfigurationClass {
+    assertThat(_configurator.objectFactory, is(instanceOf([DummyConfigurator class])));
+}
+
+- (void)testObjectFactoryIsIndeedAnObjectFactory {
+    NSObject *factory = (NSObject *)_configurator.objectFactory;
+    assertThatBool([factory conformsToProtocol:@protocol(OCSObjectFactory)], is(equalToBool(YES)));
+    assertThatBool([factory respondsToSelector:@selector(createObjectForDefinition:inContext:)], is(equalToBool(YES)));
+}
+
+- (void)testObjectFactoryChecksWithContextIfObjectExists {
+    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"VerySmartName"];
+    id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
+    id<OCSScope> scope = mockProtocol(@protocol(OCSScope));
+    [given([_context scopeFactory]) willReturn:factory];
+    [given([factory scopeForName:def.scope]) willReturn:scope];
+    [_configurator.objectFactory createObjectForDefinition:def inContext:_context];
+    [verify(scope) objectForKey:def.key];
+}
+
+- (void)testObjectFactoryReturnsObjectFromScopeIfAlreadyThere {
+    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"LazyOne"];
+    id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
+    id<OCSScope> scope = mockProtocol(@protocol(OCSScope));
+    [given([_context scopeFactory]) willReturn:factory];
+    [given([factory scopeForName:def.scope]) willReturn:scope];
+    [given([scope objectForKey:def.key]) willReturn:@"AString"];
+    id result = [_configurator.objectFactory createObjectForDefinition:def inContext:_context];
+    assertThat(result, is(equalTo(@"AString")));
+}
+
+- (void)testObjectFactoryReturnsObjectFromCreateMethod {
+    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"LazyOne"];
+    id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
+    id<OCSScope> scope = mockProtocol(@protocol(OCSScope));
+    [given([_context scopeFactory]) willReturn:factory];
+    [given([factory scopeForName:def.scope]) willReturn:scope];
+    [given([scope objectForKey:def.key]) willReturn:nil];
+    id result = [_configurator.objectFactory createObjectForDefinition:def inContext:_context];
+    (result, is(instanceOf([NSMutableDictionary class])));
+}
+
+- (void)testNestedDependencyShouldBeInjected {
+    XCTFail(@"Not supported yet");
+
+}
+
+
+ /*
 - (void) testBeforeLoaded {
     OCSApplicationContext *context = mock([OCSApplicationContext class]);
     id object = [configurator objectForKey:@"VerySmartName" inContext:context];
@@ -167,7 +221,7 @@
     XCTAssertNotNil(autoDetectedConfig, @"Should init");
 }
 
-
+      */
 @end
 
 
@@ -179,7 +233,7 @@
 
 @end
 
-@implementation AutoDetectedReliantConfiguration
+/*@implementation AutoDetectedReliantConfiguration
 
 @end
 
@@ -197,4 +251,4 @@
     return [NSArray arrayWithObject:@"keyValue"];
 }
 
-@end
+@end   */

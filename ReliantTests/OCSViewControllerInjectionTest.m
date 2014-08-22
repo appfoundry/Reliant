@@ -14,6 +14,9 @@
 #import <OCHamcrest/OCHamcrest.h>
 #import "OCSApplicationContext.h"
 #import "OCSConfigurator.h"
+#import "OCSScope.h"
+#import "OCSScopeFactory.h"
+#import "OCSDefinition.h"
 
 @interface SimpleViewController : UIViewController
 
@@ -26,7 +29,10 @@
 
 @interface OCSViewControllerInjectionTest : XCTestCase {
     id<OCSConfigurator> _configurator;
+    id<OCSScopeFactory> _scopeFactory;
+    id<OCSScope> _scope;
     OCSApplicationContext *_context;
+
 }
 
 @end
@@ -36,10 +42,14 @@
 - (void)setUp
 {
     [super setUp];
-    _configurator = mockProtocol(@protocol(OCSConfigurator));
-    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator];
-    [given([_configurator objectKeys]) willReturn:@[@"injected"]];
 
+    _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
+    _configurator = mockProtocol(@protocol(OCSConfigurator));
+
+    _scope = mockProtocol(@protocol(OCSScope));
+    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
+    [given([_scopeFactory scopeForName:anything()]) willReturn:_scope];
+    [given([_configurator objectKeys]) willReturn:@[@"injected"]];
 }
 
 - (void) testViewShouldNotLoad {
@@ -48,9 +58,14 @@
 }
 
 - (void) testViewControllerIsBeingInjected {
-    [given([_configurator objectForKey:@"injected" inContext:_context]) willReturn:@"InjectedString"];
+    [given([_scope objectForKey:@"injected"]) willReturn:@"InjectedString"];
 
-    
+    OCSDefinition *definition = [[OCSDefinition alloc] init];
+    definition.key = @"injected";
+    definition.scope = @"singleton";
+
+    [given([_configurator definitionForKeyOrAlias:@"injected"]) willReturn:definition];
+
     SimpleViewController *svc = [[SimpleViewController alloc] initWithContext:_context];
     XCTAssertEqual(svc.injected, @"InjectedString", @"The injectable property was not injected");
 }
@@ -58,16 +73,10 @@
 - (void) testViewControllerInjectionExcludesExcludedProperties {
     UIViewController *controller = [[SimpleViewController alloc] initWithContext:_context];
     XCTAssertNotNil(controller, @"Controller should init");
-    [verify(_configurator) objectForKey:@"injected" inContext:_context];
-    [verifyCount(_configurator, never()) objectForKey:(id)isNot(@"injected") inContext:_context];
+
+    [verify(_configurator) definitionForKeyOrAlias:@"injected"];
+    [verifyCount(_configurator, never()) definitionForKeyOrAlias:isNot(@"injected")];
 }
-
-- (void)tearDown
-{
-    [super tearDown];
-}
-
-
 
 @end
 
