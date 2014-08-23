@@ -69,6 +69,7 @@
     [super setUp];
     _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DummyConfigurator class]];
     _context = mock([OCSApplicationContext class]);
+    [_configurator.objectFactory bindToContext:_context];
 }
 
 - (void)testHasDefinitionForVerySmartName {
@@ -86,142 +87,26 @@
 - (void)testObjectFactoryIsIndeedAnObjectFactory {
     NSObject *factory = (NSObject *)_configurator.objectFactory;
     assertThatBool([factory conformsToProtocol:@protocol(OCSObjectFactory)], is(equalToBool(YES)));
-    assertThatBool([factory respondsToSelector:@selector(createObjectForDefinition:inContext:)], is(equalToBool(YES)));
+    assertThatBool([factory respondsToSelector:@selector(createObjectForDefinition:)], is(equalToBool(YES)));
+    assertThatBool([factory respondsToSelector:@selector(bindToContext:)], is(equalToBool(YES)));
 }
 
-- (void)testObjectFactoryChecksWithContextIfObjectExists {
-    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"VerySmartName"];
-    id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
-    id<OCSScope> scope = mockProtocol(@protocol(OCSScope));
-    [given([_context scopeFactory]) willReturn:factory];
-    [given([factory scopeForName:def.scope]) willReturn:scope];
-    [_configurator.objectFactory createObjectForDefinition:def inContext:_context];
-    [verify(scope) objectForKey:def.key];
-}
-
-- (void)testObjectFactoryReturnsObjectFromScopeIfAlreadyThere {
-    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"LazyOne"];
-    id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
-    id<OCSScope> scope = mockProtocol(@protocol(OCSScope));
-    [given([_context scopeFactory]) willReturn:factory];
-    [given([factory scopeForName:def.scope]) willReturn:scope];
-    [given([scope objectForKey:def.key]) willReturn:@"AString"];
-    id result = [_configurator.objectFactory createObjectForDefinition:def inContext:_context];
-    assertThat(result, is(equalTo(@"AString")));
-}
 
 - (void)testObjectFactoryReturnsObjectFromCreateMethod {
     OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"LazyOne"];
     id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
-    id<OCSScope> scope = mockProtocol(@protocol(OCSScope));
     [given([_context scopeFactory]) willReturn:factory];
-    [given([factory scopeForName:def.scope]) willReturn:scope];
-    [given([scope objectForKey:def.key]) willReturn:nil];
-    id result = [_configurator.objectFactory createObjectForDefinition:def inContext:_context];
+    id result = [_configurator.objectFactory createObjectForDefinition:def];
     (result, is(instanceOf([NSMutableDictionary class])));
 }
 
-- (void)testNestedDependencyShouldBeInjected {
-    XCTFail(@"Not supported yet");
-
+- (void)testNestedPropertyIsTestedForOccuranceInContext {
+    OCSDefinition *def = [_configurator definitionForKeyOrAlias:@"Super"];
+    id result = [_configurator.objectFactory createObjectForDefinition:def];
+    assertThat(result, is(notNilValue()));
+    [verify(_context) objectForKey:@"VerySmartName"];
 }
 
-
- /*
-- (void) testBeforeLoaded {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-    id object = [configurator objectForKey:@"VerySmartName" inContext:context];
-    XCTAssertNil(object, @"No objects should ever be returned when still initializing");
-
-}
-
-- (id) doTestSingletonRetrievalWithKey:(NSString *) key andAliases:(NSArray *) aliases inContext:(OCSApplicationContext *) context {
-    id singleton = [configurator objectForKey:key inContext:context];
-    XCTAssertNotNil(singleton, @"Singleton %@ shoud be available", key);
-    XCTAssertTrue(singleton == [configurator objectForKey:key inContext:context], @"Retrieving a singleton by key from the configurator should always return the same instance");
-    [aliases enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        XCTAssertTrue(singleton == [configurator objectForKey:obj inContext:context], @"Retrieving a singleton by alias from the configurator should always return the same instance");
-
-    }];
-    return singleton;
-}
-
-
-- (void) testLoadShouldInjectLoadedObjects {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-    [configurator contextLoaded:context];
-    [verifyCount(context, times(6)) performInjectionOn:anything()];
-
-    //TODO check which methods were called exactly, after refactoring the object storage to the context / scopes
-}
-
-- (void) testSameInstanceIsReturnedForKeyAndAliases {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-    [configurator contextLoaded:context];
-    [self doTestSingletonRetrievalWithKey:@"Super" andAliases:@[@"super", @"SUPER"] inContext:context];
-    [self doTestSingletonRetrievalWithKey:@"Extended" andAliases:@[@"extended", @"EXTENDED"] inContext:context];
-}
-
-- (void) testDifferentInjectedObjectsShouldHaveSameInstanceForSingleton {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-    [configurator contextLoaded:context];
-    NSObject *verySmartItself = [configurator objectForKey:@"VerySmartName" inContext:context];
-    ObjectWithInjectables *owi = [configurator objectForKey:@"Super" inContext:context];
-    XCTAssertTrue(verySmartItself == owi.verySmartName, @"The constructor injected instance should be the same as the instance created by the base method");
-}
-
-- (void) testRetrievePrototypeObject {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-    [configurator contextLoaded:context];
-    NSMutableArray *firstProto = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
-    XCTAssertNotNil(firstProto, @"Prototype should have been created");
-    NSMutableArray *secondProto = [configurator objectForKey:@"UnbelievableOtherSmartName" inContext:context];
-    XCTAssertNotNil(secondProto, @"Prototype should have been created");
-    XCTAssertFalse(firstProto == secondProto, @"Prototype instances should be different");
-}
-
-- (void) testLazyLoading {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-
-    OCSSingletonScope *scope = [[OCSSingletonScope alloc] init];
-    [given([context scopeForClass:anything()]) willReturn:scope];
-
-    [configurator contextLoaded:context];
-    NSDictionary *lazyObject = [configurator objectForKey:@"LazyOne" inContext:context];
-    NSDictionary *newlyFetched = [configurator objectForKey:@"LazyOne" inContext:context];
-    XCTAssertNotNil(lazyObject, @"lazyObject should not be nil");
-    XCTAssertNotNil(newlyFetched, @"lazyObject should not be nil");
-    XCTAssertTrue(lazyObject == newlyFetched, @"Instance should be the same when singleton");
-    [verify(context) performInjectionOn:lazyObject];
-}
-
-#if (TARGET_OS_IPHONE)
-- (void) testMemoryWarning {
-    OCSApplicationContext *context = mock([OCSApplicationContext class]);
-    [configurator contextLoaded:context];
-    id firstNeverInjectedByOthers = [configurator objectForKey:@"NeverInjectedByOthers" inContext:context];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
-
-    id secondNeverInjectedByOthers = [self doTestSingletonRetrievalWithKey:@"NeverInjectedByOthers" andAliases:[NSArray arrayWithObjects:@"neverInjectedByOthers", @"NEVERINJECTEDBYOTHERS", nil] inContext:context];
-
-
-    XCTAssertFalse(secondNeverInjectedByOthers == firstNeverInjectedByOthers, @"after memory warnings, objects should have been re-initialized");
-    [verify(context) performInjectionOn:firstNeverInjectedByOthers];
-    [verify(context) performInjectionOn:secondNeverInjectedByOthers];
-}
-#endif
-
-- (void) testBadAliases {
-    XCTAssertThrowsSpecificNamed([[OCSConfiguratorFromClass alloc] initWithClass:[BadAliasFactoryClass class]], NSException, @"OCSConfiguratorException", @"Should throw exception, aliases are bad");
-}
-
-- (void) testAutodetectConfiguration {
-    OCSConfiguratorFromClass *autoDetectedConfig = [[OCSConfiguratorFromClass alloc] init];
-    XCTAssertNotNil(autoDetectedConfig, @"Should init");
-}
-
-      */
 @end
 
 
@@ -233,22 +118,3 @@
 
 @end
 
-/*@implementation AutoDetectedReliantConfiguration
-
-@end
-
-@implementation BadAliasFactoryClass
-
-- (id) createEagerSingleton {
-    return @"Should be ignored, no key";
-}
-
-- (id) createEagerSingletonKeyValue {
-    return @"KeyValue object";
-}
-
-- (NSArray *) aliasesForKeyValue {
-    return [NSArray arrayWithObject:@"keyValue"];
-}
-
-@end   */

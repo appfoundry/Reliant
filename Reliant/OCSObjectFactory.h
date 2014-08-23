@@ -7,6 +7,7 @@
 
 @protocol OCSObjectFactory <NSObject>
 
-- (id)createObjectForDefinition:(OCSDefinition *)definition inContext:(OCSApplicationContext *)context;
+- (id)createObjectForDefinition:(OCSDefinition *)definition;
+- (void)bindToContext:(OCSApplicationContext *)context;
 
 @end

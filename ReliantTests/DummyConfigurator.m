@@ -9,6 +9,17 @@
 #import "DummyConfigurator.h"
 #import "TestObject.h"
 
+@class CircularClassB;
+
+@interface CircularClassA : NSObject
+- (id)initWithB:(CircularClassB *)classB;
+@end
+
+@interface CircularClassB : NSObject
+- (id)initWithA:(CircularClassA *)classA;
+@end
+
+
 @implementation DummyConfigurator
 
 - (NSObject *) createEagerSingletonVerySmartName {
@@ -37,6 +48,14 @@
 
 - (ExtendedObjectWithInjectables *) createEagerSingletonExtended {
     return [[ExtendedObjectWithInjectables alloc] init];
+}
+
+- (id)createEagerSingletonCircularClassA {
+    return [[CircularClassA alloc] initWithB:[self createEagerSingletonCircularClassB]];
+}
+
+- (id)createEagerSingletonCircularClassB {
+    return [[CircularClassB alloc] initWithA:[self createEagerSingletonCircularClassA]];
 }
 
 - (id) createWithBadName {
@@ -72,5 +91,22 @@
 @implementation ExtendedObjectWithInjectables
 
 @synthesize unbelievableOtherSmartName;
+
+@end
+
+@implementation CircularClassA
+
+- (id)initWithB:(CircularClassB *)classB {
+    return nil;
+}
+
+@end
+
+@implementation CircularClassB
+
+- (id)initWithA:(CircularClassA *)classA {
+    return nil;
+}
+
 
 @end

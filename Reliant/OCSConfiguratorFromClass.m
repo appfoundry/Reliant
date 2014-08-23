@@ -30,6 +30,7 @@
 #import "OCSDLogger.h"
 #import "OCSObjectFactory.h"
 #import "OCSScopeFactory.h"
+#import "DRYRuntimeMagic.h"
 
 #define OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK "__ocs_factory_class_generatorBlock"
 #define OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX "OCSReliantExtended_"
@@ -59,9 +60,14 @@ typedef BOOL(^MethodFilter)(NSString *);
 
 typedef NSString *(^KeyGenerator)(NSString *);
 
-
 @interface StandinFactory : NSObject <OCSObjectFactory>
+
+@property (nonatomic, strong) NSMutableArray *factoryCallStack;
+@property (nonatomic, strong) NSMutableArray *extendedStack;
+@property (nonatomic, weak) OCSApplicationContext *applicationContext;
+
 @end
+
 
 @implementation OCSConfiguratorFromClass
 
@@ -193,15 +199,43 @@ typedef NSString *(^KeyGenerator)(NSString *);
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK, sizeof(KeyGenerator), log2(sizeof(KeyGenerator)), @encode(KeyGenerator));
         objc_registerClassPair(extendedClass);
 
-        Method standinCreateObjectMethod = class_getInstanceMethod([StandinFactory class], @selector(createObjectForDefinition:inContext:));
+        Class standinFactoryClass = [StandinFactory class];
+        Method standinCreateObjectMethod = class_getInstanceMethod(standinFactoryClass, @selector(createObjectForDefinition:));
         IMP createObjectIMP = method_getImplementation(standinCreateObjectMethod);
-        class_addMethod(extendedClass, @selector(createObjectForDefinition:inContext:), createObjectIMP, method_getTypeEncoding(standinCreateObjectMethod));
+        class_addMethod(extendedClass, @selector(createObjectForDefinition:), createObjectIMP, method_getTypeEncoding(standinCreateObjectMethod));
+
+        Method standinBindToContextMethod = class_getInstanceMethod(standinFactoryClass, @selector(bindToContext:));
+        IMP bindToContextIMP = method_getImplementation(standinBindToContextMethod);
+        class_addMethod(extendedClass, @selector(bindToContext:), bindToContextIMP, method_getTypeEncoding(standinBindToContextMethod));
+
+        [DRYRuntimeMagic copyPropertyNamed:@"factoryCallStack" fromClass:standinFactoryClass toClass:extendedClass];
+        [DRYRuntimeMagic copyPropertyNamed:@"extendedStack" fromClass:standinFactoryClass toClass:extendedClass];
+        [DRYRuntimeMagic copyPropertyNamed:@"applicationContext" fromClass:standinFactoryClass toClass:extendedClass];
+
+        unsigned int methodCount;
+        Method *methods = class_copyMethodList(baseClass, &methodCount);
+        Method extendedFactoryMethod = class_getInstanceMethod(standinFactoryClass, @selector(extendedFactoryMethod));
+        IMP extendedFactoryMethodIMP = method_getImplementation(extendedFactoryMethod);
+
+        //For each method wich returns an object, add an override
+        for (int i = 0; i < methodCount; i++) {
+            Method m = methods[i];
+            char *returnType = method_copyReturnType(m);
+            //Only take methods which have object as return type, no arguments and are evaluated as valid by the filter block
+            if (returnType[0] == _C_ID && method_getNumberOfArguments(m) == 2 && methodFilter(NSStringFromSelector(method_getName(m)))) {
+                class_addMethod(extendedClass, method_getName(m), extendedFactoryMethodIMP, method_getTypeEncoding(m));
+            }
+            free(returnType);
+        }
+        free(methods);
+
     } else {
         extendedClass = objc_getClass(name);
     }
     free(dest);
 
     instance = [[extendedClass alloc] init];
+    [instance setFactoryCallStack:[NSMutableArray array]];
     Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
     object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
     return instance;
@@ -233,25 +267,103 @@ typedef NSString *(^KeyGenerator)(NSString *);
 
 @end
 
-@implementation StandinFactory
 
-- (id)createObjectForDefinition:(OCSDefinition *)definition inContext:(OCSApplicationContext *)context {
+
+@implementation StandinFactory {
+    NSMutableArray *_factoryCallStack;
+}
+
+static char factoryCallStackKey;
+
+- (NSMutableArray *)factoryCallStack {
+    return objc_getAssociatedObject(self, &factoryCallStackKey);
+}
+
+- (void)setFactoryCallStack:(NSMutableArray *)factoryCallStack {
+    objc_setAssociatedObject(self, &factoryCallStackKey, factoryCallStack, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+static char extendedStackKey;
+
+- (NSMutableArray *)extendedStack {
+    return objc_getAssociatedObject(self, &extendedStackKey);
+}
+
+- (void)setExtendedStack:(NSMutableArray *)extendedStack {
+    objc_setAssociatedObject(self, &extendedStackKey, extendedStack, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+static char applicationContextKey;
+
+- (OCSApplicationContext *)applicationContext {
+    return objc_getAssociatedObject(self, &applicationContextKey);
+}
+
+- (void)setApplicationContext:(OCSApplicationContext *) applicationContext {
+    objc_setAssociatedObject(self, &applicationContextKey, applicationContext, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (id)createObjectForDefinition:(OCSDefinition *)definition {
+    if ([self.factoryCallStack containsObject:definition.key]) {
+        [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@", [[[self.factoryCallStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "]];
+    }
+    [self.factoryCallStack addObject:definition.key];
+
     id result = nil;
     if (definition) {
-        result = [[context.scopeFactory scopeForName:definition.scope] objectForKey:definition.key];
-        if (!result) {
-            NSString *methodPrefix = [definition.scope isEqualToString:@"singleton"] ? (definition.lazy ? LAZY_SINGLETON_PREFIX : EAGER_SINGLETON_PREFIX) : PROTOTYPE_PREFIX;
-            SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", methodPrefix, definition.key]);
-            if ([self respondsToSelector:selector]) {
+        NSString *methodPrefix = definition.singleton ? (definition.lazy ? LAZY_SINGLETON_PREFIX : EAGER_SINGLETON_PREFIX) : PROTOTYPE_PREFIX;
+        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", methodPrefix, definition.key]);
+        if ([self respondsToSelector:selector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                result = [self performSelector:selector];
+            result = [self performSelector:selector];
 #pragma clang diagnostic pop
-            }
         }
     }
 
+    [self.factoryCallStack removeLastObject];
     return result;
 }
+
+- (void)bindToContext:(OCSApplicationContext *)context {
+    self.applicationContext = context;
+}
+
+- (id)extendedFactoryMethod {
+    NSString *selector = NSStringFromSelector(_cmd);
+    struct objc_super superData;
+    superData.receiver = self;
+    superData.super_class = [self superclass];
+
+    //If the method was previously called, it's result should have been cached.
+    Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
+    KeyGenerator keyGenerator = object_getIvar(self, var);
+    NSString *key = keyGenerator(selector);
+
+    //If the object is already in the singleton scope, return that version, singletons never get recreated!
+//    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
+//    id<OCSScope> singletonScope = object_getIvar(self, var);
+//    id result = [singletonScope objectForKey:key];
+//    if (!result) {
+//        result = objc_msgSendSuper(&superData, _cmd);
+//        [singletonScope registerObject:result forKey:key];
+//    }
+
+    id result = nil;
+
+    if ([self.factoryCallStack containsObject:key]) {
+        if ([self.extendedStack containsObject:key]) {
+            [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@", [[[self.extendedStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "]];
+        }
+        [self.extendedStack addObject:key];
+        result = objc_msgSendSuper(&superData, _cmd);
+        [self.extendedStack removeLastObject];
+    } else {
+        result = [self.applicationContext objectForKey:key];
+    }
+    return result;
+
+}
+
 
 @end

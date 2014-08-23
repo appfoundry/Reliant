@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSString *objectType;
 @property (nonatomic, readonly) NSString *customGetter;
 @property (nonatomic, readonly) NSString *customSetter;
+@property (nonatomic, readonly) NSString *iVar;
 @property (nonatomic, readonly) BOOL readOnly;
 @property (nonatomic, readonly) BOOL isObject;
 

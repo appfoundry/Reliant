@@ -123,15 +123,25 @@
 		3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */; };
 		3323F311CDF8BF129535AD4A /* OCSDefaultScopeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC30FA16200019DF7D1B /* OCSDefaultScopeFactory.m */; };
 		3323F329CDC245C7313C35BF /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
+		3323F3795AEF595FC6204CB6 /* DRYRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */; };
 		3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
 		3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */; };
+		3323F76A03B1F196D5D7483E /* DRYRuntimeMagic.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FE89CADEB37E6A1421F2 /* DRYRuntimeMagic.h */; };
 		3323F79E1084CF5B8696521E /* OCSDefaultScopeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC30FA16200019DF7D1B /* OCSDefaultScopeFactory.m */; };
+		3323F9CF147C791A94B54435 /* SimpleConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */; };
+		3323F9E5388F46156E0F51C6 /* DpendencyTreeConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F537ACD042617135F470 /* DpendencyTreeConfigurationIntegrationTest.m */; };
 		3323F9ED338B4D5CEDA8D244 /* OCSDefaultScopeFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FBB98DDEC3DFE56FDF97 /* OCSDefaultScopeFactory.h */; };
+		3323F9F72699857C1DB97E9E /* DRYRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */; };
 		3323FA0C8C41685456C4C08A /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
+		3323FA7BB1BF46D541111719 /* DRYRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */; };
+		3323FA842AC8404BF9E08E0B /* SimpleConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */; };
 		3323FAC1795934E23B3C0CF0 /* OCSDefaultScopeFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FDE6C29E916105B4925B /* OCSDefaultScopeFactoryTest.m */; };
 		3323FC79F3EB769209572467 /* OCSDefaultScopeFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FDE6C29E916105B4925B /* OCSDefaultScopeFactoryTest.m */; };
 		3323FCBB234922E211AAF8D3 /* OCSDefaultScopeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC30FA16200019DF7D1B /* OCSDefaultScopeFactory.m */; };
 		3323FCCEA4CE43C732E0E79A /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
+		3323FD372825398AD9D2AEC8 /* DRYRuntimeMagic.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FE89CADEB37E6A1421F2 /* DRYRuntimeMagic.h */; };
+		3323FE5F4CA5AFD3AC32CDA6 /* DpendencyTreeConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F537ACD042617135F470 /* DpendencyTreeConfigurationIntegrationTest.m */; };
+		3323FE89A0052BCC664931C2 /* DRYRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */; };
 		3323FF1AF8B2BBCC1C065CEB /* OCSObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FC852B0C8D06A7E50E37 /* OCSObjectFactory.h */; };
 		3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		C1A5618E21999FD8B10D5F61 /* OCSDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */; };
@@ -227,6 +237,9 @@
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
 		3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSClassRuntimeInfo.h; sourceTree = "<group>"; };
 		3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSPropertyRuntimeInfo.h; sourceTree = "<group>"; };
+		3323F537ACD042617135F470 /* DpendencyTreeConfigurationIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DpendencyTreeConfigurationIntegrationTest.m; sourceTree = "<group>"; };
+		3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleConfigurationIntegrationTest.m; sourceTree = "<group>"; };
+		3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRYRuntimeMagic.m; sourceTree = "<group>"; };
 		3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSClassRuntimeInfo.m; sourceTree = "<group>"; };
 		3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinition.m; sourceTree = "<group>"; };
 		3323FBB98DDEC3DFE56FDF97 /* OCSDefaultScopeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSDefaultScopeFactory.h; sourceTree = "<group>"; };
@@ -234,6 +247,7 @@
 		3323FC852B0C8D06A7E50E37 /* OCSObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSObjectFactory.h; sourceTree = "<group>"; };
 		3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSPropertyRuntimeInfo.m; sourceTree = "<group>"; };
 		3323FDE6C29E916105B4925B /* OCSDefaultScopeFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefaultScopeFactoryTest.m; sourceTree = "<group>"; };
+		3323FE89CADEB37E6A1421F2 /* DRYRuntimeMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRYRuntimeMagic.h; sourceTree = "<group>"; };
 		3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant-ReliantTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
 		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
@@ -394,6 +408,8 @@
 				C1A561520E4B812B6E61E469 /* DummyScope.h */,
 				C1A56561066DE02A82BB243F /* OCSPrototypeScopeTests.m */,
 				3323FDE6C29E916105B4925B /* OCSDefaultScopeFactoryTest.m */,
+				3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */,
+				3323F537ACD042617135F470 /* DpendencyTreeConfigurationIntegrationTest.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -487,6 +503,8 @@
 				3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */,
 				3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */,
 				3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */,
+				3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */,
+				3323FE89CADEB37E6A1421F2 /* DRYRuntimeMagic.h */,
 			);
 			name = Runtime;
 			sourceTree = "<group>";
@@ -516,6 +534,7 @@
 				3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */,
 				C1A567368001E62A12E3AD4C /* DummyScope.h in Headers */,
 				3323F9ED338B4D5CEDA8D244 /* OCSDefaultScopeFactory.h in Headers */,
+				3323FD372825398AD9D2AEC8 /* DRYRuntimeMagic.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +556,7 @@
 				C1A566FF35982EB4585933BA /* DummyScope.h in Headers */,
 				3323FF1AF8B2BBCC1C065CEB /* OCSObjectFactory.h in Headers */,
 				3323F2532D5EB4F985C730A9 /* OCSDefaultScopeFactory.h in Headers */,
+				3323F76A03B1F196D5D7483E /* DRYRuntimeMagic.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +847,7 @@
 				C1A567CD866ABF2413562EAE /* OCSPrototypeScope.m in Sources */,
 				3323F17BEB7A16B44C310334 /* OCSDefinition.m in Sources */,
 				3323F79E1084CF5B8696521E /* OCSDefaultScopeFactory.m in Sources */,
+				3323FA7BB1BF46D541111719 /* DRYRuntimeMagic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +880,9 @@
 				3323FA0C8C41685456C4C08A /* OCSDefinition.m in Sources */,
 				3323F27EC42D0D6D46C19D72 /* OCSDefaultScopeFactory.m in Sources */,
 				3323FC79F3EB769209572467 /* OCSDefaultScopeFactoryTest.m in Sources */,
+				3323F9F72699857C1DB97E9E /* DRYRuntimeMagic.m in Sources */,
+				3323F9CF147C791A94B54435 /* SimpleConfigurationIntegrationTest.m in Sources */,
+				3323FE5F4CA5AFD3AC32CDA6 /* DpendencyTreeConfigurationIntegrationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +900,7 @@
 				C1A5690710C534862D0A660F /* OCSPrototypeScope.m in Sources */,
 				3323F329CDC245C7313C35BF /* OCSDefinition.m in Sources */,
 				3323FCBB234922E211AAF8D3 /* OCSDefaultScopeFactory.m in Sources */,
+				3323F3795AEF595FC6204CB6 /* DRYRuntimeMagic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +930,9 @@
 				3323FCCEA4CE43C732E0E79A /* OCSDefinition.m in Sources */,
 				3323F311CDF8BF129535AD4A /* OCSDefaultScopeFactory.m in Sources */,
 				3323FAC1795934E23B3C0CF0 /* OCSDefaultScopeFactoryTest.m in Sources */,
+				3323FE89A0052BCC664931C2 /* DRYRuntimeMagic.m in Sources */,
+				3323FA842AC8404BF9E08E0B /* SimpleConfigurationIntegrationTest.m in Sources */,
+				3323F9E5388F46156E0F51C6 /* DpendencyTreeConfigurationIntegrationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

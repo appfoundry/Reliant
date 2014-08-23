@@ -69,6 +69,7 @@ Recursive method for injecting objects with their dependencies. This method iter
     if (self && configurator && scopeFactory) {
         _configurator = configurator;
         _scopeFactory = scopeFactory;
+        [_configurator.objectFactory bindToContext:self];
     } else {
         self = nil;
     }
@@ -83,8 +84,7 @@ Recursive method for injecting objects with their dependencies. This method iter
         if (scope) {
             result = [scope objectForKey:definition.key];
             if (!result) {
-                result = [_configurator.objectFactory createObjectForDefinition:
-                        definition                                    inContext:self];
+                result = [_configurator.objectFactory createObjectForDefinition:definition];
                 [self performInjectionOn:result];
                 [scope registerObject:result forKey:definition.key];
             }

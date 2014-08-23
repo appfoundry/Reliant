@@ -117,15 +117,13 @@
 - (void)setUp {
     [super setUp];
     _configurator = mockProtocol(@protocol(OCSConfigurator));
-    _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
     _objectFactory = mockProtocol(@protocol(OCSObjectFactory));
-    _scope = mockProtocol(@protocol(OCSScope));
-    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
     _knownKeys = [[NSMutableArray alloc] init];
-
     [given([_configurator objectFactory]) willReturn:_objectFactory];
     [given([_configurator objectKeys]) willReturn:_knownKeys];
-
+    _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
+    _scope = mockProtocol(@protocol(OCSScope));
+    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
 }
 
 - (void)testShouldNotInitWithoutConfig {
@@ -196,7 +194,7 @@
     OCSDefinition *def = [self _prepareContextToNotFindObjectForKey:objectKey inScopeNamed:scopeName expectedObject:expectedObject];
 
     [_context objectForKey:objectKey];
-    [verify(_objectFactory) createObjectForDefinition:def inContext:_context];
+    [verify(_objectFactory) createObjectForDefinition:def];
 }
 
 - (void)testObjectForKeyShouldStoreObjectFactoryCreatedValueInScopeWhenScopeIsMissingValue {
@@ -228,8 +226,8 @@
     assertThat(result.publiclyKnownProperty, is(@"InjectedString"));
 }
 
-- (void)test {
-
+- (void)testShouldBindContext {
+    [verify(_objectFactory) bindToContext:_context];
 }
 
 
@@ -373,7 +371,7 @@
 
 - (OCSDefinition *)_prepareContextToNotFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName expectedObject:(id)expectedObject {
     OCSDefinition *def = [self _prepareContextToFindObjectForKey:objectKey inScopeNamed:scopeName withValue:nil];
-    [given([_objectFactory createObjectForDefinition:def inContext:_context]) willReturn:expectedObject];
+    [given([_objectFactory createObjectForDefinition:def]) willReturn:expectedObject];
     return def;
 }
 

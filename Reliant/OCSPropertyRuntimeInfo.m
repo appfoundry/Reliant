@@ -22,6 +22,7 @@
         _isObject = [_objectType characterAtIndex:1] == '@';
         _customGetter = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"G.*"]] lastObject] substringFromIndex:1];
         _customSetter = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @"S.*"]] lastObject] substringFromIndex:1];
+        _iVar = [[[components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self MATCHES %@", @",V.*"]] lastObject] substringFromIndex:1];
     }
     return self;
 }
