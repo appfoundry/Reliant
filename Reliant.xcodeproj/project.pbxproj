@@ -128,11 +128,13 @@
 		3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */; };
 		3323F76A03B1F196D5D7483E /* DRYRuntimeMagic.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FE89CADEB37E6A1421F2 /* DRYRuntimeMagic.h */; };
 		3323F79E1084CF5B8696521E /* OCSDefaultScopeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC30FA16200019DF7D1B /* OCSDefaultScopeFactory.m */; };
+		3323F8FC8D2366FA7FF07F04 /* RecursiveConfigurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */; };
 		3323F9CF147C791A94B54435 /* SimpleConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */; };
 		3323F9E5388F46156E0F51C6 /* DependencyTreeConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F537ACD042617135F470 /* DependencyTreeConfigurationIntegrationTest.m */; };
 		3323F9ED338B4D5CEDA8D244 /* OCSDefaultScopeFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FBB98DDEC3DFE56FDF97 /* OCSDefaultScopeFactory.h */; };
 		3323F9F72699857C1DB97E9E /* DRYRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */; };
 		3323FA0C8C41685456C4C08A /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
+		3323FA54840E6D74EBE0C870 /* RecursiveConfigurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */; };
 		3323FA7BB1BF46D541111719 /* DRYRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* DRYRuntimeMagic.m */; };
 		3323FA842AC8404BF9E08E0B /* SimpleConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */; };
 		3323FAC1795934E23B3C0CF0 /* OCSDefaultScopeFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FDE6C29E916105B4925B /* OCSDefaultScopeFactoryTest.m */; };
@@ -232,6 +234,7 @@
 		27F8320F1564C26300ADCB76 /* OCSConfiguratorFromClassTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSConfiguratorFromClassTests.h; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
 		3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSClassRuntimeInfo.h; sourceTree = "<group>"; };
+		3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecursiveConfigurationTest.m; sourceTree = "<group>"; };
 		3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSPropertyRuntimeInfo.h; sourceTree = "<group>"; };
 		3323F537ACD042617135F470 /* DependencyTreeConfigurationIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DependencyTreeConfigurationIntegrationTest.m; sourceTree = "<group>"; };
 		3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleConfigurationIntegrationTest.m; sourceTree = "<group>"; };
@@ -402,6 +405,7 @@
 				3323FDE6C29E916105B4925B /* OCSDefaultScopeFactoryTest.m */,
 				3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */,
 				3323F537ACD042617135F470 /* DependencyTreeConfigurationIntegrationTest.m */,
+				3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -872,6 +876,7 @@
 				3323F9F72699857C1DB97E9E /* DRYRuntimeMagic.m in Sources */,
 				3323F9CF147C791A94B54435 /* SimpleConfigurationIntegrationTest.m in Sources */,
 				3323FE5F4CA5AFD3AC32CDA6 /* DependencyTreeConfigurationIntegrationTest.m in Sources */,
+				3323FA54840E6D74EBE0C870 /* RecursiveConfigurationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,6 +926,7 @@
 				3323FE89A0052BCC664931C2 /* DRYRuntimeMagic.m in Sources */,
 				3323FA842AC8404BF9E08E0B /* SimpleConfigurationIntegrationTest.m in Sources */,
 				3323F9E5388F46156E0F51C6 /* DependencyTreeConfigurationIntegrationTest.m in Sources */,
+				3323F8FC8D2366FA7FF07F04 /* RecursiveConfigurationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

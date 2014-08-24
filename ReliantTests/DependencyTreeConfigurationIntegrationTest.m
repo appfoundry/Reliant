@@ -49,6 +49,8 @@
 @interface DependencyTreeLazyConfiguration : NSObject
 @end
 
+@interface DependencyTreeLazyAndEagerConfiguration : NSObject
+@end
 
 
 
@@ -69,6 +71,28 @@
 - (void)testEagerLoaded
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeEagerConfiguration class]];
+    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    [context start];
+
+    ClassA *a = [context objectForKey:@"a"];
+    ClassB *b = [context objectForKey:@"b"];
+    ClassC *c = [context objectForKey:@"c"];
+    ClassD *d = [context objectForKey:@"d"];
+    assertThat(a, is(notNilValue()));
+    assertThat(b, is(notNilValue()));
+    assertThat(c, is(notNilValue()));
+    assertThat(d, is(notNilValue()));
+
+    assertThat([b injectedA], is(sameInstance(a)));
+    assertThat([c injectedB], is(sameInstance(b)));
+    assertThat(d.a, is(sameInstance(a)));
+    assertThat(c.a, is(sameInstance(a)));
+    assertThat(a.d, is(sameInstance(d)));
+}
+
+- (void)testLazyAndEagerLoaded
+{
+    id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeLazyAndEagerConfiguration class]];
     OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
     [context start];
 
@@ -149,6 +173,8 @@
     assertThat(d.a, is(sameInstance(a)));
 }
 
+
+
 @end
 
 
@@ -188,6 +214,27 @@
 }
 
 - (id)createSingletonD {
+    return [[ClassD alloc] init];
+}
+
+
+@end
+
+@implementation DependencyTreeLazyAndEagerConfiguration
+
+- (id)createEagerSingletonA {
+    return [[ClassA alloc] init];
+}
+
+- (id)createSingletonB {
+    return [[ClassB alloc] initWithA:[self createEagerSingletonA]];
+}
+
+- (id)createSingletonC {
+    return [[ClassC alloc] initWithB:[self createSingletonB]];
+}
+
+- (id)createEagerSingletonD {
     return [[ClassD alloc] init];
 }
 
