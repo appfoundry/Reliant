@@ -97,7 +97,7 @@
     id<OCSScopeFactory> factory = mockProtocol(@protocol(OCSScopeFactory));
     [given([_context scopeFactory]) willReturn:factory];
     id result = [_configurator.objectFactory createObjectForDefinition:def];
-    (result, is(instanceOf([NSMutableDictionary class])));
+    assertThat(result, is(instanceOf([NSMutableDictionary class])));
 }
 
 - (void)testNestedPropertyIsTestedForOccuranceInContext {

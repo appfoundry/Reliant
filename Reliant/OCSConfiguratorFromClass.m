@@ -66,6 +66,8 @@ typedef NSString *(^KeyGenerator)(NSString *);
 @property (nonatomic, strong) NSMutableArray *extendedStack;
 @property (nonatomic, weak) OCSApplicationContext *applicationContext;
 
+- (id)extendedFactoryMethod;
+
 @end
 
 
@@ -312,7 +314,7 @@ static char applicationContextKey;
         } else {
             format = [NSString stringWithFormat:@"Circular dependency detected for the following stack: %@ -> %@", [[[self.factoryCallStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "], definition.key];
         }
-        [NSException raise:@"ReliantCircularDependencyException" format:format];
+        [NSException raise:@"ReliantCircularDependencyException" format:@"%@", format];
     }
     [self.factoryCallStack addObject:definition.key];
 

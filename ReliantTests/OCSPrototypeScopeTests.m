@@ -32,7 +32,7 @@
 - (void)testObjectForKeyShouldReturnNilEvenWhenRegistered {
     [_prototypeScope registerObject:@"" forKey:@"theKey"];
     id object = [_prototypeScope objectForKey:@"theKey"];
-    (object, is(nilValue()));
+    assertThat(object, is(nilValue()));
 }
 
 - (void)testAllKeysReturnsEmptyArray {

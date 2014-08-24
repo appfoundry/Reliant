@@ -45,10 +45,7 @@
 
 @end
 
-@interface DummyClass : NSObject <SomeSuperProtocol> {
-@private
-    NSString *publiclyKnownPrivate;
-}
+@interface DummyClass : NSObject <SomeSuperProtocol>
 
 @property(nonatomic, strong) NSString *publiclyKnownPrivate;
 @property(nonatomic, strong) NSString *publiclyKnownProperty;
@@ -381,6 +378,7 @@
 @implementation DummyClass
 
 @synthesize privatePropertyWithCustomVarName = _customVarName;
+@synthesize superProtocolProperty;
 
 @end
 
