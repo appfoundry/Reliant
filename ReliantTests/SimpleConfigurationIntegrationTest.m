@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "OCSConfigurator.h"
 #import "OCSConfiguratorFromClass.h"
 #import "OCSScopeFactory.h"
@@ -27,13 +27,13 @@
 @end
 
 @implementation SimpleConfigurationIntegrationTest {
-    OCSApplicationContext *_context;
+    OCSObjectContext *_context;
 }
 
 - (void)setUp {
     [super setUp];
     id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[SimpleConfiguration class]];
-    _context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [_context start];
 }
 

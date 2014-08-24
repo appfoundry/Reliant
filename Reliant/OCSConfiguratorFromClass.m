@@ -15,7 +15,7 @@
 #import <objc/message.h>
 
 #import "OCSConfiguratorConstants.h"
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "OCSDefinition.h"
 #import "OCSDLogger.h"
 #import "OCSObjectFactory.h"
@@ -54,7 +54,7 @@ typedef NSString *(^KeyGenerator)(NSString *);
 
 @property (nonatomic, strong) NSMutableArray *factoryCallStack;
 @property (nonatomic, strong) NSMutableArray *extendedStack;
-@property (nonatomic, weak) OCSApplicationContext *applicationContext;
+@property (nonatomic, weak) OCSObjectContext *applicationContext;
 
 - (id)extendedFactoryMethod;
 
@@ -288,11 +288,11 @@ static char extendedStackKey;
 
 static char applicationContextKey;
 
-- (OCSApplicationContext *)applicationContext {
+- (OCSObjectContext *)applicationContext {
     return objc_getAssociatedObject(self, &applicationContextKey);
 }
 
-- (void)setApplicationContext:(OCSApplicationContext *) applicationContext {
+- (void)setApplicationContext:(OCSObjectContext *) applicationContext {
     objc_setAssociatedObject(self, &applicationContextKey, applicationContext, OBJC_ASSOCIATION_ASSIGN);
 }
 
@@ -326,7 +326,7 @@ static char applicationContextKey;
     return result;
 }
 
-- (void)bindToContext:(OCSApplicationContext *)context {
+- (void)bindToContext:(OCSObjectContext *)context {
     self.applicationContext = context;
 }
 

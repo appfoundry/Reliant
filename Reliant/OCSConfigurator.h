@@ -7,7 +7,7 @@
 //
 
 
-@class OCSApplicationContext;
+@class OCSObjectContext;
 @protocol OCSObjectFactory;
 @class OCSDefinition;
 

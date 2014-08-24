@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "OCSConfiguratorFromClass.h"
 
 @interface DependencyTreeConfigurationIntegrationTest : XCTestCase
@@ -71,7 +71,7 @@
 - (void)testEagerLoaded
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeEagerConfiguration class]];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [context start];
 
     ClassA *a = [context objectForKey:@"a"];
@@ -93,7 +93,7 @@
 - (void)testLazyAndEagerLoaded
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeLazyAndEagerConfiguration class]];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [context start];
 
     ClassA *a = [context objectForKey:@"a"];
@@ -115,7 +115,7 @@
 - (void)testLazyLoadFirstLoadingClassA
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeLazyConfiguration class]];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [context start];
 
     ClassA *a = [context objectForKey:@"a"];
@@ -132,7 +132,7 @@
 - (void)testLazyLoadFirstLoadingClassB
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeLazyConfiguration class]];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [context start];
 
     ClassB *b = [context objectForKey:@"b"];
@@ -146,7 +146,7 @@
 - (void)testLazyLoadFirstLoadingClassC
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeLazyConfiguration class]];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [context start];
 
     ClassC *c = [context objectForKey:@"c"];
@@ -163,7 +163,7 @@
 - (void)testLazyLoadFirstLoadingClassD
 {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DependencyTreeLazyConfiguration class]];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     [context start];
 
     ClassD *d = [context objectForKey:@"d"];

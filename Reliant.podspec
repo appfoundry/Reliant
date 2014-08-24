@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
   s.ios.source_files = 'Reliant/*.{h,m}', 'Reliant/iOS/*.{h,m}'
   s.osx.source_files = 'Reliant/*.{h,m}'
   s.exclude_files = 'Classes/Exclude'
-  s.osx.public_header_files = 'Reliant/OCSScope.h', 'Reliant/OCSConfigurator.h', 'Reliant/OCSConfiguratorBase.h', 'Reliant/OCSConfiguratorBase+ForSubclassEyesOnly.h', 'Reliant/OCSConfiguratorFromClass.h', 'Reliant/OCSApplicationContext.h', 'Reliant/OCSDefinition.h'
-  s.ios.public_header_files = 'Reliant/OCSScope.h', 'Reliant/OCSConfigurator.h', 'Reliant/OCSConfiguratorBase.h', 'Reliant/OCSConfiguratorBase+ForSubclassEyesOnly.h', 'Reliant/OCSConfiguratorFromClass.h', 'Reliant/OCSApplicationContext.h', 'Reliant/OCSDefinition.h', 'Reliant/iOS/*.h'
+  s.osx.public_header_files = 'Reliant/OCSScope.h', 'Reliant/OCSConfigurator.h', 'Reliant/OCSConfiguratorBase.h', 'Reliant/OCSConfiguratorBase+ForSubclassEyesOnly.h', 'Reliant/OCSConfiguratorFromClass.h', 'Reliant/OCSObjectContext.h', 'Reliant/OCSDefinition.h'
+  s.ios.public_header_files = 'Reliant/OCSScope.h', 'Reliant/OCSConfigurator.h', 'Reliant/OCSConfiguratorBase.h', 'Reliant/OCSConfiguratorBase+ForSubclassEyesOnly.h', 'Reliant/OCSConfiguratorFromClass.h', 'Reliant/OCSObjectContext.h', 'Reliant/OCSDefinition.h', 'Reliant/iOS/*.h'
   s.frameworks = 'Foundation'
   s.ios.frameworks = 'UIKit'
   s.requires_arc = true

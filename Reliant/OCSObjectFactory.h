@@ -3,11 +3,11 @@
 //
 
 @class OCSDefinition;
-@class OCSApplicationContext;
+@class OCSObjectContext;
 
 @protocol OCSObjectFactory <NSObject>
 
 - (id)createObjectForDefinition:(OCSDefinition *)definition;
-- (void)bindToContext:(OCSApplicationContext *)context;
+- (void)bindToContext:(OCSObjectContext *)context;
 
 @end

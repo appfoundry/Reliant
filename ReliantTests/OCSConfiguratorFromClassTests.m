@@ -21,7 +21,7 @@
 #import "OCSConfiguratorFromClassTests.h"
 
 #import "OCSConfiguratorFromClass.h"
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "DummyConfigurator.h"
 #import "OCSSingletonScope.h"
 #import "OCSDefinition.h"
@@ -44,7 +44,7 @@
 
 @implementation OCSConfiguratorFromClassTests {
     OCSConfiguratorFromClass *_configurator;
-    OCSApplicationContext *_context;
+    OCSObjectContext *_context;
 
     int verySmartNameInjected;
     int unbelievableOtherSmartNameInjected;
@@ -58,7 +58,7 @@
 - (void) setUp {
     [super setUp];
     _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[DummyConfigurator class]];
-    _context = mock([OCSApplicationContext class]);
+    _context = mock([OCSObjectContext class]);
     [_configurator.objectFactory bindToContext:_context];
 }
 

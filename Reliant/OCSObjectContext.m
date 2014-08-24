@@ -1,5 +1,5 @@
 //
-//  OCSApplicationContext.m
+//  OCSObjectContext.m
 //  Reliant
 //
 //  Created by Michael Seghers on 2/05/12.
@@ -10,9 +10,10 @@
 
 #import <objc/runtime.h>
 
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "OCSConfigurator.h"
 #import "OCSReliantExcludingPropertyProvider.h"
+#import "OCSObjectFactory.h"
 #import "OCSDLogger.h"
 #import "OCSPropertyRuntimeInfo.h"
 #import "OCSConfiguratorFromClass.h"
@@ -24,7 +25,7 @@
 /**
 Application context private category. Holds private ivars and methods.
 */
-@interface OCSApplicationContext () {
+@interface OCSObjectContext () {
     /**
     The configurator instance.
     */
@@ -45,7 +46,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 @end
 
-@implementation OCSApplicationContext
+@implementation OCSObjectContext
 
 - (id)init {
     OCSConfiguratorFromClass *autoConfig = [[OCSConfiguratorFromClass alloc] init];
@@ -77,6 +78,10 @@ Recursive method for injecting objects with their dependencies. This method iter
         [self _recordDefintionWhenCallHappensOnTopLevel:definition];
         result = [self _internalObjectForDefinition:definition];
         [self _unrecordDefinitionWhenCallHappenedOnTopLevel:definition];
+    }
+
+    if (!result) {
+        result = [self.parentContext objectForKey:key];
     }
     return result;
 }
@@ -135,6 +140,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 - (void)performInjectionOn:(id)object {
     [self _recursiveInjectionOn:object forMetaClass:[object class]];
+    [self.parentContext performInjectionOn:object];
 }
 
 - (void)_recursiveInjectionOn:(id)object forMetaClass:(Class)thisClass {

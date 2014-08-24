@@ -11,7 +11,7 @@
 #define HC_SHORTHAND
 
 #import <OCHamcrest/OCHamcrest.h>
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "OCSConfiguratorFromClass.h"
 
 @interface RecursiveConfigurationTest : XCTestCase
@@ -51,14 +51,14 @@
 @implementation RecursiveConfigurationTest
 
 - (void)testEagerDirectRecursionDetection {
-    OCSApplicationContext *context = [self _createContextForClass:[DirectRecursiveEagerConfiguration class]];
+    OCSObjectContext *context = [self _createContextForClass:[DirectRecursiveEagerConfiguration class]];
     [self _expectExceptionWhenExecutingBlock:^{
         [context start];
     }                             withReason:@"Circular dependency detected for the following stack: A -> B -> A"];
 }
 
 - (void)testLazyDirectRecursionDetection {
-    OCSApplicationContext *context = [self _createContextForClass:[DirectRecursiveLazyConfiguration class]];
+    OCSObjectContext *context = [self _createContextForClass:[DirectRecursiveLazyConfiguration class]];
     [context start];
     [self _expectExceptionWhenExecutingBlock:^{
         [context objectForKey:@"A"];
@@ -66,36 +66,36 @@
 }
 
 - (void)testEagerIndirectRecursionDetection {
-    OCSApplicationContext *context = [self _createContextForClass:[IndirectRecursiveEagerConfiguration class]];
+    OCSObjectContext *context = [self _createContextForClass:[IndirectRecursiveEagerConfiguration class]];
     [self _expectExceptionWhenExecutingBlock:^{
         [context start];
     }                             withReason:@"A -> B -> C -> A"];
 }
 
 - (void)testLazyIndirectRecursionDetectionStartingFromA {
-    OCSApplicationContext *context = [self _createContextForClass:[IndirectRecursiveLazyConfiguration class]];
+    OCSObjectContext *context = [self _createContextForClass:[IndirectRecursiveLazyConfiguration class]];
     [self _expectExceptionWhenExecutingBlock:^{
         [context objectForKey:@"A"];
     }                             withReason:@"A -> B -> C -> A"];
 }
 
 - (void)testLazyIndirectRecursionDetectionStartingFromB {
-    OCSApplicationContext *context = [self _createContextForClass:[IndirectRecursiveLazyConfiguration class]];
+    OCSObjectContext *context = [self _createContextForClass:[IndirectRecursiveLazyConfiguration class]];
     [self _expectExceptionWhenExecutingBlock:^{
         [context objectForKey:@"B"];
     }                             withReason:@"B -> C -> A -> B"];
 }
 
 - (void)testLazyIndirectRecursionDetectionStartingFromC {
-    OCSApplicationContext *context = [self _createContextForClass:[IndirectRecursiveLazyConfiguration class]];
+    OCSObjectContext *context = [self _createContextForClass:[IndirectRecursiveLazyConfiguration class]];
     [self _expectExceptionWhenExecutingBlock:^{
         [context objectForKey:@"C"];
     }                             withReason:@"C -> A -> B -> C"];
 }
 
-- (OCSApplicationContext *)_createContextForClass:(Class)configClass {
+- (OCSObjectContext *)_createContextForClass:(Class)configClass {
     id <OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:configClass];
-    OCSApplicationContext *context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
+    OCSObjectContext *context = [[OCSObjectContext alloc] initWithConfigurator:configurator];
     return context;
 }
 

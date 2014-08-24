@@ -13,7 +13,7 @@
 #import <OCMockito/OCMockito.h>
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
-#import "OCSApplicationContext.h"
+#import "OCSObjectContext.h"
 #import "OCSConfigurator.h"
 #import "OCSScope.h"
 #import "OCSScopeFactory.h"
@@ -21,7 +21,7 @@
 
 @interface SimpleViewController : UIViewController
 
-- (id)initWithContext:(OCSApplicationContext *) context;
+- (id)initWithContext:(OCSObjectContext *) context;
 
 @property (nonatomic) BOOL viewWasLoaded;
 @property (nonatomic, strong) NSString *injected;
@@ -32,7 +32,7 @@
     id<OCSConfigurator> _configurator;
     id<OCSScopeFactory> _scopeFactory;
     id<OCSScope> _scope;
-    OCSApplicationContext *_context;
+    OCSObjectContext *_context;
 
 }
 
@@ -48,7 +48,7 @@
     _configurator = mockProtocol(@protocol(OCSConfigurator));
 
     _scope = mockProtocol(@protocol(OCSScope));
-    _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
     [given([_scopeFactory scopeForName:anything()]) willReturn:_scope];
     [given([_configurator objectKeysAndAliases]) willReturn:@[@"injected"]];
 }
@@ -83,7 +83,7 @@
 
 @implementation SimpleViewController
 
-- (id)initWithContext:(OCSApplicationContext *) context
+- (id)initWithContext:(OCSObjectContext *) context
 {
     self = [super init];
     if (self) {
