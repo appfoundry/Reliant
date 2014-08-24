@@ -6,6 +6,7 @@
 //
 //
 
+#define LOG_RELIANT 1
 #import <XCTest/XCTest.h>
 #import <UIKit/UIKit.h>
 #define MOCKITO_SHORTHAND
@@ -49,7 +50,7 @@
     _scope = mockProtocol(@protocol(OCSScope));
     _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
     [given([_scopeFactory scopeForName:anything()]) willReturn:_scope];
-    [given([_configurator objectKeys]) willReturn:@[@"injected"]];
+    [given([_configurator objectKeysAndAliases]) willReturn:@[@"injected"]];
 }
 
 - (void) testViewShouldNotLoad {

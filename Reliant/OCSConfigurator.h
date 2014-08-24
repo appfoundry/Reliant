@@ -44,6 +44,13 @@
 @property (readonly, nonatomic, copy) NSArray *objectKeys;
 
 /**
+All keys of the definitions found in this configurator. This list includes both keys and aliases.
+*/
+@property (readonly, nonatomic, copy) NSArray *objectKeysAndAliases;
+
+
+
+/**
 Get a definition for the given key or alias.
 
 @param keyOrAlias the key or alias of the definition you are looking for

@@ -36,6 +36,11 @@
 
 - (void)testConfiguratorObjectKeysReturnsOnlyKeysOfDefinitions {
     NSArray *array = _configurator.objectKeys;
+    assertThat(array, allOf(hasCountOf(1), hasItems(@"SomeKey", nil), nil));
+}
+
+- (void)testConfiguratorObjectKeysAndAliasReturnsKeysAndAliasesOfDefinitions {
+    NSArray *array = _configurator.objectKeysAndAliases;
     assertThat(array, allOf(hasCountOf(3), hasItems(@"SomeKey", @"AliasOne", @"AliasTwo", nil), nil));
 }
 

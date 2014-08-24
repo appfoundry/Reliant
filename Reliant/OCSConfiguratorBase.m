@@ -36,6 +36,10 @@
 }
 
 - (NSArray *)objectKeys {
+    return [_definitionRegistry allKeys];
+}
+
+- (NSArray *)objectKeysAndAliases {
     return [_keysAndAliasesRegistry copy];
 }
 

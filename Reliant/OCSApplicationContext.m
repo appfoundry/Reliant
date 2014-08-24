@@ -40,6 +40,9 @@ Application context private category. Holds private ivars and methods.
     */
     id<OCSConfigurator> _configurator;
     id<OCSScopeFactory> _scopeFactory;
+
+    NSMutableDictionary *_objectsUnderConstruction;
+    NSString *_firstObjectForKeyCallKey;
 }
 
 /**
@@ -70,6 +73,7 @@ Recursive method for injecting objects with their dependencies. This method iter
         _configurator = configurator;
         _scopeFactory = scopeFactory;
         [_configurator.objectFactory bindToContext:self];
+        _objectsUnderConstruction = [NSMutableDictionary dictionary];
     } else {
         self = nil;
     }
@@ -77,19 +81,49 @@ Recursive method for injecting objects with their dependencies. This method iter
 }
 
 - (id)objectForKey:(NSString *)key {
+
+
+
     id result = nil;
     OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
     if (definition) {
+        if (!_firstObjectForKeyCallKey) {
+            DLog(@"Top: %@", definition.key);
+            _firstObjectForKeyCallKey = definition.key;
+        } else {
+            DLog(@"Nested %@", definition.key);
+        }
+
         id <OCSScope> scope = [_scopeFactory scopeForName:definition.scope];
         if (scope) {
             result = [scope objectForKey:definition.key];
             if (!result) {
                 result = [_configurator.objectFactory createObjectForDefinition:definition];
+                _objectsUnderConstruction[definition.key] = result;
                 [scope registerObject:result forKey:definition.key];
-                [self performInjectionOn:result];
+                if ([_firstObjectForKeyCallKey isEqualToString:definition.key]) {
+
+                    while (_objectsUnderConstruction.count > 0) {
+                        id key = [[_objectsUnderConstruction allKeys] firstObject];
+                        id object = _objectsUnderConstruction[key];
+                        DLog(@"Top: performing injection on %@", object);
+                        [self performInjectionOn:object];
+                        [_objectsUnderConstruction removeObjectForKey:key];
+                    }
+                }
             }
         }
+
+        if ([_firstObjectForKeyCallKey isEqualToString:definition.key]) {
+            DLog(@"Top done");
+            _firstObjectForKeyCallKey = nil;
+        }
+
+
     }
+
+
+
     return result;
 }
 
@@ -103,6 +137,7 @@ Recursive method for injecting objects with their dependencies. This method iter
     for (NSString *key in [_configurator objectKeys]) {
         OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
         if (definition.singleton && !definition.lazy) {
+            DLog(@"Eager loading %@", definition);
             [self objectForKey:key];
         }
     }
@@ -124,7 +159,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 - (void)_injectObject:(id)object forClass:(Class)thisClass {
     id classAsID = thisClass;
     BOOL checkIgnoredProperties = ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_reliantShouldIgnorePropertyWithName:)]);
-    [_configurator.objectKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+    [_configurator.objectKeysAndAliases enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         objc_property_t foundProperty = class_getProperty(thisClass, [key cStringUsingEncoding:NSUTF8StringEncoding]);
         if (foundProperty) {
             OCSPropertyRuntimeInfo *pi = [[OCSPropertyRuntimeInfo alloc] initWithProperty:foundProperty];
@@ -171,6 +206,7 @@ Recursive method for injecting objects with their dependencies. This method iter
     NSString *setterName = [NSString stringWithFormat:@"set%@%@:", first, allButFirst];
     SEL standardSetterSelector = NSSelectorFromString([NSString stringWithFormat:setterName, first, allButFirst]);
     if ([object respondsToSelector:standardSetterSelector]) {
+        DLog(@"Setting %@ to %@ on %@", name, value, object);
         [object setValue:value forKey:name];
     } else {
         DLog(@"Property %@ for object %@ could not be injected, the setter %@ is not implemented", name, object, setterName);
@@ -180,6 +216,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 - (void)_setPropertyValue:(id)value onObject:(id)object withCustomSetter:(NSString *)customSetter {
     SEL customSetterSelector = NSSelectorFromString(customSetter);
     if ([object respondsToSelector:customSetterSelector]) {
+        DLog(@"Setting with %@ to %@ on %@", customSetter, value, object);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [object performSelector:customSetterSelector withObject:value];

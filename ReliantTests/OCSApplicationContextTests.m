@@ -120,7 +120,7 @@
     _objectFactory = mockProtocol(@protocol(OCSObjectFactory));
     _knownKeys = [[NSMutableArray alloc] init];
     [given([_configurator objectFactory]) willReturn:_objectFactory];
-    [given([_configurator objectKeys]) willReturn:_knownKeys];
+    [given([_configurator objectKeysAndAliases]) willReturn:_knownKeys];
     _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
     _scope = mockProtocol(@protocol(OCSScope));
     _context = [[OCSApplicationContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory];
