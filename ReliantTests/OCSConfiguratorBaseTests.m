@@ -3,7 +3,7 @@
 //  Reliant
 //
 //  Created by Michael Seghers on 25/05/12.
-//  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
+//  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

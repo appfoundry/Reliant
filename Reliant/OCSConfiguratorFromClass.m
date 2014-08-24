@@ -3,19 +3,9 @@
 //  Reliant
 //
 //  Created by Michael Seghers on 6/05/12.
-//  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
+//  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
-//  Licensed under the Apache License, Version 2.0 (the "License");
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
+
 
 
 
@@ -238,6 +228,7 @@ typedef NSString *(^KeyGenerator)(NSString *);
 
     instance = [[extendedClass alloc] init];
     [instance setFactoryCallStack:[NSMutableArray array]];
+    [instance setExtendedStack:[NSMutableArray array]];
     Ivar keyGeneratorScopeIvar = class_getInstanceVariable(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
     object_setIvar(instance, keyGeneratorScopeIvar, keyGenerator);
     return instance;
@@ -351,23 +342,13 @@ static char applicationContextKey;
     NSString *key = keyGenerator(selector);
     DLog(@"Factory method call for key %@", key);
 
-    //If the object is already in the singleton scope, return that version, singletons never get recreated!
-//    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
-//    id<OCSScope> singletonScope = object_getIvar(self, var);
-//    id result = [singletonScope objectForKey:key];
-//    if (!result) {
-//        result = objc_msgSendSuper(&superData, _cmd);
-//        [singletonScope registerObject:result forKey:key];
-//    }
-
     id result = nil;
-
     if ([self.factoryCallStack containsObject:key]) {
         if ([self.extendedStack containsObject:key]) {
-            [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@ -> %@", [[[self.extendedStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "], key];
+            [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@ -> %@", [self.extendedStack componentsJoinedByString:@" -> "], key];
         }
         [self.extendedStack addObject:key];
-        DLog(@"Factory method call, calling super method");
+        DLog(@"Factory method calling super method");
         result = objc_msgSendSuper(&superData, _cmd);
         [self.extendedStack removeLastObject];
     } else {

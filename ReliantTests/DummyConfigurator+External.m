@@ -3,7 +3,7 @@
 //  Reliant
 //
 //  Created by Michael Seghers on 24/05/12.
-//  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
+//  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 
 #import "DummyConfigurator+External.h"

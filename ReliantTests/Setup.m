@@ -3,7 +3,7 @@
 //  Devoxx Scheduler
 //
 //  Created by Michael Seghers on 9/08/12.
-//  Copyright (c) 2012 iDA MediaFoundry. All rights reserved.
+//  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 #include <stdio.h>
 #import "Setup.h"

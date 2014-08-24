@@ -438,7 +438,7 @@ TODO
 
 We have provided some snippets to easily create the signature to create singletons in the configurator class.
 
-These can be found here: [xCode Snippets](https://github.com/idamediafoundry/Reliant/tree/master/xCode%20Snippets)
+These can be found here: [xCode Snippets](https://github.com/appfoundry/Reliant/tree/master/xCode%20Snippets)
 
 You can install these by downloading these snippets and placing them in the following folder:
 
@@ -484,7 +484,7 @@ Special thanks
 
 - Filip Maelbrancke: for second opinions and rubber ducking
 - Bart Vandeweerdt and Willem Van Pelt: for reviewing this documentation
-- iDA MediaFoundry: for letting me use this in production code
+- AppFoundry: for letting me use this in production code
 - Oak Consultancy Services: for necessary resources
 - Liesbet Gouwy: for unconditional support
 - Kato Seghers: for being born
