@@ -85,8 +85,8 @@ Recursive method for injecting objects with their dependencies. This method iter
             result = [scope objectForKey:definition.key];
             if (!result) {
                 result = [_configurator.objectFactory createObjectForDefinition:definition];
-                [self performInjectionOn:result];
                 [scope registerObject:result forKey:definition.key];
+                [self performInjectionOn:result];
             }
         }
     }
@@ -109,6 +109,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 }
 
 - (void)performInjectionOn:(id)object {
+    DLog(@"Injecting %@", object);
     [self _recursiveInjectionOn:object forMetaClass:[object class]];
 }
 

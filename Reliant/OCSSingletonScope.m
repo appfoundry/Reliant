@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 #import "OCSSingletonScope.h"
+#import "OCSDLogger.h"
 
 @implementation OCSSingletonScope {
     NSMutableDictionary *_objectRegistry;
@@ -35,11 +36,16 @@
 }
 
 - (id) objectForKey:(NSString *)key {
-    return [_objectRegistry objectForKey:key];
+    return _objectRegistry[key];
 }
 
 - (void) registerObject:(id)object forKey:(NSString *)key {
-    [_objectRegistry setObject:object forKey:key];
+    DLog(@"Registering %@ for key %@ in singleton scope", object, key);
+    _objectRegistry[key] = object;
+}
+
+- (NSArray *)allKeys {
+    return [_objectRegistry allKeys];
 }
 
 #if (TARGET_OS_IPHONE)

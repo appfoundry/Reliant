@@ -7,32 +7,36 @@
 //
 
 #import <XCTest/XCTest.h>
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
 #import "OCSPrototypeScope.h"
 
 @interface OCSPrototypeScopeTests : XCTestCase
 
 @end
 
-@implementation OCSPrototypeScopeTests
+@implementation OCSPrototypeScopeTests {
+    OCSPrototypeScope *_prototypeScope;
+}
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _prototypeScope = [[OCSPrototypeScope alloc] init];
 }
 
 - (void)testObjectForKeyShouldAlwaysReturnNil {
-    OCSPrototypeScope *prototypeScope = [[OCSPrototypeScope alloc] init];
-    id object = [prototypeScope objectForKey:@"theKey"];
-    XCTAssertNil(object);
+    id object = [_prototypeScope objectForKey:@"theKey"];
+    assertThat(object, is(nilValue()));
 }
 
 - (void)testObjectForKeyShouldReturnNilEvenWhenRegistered {
-    OCSPrototypeScope *prototypeScope = [[OCSPrototypeScope alloc] init];
-    [prototypeScope registerObject:@"" forKey:@"theKey"];
-    id object = [prototypeScope objectForKey:@"theKey"];
-    XCTAssertNil(object);
+    [_prototypeScope registerObject:@"" forKey:@"theKey"];
+    id object = [_prototypeScope objectForKey:@"theKey"];
+    (object, is(nilValue()));
+}
 
+- (void)testAllKeysReturnsEmptyArray {
+    assertThat([_prototypeScope allKeys], hasCountOf(0));
 }
 
 @end

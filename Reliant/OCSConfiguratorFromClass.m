@@ -304,8 +304,15 @@ static char applicationContextKey;
 }
 
 - (id)createObjectForDefinition:(OCSDefinition *)definition {
+    DLog(@"Creating object for definition %@", definition);
     if ([self.factoryCallStack containsObject:definition.key]) {
-        [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@", [[[self.factoryCallStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "]];
+        NSString *format;
+        if (self.extendedStack.count) {
+            format = [NSString stringWithFormat:@"Circular dependency detected for the following stack: %@ -> %@ -> %@", [[[self.factoryCallStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "], [[self.extendedStack reverseObjectEnumerator] allObjects], definition.key];
+        } else {
+            format = [NSString stringWithFormat:@"Circular dependency detected for the following stack: %@ -> %@", [[[self.factoryCallStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "], definition.key];
+        }
+        [NSException raise:@"ReliantCircularDependencyException" format:format];
     }
     [self.factoryCallStack addObject:definition.key];
 
@@ -318,6 +325,7 @@ static char applicationContextKey;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             result = [self performSelector:selector];
 #pragma clang diagnostic pop
+            DLog(@"Created object: %@", result);
         }
     }
 
@@ -339,6 +347,7 @@ static char applicationContextKey;
     Ivar var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK);
     KeyGenerator keyGenerator = object_getIvar(self, var);
     NSString *key = keyGenerator(selector);
+    DLog(@"Factory method call for key %@", key);
 
     //If the object is already in the singleton scope, return that version, singletons never get recreated!
 //    var = class_getInstanceVariable([self class], OCS_EXTENDED_FACTORY_IVAR_SINGLETON_SCOPE);
@@ -353,12 +362,14 @@ static char applicationContextKey;
 
     if ([self.factoryCallStack containsObject:key]) {
         if ([self.extendedStack containsObject:key]) {
-            [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@", [[[self.extendedStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "]];
+            [NSException raise:@"ReliantCircularDependencyException" format:@"Circular dependency detected for the following stack: %@ -> %@", [[[self.extendedStack reverseObjectEnumerator] allObjects] componentsJoinedByString:@" -> "], key];
         }
         [self.extendedStack addObject:key];
+        DLog(@"Factory method call, calling super method");
         result = objc_msgSendSuper(&superData, _cmd);
         [self.extendedStack removeLastObject];
     } else {
+        DLog(@"Factory method looking for object in context");
         result = [self.applicationContext objectForKey:key];
     }
     return result;

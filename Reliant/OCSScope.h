@@ -40,4 +40,9 @@
  */
 - (void) registerObject:(id) object forKey:(NSString *) key;
 
+/**
+ Get all known keys in this scope.
+*/
+- (NSArray *)allKeys;
+
 @end

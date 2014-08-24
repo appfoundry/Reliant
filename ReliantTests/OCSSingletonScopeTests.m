@@ -7,47 +7,49 @@
 //
 
 #import "OCSSingletonScopeTests.h"
-
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
 #if (TARGET_OS_IPHONE) 
 #import <UIKit/UIApplication.h>
 #endif
 #import "OCSSingletonScope.h"
 
 @implementation OCSSingletonScopeTests {
-    OCSSingletonScope *scope;
+    OCSSingletonScope *_scope;
 }
 
 - (void) setUp {
     [super setUp];
     
-    scope = [[OCSSingletonScope alloc] init];
-}
-
-- (void) tearDown {
-    scope = nil;
-    
-    [super tearDown];
+    _scope = [[OCSSingletonScope alloc] init];
 }
 
 - (void) testRegister {
     id object = [[NSObject alloc] init];
-    [scope registerObject:object forKey:@"SomeObjectKey"];
+    [_scope registerObject:object forKey:@"SomeObjectKey"];
     
-    id result =  [scope objectForKey:@"SomeObjectKey"];
+    id result =  [_scope objectForKey:@"SomeObjectKey"];
+
     XCTAssertEqual(object, result, @"object should be returned as is");
+}
+
+- (void) testAllKeys {
+    [_scope registerObject:@"one" forKey:@"1"];
+    [_scope registerObject:@"two" forKey:@"2"];
+    assertThat([_scope allKeys], allOf(hasCountOf(2), hasItems(@"1", @"2", nil), nil));
 }
 
 #if (TARGET_OS_IPHONE) 
 - (void) testMemoryWarning {
     id object = [[NSObject alloc] init];
-    [scope registerObject:object forKey:@"SomeObjectKey"];
+    [_scope registerObject:object forKey:@"SomeObjectKey"];
     
-    id result =  [scope objectForKey:@"SomeObjectKey"];
+    id result =  [_scope objectForKey:@"SomeObjectKey"];
     XCTAssertEqual(object, result, @"object should be returned as is");
     
     [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
     
-    result =  [scope objectForKey:@"SomeObjectKey"];
+    result =  [_scope objectForKey:@"SomeObjectKey"];
     XCTAssertNil(result, @"Singleton Scope must not hold any objects after a mem warning");
 }
 #endif
