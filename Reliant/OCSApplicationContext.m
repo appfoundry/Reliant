@@ -38,8 +38,8 @@ Application context private category. Holds private ivars and methods.
     /**
     The configurator instance.
     */
-    id<OCSConfigurator> _configurator;
-    id<OCSScopeFactory> _scopeFactory;
+    id <OCSConfigurator> _configurator;
+    id <OCSScopeFactory> _scopeFactory;
 
     NSMutableDictionary *_objectsUnderConstruction;
     NSString *_firstObjectForKeyCallKey;
@@ -81,55 +81,56 @@ Recursive method for injecting objects with their dependencies. This method iter
 }
 
 - (id)objectForKey:(NSString *)key {
-
-
-
     id result = nil;
     OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
     if (definition) {
-        if (!_firstObjectForKeyCallKey) {
-            DLog(@"Top: %@", definition.key);
-            _firstObjectForKeyCallKey = definition.key;
-        } else {
-            DLog(@"Nested %@", definition.key);
-        }
-
-        id <OCSScope> scope = [_scopeFactory scopeForName:definition.scope];
-        if (scope) {
-            result = [scope objectForKey:definition.key];
-            if (!result) {
-                result = [_configurator.objectFactory createObjectForDefinition:definition];
-                _objectsUnderConstruction[definition.key] = result;
-                [scope registerObject:result forKey:definition.key];
-                if ([_firstObjectForKeyCallKey isEqualToString:definition.key]) {
-
-                    while (_objectsUnderConstruction.count > 0) {
-                        id key = [[_objectsUnderConstruction allKeys] firstObject];
-                        id object = _objectsUnderConstruction[key];
-                        DLog(@"Top: performing injection on %@", object);
-                        [self performInjectionOn:object];
-                        [_objectsUnderConstruction removeObjectForKey:key];
-                    }
-                }
-            }
-        }
-
-        if ([_firstObjectForKeyCallKey isEqualToString:definition.key]) {
-            DLog(@"Top done");
-            _firstObjectForKeyCallKey = nil;
-        }
-
-
+        [self _recordDefintionWhenCallHappensOnTopLevel:definition];
+        result = [self _internalObjectForDefinition:definition];
+        [self _unrecordDefinitionWhenCallHappenedOnTopLevel:definition];
     }
-
-
-
     return result;
+}
+
+- (void)_unrecordDefinitionWhenCallHappenedOnTopLevel:(OCSDefinition *)definition {
+    if ([_firstObjectForKeyCallKey isEqualToString:definition.key]) {
+        _firstObjectForKeyCallKey = nil;
+    }
+}
+
+- (id)_internalObjectForDefinition:(OCSDefinition *)definition {
+    id result = nil;
+    id <OCSScope> scope = [_scopeFactory scopeForName:definition.scope];
+    if (scope) {
+        result = [scope objectForKey:definition.key];
+        if (!result) {
+            result = [_configurator.objectFactory createObjectForDefinition:definition];
+            [scope registerObject:result forKey:definition.key];
+            _objectsUnderConstruction[definition.key] = result;
+            [self _injectObjectWhenNotRecursingForDefinition:definition];
+        }
+    }
+    return result;
+}
+
+- (void)_injectObjectWhenNotRecursingForDefinition:(OCSDefinition *)definition {
+    if ([_firstObjectForKeyCallKey isEqualToString:definition.key]) {
+        while (_objectsUnderConstruction.count > 0) {
+            id key = [[_objectsUnderConstruction allKeys] firstObject];
+            id object = _objectsUnderConstruction[key];
+            [self performInjectionOn:object];
+            [_objectsUnderConstruction removeObjectForKey:key];
+        }
+    }
+}
+
+- (void)_recordDefintionWhenCallHappensOnTopLevel:(OCSDefinition *)definition {
+    if (!_firstObjectForKeyCallKey) {
+        _firstObjectForKeyCallKey = definition.key;
+    }
 }
 
 - (BOOL)start {
     [self _initAndInjectNonLazyObjects];
-
     return YES;
 }
 
@@ -137,14 +138,12 @@ Recursive method for injecting objects with their dependencies. This method iter
     for (NSString *key in [_configurator objectKeys]) {
         OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
         if (definition.singleton && !definition.lazy) {
-            DLog(@"Eager loading %@", definition);
             [self objectForKey:key];
         }
     }
 }
 
 - (void)performInjectionOn:(id)object {
-    DLog(@"Injecting %@", object);
     [self _recursiveInjectionOn:object forMetaClass:[object class]];
 }
 
