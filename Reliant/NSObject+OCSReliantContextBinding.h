@@ -4,11 +4,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class OCSObjectContext;
+@protocol OCSObjectContext;
 
 @interface NSObject (OCSReliantContextBinding)
 
-@property (nonatomic, strong) OCSObjectContext *ocsObjectContext;
+@property (nonatomic, strong) id<OCSObjectContext> ocsObjectContext;
 
 - (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class) factoryClass;
 

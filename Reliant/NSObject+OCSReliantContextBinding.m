@@ -13,11 +13,11 @@
 
 static char ocsObjectContextKey;
 
-- (OCSObjectContext *)ocsObjectContext {
+- (id<OCSObjectContext>)ocsObjectContext {
     return objc_getAssociatedObject(self, &ocsObjectContextKey);
 }
 
-- (void)setOcsObjectContext:(OCSObjectContext *)ocsObjectContext {
+- (void)setOcsObjectContext:(id<OCSObjectContext>)ocsObjectContext {
     objc_setAssociatedObject(self, &ocsObjectContextKey, ocsObjectContext, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

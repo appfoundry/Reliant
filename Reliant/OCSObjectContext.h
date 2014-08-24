@@ -19,6 +19,30 @@
 */
 typedef OCSObjectContext OCSApplicationContext __attribute__((deprecated));
 
+
+@protocol OCSObjectContext
+
+/**
+Returns the object identified by the given key (might be an alias too). If an object for the given key (or an alias) is not found on the current context, the parent context is consulted. If not parent context exists and the object is not found, nil is returned.
+
+@param key the key
+*/
+- (id)objectForKey:(NSString *)key;
+
+/**
+Call this method if you want to inject an object with objects known in the context. Injection is always done by properties here. ALL properties in your instance will be tried. If a matching object (by name AND type) is found, it is injected.
+
+@param object the object to be injected
+*/
+- (void)performInjectionOn:(id)object;
+
+/**
+Bootstrap the application context. This will load object definitions via the given configurator. Eager singletons will be loaded as well. Loads any necessary resources, and notifies the configurator that it has been loaded.
+*/
+- (BOOL)start;
+
+@end
+
 /**
 The application's dependency injection (DI) context. To bootstrap Reliant, you should use this class, or one of it's derivatives.
 
@@ -28,7 +52,7 @@ Objects that are not in the DI context can still obtain objects on the DI contex
 
 @author Mike Seghers
 */
-@interface OCSObjectContext : NSObject
+@interface OCSObjectContext : NSObject<OCSObjectContext>
 
 @property(nonatomic, readonly) id <OCSScopeFactory> scopeFactory;
 
@@ -51,24 +75,5 @@ Convenience initializer. Prepares the application context with the given configu
 @param scopeFactory The factory used to look up scopes.
 */
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory;
-
-/**
-Returns the object identified by the given key (might be an alias too). If an object for the given key (or an alias) is not found on the current context, the parent context is consulted. If not parent context exists and the object is not found, nil is returned.
-
-@param key the key
-*/
-- (id)objectForKey:(NSString *)key;
-
-/**
-Call this method if you want to inject an object with objects known in the context. Injection is always done by properties here. ALL properties in your instance will be tried. If a matching object (by name AND type) is found, it is injected.
-
-@param object the object to be injected
-*/
-- (void)performInjectionOn:(id)object;
-
-/**
-Bootstrap the application context. This will load object definitions via the given configurator. Eager singletons will be loaded as well. Loads any necessary resources, and notifies the configurator that it has been loaded.
-*/
-- (BOOL)start;
 
 @end
