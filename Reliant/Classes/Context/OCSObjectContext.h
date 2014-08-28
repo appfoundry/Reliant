@@ -23,6 +23,11 @@ typedef OCSObjectContext OCSApplicationContext __attribute__((deprecated));
 @protocol OCSObjectContext
 
 /**
+The parent application context.
+*/
+@property(nonatomic, weak) OCSObjectContext *parentContext;
+
+/**
 Returns the object identified by the given key (might be an alias too). If an object for the given key (or an alias) is not found on the current context, the parent context is consulted. If not parent context exists and the object is not found, nil is returned.
 
 @param key the key
@@ -55,11 +60,6 @@ Objects that are not in the DI context can still obtain objects on the DI contex
 @interface OCSObjectContext : NSObject<OCSObjectContext>
 
 @property(nonatomic, readonly) id <OCSScopeFactory> scopeFactory;
-
-/**
-The parent application context.
-*/
-@property(nonatomic, weak) OCSObjectContext *parentContext;
 
 /**
 Designated initializer. Prepares the application context with the given configurator.

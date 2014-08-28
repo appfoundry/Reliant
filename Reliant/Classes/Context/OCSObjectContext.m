@@ -48,6 +48,8 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 @implementation OCSObjectContext
 
+@synthesize parentContext;
+
 - (id)init {
     OCSConfiguratorFromClass *autoConfig = [[OCSConfiguratorFromClass alloc] init];
     return [self initWithConfigurator:autoConfig];

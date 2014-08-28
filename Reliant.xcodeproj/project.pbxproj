@@ -167,9 +167,9 @@
 		3323FD11BCDBD085F6AE16BA /* OCSBoundContextLocatorChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F3DFA047070711D6ABF8 /* OCSBoundContextLocatorChain.h */; };
 		3323FD372825398AD9D2AEC8 /* DRYRuntimeMagic.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FE89CADEB37E6A1421F2 /* DRYRuntimeMagic.h */; };
 		3323FD68A3F8D8D926269C0D /* OCSBoundContextLocatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */; };
-		3323FD6D429AC8A190BFC9A5 /* OCSContextLocatorOnViewControllerHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19BCB9981CE0A392D38 /* OCSContextLocatorOnViewControllerHierarchy.m */; };
+		3323FD6D429AC8A190BFC9A5 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */; };
 		3323FE171AE2C893E7C5767F /* OCSBoundContextLocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F3D2522C723113668259 /* OCSBoundContextLocator.h */; };
-		3323FE392EE6AB77B4B08BE3 /* OCSContextLocatorOnViewControllerHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19BCB9981CE0A392D38 /* OCSContextLocatorOnViewControllerHierarchy.m */; };
+		3323FE392EE6AB77B4B08BE3 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */; };
 		3323FE39B34AC682759F1F54 /* OCSBoundContextLocatorOnSelfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD0296FD006579533202 /* OCSBoundContextLocatorOnSelfTest.m */; };
 		3323FE5F4CA5AFD3AC32CDA6 /* DependencyTreeConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F537ACD042617135F470 /* DependencyTreeConfigurationIntegrationTest.m */; };
 		3323FE70597F2F9203F4A9D2 /* NSObject+OCSReliantContextBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F9DCF3B1148240F9AEB4 /* NSObject+OCSReliantContextBinding.h */; };
@@ -263,7 +263,7 @@
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
 		3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSClassRuntimeInfo.h; sourceTree = "<group>"; };
 		3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorFactory.m; sourceTree = "<group>"; };
-		3323F19BCB9981CE0A392D38 /* OCSContextLocatorOnViewControllerHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSContextLocatorOnViewControllerHierarchy.m; sourceTree = "<group>"; };
+		3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnViewControllerHierarchy.m; sourceTree = "<group>"; };
 		3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecursiveConfigurationTest.m; sourceTree = "<group>"; };
 		3323F20DB8D6AEA67BD83EE8 /* OCSBoundContextLocatorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorFactory.h; sourceTree = "<group>"; };
 		3323F20FA6E347D11E4C5E83 /* OCSBoundContextLocatorChainTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorChainTest.m; sourceTree = "<group>"; };
@@ -733,7 +733,7 @@
 				3323F49FE01960198AC877EC /* OCSBoundContextLocatorOnApplicationDelegate.h */,
 				3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */,
 				3323F6BD70654FB36FCE4AAC /* OCSBoundContextLocatorOnViewControllerHierarchy.h */,
-				3323F19BCB9981CE0A392D38 /* OCSContextLocatorOnViewControllerHierarchy.m */,
+				3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1049,7 +1049,7 @@
 				3323F7648E56EA92F3CA84F3 /* NSObject+OCSReliantInjection.m in Sources */,
 				3323F77948FC3A6CD3A144E5 /* OCSBoundContextLocatorFactory.m in Sources */,
 				3323F170C84639F893F9076A /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */,
-				3323FE392EE6AB77B4B08BE3 /* OCSContextLocatorOnViewControllerHierarchy.m in Sources */,
+				3323FE392EE6AB77B4B08BE3 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,7 +1098,7 @@
 				3323FB79FE657F7920BE7FB4 /* NSObject+OCSReliantInjectionTest.m in Sources */,
 				3323F95088C60DFF7AC8AB4B /* OCSBoundContextLocatorFactory.m in Sources */,
 				3323F7860771F657562766A5 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */,
-				3323FD6D429AC8A190BFC9A5 /* OCSContextLocatorOnViewControllerHierarchy.m in Sources */,
+				3323FD6D429AC8A190BFC9A5 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */,
 				3323F0E50ED598B66052A91D /* OCSBoundContextLocatorFactoryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

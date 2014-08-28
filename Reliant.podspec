@@ -11,9 +11,10 @@ Pod::Spec.new do |s|
   s.source_files = 'Reliant/Classes/**/*.{h,m}'
 
   s.ios.deployment_target = '6.0'
+  s.ios.exclude_files = 'Reliant/Classes/ContextLocator/OSX/*'
 
   s.osx.deployment_target = '10.8'
-  s.osx.exclude_files = 'Reliant/Classes/Categories/UIKit/*.{h,m}'
+  s.osx.exclude_files = 'Reliant/Classes/Categories/UIKit/*', 'Reliant/Classes/ContextLocator/iOS/*'
 
   s.frameworks = 'Foundation'
   s.ios.frameworks = 'UIKit'
