@@ -13,7 +13,6 @@
 #import <OCMockito/OCMockito.h>
 #import "OCSBoundContextLocatorChain.h"
 #import "OCSObjectContext.h"
-#import "NSObject+OCSReliantContextBinding.h"
 
 @interface OCSBoundContextLocatorChainTest : XCTestCase
 
