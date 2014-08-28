@@ -11,15 +11,6 @@
 
 }
 
-+ (instancetype)sharedContextLocatorChain {
-    static OCSBoundContextLocatorChain *sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[OCSBoundContextLocatorChain alloc] init];
-    });
-    return sharedInstance;
-}
-
 - (id)init {
     self = [super init];
     if (self) {

@@ -8,7 +8,9 @@
 
 @interface OCSBoundContextLocatorChain : NSObject<OCSBoundContextLocator>
 
-+ (instancetype)sharedContextLocatorChain;
+@property (nonatomic, readonly, copy) NSArray *locators;
+
 - (void)addBoundContextLocator:(id<OCSBoundContextLocator>) contextLocator;
+
 
 @end

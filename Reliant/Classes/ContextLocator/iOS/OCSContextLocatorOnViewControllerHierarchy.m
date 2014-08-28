@@ -3,11 +3,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCSContextLocatorOnViewControllerHierarchy.h"
+#import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "NSObject+OCSReliantContextBinding.h"
 #import "OCSObjectContext.h"
 
-@implementation OCSContextLocatorOnViewControllerHierarchy {
+@implementation OCSBoundContextLocatorOnViewControllerHierarchy {
 
 }
 

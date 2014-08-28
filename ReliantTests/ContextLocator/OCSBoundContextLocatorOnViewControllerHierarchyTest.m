@@ -1,5 +1,5 @@
 //
-//  OCSContextLocatorOnViewControllerHierarchyTest.m
+//  OCSBoundContextLocatorOnViewControllerHierarchyTest.m
 //  Reliant
 //
 //  Created by Michael Seghers on 24/08/14.
@@ -12,20 +12,20 @@
 #import <OCHamcrest/OCHamcrest.h>
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
-#import "OCSContextLocatorOnViewControllerHierarchy.h"
+#import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "NSObject+OCSReliantContextBinding.h"
 
-@interface OCSContextLocatorOnViewControllerHierarchyTest : XCTestCase
+@interface OCSBoundContextLocatorOnViewControllerHierarchyTest : XCTestCase
 
 @end
 
-@implementation OCSContextLocatorOnViewControllerHierarchyTest {
-    OCSContextLocatorOnViewControllerHierarchy *_locator;
+@implementation OCSBoundContextLocatorOnViewControllerHierarchyTest {
+    OCSBoundContextLocatorOnViewControllerHierarchy *_locator;
 }
 
 - (void)setUp {
     [super setUp];
-    _locator = [[OCSContextLocatorOnViewControllerHierarchy alloc] init];
+    _locator = [[OCSBoundContextLocatorOnViewControllerHierarchy alloc] init];
 }
 
 

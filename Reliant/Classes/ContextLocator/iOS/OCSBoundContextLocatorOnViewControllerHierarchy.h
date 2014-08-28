@@ -5,5 +5,5 @@
 #import <Foundation/Foundation.h>
 #import "OCSBoundContextLocator.h"
 
-@interface OCSContextLocatorOnViewControllerHierarchy : NSObject<OCSBoundContextLocator>
+@interface OCSBoundContextLocatorOnViewControllerHierarchy : NSObject<OCSBoundContextLocator>
 @end
