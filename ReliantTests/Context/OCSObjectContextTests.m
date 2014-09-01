@@ -246,6 +246,11 @@
     [verify(parentContext) performInjectionOn:object];
 }
 
+- (void)testContextGetsNameFromConfigurator {
+    [given(_configurator.contextName) willReturn:@"ConfiguredName"];
+    assertThat(_context.name, is(equalTo(@"ConfiguredName")));
+}
+
 - (OCSDefinition *)_prepareContextToFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName withValue:(id)expectedObject {
     OCSDefinition *def = [[OCSDefinition alloc] init];
     def.key = objectKey;
@@ -263,7 +268,6 @@
     [given([_objectFactory createObjectForDefinition:def]) willReturn:expectedObject];
     return def;
 }
-
 
 @end
 

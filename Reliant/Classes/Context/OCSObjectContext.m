@@ -73,6 +73,10 @@ Recursive method for injecting objects with their dependencies. This method iter
     return self;
 }
 
+- (NSString *)name {
+    return _configurator.contextName;
+}
+
 - (id)objectForKey:(NSString *)key {
     id result = nil;
     OCSDefinition *definition = [_configurator definitionForKeyOrAlias:key];
