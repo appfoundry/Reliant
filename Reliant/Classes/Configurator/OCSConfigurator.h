@@ -38,7 +38,10 @@ All keys of the definitions found in this configurator. This list includes both 
 */
 @property (readonly, nonatomic, copy) NSArray *objectKeysAndAliases;
 
-
+/**
+The context's name which is configured by this configurator.
+*/
+@property(nonatomic, readonly) NSString *contextName;
 
 /**
 Get a definition for the given key or alias.

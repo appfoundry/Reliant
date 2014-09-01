@@ -32,27 +32,12 @@
 
 @end
 
-@interface BadAliasFactoryClass : NSObject
-
+@interface NameProvidingConfigurator : NSObject
 @end
-
-/*@interface AutoDetectedReliantConfiguration : NSObject
-
-@end*/
-
-
 
 @implementation OCSConfiguratorFromClassTests {
     OCSConfiguratorFromClass *_configurator;
     OCSObjectContext *_context;
-
-    int verySmartNameInjected;
-    int unbelievableOtherSmartNameInjected;
-    int lazyOneInjected;
-    int superInjected;
-    int extendedInjected;
-    int categoryInjected;
-    int externalCategoryInjected;
 }
 
 - (void) setUp {
@@ -97,6 +82,16 @@
     [verify(_context) objectForKey:@"VerySmartName"];
 }
 
+- (void)testContextNameIsDerivedFromFactoryClass {
+    NSString *name = _configurator.contextName;
+    assertThat(name, is(equalTo(@"DummyConfiguratorContext")));
+}
+
+- (void)testContextNameIsTakenFromFactoryClassWhenItProvidesContextNameMethod {
+    _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[NameProvidingConfigurator class]];
+    assertThat(_configurator.contextName, is(equalTo(@"CustomContextName")));
+}
+
 @end
 
 
@@ -104,6 +99,14 @@
 
 - (id) createEagerSingletonFromCategory {
     return @"FromCategory";
+}
+
+@end
+
+@implementation NameProvidingConfigurator
+
+- (NSString *) contextName {
+    return @"CustomContextName";
 }
 
 @end

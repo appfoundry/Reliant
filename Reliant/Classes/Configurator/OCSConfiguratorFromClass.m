@@ -34,6 +34,11 @@ Configurator private category. Holds private ivars and methods.
     @see OCSConfiguratorFromClass
     */
     id <OCSObjectFactory> _configInstance;
+
+    /**
+    The class used as basis to
+    */
+    Class _factoryClass;
 }
 
 /**
@@ -78,6 +83,7 @@ typedef NSString *(^KeyGenerator)(NSString *);
 - (id)initWithClass:(Class)factoryClass {
     self = [super init];
     if (self) {
+        _factoryClass = factoryClass;
         _configInstance = [self _createExtendedConfiguratorInstance:factoryClass filteringMethodsBy:^(NSString *name) {
             BOOL result = ([name hasPrefix:LAZY_SINGLETON_PREFIX] || [name hasPrefix:EAGER_SINGLETON_PREFIX]);
             return result;
@@ -256,6 +262,16 @@ typedef NSString *(^KeyGenerator)(NSString *);
 
 - (id <OCSObjectFactory>)objectFactory {
     return _configInstance;
+}
+
+- (NSString *)contextName {
+    NSString *result;
+    if ([_configInstance respondsToSelector:@selector(contextName)]) {
+        result = [((id)_configInstance) contextName];
+    } else {
+        result = [NSString stringWithFormat:@"%@Context", NSStringFromClass(_factoryClass)];
+    }
+    return result;
 }
 
 @end

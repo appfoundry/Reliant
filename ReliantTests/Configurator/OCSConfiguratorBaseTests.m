@@ -85,4 +85,9 @@
     assertThat(definition, is(nilValue()));
 }
 
+- (void)testContextNameShouldReturnNil {
+    NSString *result = _configurator.contextName;
+    assertThat(result, is(nilValue()));
+}
+
 @end
