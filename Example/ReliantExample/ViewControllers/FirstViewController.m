@@ -12,18 +12,17 @@
 #import "Info.h"
 
 @interface FirstViewController () {
-    __weak IBOutlet UITextView *_textView;
 }
 
 @end
 
 @implementation FirstViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self ocsInject];
-    _textView.text = self.detailViewModel.info.message;
+    self.title = [NSString stringWithFormat:@"- %@ -", self.detailViewModel.info.message];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 @end

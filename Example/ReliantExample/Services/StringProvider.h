@@ -8,5 +8,6 @@
 @protocol StringProvider <NSObject>
 
 - (NSString *)provideString;
+- (NSString *)buttonString;
 
 @end

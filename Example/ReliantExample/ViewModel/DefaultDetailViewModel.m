@@ -23,12 +23,15 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self ocsInject];
         self.info = [[Info alloc] init];
-        self.info.message = [_stringProvider provideString];
     }
 
     return self;
+}
+
+- (void)setStringProvider:(id <StringProvider>)stringProvider {
+    _stringProvider = stringProvider;
+    self.info.message = [NSString stringWithFormat:@"Info: %@", [_stringProvider provideString]];
 }
 
 @end

@@ -6,6 +6,10 @@
 #import "TabBarConfiguration.h"
 #import "DetailViewModel.h"
 #import "DefaultDetailViewModel.h"
+#import "OCSObjectContext.h"
+#import "OCSBoundContextLocatorFactory.h"
+#import "NSObject+OCSReliantContextBinding.h"
+#import "OCSBoundContextLocator.h"
 
 
 @implementation TabBarConfiguration {
@@ -14,5 +18,9 @@
 
 - (id<DetailViewModel>) createSingletonDetailViewModel {
     return [[DefaultDetailViewModel alloc] init];
+}
+
+- (NSString *)parentContextName {
+    return @"AppContext";
 }
 @end

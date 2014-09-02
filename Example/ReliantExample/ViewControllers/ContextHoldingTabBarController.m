@@ -38,10 +38,4 @@
     [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[TabBarConfiguration class]];
 }
 
-
-- (void)setViewControllers:(NSArray *)viewControllers {
-    [super setViewControllers:viewControllers];
-}
-
-
 @end

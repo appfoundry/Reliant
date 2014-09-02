@@ -13,7 +13,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.message = @"This is te default info value";
+        self.message = @"This is the default info value";
     }
     return self;
 }

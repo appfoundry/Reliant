@@ -14,4 +14,8 @@
     return @"Hello, I am a string!";
 }
 
+- (NSString *)buttonString {
+    return @"Tap me please!";
+}
+
 @end

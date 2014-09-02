@@ -6,24 +6,31 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
+#import <Reliant/NSObject+OCSReliantInjection.h>
 #import "SecondViewController.h"
+#import "DetailViewModel.h"
+#import "Info.h"
 
-@interface SecondViewController ()
+@interface SecondViewController () {
+}
+
+//Invisible property which will be injected from the tab bar context.
+@property (nonatomic, strong) id<DetailViewModel> detailViewModel;
 
 @end
 
 @implementation SecondViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)didMoveToParentViewController:(UIViewController *)parent {
+    [super didMoveToParentViewController:parent];
+    [self ocsInject];
+    self.title = [NSString stringWithFormat:@"- %@ -", self.detailViewModel.info.message];
 }
+
 
 @end
