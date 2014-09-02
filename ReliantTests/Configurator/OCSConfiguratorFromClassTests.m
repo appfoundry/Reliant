@@ -7,7 +7,7 @@
 //
 
 
-
+#import <XCTest/XCTest.h>
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
 #define HC_SHORTHAND
@@ -18,7 +18,6 @@
 #endif
 
 #define LOG_RELIANT 1
-#import "OCSConfiguratorFromClassTests.h"
 
 #import "OCSConfiguratorFromClass.h"
 #import "OCSObjectContext.h"
@@ -36,6 +35,9 @@
 @end
 
 @interface WrongNameProvidingConfigurator : NSObject
+@end
+
+@interface OCSConfiguratorFromClassTests : XCTestCase
 @end
 
 @implementation OCSConfiguratorFromClassTests {
@@ -95,8 +97,17 @@
     assertThat(_configurator.contextName, is(equalTo(@"CustomContextName")));
 }
 
-- (void)testValiedExceptionIsThrownWhenContextNameMethodInFactoryReturnsNil {
+- (void)testExceptionIsThrownWhenContextNameMethodInFactoryReturnsNil {
     XCTAssertThrows([[OCSConfiguratorFromClass alloc] initWithClass:[WrongNameProvidingConfigurator class]], @"Configurator should not allow a factory class having a contextName: method which returns nil.");
+}
+
+- (void)testParentContextNameIsDerivedFromFactoryClass {
+    _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[NameProvidingConfigurator class]];
+    assertThat(_configurator.parentContextName, is(equalTo(@"ParentContextName")));
+}
+
+- (void)testParentContextNameIsNilWhenFactoryClassHasNoParentContextNameMethod {
+    assertThat(_configurator.parentContextName, is(nilValue()));
 }
 
 @end
@@ -114,6 +125,10 @@
 
 - (NSString *) contextName {
     return @"CustomContextName";
+}
+
+- (NSString *) parentContextName {
+    return @"ParentContextName";
 }
 
 @end

@@ -19,7 +19,7 @@
 #import "OCSDefinition.h"
 #import "OCSDLogger.h"
 #import "OCSObjectFactory.h"
-#import "DRYRuntimeMagic.h"
+#import "OCSRuntimeMagic.h"
 
 #define OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK "__ocs_factory_class_generatorBlock"
 #define OCS_EXTENDED_FACTORY_CLASSNAME_PREFIX "OCSReliantExtended_"
@@ -230,9 +230,9 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
         IMP bindToContextIMP = method_getImplementation(standinBindToContextMethod);
         class_addMethod(extendedClass, @selector(bindToContext:), bindToContextIMP, method_getTypeEncoding(standinBindToContextMethod));
 
-        [DRYRuntimeMagic copyPropertyNamed:@"factoryCallStack" fromClass:standinFactoryClass toClass:extendedClass];
-        [DRYRuntimeMagic copyPropertyNamed:@"extendedStack" fromClass:standinFactoryClass toClass:extendedClass];
-        [DRYRuntimeMagic copyPropertyNamed:@"applicationContext" fromClass:standinFactoryClass toClass:extendedClass];
+        [OCSRuntimeMagic copyPropertyNamed:@"factoryCallStack" fromClass:standinFactoryClass toClass:extendedClass];
+        [OCSRuntimeMagic copyPropertyNamed:@"extendedStack" fromClass:standinFactoryClass toClass:extendedClass];
+        [OCSRuntimeMagic copyPropertyNamed:@"applicationContext" fromClass:standinFactoryClass toClass:extendedClass];
 
         unsigned int methodCount;
         Method *methods = class_copyMethodList(baseClass, &methodCount);
@@ -292,12 +292,18 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
     return _contextName;
 }
 
+- (NSString *)parentContextName {
+    NSString *result = nil;
+    if ([_configInstance respondsToSelector:@selector(parentContextName)]) {
+        result = [((id) _configInstance) parentContextName];
+    }
+    return result;
+}
+
 @end
 
 
-@implementation StandinFactory {
-    NSMutableArray *_factoryCallStack;
-}
+@implementation StandinFactory
 
 static char factoryCallStackKey;
 

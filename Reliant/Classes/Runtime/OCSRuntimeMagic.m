@@ -3,11 +3,11 @@
 //
 
 #import <objc/runtime.h>
-#import "DRYRuntimeMagic.h"
+#import "OCSRuntimeMagic.h"
 #import "OCSPropertyRuntimeInfo.h"
 
 
-@implementation DRYRuntimeMagic {
+@implementation OCSRuntimeMagic {
 
 }
 

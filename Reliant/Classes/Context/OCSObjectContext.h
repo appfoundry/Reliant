@@ -13,6 +13,7 @@
 @protocol OCSScopeFactory;
 
 @class OCSObjectContext;
+@protocol OCSContextRegistry;
 
 /**
 @warning Deprecated: You should nog longer use OCSApplicationContext as type. It has been renamed to OCSObjectContext.
@@ -25,7 +26,7 @@ typedef OCSObjectContext OCSApplicationContext __attribute__((deprecated));
 /**
 The parent object context.
 */
-@property(nonatomic, weak) OCSObjectContext *parentContext;
+@property(nonatomic, readonly, weak) id<OCSObjectContext> parentContext;
 
 /**
 The name of this context as configured by it's configurator.
@@ -67,7 +68,7 @@ Objects that are not in the DI context can still obtain objects on the DI contex
 @property(nonatomic, readonly) id <OCSScopeFactory> scopeFactory;
 
 /**
-Designated initializer. Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory.
+Designated initializer. Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory and  the context registry to OCSDefaultContextRegistry shared instance.
 
 @param configurator The configurator that will be used to setup the context.
 */
@@ -78,7 +79,8 @@ Convenience initializer. Prepares the object context with the given configurator
 
 @param configurator The configurator that provides object definitions and the object factory.
 @param scopeFactory The factory used to look up scopes.
+@param contextRegistry The context registry to which this context should be recorded.
 */
-- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory;
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>)contextRegistry;
 
 @end

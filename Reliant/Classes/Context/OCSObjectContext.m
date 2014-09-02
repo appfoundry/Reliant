@@ -21,6 +21,8 @@
 #import "OCSDefinition.h"
 #import "OCSScopeFactory.h"
 #import "OCSDefaultScopeFactory.h"
+#import "OCSContextRegistry.h"
+#import "OCSDefaultContextRegistry.h"
 
 /**
 Application context private category. Holds private ivars and methods.
@@ -31,6 +33,7 @@ Application context private category. Holds private ivars and methods.
     */
     id <OCSConfigurator> _configurator;
     id <OCSScopeFactory> _scopeFactory;
+    id <OCSContextRegistry> _contextRegistry;
 
     NSMutableDictionary *_objectsUnderConstruction;
     NSString *_firstObjectForKeyCallKey;
@@ -48,7 +51,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 @implementation OCSObjectContext
 
-@synthesize parentContext;
+@synthesize parentContext = _parentContext;
 
 - (id)init {
     OCSConfiguratorFromClass *autoConfig = [[OCSConfiguratorFromClass alloc] init];
@@ -57,20 +60,34 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 - (id)initWithConfigurator:(id <OCSConfigurator>)configurator {
     OCSDefaultScopeFactory *defaultScopeFactory = [[OCSDefaultScopeFactory alloc] init];
-    return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory];
+    return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry]];
 }
 
-- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory {
-    self = [super init];
-    if (self && configurator && scopeFactory) {
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry {
+    if (self && configurator && scopeFactory && contextRegistry) {
+        self = [super init];
         _configurator = configurator;
         _scopeFactory = scopeFactory;
+        _contextRegistry = contextRegistry;
         [_configurator.objectFactory bindToContext:self];
+        [_contextRegistry registerContext:self];
+        [self _setParentContextIfPossible];
         _objectsUnderConstruction = [NSMutableDictionary dictionary];
     } else {
         self = nil;
     }
     return self;
+}
+
+- (void)_setParentContextIfPossible {
+    NSString *parentContextName = _configurator.parentContextName;
+    if (parentContextName) {
+        id <OCSObjectContext> parentContext = [_contextRegistry contextForName:parentContextName];
+        if (!parentContext) {
+            [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found. Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created before this context is.", parentContextName];
+        }
+        _parentContext = parentContext;
+    }
 }
 
 - (NSString *)name {

@@ -44,6 +44,11 @@ The context's name which is configured by this configurator.
 @property(nonatomic, readonly) NSString *contextName;
 
 /**
+The parent context's name, if any.
+*/
+@property(nonatomic, readonly) NSString *parentContextName;
+
+/**
 Get a definition for the given key or alias.
 
 @param keyOrAlias the key or alias of the definition you are looking for

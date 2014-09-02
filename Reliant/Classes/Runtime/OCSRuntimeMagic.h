@@ -5,7 +5,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DRYRuntimeMagic : NSObject
+@interface OCSRuntimeMagic : NSObject
 
 + (void) copyPropertyNamed:(NSString *) name fromClass:(Class) origin toClass:(Class) destination;
 

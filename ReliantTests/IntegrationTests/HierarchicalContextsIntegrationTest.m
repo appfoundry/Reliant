@@ -41,8 +41,6 @@
 
     id <OCSConfigurator> childConfigurator = [[OCSConfiguratorFromClass alloc] initWithClass:[ChildConfiguration class]];
     _childContext = [[OCSObjectContext alloc] initWithConfigurator:childConfigurator];
-
-    _childContext.parentContext = _parentContext;
 }
 
 - (void)testInjectionForAFromChildContext {
@@ -103,6 +101,11 @@
 - (id) createEagerSingletonC {
     return @"Child C";
 }
+
+- (NSString *) parentContextName {
+    return @"ParentConfigurationContext";
+}
+
 @end
 
 @implementation HierarchicalInjected

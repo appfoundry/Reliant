@@ -65,6 +65,10 @@
     return nil;
 }
 
+- (NSString *)parentContextName {
+    return nil;
+}
+
 /**
 Register a key or alias. This method will raise an exception if the key or alias is already regsiterd. Keys and aliases should all be unique. This method is called in the definitionForKeyOrAlias: method.
 
