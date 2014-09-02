@@ -35,6 +35,9 @@
 @interface NameProvidingConfigurator : NSObject
 @end
 
+@interface WrongNameProvidingConfigurator : NSObject
+@end
+
 @implementation OCSConfiguratorFromClassTests {
     OCSConfiguratorFromClass *_configurator;
     OCSObjectContext *_context;
@@ -92,6 +95,10 @@
     assertThat(_configurator.contextName, is(equalTo(@"CustomContextName")));
 }
 
+- (void)testValiedExceptionIsThrownWhenContextNameMethodInFactoryReturnsNil {
+    XCTAssertThrows([[OCSConfiguratorFromClass alloc] initWithClass:[WrongNameProvidingConfigurator class]], @"Configurator should not allow a factory class having a contextName: method which returns nil.");
+}
+
 @end
 
 
@@ -107,6 +114,14 @@
 
 - (NSString *) contextName {
     return @"CustomContextName";
+}
+
+@end
+
+@implementation WrongNameProvidingConfigurator
+
+- (NSString *) contextName {
+    return nil;
 }
 
 @end

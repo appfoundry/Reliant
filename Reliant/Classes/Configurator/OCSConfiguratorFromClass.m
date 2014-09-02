@@ -19,7 +19,6 @@
 #import "OCSDefinition.h"
 #import "OCSDLogger.h"
 #import "OCSObjectFactory.h"
-#import "OCSScopeFactory.h"
 #import "DRYRuntimeMagic.h"
 
 #define OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK "__ocs_factory_class_generatorBlock"
@@ -34,6 +33,11 @@ Configurator private category. Holds private ivars and methods.
     @see OCSConfiguratorFromClass
     */
     id <OCSObjectFactory> _configInstance;
+
+    /**
+    The configured name of the context, if any.
+    */
+    NSString *_contextName;
 
     /**
     The class used as basis to
@@ -55,11 +59,27 @@ typedef BOOL(^MethodFilter)(NSString *);
 
 typedef NSString *(^KeyGenerator)(NSString *);
 
+static const MethodFilter methodFilter = ^(NSString *name) {
+    BOOL result = ([name hasPrefix:LAZY_SINGLETON_PREFIX] || [name hasPrefix:EAGER_SINGLETON_PREFIX]);
+    return result;
+};
+
+static const KeyGenerator keyGenerator = ^(NSString *name) {
+    NSUInteger offset;
+    if ([name hasPrefix:LAZY_SINGLETON_PREFIX]) {
+        offset = LAZY_SINGLETON_PREFIX.length;
+    } else {
+        offset = EAGER_SINGLETON_PREFIX.length;
+    }
+
+    return [name substringFromIndex:offset];
+};
+
 @interface StandinFactory : NSObject <OCSObjectFactory>
 
-@property (nonatomic, strong) NSMutableArray *factoryCallStack;
-@property (nonatomic, strong) NSMutableArray *extendedStack;
-@property (nonatomic, weak) OCSObjectContext *applicationContext;
+@property(nonatomic, strong) NSMutableArray *factoryCallStack;
+@property(nonatomic, strong) NSMutableArray *extendedStack;
+@property(nonatomic, weak) OCSObjectContext *applicationContext;
 
 - (id)extendedFactoryMethod;
 
@@ -84,33 +104,37 @@ typedef NSString *(^KeyGenerator)(NSString *);
     self = [super init];
     if (self) {
         _factoryClass = factoryClass;
-        _configInstance = [self _createExtendedConfiguratorInstance:factoryClass filteringMethodsBy:^(NSString *name) {
-            BOOL result = ([name hasPrefix:LAZY_SINGLETON_PREFIX] || [name hasPrefix:EAGER_SINGLETON_PREFIX]);
-            return result;
-        }                                        generatingKeysWith:^(NSString *name) {
-            NSUInteger offset;
-            if ([name hasPrefix:LAZY_SINGLETON_PREFIX]) {
-                offset = LAZY_SINGLETON_PREFIX.length;
-            } else {
-                offset = EAGER_SINGLETON_PREFIX.length;
-            }
+        _configInstance = [self _createExtendedConfiguratorInstance:factoryClass filteringMethodsBy:methodFilter generatingKeysWith:keyGenerator];
+        [self _setContextNameFromFactoryOrSetToDefault];
 
-            return [name substringFromIndex:offset];
-        }];
-
-        unsigned int count;
-        Method *methods = class_copyMethodList(factoryClass, &count);
-        if (count > 0) {
-            for (int i = 0; i < count; i++) {
-                Method method = methods[i];
-                [self _investigateIfDefinitionCanBeCreatedForMethod:method];
-            }
-        } else {
-            DLog(@"No methods found on class...");
-        }
-        free(methods);
+        [self _iterateOverFactoryClassMethods];
     }
     return self;
+}
+
+- (void)_iterateOverFactoryClassMethods {
+    unsigned int count;
+    Method *methods = class_copyMethodList(_factoryClass, &count);
+    if (count > 0) {
+        for (int i = 0; i < count; i++) {
+            Method method = methods[i];
+            [self _investigateIfDefinitionCanBeCreatedForMethod:method];
+        }
+    } else {
+        DLog(@"No methods found on class...");
+    }
+    free(methods);
+}
+
+- (void)_setContextNameFromFactoryOrSetToDefault {
+    if ([_configInstance respondsToSelector:@selector(contextName)]) {
+        _contextName = [((id) _configInstance) contextName];
+        if (!_contextName) {
+            [NSException raise:@"InvalidNameException" format:@"Your factory class (%@) has a contextName: method, but it returns nil. Make sure it returns a valid string.", NSStringFromClass(_factoryClass)];
+        }
+    } else {
+        _contextName = [NSString stringWithFormat:@"%@Context", NSStringFromClass(_factoryClass)];
+    }
 }
 
 - (void)_investigateIfDefinitionCanBeCreatedForMethod:(Method)method {
@@ -265,17 +289,10 @@ typedef NSString *(^KeyGenerator)(NSString *);
 }
 
 - (NSString *)contextName {
-    NSString *result;
-    if ([_configInstance respondsToSelector:@selector(contextName)]) {
-        result = [((id)_configInstance) contextName];
-    } else {
-        result = [NSString stringWithFormat:@"%@Context", NSStringFromClass(_factoryClass)];
-    }
-    return result;
+    return _contextName;
 }
 
 @end
-
 
 
 @implementation StandinFactory {
@@ -308,7 +325,7 @@ static char applicationContextKey;
     return objc_getAssociatedObject(self, &applicationContextKey);
 }
 
-- (void)setApplicationContext:(OCSObjectContext *) applicationContext {
+- (void)setApplicationContext:(OCSObjectContext *)applicationContext {
     objc_setAssociatedObject(self, &applicationContextKey, applicationContext, OBJC_ASSOCIATION_ASSIGN);
 }
 
