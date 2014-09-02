@@ -38,34 +38,16 @@
     _context = mockProtocol(@protocol(OCSObjectContext));
 }
 
-- (void)testCanLocateForAnyObject {
-    assertThatBool([_locator canLocateBoundContextForObject:self], is(equalToBool(YES)));
-}
-
-- (void)testLocatesBoundOnLocatorThatApplies {
-    [given([_first canLocateBoundContextForObject:anything()]) willReturnBool:YES];
-    [given([_second canLocateBoundContextForObject:anything()]) willReturnBool:NO];
-    [given([_third canLocateBoundContextForObject:anything()]) willReturnBool:YES];
-
-    id <OCSObjectContext> context = [_locator locateBoundContextForObject:self];
-    assertThat(context, is(nilValue()));
-
-    [verify(_first) locateBoundContextForObject:self];
-    [verify(_third) locateBoundContextForObject:self];
-    [verifyCount(_second, never()) locateBoundContextForObject:self];
-}
 
 - (void)testLocatingStopsAfterContextIsFound {
-    [given([_first canLocateBoundContextForObject:anything()]) willReturnBool:YES];
-    [given([_first locateBoundContextForObject:anything()]) willReturn:_context];
+    [given([_second locateBoundContextForObject:anything()]) willReturn:_context];
 
     id <OCSObjectContext> context = [_locator locateBoundContextForObject:self];
     assertThat(context, is(sameInstance(_context)));
 
-    [verifyCount(_second, never()) locateBoundContextForObject:anything()];
-    [verifyCount(_second, never()) canLocateBoundContextForObject:anything()];
+    [verify(_first) locateBoundContextForObject:anything()];
+    [verify(_second) locateBoundContextForObject:anything()];
     [verifyCount(_third, never()) locateBoundContextForObject:anything()];
-    [verifyCount(_third, never()) canLocateBoundContextForObject:anything()];
 }
 
 @end

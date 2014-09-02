@@ -23,19 +23,12 @@
 - (id <OCSObjectContext>)locateBoundContextForObject:(NSObject *)object {
     id<OCSObjectContext> context = nil;
     for(id<OCSBoundContextLocator> locator in _locators) {
-        if ([locator canLocateBoundContextForObject:object]) {
-            context = [locator locateBoundContextForObject:object];
-        }
-
+        context = [locator locateBoundContextForObject:object];
         if (context) {
             break;
         }
     }
     return context;
-}
-
-- (BOOL)canLocateBoundContextForObject:(NSObject *)object {
-    return YES;
 }
 
 - (void)addBoundContextLocator:(id <OCSBoundContextLocator>)contextLocator {

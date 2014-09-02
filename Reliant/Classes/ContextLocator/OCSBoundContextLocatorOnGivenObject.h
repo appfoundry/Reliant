@@ -6,5 +6,5 @@
 #import "OCSBoundContextLocator.h"
 
 
-@interface OCSBoundContextLocatorOnSelf : NSObject<OCSBoundContextLocator>
+@interface OCSBoundContextLocatorOnGivenObject : NSObject<OCSBoundContextLocator>
 @end

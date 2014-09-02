@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "OCSBoundContextLocatorFactory.h"
 #import "OCSBoundContextLocatorChain.h"
-#import "OCSBoundContextLocatorOnSelf.h"
+#import "OCSBoundContextLocatorOnGivenObject.h"
 #if TARGET_OS_IPHONE
 #import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "OCSBoundContextLocatorOnApplicationDelegate.h"
@@ -44,10 +44,10 @@
     OCSBoundContextLocatorChain *chain =  [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
 #if TARGET_OS_IPHONE
     assertThat(chain.locators, hasCountOf(3));
-    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnSelf class]), instanceOf([OCSBoundContextLocatorOnViewControllerHierarchy class]), instanceOf([OCSBoundContextLocatorOnApplicationDelegate class]), nil));
+    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnViewControllerHierarchy class]), instanceOf([OCSBoundContextLocatorOnApplicationDelegate class]), nil));
 #else
     assertThat(chain.locators, hasCountOf(2));
-    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnSelf class]), instanceOf([OCSBoundContextLocatorOnOSXApplicationDelegate class]), nil));
+    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnOSXApplicationDelegate class]), nil));
 #endif
 }
 

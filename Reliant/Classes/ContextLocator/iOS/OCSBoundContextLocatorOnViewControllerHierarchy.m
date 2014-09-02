@@ -22,9 +22,4 @@
     return context;
 }
 
-- (BOOL)canLocateBoundContextForObject:(NSObject *)object {
-    return [object isKindOfClass:[UIViewController class]];
-}
-
-
 @end

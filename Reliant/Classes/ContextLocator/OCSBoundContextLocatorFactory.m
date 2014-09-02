@@ -5,7 +5,7 @@
 #import "OCSBoundContextLocatorFactory.h"
 #import "OCSBoundContextLocator.h"
 #import "OCSBoundContextLocatorChain.h"
-#import "OCSBoundContextLocatorOnSelf.h"
+#import "OCSBoundContextLocatorOnGivenObject.h"
 #if TARGET_OS_IPHONE
 #import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "OCSBoundContextLocatorOnApplicationDelegate.h"
@@ -31,7 +31,7 @@
     if (!_contextLocator) {
         OCSBoundContextLocatorChain *defaultLocator = [[OCSBoundContextLocatorChain alloc] init];
 
-        [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnSelf alloc] init]];
+        [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnGivenObject alloc] init]];
 #if TARGET_OS_IPHONE
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnViewControllerHierarchy alloc] init]];
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnApplicationDelegate alloc] init]];

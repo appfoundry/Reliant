@@ -17,8 +17,4 @@
     return delegate.ocsObjectContext;
 }
 
-- (BOOL)canLocateBoundContextForObject:(NSObject *)object {
-    return YES;
-}
-
 @end

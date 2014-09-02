@@ -1,5 +1,5 @@
 //
-//  OCSBoundContextLocatorOnSelfTest.m
+//  OCSBoundContextLocatorOnGivenObjectTest.m
 //  Reliant
 //
 //  Created by Michael Seghers on 24/08/14.
@@ -11,25 +11,21 @@
 #import <OCHamcrest/OCHamcrest.h>
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
-#import "OCSBoundContextLocatorOnSelf.h"
+#import "OCSBoundContextLocatorOnGivenObject.h"
 #import "OCSObjectContext.h"
 #import "NSObject+OCSReliantContextBinding.h"
 
-@interface OCSBoundContextLocatorOnSelfTest : XCTestCase
+@interface OCSBoundContextLocatorOnGivenObjectTest : XCTestCase
 
 @end
 
-@implementation OCSBoundContextLocatorOnSelfTest {
-    OCSBoundContextLocatorOnSelf *_locator;
+@implementation OCSBoundContextLocatorOnGivenObjectTest {
+    OCSBoundContextLocatorOnGivenObject *_locator;
 }
 
 - (void)setUp {
     [super setUp];
-    _locator = [[OCSBoundContextLocatorOnSelf alloc] init];
-}
-
-- (void)testCanLocateForAnyObject {
-    assertThatBool([_locator canLocateBoundContextForObject:self], is(equalToBool(YES)));
+    _locator = [[OCSBoundContextLocatorOnGivenObject alloc] init];
 }
 
 - (void)testLocatesBoundContextOnSelf {
@@ -39,7 +35,7 @@
 }
 
 
-- (void)testReturnsNilOfNoContextFoundOnSelf {
+- (void)testReturnsNilIfNoContextFoundOnSelf {
     assertThat([_locator locateBoundContextForObject:self], is(nilValue()));
 }
 

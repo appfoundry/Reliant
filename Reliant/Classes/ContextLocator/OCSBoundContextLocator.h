@@ -9,6 +9,5 @@
 @protocol OCSBoundContextLocator <NSObject>
 
 - (id<OCSObjectContext>) locateBoundContextForObject:(NSObject *)object;
-- (BOOL) canLocateBoundContextForObject:(NSObject *)object;
 
 @end

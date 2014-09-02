@@ -2,21 +2,17 @@
 // Created by Michael Seghers on 24/08/14.
 //
 
-#import "OCSBoundContextLocatorOnSelf.h"
+#import "OCSBoundContextLocatorOnGivenObject.h"
 #import "OCSObjectContext.h"
 #import "NSObject+OCSReliantContextBinding.h"
 
 
-@implementation OCSBoundContextLocatorOnSelf {
+@implementation OCSBoundContextLocatorOnGivenObject {
 
 }
 
 - (id <OCSObjectContext>)locateBoundContextForObject:(NSObject *)object {
     return object.ocsObjectContext;
-}
-
-- (BOOL)canLocateBoundContextForObject:(NSObject *)object {
-    return YES;
 }
 
 @end
