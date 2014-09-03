@@ -60,11 +60,15 @@ An dependency injection (DI) context.
 Initialize an instance using the designated init method OCSObjectContext::initWithConfigurator:
 
 Objects that are not in the DI context can still obtain objects on the DI context using this class through manual look (via OCSObjectContext::objectForKey) or via the automatic injection mechanism (prefer this on, via OCSObjectContext::performInjectionOn:).
-
-@author Mike Seghers
 */
 @interface OCSObjectContext : NSObject<OCSObjectContext>
 
+/**
+The scope factory, used to retrieve scopes based on the definitions found in this object context's configurator.
+
+@see OCSConfigurator
+@see OCSDefinition
+*/
 @property(nonatomic, readonly) id <OCSScopeFactory> scopeFactory;
 
 /**

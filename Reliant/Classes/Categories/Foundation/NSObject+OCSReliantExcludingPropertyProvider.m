@@ -10,7 +10,7 @@
 
 @implementation NSObject (OCSReliantExcludingPropertiesProvider)
 
-+ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name {
++ (BOOL)ocsReliantShouldIgnorePropertyWithName:(NSString *) name {
     static NSArray *excludedProps;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

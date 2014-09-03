@@ -79,9 +79,6 @@
 		2795FD8D156FDD6B00E7F6FA /* OCSConfiguratorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2795FD8B156FDD6A00E7F6FA /* OCSConfiguratorBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2795FD8C156FDD6A00E7F6FA /* OCSConfiguratorBase.m */; };
 		27AB43B518207A360088A187 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AB43B418207A360088A187 /* TestObject.m */; };
-		27B0A9331824006C00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
-		27B0A9341824006D00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
-		27B0A9351824006E00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
 		27B0A9361824007100DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		27B0A9371824007200DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
 		27B0A9381824007300DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */; };
@@ -113,7 +110,6 @@
 		3323F358D92646042BE642E8 /* OCSDefaultContextRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */; };
 		3323F3795AEF595FC6204CB6 /* OCSRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* OCSRuntimeMagic.m */; };
 		3323F39D5DADB6B85A3F6432 /* NSObject+OCSReliantContextBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */; };
-		3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */; };
 		3323F3FE7B2C66C45A0CD38F /* OCSDefaultContextRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */; };
 		3323F409FAE4E29E215A0B03 /* NSObject+OCSReliantInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6DF2A0403AF55DBE532 /* NSObject+OCSReliantInjection.m */; };
 		3323F41E647D6E82F79A87EE /* OCSContextRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0206B8FC9E31C070A88 /* OCSContextRegistry.h */; };
@@ -128,7 +124,6 @@
 		3323F63DD4B23D955E97A8C2 /* NSObject+OCSReliantContextBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */; };
 		3323F65B9CA84F704D790577 /* OCSBoundContextLocatorOnApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F49FE01960198AC877EC /* OCSBoundContextLocatorOnApplicationDelegate.h */; };
 		3323F66174691139C00CA029 /* NSObject+OCSReliantContextBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FA99EF8D71A0960E5332 /* NSObject+OCSReliantContextBindingTest.m */; };
-		3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */; };
 		3323F6E3165A5D7AABBE40CA /* OCSContextRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0206B8FC9E31C070A88 /* OCSContextRegistry.h */; };
 		3323F6FFCCE6572F2F2CF706 /* OCSBoundContextLocatorChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */; };
 		3323F7030A0131815841CB85 /* OCSDefaultScopeFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F28B001826F8AD976849 /* OCSDefaultScopeFactoryTest.m */; };
@@ -271,7 +266,6 @@
 		27B2C85315F402C1001954BD /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
 		3323F0206B8FC9E31C070A88 /* OCSContextRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSContextRegistry.h; sourceTree = "<group>"; };
-		3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSClassRuntimeInfo.h; sourceTree = "<group>"; };
 		3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorFactory.m; sourceTree = "<group>"; };
 		3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefaultContextRegistry.m; sourceTree = "<group>"; };
 		3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnViewControllerHierarchy.m; sourceTree = "<group>"; };
@@ -295,7 +289,6 @@
 		3323F6BD70654FB36FCE4AAC /* OCSBoundContextLocatorOnViewControllerHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorOnViewControllerHierarchy.h; sourceTree = "<group>"; };
 		3323F6C9E61AC13DC893F259 /* OCSRuntimeMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSRuntimeMagic.m; sourceTree = "<group>"; };
 		3323F6DF2A0403AF55DBE532 /* NSObject+OCSReliantInjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OCSReliantInjection.m"; sourceTree = "<group>"; };
-		3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSClassRuntimeInfo.m; sourceTree = "<group>"; };
 		3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinition.m; sourceTree = "<group>"; };
 		3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnGivenObject.m; sourceTree = "<group>"; };
 		3323F93C6C62C18EB26AD493 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnOSXApplicationDelegate.m; sourceTree = "<group>"; };
@@ -679,8 +672,6 @@
 		27B0A9321823F81C00DFEEB9 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
-				3323F0CC592C23E37B566349 /* OCSClassRuntimeInfo.h */,
-				3323F7B8686BAAEAD7C909B6 /* OCSClassRuntimeInfo.m */,
 				3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */,
 				3323FD13BE5276D72EC46149 /* OCSPropertyRuntimeInfo.m */,
 				3323F6C9E61AC13DC893F259 /* OCSRuntimeMagic.m */,
@@ -774,7 +765,6 @@
 				2795FD81156D560E00E7F6FA /* OCSConfiguratorConstants.h in Headers */,
 				274D7BC11563BFA10007C1C8 /* OCSSingletonScope.h in Headers */,
 				27861570181D0D4400B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.h in Headers */,
-				3323F6BAAA4D97457C22B743 /* OCSClassRuntimeInfo.h in Headers */,
 				3323F291A4293968F8D91028 /* OCSPropertyRuntimeInfo.h in Headers */,
 				3323F9ED338B4D5CEDA8D244 /* OCSDefaultScopeFactory.h in Headers */,
 				3323FD372825398AD9D2AEC8 /* OCSRuntimeMagic.h in Headers */,
@@ -1057,7 +1047,6 @@
 				2786156A181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				274D7BCA1563BFA10007C1C8 /* OCSConfiguratorFromClass.m in Sources */,
 				2795FD8E156FDD6B00E7F6FA /* OCSConfiguratorBase.m in Sources */,
-				3323F3E3CA8A6DB8B6577CDB /* OCSClassRuntimeInfo.m in Sources */,
 				3323FFF5DD7F89EDF51CA460 /* OCSPropertyRuntimeInfo.m in Sources */,
 				C1A567CD866ABF2413562EAE /* OCSPrototypeScope.m in Sources */,
 				3323F17BEB7A16B44C310334 /* OCSDefinition.m in Sources */,
@@ -1085,7 +1074,6 @@
 				27861576181DBAE700B7A755 /* OCSViewControllerInjectionTest.m in Sources */,
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
 				27861573181D11DA00B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */,
-				27B0A9351824006E00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */,
 				2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */,
 				27AB43B518207A360088A187 /* TestObject.m in Sources */,
 				278155E6181C6D3400295410 /* OCSSingletonScope.m in Sources */,
@@ -1132,7 +1120,6 @@
 			files = (
 				2765CBB61571854100ABE59C /* OCSSingletonScope.m in Sources */,
 				2765CBB71571854100ABE59C /* OCSConfiguratorBase.m in Sources */,
-				27B0A9331824006C00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */,
 				27B0A9371824007200DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,
 				2786156B181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				2765CBB91571854100ABE59C /* OCSConfiguratorFromClass.m in Sources */,
@@ -1163,7 +1150,6 @@
 				278155E7181C6D3500295410 /* OCSSingletonScope.m in Sources */,
 				27B2C85515F402C1001954BD /* Setup.m in Sources */,
 				278155E1181C6D1A00295410 /* OCSConfiguratorFromClass.m in Sources */,
-				27B0A9341824006D00DFEEB9 /* OCSClassRuntimeInfo.m in Sources */,
 				27861590181F954A00B7A755 /* DummyConfigurator.m in Sources */,
 				278155E5181C6D2400295410 /* OCSConfiguratorBase.m in Sources */,
 				27B0A9381824007300DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,

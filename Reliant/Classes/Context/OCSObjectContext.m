@@ -176,12 +176,12 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 - (void)_injectObject:(id)object forClass:(Class)thisClass {
     id classAsID = thisClass;
-    BOOL checkIgnoredProperties = ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(OCS_reliantShouldIgnorePropertyWithName:)]);
+    BOOL checkIgnoredProperties = ([classAsID isKindOfClass:[NSObject class]] && [classAsID respondsToSelector:@selector(ocsReliantShouldIgnorePropertyWithName:)]);
     [_configurator.objectKeysAndAliases enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         objc_property_t foundProperty = class_getProperty(thisClass, [key cStringUsingEncoding:NSUTF8StringEncoding]);
         if (foundProperty) {
             OCSPropertyRuntimeInfo *pi = [[OCSPropertyRuntimeInfo alloc] initWithProperty:foundProperty];
-            BOOL isIgnoredProperty = checkIgnoredProperties && [classAsID OCS_reliantShouldIgnorePropertyWithName:pi.name];
+            BOOL isIgnoredProperty = checkIgnoredProperties && [classAsID ocsReliantShouldIgnorePropertyWithName:pi.name];
             if (pi.isObject && !pi.readOnly && !isIgnoredProperty) {
                 [self _checkCurrentPropertyValueOnObject:object withProperty:pi];
             } else {

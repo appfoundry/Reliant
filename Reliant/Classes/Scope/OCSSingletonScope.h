@@ -14,10 +14,8 @@
 #import "OCSScope.h"
 
 /**
- Singleton scope. Scope for holding singleton objects.
- 
- @author Mike Seghers
- */
+Singleton scope. Scope for holding objects which have one single instance for the object context this scope belongs to.
+*/
 @interface OCSSingletonScope : NSObject<OCSScope>
 
 @end

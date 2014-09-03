@@ -20,7 +20,7 @@
 @interface ParentConfiguration : NSObject
 @end
 
-@interface ChildConfiguration : NSObject
+@interface ChildConfiguration : NSObject<OCSConfigurationClass>
 @end
 
 @interface HierarchicalInjected : NSObject
@@ -102,8 +102,8 @@
     return @"Child C";
 }
 
-- (NSString *) parentContextName {
-    return @"ParentConfigurationContext";
+- (Class)parentContextConfiguratorClass {
+    return [ParentConfiguration class];
 }
 
 @end

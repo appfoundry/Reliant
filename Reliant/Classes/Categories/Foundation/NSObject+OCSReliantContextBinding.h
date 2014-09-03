@@ -6,10 +6,24 @@
 
 @protocol OCSObjectContext;
 
+/**
+This category supplies a convenient way to bootstrap an object context and bind it to an object instance.
+*/
 @interface NSObject (OCSReliantContextBinding)
 
+/**
+The bound object context on this instance.
+
+Returns nil if no context was bound yet.
+*/
 @property (nonatomic, strong) id<OCSObjectContext> ocsObjectContext;
 
+/**
+Bootstraps and binds an object context, configured based on the given factory class, to this instance.
+
+@param factoryClass the factory class to be used as factory and configuration for bound context.
+@see OCSConfiguratorFromClass
+*/
 - (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class) factoryClass;
 
 @end

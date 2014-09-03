@@ -11,13 +11,13 @@
 
 @implementation UIResponder (OCSReliantExcludingPropertyProvider)
 
-+ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name {
++ (BOOL)ocsReliantShouldIgnorePropertyWithName:(NSString *) name {
     static NSArray *excludedProps;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         excludedProps = @[@"restorationIdentifier"];
     });
-    return [super OCS_reliantShouldIgnorePropertyWithName:name] || [excludedProps containsObject:name];
+    return [super ocsReliantShouldIgnorePropertyWithName:name] || [excludedProps containsObject:name];
 }
 
 @end

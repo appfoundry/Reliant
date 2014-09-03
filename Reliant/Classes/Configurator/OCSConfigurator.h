@@ -18,8 +18,6 @@
  
  You should never try to retrieve objects while the configurator is still initializing itself.
  @see OCSDefinition
- 
- @author Mike Seghers
  */
 @protocol OCSConfigurator <NSObject>
 

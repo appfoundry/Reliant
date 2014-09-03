@@ -34,9 +34,6 @@
 @interface NameProvidingConfigurator : NSObject
 @end
 
-@interface WrongNameProvidingConfigurator : NSObject
-@end
-
 @interface OCSConfiguratorFromClassTests : XCTestCase
 @end
 
@@ -94,16 +91,12 @@
 
 - (void)testContextNameIsTakenFromFactoryClassWhenItProvidesContextNameMethod {
     _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[NameProvidingConfigurator class]];
-    assertThat(_configurator.contextName, is(equalTo(@"CustomContextName")));
-}
-
-- (void)testExceptionIsThrownWhenContextNameMethodInFactoryReturnsNil {
-    XCTAssertThrows([[OCSConfiguratorFromClass alloc] initWithClass:[WrongNameProvidingConfigurator class]], @"Configurator should not allow a factory class having a contextName: method which returns nil.");
+    assertThat(_configurator.contextName, is(equalTo(@"NameProvidingConfiguratorContext")));
 }
 
 - (void)testParentContextNameIsDerivedFromFactoryClass {
     _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[NameProvidingConfigurator class]];
-    assertThat(_configurator.parentContextName, is(equalTo(@"ParentContextName")));
+    assertThat(_configurator.parentContextName, is(equalTo(@"DummyConfiguratorContext")));
 }
 
 - (void)testParentContextNameIsNilWhenFactoryClassHasNoParentContextNameMethod {
@@ -123,21 +116,10 @@
 
 @implementation NameProvidingConfigurator
 
-- (NSString *) contextName {
-    return @"CustomContextName";
-}
-
-- (NSString *) parentContextName {
-    return @"ParentContextName";
+- (Class) parentContextConfiguratorClass {
+    return [DummyConfigurator class];
 }
 
 @end
 
-@implementation WrongNameProvidingConfigurator
-
-- (NSString *) contextName {
-    return nil;
-}
-
-@end
 

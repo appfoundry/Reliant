@@ -6,11 +6,17 @@
 #import "OCSContextRegistry.h"
 
 
+/**
+An OCSContextRegistry which will be used by default if you don't provide your own implementation when initializing an
+object context
+
+@see OCSObjectContext
+*/
 @interface OCSDefaultContextRegistry : NSObject<OCSContextRegistry>
 
+/**
+Returns the singleton instance.
+*/
 + (instancetype)sharedDefaultContextRegistry;
-
-- (void)registerContext:(id <OCSObjectContext>)context;
-- (id <OCSObjectContext>)contextForName:(NSString *)name;
 
 @end

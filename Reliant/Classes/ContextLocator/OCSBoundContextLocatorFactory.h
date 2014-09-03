@@ -6,11 +6,21 @@
 
 @protocol OCSBoundContextLocator;
 
+/**
+Factory for creating and returning a fixed context locator.
 
+This class is private API.
+*/
 @interface OCSBoundContextLocatorFactory : NSObject
 
+/**
+Returns the singleton instance.
+*/
 + (instancetype)sharedBoundContextLocatorFactory;
 
-@property (nonatomic, strong) id<OCSBoundContextLocator> contextLocator;
+/**
+The context locator
+*/
+@property (nonatomic, readonly) id<OCSBoundContextLocator> contextLocator;
 
 @end

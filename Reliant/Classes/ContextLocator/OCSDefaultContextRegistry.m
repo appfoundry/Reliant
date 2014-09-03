@@ -6,7 +6,7 @@
 #import "OCSObjectContext.h"
 
 
-@interface WeakWrapper : NSObject
+@interface OCSWeakWrapper : NSObject
 @property (nonatomic, weak) id object;
 
 + (instancetype)weakWrapperWithObject:(id)object;
@@ -37,11 +37,11 @@
 }
 
 - (void)registerContext:(id <OCSObjectContext>)context {
-    _contextRegister[context.name] = [WeakWrapper weakWrapperWithObject:context];
+    _contextRegister[context.name] = [OCSWeakWrapper weakWrapperWithObject:context];
 }
 
 - (id <OCSObjectContext>)contextForName:(NSString *)name {
-    WeakWrapper *weakRef = _contextRegister[name];
+    OCSWeakWrapper *weakRef = _contextRegister[name];
     id<OCSObjectContext> result = nil;
     if (weakRef) {
         result = [weakRef object];
@@ -54,7 +54,7 @@
 
 @end
 
-@implementation WeakWrapper
+@implementation OCSWeakWrapper
 
 + (instancetype)weakWrapperWithObject:(id)object {
     return [[self alloc] initWithObject:object];

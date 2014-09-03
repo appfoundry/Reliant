@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "OCSReliantExcludingPropertyProvider.h"
 
+/**
+Category to make UIResponder adopt OCSReliantExcludingPropertyProvider.
+
+Specific ignored properties are:
+- restorationIdentifier
+
+@see NSObject(OCSReliantExcludingPropertyProvider)
+*/
 @interface UIResponder (OCSReliantExcludingPropertyProvider) <OCSReliantExcludingPropertyProvider>
 
 @end

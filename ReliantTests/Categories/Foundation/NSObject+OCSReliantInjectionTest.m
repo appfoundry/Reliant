@@ -19,6 +19,12 @@
 
 @end
 
+@interface  OCSBoundContextLocatorFactory (Test)
+
+- (void)setContextLocator:(id<OCSBoundContextLocator>) locator;
+
+@end
+
 @implementation NSObject_OCSReliantInjectionTest {
     id<OCSBoundContextLocator> _contextLocator;
 }

@@ -75,7 +75,7 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
     return [name substringFromIndex:offset];
 };
 
-@interface StandinFactory : NSObject <OCSObjectFactory>
+@interface OCSStandinFactory : NSObject <OCSObjectFactory>
 
 @property(nonatomic, strong) NSMutableArray *factoryCallStack;
 @property(nonatomic, strong) NSMutableArray *extendedStack;
@@ -127,14 +127,11 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
 }
 
 - (void)_setContextNameFromFactoryOrSetToDefault {
-    if ([_configInstance respondsToSelector:@selector(contextName)]) {
-        _contextName = [((id) _configInstance) contextName];
-        if (!_contextName) {
-            [NSException raise:@"InvalidNameException" format:@"Your factory class (%@) has a contextName: method, but it returns nil. Make sure it returns a valid string.", NSStringFromClass(_factoryClass)];
-        }
-    } else {
-        _contextName = [NSString stringWithFormat:@"%@Context", NSStringFromClass(_factoryClass)];
-    }
+    _contextName = [self _contextNameForClass:_factoryClass];
+}
+
+- (NSString *)_contextNameForClass:(Class)aClass {
+    return [NSString stringWithFormat:@"%@Context", NSStringFromClass(aClass)];
 }
 
 - (void)_investigateIfDefinitionCanBeCreatedForMethod:(Method)method {
@@ -221,7 +218,7 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
         class_addIvar(extendedClass, OCS_EXTENDED_FACTORY_IVAR_KEY_GENERATOR_BLOCK, sizeof(KeyGenerator), log2(sizeof(KeyGenerator)), @encode(KeyGenerator));
         objc_registerClassPair(extendedClass);
 
-        Class standinFactoryClass = [StandinFactory class];
+        Class standinFactoryClass = [OCSStandinFactory class];
         Method standinCreateObjectMethod = class_getInstanceMethod(standinFactoryClass, @selector(createObjectForDefinition:));
         IMP createObjectIMP = method_getImplementation(standinCreateObjectMethod);
         class_addMethod(extendedClass, @selector(createObjectForDefinition:), createObjectIMP, method_getTypeEncoding(standinCreateObjectMethod));
@@ -294,8 +291,8 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
 
 - (NSString *)parentContextName {
     NSString *result = nil;
-    if ([_configInstance respondsToSelector:@selector(parentContextName)]) {
-        result = [((id) _configInstance) parentContextName];
+    if ([_configInstance respondsToSelector:@selector(parentContextConfiguratorClass)]) {
+        result = [self _contextNameForClass:[((id) _configInstance) parentContextConfiguratorClass]];
     }
     return result;
 }
@@ -303,7 +300,7 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
 @end
 
 
-@implementation StandinFactory
+@implementation OCSStandinFactory
 
 static char factoryCallStackKey;
 

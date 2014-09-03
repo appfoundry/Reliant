@@ -13,10 +13,12 @@
 #import "OCSBoundContextLocatorOnOSXApplicationDelegate.h"
 #endif
 
-
-@implementation OCSBoundContextLocatorFactory {
-
+@interface OCSBoundContextLocatorFactory () {
+    id <OCSBoundContextLocator> _contextLocator;
 }
+@end
+
+@implementation OCSBoundContextLocatorFactory
 
 + (instancetype)sharedBoundContextLocatorFactory {
     static OCSBoundContextLocatorFactory *sharedInstance;
@@ -39,9 +41,13 @@
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnOSXApplicationDelegate alloc] init]];
 #endif
 
-        _contextLocator = defaultLocator;
+        [self setContextLocator:defaultLocator];
     }
     return _contextLocator;
+}
+
+- (void)setContextLocator:(id <OCSBoundContextLocator>) contextLocator {
+    _contextLocator = contextLocator;
 }
 
 
