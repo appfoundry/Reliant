@@ -30,20 +30,18 @@ Then run `pod install` or `pod update`
 ### Using Reliant
 
 We suggest you first take a look at our sample app, found under the [Example folder](https://github.com/appfoundry/Reliant/tree/master/Example) 
-on the reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip].
+on the reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip).
  
 #### Configuration
 
-You first need an context in which Reliant will look for your specific objects. The default way to configure such a 
+You first need a context in which Reliant will look for your specific objects. The default way to configure such a 
 context is through an configuration class. The example contains some of these. The application wide context is configured
 with the `AppConfiguration` class.
 
 ```objective-c
 //Header file ommited
 
-@implementation AppConfiguration {
-
-}
+@implementation AppConfiguration
 
 - (id<StringProvider>)createSingletonStringProvider {
     return [[DefaultStringProvider alloc] init];
@@ -55,8 +53,8 @@ with the `AppConfiguration` class.
 In this very simple example we have a concept of a `StringProvider` which will generate some strings shown by various
 view in our application. We configure Reliant to create a "singleton" instance of this string provider. The reason why
 you would use dependency injection is that you can avoid hard dependencies to implementations. That's why we have
-a `StringProvider` protocol. The configuration will create an actual implementation instance, but what that instance is
-can now be hidden from the code. In this case we use the `DefaultStringProvider`
+a `StringProvider` protocol. The configuration will create an actual implementation instance, but that instance is hidden 
+from the actual dependent application code. In this case we use the `DefaultStringProvider`.
 
 #### Bootstrapping a context
 
@@ -78,10 +76,10 @@ Reliant injects all your objects specified in the configuration. Injection can b
 - Initializer injection
 - Property injection
 
-For simplicity's sake we will use [property injection][1] in these examples.
+For simplicity's sake we will use [property injection][] in these examples.
 
 Let's say that our `DefaultStringProvider` implementation needs a `StringGenerator` to generate some strings. 
-We could do this by simply adding a `stringGenerator` property on our `DefaultStringProvider`.
+We could do this by simply adding a property named `stringGenerator` on our `DefaultStringProvider`.
  
 ```objective-c
 @interface DefaultStringProvider : NSObject<StringProvider>
@@ -102,22 +100,14 @@ Now we just need to add another configuration method to our `AppConfiguration` c
 ```
 
 With that, when you start your application, both the `DefaultStringProvider` and `DefaultStringGenerator` are being 
-created for the AppDelegate's [context][2]. Remember we said they were created as singletons? Well, they are not real 
-singleton's, but they are in the AppDelegate's context. When you ask the context for this object, it will always return
+created for the AppDelegate's [context][2]. Remember when we said they were created as "singletons"? Well, they are not real 
+singletons, but they are in the `AppDelegate` context. When you ask the context for this object, it will always return
 the same instance, guaranteed.
 
 After creation of an object, it will be injected with other objects known by the context it is created for. So in this 
-case the `DefaultStringGenerator` is injected in the `DefaultStringProvider' through it's `stringGenerator` property.
+case the `DefaultStringGenerator` is injected in the `DefaultStringProvider` through its `stringGenerator` property.
  
-You succeeded in just loosly coupling the `StringGenerator` to your `DefaultStringGenerator` class. It will only ever
-use the protocol!
-
-Reliant figures out which objects to inject by their given name. In this case, the names of our object are `stringProvider`
-and `stringGenerator`. That is why we named the property in `DefaultStringProvider` as such. The names of the objects are
-specified by your configurator. In this case it derives it from the method names. All text which comes after the 
-`createSingleton` is seen as name. The tentative reader might argue that the names should be *StringGenerator* and 
-*StringProvider* (with starting capital), in fact that is true. However, reliant has created aliases for these objects
-in their cammel cased form.
+You easily succeeded in loosly coupling the `StringGenerator` to your `DefaultStringGenerator` class.
 
 #### Manual injection
 
@@ -130,6 +120,15 @@ automatically. However, injecting an object is a one-liner again:
 ```
 
 This will locate a context based on `self`, and then inject `self`with objects known to the found context.
+
+#### Naming your objects
+
+Reliant figures out which objects to inject by their given name. In this case, the names of our object are `stringProvider`
+and `stringGenerator`. That is why we named the property in `DefaultStringProvider` as such. The names of the objects are
+specified by your configurator. In this case it derives it from the method names. All text which comes after the 
+`createSingleton` is seen as name. The tentative reader might argue that the names should be *StringGenerator* and 
+*StringProvider* (with starting capital), in fact that is true. However, reliant has created aliases for these objects
+in their cammel cased form.
 
 Further reading
 ---------------
@@ -144,7 +143,7 @@ If not via GitHub, find us on twitter: @AppFoundryBE or @mikeseghers
 Licence
 -------
 
-Reliant is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+Reliant is released under [MIT licence](http://opensource.org/licenses/MIT)
 
-[1]: We actually prefer initializer injection over property injection, but we will get into that in our [wiki pages](https://github.com/appfoundry/Reliant/wiki).
+[property injection]:   We actually prefer initializer injection over property injection, but we will get into that in our [wiki pages](https://github.com/appfoundry/Reliant/wiki).    "property injection"
 [2]: For those of you who prefer to put the property in an anonymous class extension, as we do, that would work as well.
