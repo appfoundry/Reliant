@@ -76,7 +76,9 @@ Reliant injects all your objects specified in the configuration. Injection can b
 - Initializer injection
 - Property injection
 
-For simplicity's sake we will use [property injection][] in these examples.
+For simplicity's sake we will use property injection in these examples.
+
+> We actually prefer initializer injection over property injection, but we will get into that in our [wiki pages](https://github.com/appfoundry/Reliant/wiki).
 
 Let's say that our `DefaultStringProvider` implementation needs a `StringGenerator` to generate some strings. 
 We could do this by simply adding a property named `stringGenerator` on our `DefaultStringProvider`.
@@ -100,9 +102,11 @@ Now we just need to add another configuration method to our `AppConfiguration` c
 ```
 
 With that, when you start your application, both the `DefaultStringProvider` and `DefaultStringGenerator` are being 
-created for the AppDelegate's [context][2]. Remember when we said they were created as "singletons"? Well, they are not real 
+created for the AppDelegate's context. Remember when we said they were created as "singletons"? Well, they are not real 
 singletons, but they are in the `AppDelegate` context. When you ask the context for this object, it will always return
 the same instance, guaranteed.
+
+> For those of you who prefer to put the property in an anonymous class extension, as we do, that would work as well.
 
 After creation of an object, it will be injected with other objects known by the context it is created for. So in this 
 case the `DefaultStringGenerator` is injected in the `DefaultStringProvider` through its `stringGenerator` property.
@@ -144,6 +148,3 @@ Licence
 -------
 
 Reliant is released under [MIT licence](http://opensource.org/licenses/MIT)
-
-[property injection]:   We actually prefer initializer injection over property injection, but we will get into that in our [wiki pages](https://github.com/appfoundry/Reliant/wiki).    "property injection"
-[2]: For those of you who prefer to put the property in an anonymous class extension, as we do, that would work as well.
