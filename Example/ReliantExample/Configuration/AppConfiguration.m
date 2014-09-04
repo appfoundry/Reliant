@@ -7,6 +7,8 @@
 #import "StringProvider.h"
 #import "DefaultStringProvider.h"
 #import "OCSDefinition.h"
+#import "StringGenerator.h"
+#import "DefaultStringGenerator.h"
 
 
 @implementation AppConfiguration {
@@ -17,8 +19,8 @@
     return [[DefaultStringProvider alloc] init];
 }
 
-- (NSString *) contextName {
-    return @"AppContext";
+- (id<StringGenerator>)createSingletonStringGenerator {
+    return [[DefaultStringGenerator alloc] init];
 }
 
 @end

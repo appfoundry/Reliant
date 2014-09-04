@@ -26,6 +26,7 @@
 		3323F28687EA8B39F29387C8 /* DefaultStringProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FAAF24CCA01B817CA155 /* DefaultStringProvider.m */; };
 		3323F298212A3D4500950798 /* TabBarConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FBF327112D84E6A9F1B7 /* TabBarConfiguration.m */; };
 		3323F6B363B11E51CBE73537 /* ContextHoldingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F41B17E4B114E5681837 /* ContextHoldingTabBarController.m */; };
+		3323FBB006554BDC892D88E4 /* DefaultStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F73A26BD89FCD0E7E257 /* DefaultStringGenerator.m */; };
 		3323FC919B27F3E72056EA5A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FADF7C78D378E3B641DF /* FirstViewController.m */; };
 		3323FF79BD5950DCAB97EFCA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FAF8C85A051C9F5425D1 /* RootViewController.m */; };
 		3323FFE72004E937A67A5FDC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD7712EF37CF448A0830 /* SecondViewController.m */; };
@@ -61,15 +62,18 @@
 		270625EE19AF2C3E00245DCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		270625F019AF2C3E00245DCA /* ReliantExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReliantExampleTests.m; sourceTree = "<group>"; };
 		2A1FD53E64EA4E859F8C30D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3323F0360BB326AF163AE1F9 /* DefaultStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultStringGenerator.h; sourceTree = "<group>"; };
 		3323F0581730D8A8AC4DE69E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		3323F0D181C82E1061E28401 /* AppConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfiguration.m; sourceTree = "<group>"; };
 		3323F1B9E47132B72C762851 /* DefaultStringProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultStringProvider.h; sourceTree = "<group>"; };
 		3323F29C60DF4ED845225E25 /* DefaultDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultDetailViewModel.h; sourceTree = "<group>"; };
 		3323F374483628F69682F24D /* TabBarConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarConfiguration.h; sourceTree = "<group>"; };
+		3323F3AE65FBBA65C8CBD7BE /* StringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringGenerator.h; sourceTree = "<group>"; };
 		3323F41B17E4B114E5681837 /* ContextHoldingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextHoldingTabBarController.m; sourceTree = "<group>"; };
 		3323F58DC4C3D25F8F9E45C8 /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		3323F63186946FED457BD9BC /* DetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewModel.h; sourceTree = "<group>"; };
 		3323F63BABA4C8D2899B0B0A /* ContextHoldingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextHoldingTabBarController.h; sourceTree = "<group>"; };
+		3323F73A26BD89FCD0E7E257 /* DefaultStringGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultStringGenerator.m; sourceTree = "<group>"; };
 		3323F75E63B410339597C7D8 /* AppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfiguration.h; sourceTree = "<group>"; };
 		3323F7985C7A200D7144F5F5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		3323F7A19DA529EF0271712E /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -208,6 +212,9 @@
 				3323FF0D02D0696FB7987C12 /* StringProvider.h */,
 				3323FAAF24CCA01B817CA155 /* DefaultStringProvider.m */,
 				3323F1B9E47132B72C762851 /* DefaultStringProvider.h */,
+				3323F3AE65FBBA65C8CBD7BE /* StringGenerator.h */,
+				3323F73A26BD89FCD0E7E257 /* DefaultStringGenerator.m */,
+				3323F0360BB326AF163AE1F9 /* DefaultStringGenerator.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -385,6 +392,7 @@
 				3323F152565FF1211905FF87 /* Info.m in Sources */,
 				3323F04F3B579FD3030A4367 /* DefaultDetailViewModel.m in Sources */,
 				3323FF79BD5950DCAB97EFCA /* RootViewController.m in Sources */,
+				3323FBB006554BDC892D88E4 /* DefaultStringGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

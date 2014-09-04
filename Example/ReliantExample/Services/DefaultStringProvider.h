@@ -6,6 +6,11 @@
 #import <Foundation/Foundation.h>
 #import "StringProvider.h"
 
+@protocol StringGenerator;
+
 
 @interface DefaultStringProvider : NSObject<StringProvider>
+
+@property (nonatomic, strong) id<StringGenerator> stringGenerator;
+
 @end

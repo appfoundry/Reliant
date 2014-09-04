@@ -5,495 +5,146 @@ Reliant
 
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies")) 
 framework for Objective-C, both for OS X and iOS. Its goal is to make its use as simple
-as possible, while not limiting its possibilities. It aims to have as little impact as
+as possible, while not limiting possibilities. It aims to have as little impact as
 possible on your project code. It also aims to be loyal to Objective-C's [dynamic](http://stackoverflow.com/questions/125367/dynamic-type-languages-versus-static-type-languages) 
 nature.
 
-The motivation for this library came from being used to a highly testable infrastructure
-in other languages thanks to DI. Looking at the typical design pattern to solve the loose
-coupling problem, the [Abstract Factory pattern](http://en.wikipedia.org/wiki/Abstract_factory_pattern)
-is the natural solution. Although factories, in conjunction with mock libraries provide a
-fairly nice and testable solution, the pure loose coupling is never reached, since you
-still have a dependency to a factory in almost all classes in your project, which is a
-rather large footprint. Before starting this library, I looked for opinions about DI in
-dynamic languages at the one hand, and in frontend driven solutions at the other hand.
-Reliant is an answer to these questions.
+Getting started
+---------------
 
-> At the moment, Reliant is still under development, and put here for review by the
-> community. Although we consider the latest version to be pretty complete, there is
-> still room for improvement. Obviously, since this is open source, do feel free to add
-> your own insights/ideas/remarks/opinions.
+In this section we will get you started wit Reliant as quick as possible, if you want to now more 
+(or in other words, the TL;DR version) we suggest you take a look at our [wiki pages](https://github.com/appfoundry/Reliant/wiki)
 
-Overall architecture
---------------------
+### Installation
 
-The framework is set up to be lightweight, you basically need an OCSApplicationContext
-which serves as the container of the managed objects. To register managed objects in this
-container, the application context uses an `OCSConfigurator` instance. The `OCSConfigurator`
-is responsible for creating `OCSDefinitions`, which describe the objects you want to put
-under the application context's control.
+The easiest way to install Reliant is via CocoaPods
 
-At the moment, Reliant identifies two types of objects: singletons and prototypes. (*These
-names are taken from the well know [design patterns](http://en.wikipedia.org/wiki/Software_design_pattern#Classification_and_list)*)
+Add the following line to your Podfile:
 
-- A `singleton` is a stateless shared object, which is created only once. Objects created as
-singleton should be thread safe! Reliant further identifies eager and lazy singletons.
-Eager means that they will be instantiated when the application context boots up, lazy
-means they will be instantiated *Just-in-Time*, when they are requested.
+`pod 'Reliant'`
 
-> For iOS, Reliant also reacts to memory warnings, by clearing its singleton scope. In
-> this case, all singletons become lazy singletons and will be initialized again when
-> requested.
+Then run `pod install` or `pod update`
 
-- A `prototype` will be created each time it is requested from the application context. Be
-carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
-bound to the singleton!
+> for more information about CocoaPods, go to http://cocoapods.org
 
-Objects are identified by a key and can have aliases, both strings. The framework makes
-sure these are unique. Exceptions will be thrown if an attempt is made to add an object
-with a non-unique key or alias.
+### Using Reliant
 
-Now let's look at a Quick start example.
-
-Quick start
------------
-
-### Including Reliant in your project
-
-Reliant is available via CocoaPods, you can add this line to your podfile:
-
-```
-pod 'Reliant'
-```
-
-Then run 
-
-```
-pod install
-```
-
-for more information about CocoaPods, refer to http://cocoapods.org
-
-Now you are ready to import the headers in your own code:
-
-```objective-c
-#import <Reliant/OCSApplicationContext.h>
-```
-#### The DocSet
-
-Documentation is available through CocoaDocs:
-http://cocoadocs.org/docsets/Reliant/
-
-### Bootstrapping Reliant
-
-To get started with Reliant, you need to tell the *OCSApplicationContext* to start up. You
-will need to provide a configurator instance to the application context. More on
-configurators later, bare with us for now.
-
-```objective-c
-//Initialize a configurator
-id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] 
-	initWithClass:[YourObjectFactory class]];
-
-//Initialize the application context with the configurator
-OCSApplicationContext *context = [[OCSApplicationContext alloc] 
-	initWithConfigurator:configurator];
-
-//Start the context
-[context start];
-
-//Done! Well...
-```
-
-This will bootstrap the entire application context. At the time the start method finishes
-its job, it will have loaded your defintions and it will have instantiated and injected
-your eager singletons.
-
-Now where should you put this peace of code? As close as possible to where the application
-startup. For iOS this means in the [application:didFinishLaunchingWithOptions:](http://developer.apple.com/library/ios/documentation/uikit/reference/UIApplicationDelegate_Protocol/Reference/Reference.html#//apple_ref/occ/intfm/UIApplicationDelegate/application:didFinishLaunchingWithOptions:) 
-method in your UIApplicationDelegate. For OS X this is almost the same:
-[applicationDidFinishLaunching:](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/NSApplicationDelegate_Protocol/Reference/Reference.html#//apple_ref/occ/intfm/NSApplicationDelegate/applicationDidFinishLaunching:)
- in your NSApplicationDelegate.
+We suggest you first take a look at our sample app, found under the [Example folder](https://github.com/appfoundry/Reliant/tree/master/Example) 
+on the reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip].
  
-### Using the *OCSConfiguratorFromClass*
+#### Configuration
 
-This is a ready-made configurator implementation. It uses the information found in a class
-provided by you through introspection. The provided class will also serve as the creator
-of your objects, hence we will call it a factory class. The idea behind this is to give
-you a programatic way to define objects, and make the configuration itself subject to
-testing. This makes the use of external configuration files and/or macros obsolete, which
-yields more robust code.
-
-So what you need to use in this configurator, is a factory class. The methods in this class
-will be responsible for creating your objects. In order for the framework to detect these
-methods, you will need to follow some naming conventions on them.
-
-OCSConfiguratorFromClass will detect 4 kinds of methods. (Replace YourObjectKey each time with a unique name)
+You first need an context in which Reliant will look for your specific objects. The default way to configure such a 
+context is through an configuration class. The example contains some of these. The application wide context is configured
+with the `AppConfiguration` class.
 
 ```objective-c
-- (id) createSingleton/*YourObjectKey*/; //Lazy singleton definition
-- (id) createEagerSingleton/*YourObjectKey*/; //Eager singleton definition
-- (id) createPrototype/*YourObjectKey*/;//Prototype definition
-- (NSArray *) aliasesFor/*YourObjectKey*/;//Alias definitions
-```
+//Header file ommited
 
-For your convenience we created some [xCode snippets](#xcode-snippets) to help you create these methods.
-
-Let's look at them in more detail:
-
-#### Defining singletons
-
-For each lazy singleton you need, you should add a method with the following signature:
-
-```objective-c
-- (id) createSingletonFoo {
-	return [[Foo alloc] init];
-}
-```
-
-You can also use what is called *constructor injection* by calling another 
-*createSingleton* or *createEagerSingleton* method:
-
-```objective-c
-- (id) createSingletonBar {
-	return [[Bar alloc] initWithSomeObject:[self createSingletonFoo]];
-}
-```
-
-Don't worry about calling the same *createSingleton* method more than once, the framework
-will only really call each method once and reuse the same result on the succeeding calls,
-making the results true singletons.
-
-You don't necessarily need to inject your objects through constructor injection. Later on
-we will explain how objects are injected through the use of properties.
-
-To create eager singletons, add this kind of method:
-
-```objective-c
-- (id) createEagerSingletonFooBar {
-	return [[FooBar alloc] init];
-}
-```
-
-#### Defining prototypes
-
-For creating prototypes we can use a similar approach. Only the method name changes a bit:
-
-```objective-c
-- (id) createPrototypeFooBar {
-	return [[FooBar alloc] init];
-}
-```
-
-> **Remember!** Each time a prototype is requested, this method will be called. You should 
-> therefore consider to keep the initialization as performant as possible.
-
-#### Registering aliases for an object
-
-Registering aliases for an object is also possible. Again, you just need to add a method
-with a certain signature:
-
-```objective-c
-- (NSArray *) aliasesForFoo {
-	return @[@"_foo",@"_fuu"];
-}
-```
-
-> By default, two aliases are already registered for each object. They take the
-> form of the key in uppercase (eg. FOO, BAR, FOOBAR, ...) and the key starting with a
-> lowercase (eg. foo, bar, fooBar, ...). Aliases must be unique, and should also never be
-> equal to an object key. If an attempt is made to add a duplicate, an exception will be
-> raised. The automatically added aliases, will only be added if they are not a duplicate of
-> the key.
-
-#### Other methods in your factory class
-
-You can add other methods, which might help in creating your objects. These will be
-ignored by the framework, but you can obviously use them in your create methods.
-
-#### Dealing with larger applications
-
-In larger applications, the factory class can quickly become huge. This is where you can
-and should use Objective-C's
-[category](http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/chapters/occategories.html "Objective-C programming language reference")
-mechanism. For each logical group of objects you can create a category, named after this
-logical group. All methods in all categories of your factory class will be taken into
-account. It might look something like this (interfaces will be omitted for brevity).
-
-```objective-c
-@implementation ReliantFactory
-
-- (id) createSingletonGeneralObject {
-	return ...;
-}
-
-@end
-
-@implementation ReliantFactory (Services)
-
-- (id) createEagerSingletonServiceA {
-	return [[ServiceA alloc] init];
-}
-
-- (id) createEagerSingletonServiceB {
-	return [[ServiceB alloc] init];
-}
-
-@end
-
-@implementation ReliantFactory (Repositories)
-
-- (id) createEagerSingletonRepositoryA {
-	return [[RepositoryA alloc] init];
-}
-
-- (id) createEagerSingletonRepositoryB {
-	return [[RepositoryB alloc] init];
-}
-
-@end
-
-```
-
-### Injection
-
-All objects created in the application context will be injected after their creation. This
-is done as explained before by *constructor injection* and/or by using Objective-C's 
-[KVC](http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html "Key-Value Coding Programming Guide")
-mechanism. Reliant will scan your object's properties. If a writable property's name
-matches with a key or an alias for an object in the application context, and if its current
-value is nil, the matching object will be injected in this property. All other properties
-will be left alone. This will be done for the entire class hierarchy of the instance.
-
-#### Injecting objects that are not know to the application context
-
-You can use the injection mechanism described above on objects which are not setup in the 
-application context. A good example would be a UIViewController. In order to make things
-easier, you can make use of the fact that we have bootstrapped our application context in
-the UIApplicationDelegate. Since the UIApplication is a shared object (hey, another
-singleton!) we can do our injection from here.
-
-> We already discussed that Reliant will clear its singleton cache whenever a
-> memory warning occurs. Reliant thereby releases its ownership of the instances. However,
-> it can not be held responsible for the objects injected outside of its scope as discussed
-> above. You should therefore retain/release any injected objects yourself. For property injection,
-> this means that your dependent properties should have the retain attribute on it.
-
-This is what you need to do:
-
-```objective-c
-//In your UIApplicationDelegate
-@implementation MyAppDelegate {
-	OCSApplicationContext *_context;
-}
-
-- (BOOL)application:(UIApplication *)application 
-	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	//...
-	
-	//Initialize a configurator
-	id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] 
-		initWithClass:[YourObjectFactory class]];
-
-	//Initialize the application context with the configurator
-	_context = [[OCSApplicationContext alloc] initWithConfigurator:configurator];
-
-	//Start the context
-	[_context start];
-	
-	//...
+@implementation AppConfiguration {
 
 }
 
-- (void) performInjectionOn:(id) object {
-	[_context performInjectionOn:object];
-}
-
-@end;
-
-//In your UIViewController
-@implementation MyViewController
-
-@synthesize foo;
-
-- (void) viewDidLoad {
-    [super viewDidLoad];
-    
-    AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-    [appDelegate performInjectionOn:self];
-}
-
-- (void) viewDidUnload {
-	//Set any injected property to nil here!
-	self.foo = nil
-	
-	[super viewDidUnload];
+- (id<StringProvider>)createSingletonStringProvider {
+    return [[DefaultStringProvider alloc] init];
 }
 
 @end
 ```
 
-And that's all there is to it. The property foo will be injected by Reliant.
+In this very simple example we have a concept of a `StringProvider` which will generate some strings shown by various
+view in our application. We configure Reliant to create a "singleton" instance of this string provider. The reason why
+you would use dependency injection is that you can avoid hard dependencies to implementations. That's why we have
+a `StringProvider` protocol. The configuration will create an actual implementation instance, but what that instance is
+can now be hidden from the code. In this case we use the `DefaultStringProvider`
 
+#### Bootstrapping a context
 
-> **Warning:** when using storyboards you should load your storyboard manually.
-> You can accomplish this by removing your storyboard in the project settings and loading the storyboard in code.
+Bootstrapping a context is now very simple. Since we have a configuration for a context which is meant to be used 
+throughout the entire application, we will bootstrap this context in the application delegate.
 
 ```objective-c
-UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"myViewController"];
-```
-
-### Preventing injection on specific properties
-
-Reliant will, by default, not try to inject properties like view on UIViewController.
-However if your implementation has the need for ignoring extra properties you can implement the following method in your class:
-
-```objective
-+ (BOOL) OCS_reliantShouldIgnorePropertyWithName:(NSString *) name {
-    static NSArray *excludedProps;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        excludedProps = @[@"ignoredProperty1", @"ignoredProperty2"];
-    });
-    
-    //it's important here to call this method on super, as reliant has it's own category on NSObject
-    return [super OCS_reliantShouldIgnorePropertyWithName:name] || [excludedProps containsObject:name];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[AppConfiguration class]];
 }
 ```
 
-For your information here are the default ignored properties on the classes they belong to:
-* NSObject
-  * accessibilityLanguage
-  * accessibilityValue
-  * accessibilityHint
-  * accessibilityLabel
-  * accessibilityPath
-* UIResponder
-  * restorationIdentifier
-* UIViewController
-  * tabBarItem
-  * title
-  * toolbarItems
-  * view
-  * aggregateStatisticsDisplayCountKey
-  * nibName
-  * storyboard 
-  * parentViewController
-  * modalTransitionView
-  * mutableChildViewControllers
-  * childModalViewController
-  * parentModalViewController
-  * searchDisplayController
-  * dropShadowView
-  * afterAppearanceBlock
-  * transitioningDelegate
-  * customTransitioningView
+This single line of code is the easiest way to bootstrap a context. It wil start the context with the specified 
+configuration class, and then bind that context to `self` which in this case means your application delegate.
 
-### The configurator
+#### Injection
 
-As we already saw, a configurator is responsible for setting up definitions and creating
-object instances based on those definitions. Although a default class configurator
-(*OCSConfiguratorFromClass*) is provided by Reliant, you can always build your own. Your
-custom configurator should conform to the *OCSConfigurator* protocol. In the
-configurator's designated initializer, you should start building your object definitions.
-A configurator, although not enforced, should maintain its own definition registry. A
-configurator should not start creating instances for these definitions just until the
-contextLoaded: message is send to it. Only after all work is done, the configurator should
-return objects through its objectForKey:inContext: method. When work is done, the
-initializing property should be true/YES/whatever-other-bool-literal-you-prefer.
+Reliant injects all your objects specified in the configuration. Injection can be done in two ways:
+- Initializer injection
+- Property injection
 
-An abstract implementation is also provided. This is the *OCSConfiguratorBase* which deals
-with the boilerplate code for keeping track of registered definitions and objects. If you
-extend this class, you should import the *OCSConfiguratorBase+ForSubclassEyesOnly.h*
-header in your implementation (.m file). This will allow you to call "protected" methods
-and properties, hidden for non-extending classes. You should never use
-this category outside of a subclass, doing so will cause unexpected behavior.
+For simplicity's sake we will use [property injection][1] in these examples.
 
-If you extend OCSConfiguratorBase, you should not override the methods defined in
-OCSConfigurator. You must instead implement createObjectInstanceForKey:inContext: and
-internalContextLoaded: (See API documentation for more information)
+Let's say that our `DefaultStringProvider` implementation needs a `StringGenerator` to generate some strings. 
+We could do this by simply adding a `stringGenerator` property on our `DefaultStringProvider`.
+ 
+```objective-c
+@interface DefaultStringProvider : NSObject<StringProvider>
 
-> Although the framework is extendible, we encourage you to use the provided
-> OCSConfiguratorFromClass or extend via the OCSConfiguratorBase.
+@property (nonatomic, strong) id<StringGenerator> stringGenerator;
 
-#### Example
+@end
+```
+
+Now we just need to add another configuration method to our `AppConfiguration` class.
 
 ```objective-c
-//  CustomConfigurator.h
+//Inside the implementation of our AppConfiguration
 
-@interface CustomConfigurator : OCSBaseConfigurator
-
-@end
-
-
-// CustomConfigurator.m
-
-TODO
-
-@end
+- (id<StringGenerator>)createSingletonStringGenerator {
+    return [[DefaultStringGenerator alloc] init];
+}
 ```
 
-### xCode Snippets
+With that, when you start your application, both the `DefaultStringProvider` and `DefaultStringGenerator` are being 
+created for the AppDelegate's [context][2]. Remember we said they were created as singletons? Well, they are not real 
+singleton's, but they are in the AppDelegate's context. When you ask the context for this object, it will always return
+the same instance, guaranteed.
 
-We have provided some snippets to easily create the signature to create singletons in the configurator class.
+After creation of an object, it will be injected with other objects known by the context it is created for. So in this 
+case the `DefaultStringGenerator` is injected in the `DefaultStringProvider' through it's `stringGenerator` property.
+ 
+You succeeded in just loosly coupling the `StringGenerator` to your `DefaultStringGenerator` class. It will only ever
+use the protocol!
 
-These can be found here: [xCode Snippets](https://github.com/appfoundry/Reliant/tree/master/xCode%20Snippets)
+Reliant figures out which objects to inject by their given name. In this case, the names of our object are `stringProvider`
+and `stringGenerator`. That is why we named the property in `DefaultStringProvider` as such. The names of the objects are
+specified by your configurator. In this case it derives it from the method names. All text which comes after the 
+`createSingleton` is seen as name. The tentative reader might argue that the names should be *StringGenerator* and 
+*StringProvider* (with starting capital), in fact that is true. However, reliant has created aliases for these objects
+in their cammel cased form.
 
-You can install these by downloading these snippets and placing them in the following folder:
+#### Manual injection
 
+It might not always be possible to configure your objects through reliant. For instance, a view controller might get created
+by a storyboard or by your applications code somewhere. In these case reliant will not be able to inject your object 
+automatically. However, injecting an object is a one-liner again:
+
+```objective-c
+[self ocsInject];
 ```
-~/Library/Developer/Xcode/UserData/CodeSnippets/
-```
-If the folder doesn't exist you can create it.
-Restart xCode and you should be ready to start using the snippets.
 
-In the class implementation of your configurator start typing 'create' and all of the snippets for create singletons, prototypes, and aliases should be at your finger tips.
+This will locate a context based on `self`, and then inject `self`with objects known to the found context.
 
-Interesting references/discussions
-----------------------------------
+Further reading
+---------------
 
-- [Discussion](http://stackoverflow.com/questions/309711/dependency-injection-framework-for-cocoa "StackOverflow") on the necessity of DI in Objective C/Dynamic languages 
-
-Inspirational projects / credits
---------------------------------
-
-- [Spring framework](http://www.springsource.org/spring-framework#documentation "SpringSource Spring framework"). 
-I dare say this is the de facto standard IoC container in the Java world. 
-Although going much (much ... much) further then DI, this framework was one of if not the 
-pioneer in DI framework. Since spring 3.0, a Configuration class system is available. Reliant
-builds on this principle.
-
-- [Guice](http://code.google.com/p/google-guice/ "Google Guice"). Google's type safe DI 
-solution. Partially as an answer to spring, which was not very strong on the type-safety 
-side of things at that time. Spring fixed this in version 3.0.
-Although Guice is a very well thought of DI framework, which should be marvelled for its
-simplicity and light-weightness, I personally feel that basing a DI framework for a
-dynamic language on Guice is a bridge too far. It would break down too many of the main
-goals of Guice, namely type safety. I'm not saying type safety is unimportant, I'm just
-saying that Objective-C (and other dynamic languages for that matter) needs a different
-approach.
-
-- [Objection](http://objection-framework.org/ "AtomicObject Objection"). Another DI
-framework for Objective-C, based on Guice. As stated before, the "binding" approach did
-look appealing to me at first, but I don't think binding to types works very well in
-Objective-C. But still, a very well made port.
-
-Special thanks
---------------
-
-- Filip Maelbrancke: for second opinions and rubber ducking
-- Bart Vandeweerdt and Willem Van Pelt: for reviewing this documentation
-- AppFoundry: for letting me use this in production code
-- Oak Consultancy Services: for necessary resources
-- Liesbet Gouwy: for unconditional support
-- Kato Seghers: for being born
+Do not forget to check our [wiki pages](https://github.com/appfoundry/Reliant/wiki) for more details on what is discussed above.
+Our API documentation is available via [cocoadocs.org](http://cocoadocs.org/docsets/Reliant)
 
 Contact
 -------
-If not via GitHub, find me on twitter: @mikeseghers
+If not via GitHub, find us on twitter: @AppFoundryBE or @mikeseghers
 
 Licence
 -------
 
 Reliant is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+[1]: We actually prefer initializer injection over property injection, but we will get into that in our [wiki pages](https://github.com/appfoundry/Reliant/wiki).
+[2]: For those of you who prefer to put the property in an anonymous class extension, as we do, that would work as well.

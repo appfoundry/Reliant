@@ -4,6 +4,7 @@
 //
 
 #import "DefaultStringProvider.h"
+#import "StringGenerator.h"
 
 
 @implementation DefaultStringProvider {
