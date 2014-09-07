@@ -30,7 +30,7 @@ Then run `pod install` or `pod update`
 ### Using Reliant
 
 We suggest you first take a look at our sample app, found under the [Example folder](https://github.com/appfoundry/Reliant/tree/master/Example) 
-on the reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip).
+on the Reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip).
  
 #### Configuration
 
@@ -115,8 +115,8 @@ You easily succeeded in loosly coupling the `StringGenerator` to your `DefaultSt
 
 #### Manual injection
 
-It might not always be possible to configure your objects through reliant. For instance, a view controller might get created
-by a storyboard or by your applications code somewhere. In these cases reliant will not be able to inject your object 
+It might not always be possible to configure your objects through Reliant. For instance, a view controller might get created
+by a storyboard or by your applications code somewhere. In these cases Reliant will not be able to inject your object 
 automatically. However, injecting an object is a one-liner again:
 
 ```objective-c
@@ -131,7 +131,7 @@ Reliant figures out which objects to inject by their given name. In this case, t
 and `stringGenerator`. That is why we named the property in `DefaultStringProvider` as such. The names of the objects are
 specified by your configurator. In this case Reliant derives the name from the method names. All text which comes after the 
 `createSingleton` is seen as a name. The tentative reader might argue that the names should be *StringGenerator* and 
-*StringProvider* (with starting capital), in fact that is true. However, reliant has created aliases for these objects
+*StringProvider* (with starting capital), in fact that is true. However, Reliant has created aliases for these objects
 in their camelcase form.
 
 Further reading
