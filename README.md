@@ -12,7 +12,7 @@ nature.
 Getting started
 ---------------
 
-In this section we will get you started wit Reliant as quick as possible, if you want to now more 
+In this section we will get you started wit Reliant as quick as possible, if you want to know more 
 (or in other words, the TL;DR version) we suggest you take a look at our [wiki pages](https://github.com/appfoundry/Reliant/wiki)
 
 ### Installation
