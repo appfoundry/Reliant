@@ -39,7 +39,7 @@ context is through an configuration class. The example contains some of these. T
 with the `AppConfiguration` class.
 
 ```objective-c
-//Header file ommited
+//Header file omitted
 
 @implementation AppConfiguration
 
