@@ -116,7 +116,7 @@ You easily succeeded in loosly coupling the `StringGenerator` to your `DefaultSt
 #### Manual injection
 
 It might not always be possible to configure your objects through reliant. For instance, a view controller might get created
-by a storyboard or by your applications code somewhere. In these case reliant will not be able to inject your object 
+by a storyboard or by your applications code somewhere. In these cases reliant will not be able to inject your object 
 automatically. However, injecting an object is a one-liner again:
 
 ```objective-c
@@ -129,10 +129,10 @@ This will locate a context based on `self`, and then inject `self`with objects k
 
 Reliant figures out which objects to inject by their given name. In this case, the names of our object are `stringProvider`
 and `stringGenerator`. That is why we named the property in `DefaultStringProvider` as such. The names of the objects are
-specified by your configurator. In this case it derives it from the method names. All text which comes after the 
-`createSingleton` is seen as name. The tentative reader might argue that the names should be *StringGenerator* and 
+specified by your configurator. In this case Reliant derives the name from the method names. All text which comes after the 
+`createSingleton` is seen as a name. The tentative reader might argue that the names should be *StringGenerator* and 
 *StringProvider* (with starting capital), in fact that is true. However, reliant has created aliases for these objects
-in their cammel cased form.
+in their camelcase form.
 
 Further reading
 ---------------
