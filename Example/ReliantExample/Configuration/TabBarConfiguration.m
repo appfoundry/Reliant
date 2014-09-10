@@ -10,6 +10,7 @@
 #import "OCSBoundContextLocatorFactory.h"
 #import "NSObject+OCSReliantContextBinding.h"
 #import "OCSBoundContextLocator.h"
+#import "AppConfiguration.h"
 
 
 @implementation TabBarConfiguration {
@@ -20,7 +21,8 @@
     return [[DefaultDetailViewModel alloc] init];
 }
 
-- (NSString *)parentContextName {
-    return @"AppContext";
+- (Class)parentContextConfiguratorClass {
+    return [AppConfiguration class];
 }
+
 @end
