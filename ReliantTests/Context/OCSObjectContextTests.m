@@ -88,6 +88,11 @@
 
 @end
 
+@interface SpiedObjectContext : OCSObjectContext
+
+@property (nonatomic, strong) id injectedObject;
+
+@end
 
 @interface OCSObjectContextTests : XCTestCase
 
@@ -252,12 +257,9 @@
     [verify(parentContext) performInjectionOn:object];
 }
 
-- (void)testParentContextIsAskedToInjectObjectFactory {
-    [given(_configurator.parentContextName) willReturn:@"ParentContext"];
-    OCSObjectContext *parentContext = mock([OCSObjectContext class]);
-    [given([_contextRegistry contextForName:@"ParentContext"]) willReturn:parentContext];
-    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
-    [verify(parentContext) performInjectionOn:_objectFactory];
+- (void)testContextIsAskedToInjectObjectFactory {
+    SpiedObjectContext *childContext = [[SpiedObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
+    assertThat(childContext.injectedObject, is(sameInstance(_objectFactory)));
 }
 
 - (void)testContextGetsNameFromConfigurator {
@@ -314,5 +316,14 @@
 @end
 
 @implementation EmptyClass
+
+@end
+
+@implementation SpiedObjectContext
+
+- (void)performInjectionOn:(id)object {
+    [super performInjectionOn:object];
+    self.injectedObject = object;
+}
 
 @end
