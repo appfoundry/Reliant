@@ -252,6 +252,14 @@
     [verify(parentContext) performInjectionOn:object];
 }
 
+- (void)testParentContextIsAskedToInjectObjectFactory {
+    [given(_configurator.parentContextName) willReturn:@"ParentContext"];
+    OCSObjectContext *parentContext = mock([OCSObjectContext class]);
+    [given([_contextRegistry contextForName:@"ParentContext"]) willReturn:parentContext];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
+    [verify(parentContext) performInjectionOn:_objectFactory];
+}
+
 - (void)testContextGetsNameFromConfigurator {
     [given(_configurator.contextName) willReturn:@"ConfiguredName"];
     assertThat(_context.name, is(equalTo(@"ConfiguredName")));

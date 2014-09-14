@@ -87,6 +87,7 @@ Recursive method for injecting objects with their dependencies. This method iter
             [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found. Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created before this context is.", parentContextName];
         }
         _parentContext = parentContext;
+        [parentContext performInjectionOn:_configurator.objectFactory];
     }
 }
 
