@@ -12,7 +12,7 @@ nature.
 Getting started
 ---------------
 
-In this section we will get you started wit Reliant as quick as possible, if you want to know more 
+In this section we will get you started with Reliant as quick as possible, if you want to know more 
 (or in other words, the TL;DR version) we suggest you take a look at our [wiki pages](https://github.com/appfoundry/Reliant/wiki)
 
 ### Installation
@@ -29,13 +29,13 @@ Then run `pod install` or `pod update`
 
 ### Using Reliant
 
-We suggest you first take a look at our sample app, found under the [Example folder](https://github.com/appfoundry/Reliant/tree/master/Example) 
+We suggest that you first take a look at our sample app, found under the [Example folder](https://github.com/appfoundry/Reliant/tree/master/Example) 
 on the Reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip).
  
 #### Configuration
 
 You first need a context in which Reliant will look for your specific objects. The default way to configure such a 
-context is through an configuration class. The example contains some of these. The application wide context is configured
+context is through a configuration class. The example contains some of these. The application wide context is configured
 with the `AppConfiguration` class.
 
 ```objective-c
@@ -50,15 +50,15 @@ with the `AppConfiguration` class.
 @end
 ```
 
-In this very simple example we have a concept of a `StringProvider` which will generate some strings shown by various
-view in our application. We configure Reliant to create a "singleton" instance of this string provider. The reason why
+In this very simple example we have the concept of a `StringProvider` which will generate some strings shown by various
+views in our application. We configure Reliant to create a "singleton" instance of this string provider. The reason why
 you would use dependency injection is that you can avoid hard dependencies to implementations. That's why we have
 a `StringProvider` protocol. The configuration will create an actual implementation instance, but that instance is hidden 
 from the actual dependent application code. In this case we use the `DefaultStringProvider`.
 
 #### Bootstrapping a context
 
-Bootstrapping a context is now very simple. Since we have a configuration for a context which is meant to be used 
+Bootstrapping a context is very simple. Since we have a configuration for a context which is meant to be used 
 throughout the entire application, we will bootstrap this context in the application delegate.
 
 ```objective-c
@@ -108,10 +108,10 @@ the same instance, guaranteed.
 
 > For those of you who prefer to put the property in an anonymous class extension, as we do, that would work as well.
 
-After creation of an object, it will be injected with other objects known by the context it is created for. So in this 
+After the creation of an object, it will be injected with other objects known by the context it is created for. So in this 
 case the `DefaultStringGenerator` is injected in the `DefaultStringProvider` through its `stringGenerator` property.
  
-You easily succeeded in loosly coupling the `StringGenerator` to your `DefaultStringGenerator` class.
+You easily succeeded in loosly coupling the `StringGenerator` to your `DefaultStringProvider` class.
 
 #### Manual injection
 
