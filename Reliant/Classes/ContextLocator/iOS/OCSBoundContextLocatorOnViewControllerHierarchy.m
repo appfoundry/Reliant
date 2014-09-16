@@ -12,12 +12,14 @@
 }
 
 - (id <OCSObjectContext>)locateBoundContextForObject:(NSObject *)object {
-    UIViewController *controller = (UIViewController *)object;
-    UIViewController *parent = controller.parentViewController;
     id<OCSObjectContext> context = nil;
-    while (!context && parent) {
+    if ([object isKindOfClass:[UIViewController class]]) {
+        UIViewController *controller = (UIViewController *)object;
+        UIViewController *parent = controller.parentViewController;
         context = parent.ocsObjectContext;
-        parent = parent.parentViewController;
+        if (!context) {
+            context = [self locateBoundContextForObject:parent];
+        }
     }
     return context;
 }

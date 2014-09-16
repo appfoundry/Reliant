@@ -44,4 +44,9 @@
     assertThat([_locator locateBoundContextForObject:son], is(sameInstance(context)));
 }
 
+- (void)testReturnsNilForNonViewController {
+    NSObject *object = [[NSObject alloc] init];
+    assertThat([_locator locateBoundContextForObject:object], is(nilValue()));
+}
+
 @end
