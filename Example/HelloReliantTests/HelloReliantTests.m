@@ -1,18 +1,18 @@
 //
-//  ReliantExampleTests.m
-//  ReliantExampleTests
+//  HelloReliantTests.m
+//  HelloReliantTests
 //
-//  Created by Michael Seghers on 28/08/14.
+//  Created by Bart Vandeweerdt on 09/09/14.
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface ReliantExampleTests : XCTestCase
+@interface HelloReliantTests : XCTestCase
 
 @end
 
-@implementation ReliantExampleTests
+@implementation HelloReliantTests
 
 - (void)setUp
 {

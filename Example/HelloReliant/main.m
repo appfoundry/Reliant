@@ -1,8 +1,8 @@
 //
 //  main.m
-//  ReliantExample
+//  HelloReliant
 //
-//  Created by Michael Seghers on 28/08/14.
+//  Created by Bart Vandeweerdt on 09/09/14.
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
