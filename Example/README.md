@@ -1,8 +1,10 @@
-# Objective-C dependency injection in 4 easy steps
+# Tutorial: Objective-C dependency injection in 4 easy steps
 
-In this example we'll show you how to easily apply dependency injection (DI) in your code with [Reliant](https://github.com/appfoundry/Reliant).
+In this tutorial we'll show you how to easily apply dependency injection (DI) in your code with [Reliant](https://github.com/appfoundry/Reliant).
 
 In a few easy steps you'll learn how to set up a very simple 'Hello World' DI scenario and along the way we'll explain why DI is actually kinda neat :).
+
+You can either follow this tutorial from scratch or just explore the finished product in the accompanying 'HelloReliant' project.
 
 ## Step 1: Importing Reliant
 Let's start by creating a new project and make it an 'empty' application. You know how to do this so let's not go into detail here.
