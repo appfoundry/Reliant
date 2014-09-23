@@ -5,7 +5,6 @@
 
 #import "DefaultDetailViewModel.h"
 #import "StringProvider.h"
-#import "NSObject+OCSReliantInjection.h"
 #import "Info.h"
 
 @interface DefaultDetailViewModel ()

@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OCSConfiguratorFromClass.h"
+#import <Reliant/Reliant.h>
 
 
 @interface TabBarConfiguration : NSObject<OCSConfigurationClass>

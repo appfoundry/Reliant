@@ -6,7 +6,6 @@
 #import "AppConfiguration.h"
 #import "StringProvider.h"
 #import "DefaultStringProvider.h"
-#import "OCSDefinition.h"
 #import "StringGenerator.h"
 #import "DefaultStringGenerator.h"
 

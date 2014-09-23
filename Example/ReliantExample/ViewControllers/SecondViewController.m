@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
-#import <Reliant/NSObject+OCSReliantInjection.h>
+#import <Reliant/Reliant.h>
 #import "SecondViewController.h"
 #import "DetailViewModel.h"
 #import "Info.h"

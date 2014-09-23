@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
-#import <Reliant/OCSObjectContext.h>
+#import <Reliant/Reliant.h>
 #import "ContextHoldingTabBarController.h"
-#import "NSObject+OCSReliantContextBinding.h"
 #import "TabBarConfiguration.h"
 
 @interface ContextHoldingTabBarController ()

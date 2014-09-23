@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
-#import <Reliant/OCSObjectContext.h>
-#import <Reliant/NSObject+OCSReliantContextBinding.h>
+#import <Reliant/Reliant.h>
 #import "AppDelegate.h"
 #import "AppConfiguration.h"
 #import "StringProvider.h"
-#import "NSObject+OCSReliantInjection.h"
 #import "RootViewController.h"
 
 @interface AppDelegate () {

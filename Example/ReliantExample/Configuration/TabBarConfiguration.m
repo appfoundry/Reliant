@@ -6,9 +6,6 @@
 #import "TabBarConfiguration.h"
 #import "DetailViewModel.h"
 #import "DefaultDetailViewModel.h"
-#import "OCSObjectContext.h"
-#import "OCSBoundContextLocatorFactory.h"
-#import "NSObject+OCSReliantContextBinding.h"
 #import "OCSBoundContextLocator.h"
 #import "AppConfiguration.h"
 
