@@ -54,7 +54,7 @@
 		CC56C38019BEF1C800C69BA3 /* HelloReliantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloReliantTests-Info.plist"; sourceTree = "<group>"; };
 		CC56C38219BEF1C800C69BA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CC56C38419BEF1C800C69BA3 /* HelloReliantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloReliantTests.m; sourceTree = "<group>"; };
-		CC56C38E19BEF27800C69BA3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		CC56C38E19BEF27800C69BA3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CC56C38F19BEFC6B00C69BA3 /* AppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfiguration.h; sourceTree = "<group>"; };
 		CC56C39019BEFC6B00C69BA3 /* AppConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfiguration.m; sourceTree = "<group>"; };
 		CC56C39219BF009E00C69BA3 /* Greeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Greeter.h; sourceTree = "<group>"; };

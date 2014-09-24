@@ -1,1 +1,6 @@
-pod 'Reliant'
+# This podfile directly references the Reliant source code available in '../'.
+# The podfile in your own project should only contain:
+#   pod 'Reliant'
+
+pod 'Reliant', :path => '../'
+
