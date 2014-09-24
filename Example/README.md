@@ -163,7 +163,7 @@ As you can see, we:
 * imported `FriendlyGreeter.h`
 * instantiated `FriendlyGreeter` and called `sayHelloTo:`
 
-Running this code outputs:
+Running this code outputs the following in your console:
 
 ```
 Greeting: Hi, dude! How are you?
