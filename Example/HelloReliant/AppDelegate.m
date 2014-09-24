@@ -8,8 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppConfiguration.h"
-#import <Reliant/NSObject+OCSReliantContextBinding.h>
-#import <Reliant/NSObject+OCSReliantInjection.h>
+#import <Reliant/Reliant.h>
 
 @implementation AppDelegate
 
