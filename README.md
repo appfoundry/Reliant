@@ -29,8 +29,8 @@ Then run `pod install` or `pod update`
 
 ### Using Reliant
 
-We suggest that you first take a look at our sample app, found under the [Example folder](https://github.com/appfoundry/Reliant/tree/master/Example) 
-on the Reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip).
+We suggest that you first take a look at our quick-start sample app, found under the [Examples folder](https://github.com/appfoundry/Reliant/tree/master/Examples/HelloReliant) 
+in the Reliant repository. You can also download the entire repository [here](https://github.com/appfoundry/Reliant/archive/master.zip).
  
 #### Configuration
 
