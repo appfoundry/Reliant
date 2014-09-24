@@ -64,8 +64,6 @@ What we did here is:
 This configuration is something we'll set up later. You'll notice that this code doesn't compile, which is perfectly normal since we did
 not yet create the `AppConfiguration` class yet.
 
-Done!
-
 ### It needs to use our configuration data
 
 In the previously shown code block we used a 'configuration' class called `AppConfiguration`. Let's create this class.
@@ -307,7 +305,7 @@ Let's say we would like to quickly change the Greeter implementation to `Unfrien
 @end
 ```
 
-And presto! All usages of the `greeter @property` will now be injected with `UnfriendlyGreeter` instead.
+And presto! All instances of the `greeter @property` will now be injected with `UnfriendlyGreeter` instead.
 
 You can probably see how Dependency Injection / Inversion of Control can be **very** convenient,
 for example in a unit testing scenario where you'd like your tested class to call a mock service instead of the real service.
