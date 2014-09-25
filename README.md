@@ -36,7 +36,7 @@ We suggest that you first take a look at our [quick-start 'Hello World' tutorial
 Using Reliant
 -------------
 
-The following documentation is based on our more elaborate [sample app](https://github.com/appfoundry/Reliant/tree/master/Examples/), which can also be found under the [Examples](https://github.com/appfoundry/Reliant/tree/master/Examples) folder in the Reliant repository.
+The following documentation is based on our more elaborate [sample app](https://github.com/appfoundry/Reliant/tree/master/Examples/ReliantExample), which can also be found under the [Examples](https://github.com/appfoundry/Reliant/tree/master/Examples) folder in the Reliant repository.
 
 #### Configuration
 
