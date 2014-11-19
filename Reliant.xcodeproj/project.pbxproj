@@ -211,6 +211,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		012B464B15D02E76F471A152 /* Pods-Reliant OSX-Reliant OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reliant OSX-Reliant OSXTests/Pods-Reliant OSX-Reliant OSXTests.release.xcconfig"; sourceTree = "<group>"; };
+		1F91C9865AE43FD4B965750D /* Pods-Reliant-ReliantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reliant-ReliantTests/Pods-Reliant-ReliantTests.release.xcconfig"; sourceTree = "<group>"; };
 		2706253619AF138C00245DCA /* OCSReliantExcludingPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCSReliantExcludingPropertyProvider.h; path = Classes/OCSReliantExcludingPropertyProvider.h; sourceTree = "<group>"; };
 		2706254019AF1CBE00245DCA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		270721C2157F4A4F00A05222 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -312,9 +314,9 @@
 		3323FE89CADEB37E6A1421F2 /* OCSRuntimeMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSRuntimeMagic.h; sourceTree = "<group>"; };
 		3323FE8A5D024CC4C92168BF /* NSObject+OCSReliantInjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+OCSReliantInjection.h"; sourceTree = "<group>"; };
 		3CD8CF8127A34E77BDA29E2A /* libPods-Reliant-ReliantTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant-ReliantTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.xcconfig"; path = "Pods/Pods-Reliant-ReliantTests.xcconfig"; sourceTree = "<group>"; };
-		8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.xcconfig"; path = "Pods/Pods-Reliant OSX-Reliant OSXTests.xcconfig"; sourceTree = "<group>"; };
+		9ADC114341BBD6E9BE237A15 /* Pods-Reliant OSX-Reliant OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant OSX-Reliant OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reliant OSX-Reliant OSXTests/Pods-Reliant OSX-Reliant OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reliant OSX-Reliant OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADDF0830575F9D7D62B85808 /* Pods-Reliant-ReliantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reliant-ReliantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reliant-ReliantTests/Pods-Reliant-ReliantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A563376AD9B2F19F4204DF /* OCSPrototypeScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSPrototypeScope.m; sourceTree = "<group>"; };
 		C1A5698CC773F01C35508A5A /* OCSPrototypeScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSPrototypeScope.h; sourceTree = "<group>"; };
 		C1A56BD935DE6F29CAE0CC99 /* OCSDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinitionTest.m; sourceTree = "<group>"; };
@@ -534,8 +536,7 @@
 				2765CBA7157184ED00ABE59C /* Reliant OSXTests */,
 				274D7B8F1563BF2E0007C1C8 /* Frameworks */,
 				274D7B8E1563BF2E0007C1C8 /* Products */,
-				8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */,
-				67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */,
+				567A24FBAAD9552573417A92 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -746,6 +747,17 @@
 				3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		567A24FBAAD9552573417A92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9ADC114341BBD6E9BE237A15 /* Pods-Reliant OSX-Reliant OSXTests.debug.xcconfig */,
+				012B464B15D02E76F471A152 /* Pods-Reliant OSX-Reliant OSXTests.release.xcconfig */,
+				ADDF0830575F9D7D62B85808 /* Pods-Reliant-ReliantTests.debug.xcconfig */,
+				1F91C9865AE43FD4B965750D /* Pods-Reliant-ReliantTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -989,7 +1001,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Reliant OSX-Reliant OSXTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reliant OSX-Reliant OSXTests/Pods-Reliant OSX-Reliant OSXTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3C315EBA61354FA2A5470F03 /* Check Pods Manifest.lock */ = {
@@ -1019,7 +1031,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Reliant-ReliantTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reliant-ReliantTests/Pods-Reliant-ReliantTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD3B8C5A86D941B7B2345999 /* Check Pods Manifest.lock */ = {
@@ -1333,7 +1345,7 @@
 		};
 		274D7BB51563BF2E0007C1C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */;
+			baseConfigurationReference = ADDF0830575F9D7D62B85808 /* Pods-Reliant-ReliantTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1347,7 +1359,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1355,7 +1370,7 @@
 		};
 		274D7BB61563BF2E0007C1C8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67D0EC5A88CD49A8B38A832F /* Pods-Reliant-ReliantTests.xcconfig */;
+			baseConfigurationReference = 1F91C9865AE43FD4B965750D /* Pods-Reliant-ReliantTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1369,7 +1384,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ReliantTests/ReliantTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1431,7 +1449,7 @@
 		};
 		2765CBB4157184ED00ABE59C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */;
+			baseConfigurationReference = 9ADC114341BBD6E9BE237A15 /* Pods-Reliant OSX-Reliant OSXTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1457,7 +1475,7 @@
 		};
 		2765CBB5157184ED00ABE59C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B5FD5ED3A2F490D98EF5A7E /* Pods-Reliant OSX-Reliant OSXTests.xcconfig */;
+			baseConfigurationReference = 012B464B15D02E76F471A152 /* Pods-Reliant OSX-Reliant OSXTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;

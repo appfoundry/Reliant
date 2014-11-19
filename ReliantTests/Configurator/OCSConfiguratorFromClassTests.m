@@ -89,9 +89,9 @@
     assertThat(name, is(equalTo(@"DummyConfiguratorContext")));
 }
 
-- (void)testContextNameIsTakenFromFactoryClassWhenItProvidesContextNameMethod {
-    _configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[NameProvidingConfigurator class]];
-    assertThat(_configurator.contextName, is(equalTo(@"NameProvidingConfiguratorContext")));
+- (void)testContextNameIsTakenFromContextNamePropertyFromFactoryClass {
+	_configurator = [[OCSConfiguratorFromClass alloc] initWithClass:[NameProvidingConfigurator class]];
+	assertThat(_configurator.contextName, is(equalTo(@"customName")));
 }
 
 - (void)testParentContextNameIsDerivedFromFactoryClass {
@@ -116,8 +116,12 @@
 
 @implementation NameProvidingConfigurator
 
-- (Class) parentContextConfiguratorClass {
-    return [DummyConfigurator class];
+- (NSString *)contextName {
+	return @"customName";
+}
+
+- (NSString *) parentContextName {
+    return @"DummyConfiguratorContext";
 }
 
 @end

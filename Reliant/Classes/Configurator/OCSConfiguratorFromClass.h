@@ -17,9 +17,21 @@ An implicit protocol for factory classes used for configuring OCSObjectContexts 
 
 @optional
 /**
-Implement this method on your factory class when you want the configured OCSObjectContext to have a parent context. The class you return is the factory class for that context.
+Implement this property on your factory class when you want a custom name for the context you are configuring with this configuration class. If you don't implement this property the name will be derived from the class name suffixed with "Context".
 */
-- (Class)parentContextConfiguratorClass;
+@property (nonatomic, readonly) NSString *contextName;
+
+/**
+Implement this property on your factory class when you want the configured OCSObjectContext to have a parent context. The return name should match the name of a context already known to Reliant. An exception should be thrown when the given name doesn't match the name of a known context.
+*/
+@property (nonatomic, readonly) NSString *parentContextName;
+
+/**
+@warning Deprecated: You should no longer use this method to configure a parent context. Use the parentContextName property instead.
+*/
+- (Class)parentContextConfiguratorClass __attribute__((deprecated));
+
+
 
 @end
 

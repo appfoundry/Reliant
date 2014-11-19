@@ -102,8 +102,8 @@
     return @"Child C";
 }
 
-- (Class)parentContextConfiguratorClass {
-    return [ParentConfiguration class];
+- (NSString *)parentContextName {
+    return @"ParentConfigurationContext";
 }
 
 @end

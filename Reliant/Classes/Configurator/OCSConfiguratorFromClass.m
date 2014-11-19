@@ -32,7 +32,7 @@ Configurator private category. Holds private ivars and methods.
     A reference to the configurator instance.
     @see OCSConfiguratorFromClass
     */
-    id <OCSObjectFactory> _configInstance;
+    id <OCSObjectFactory, OCSConfigurationClass> _configInstance;
 
     /**
     The configured name of the context, if any.
@@ -127,7 +127,11 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
 }
 
 - (void)_setContextNameFromFactoryOrSetToDefault {
-    _contextName = [self _contextNameForClass:_factoryClass];
+	if ([_configInstance respondsToSelector:@selector(contextName)]) {
+		_contextName = _configInstance.contextName;
+	} else {
+		_contextName = [self _contextNameForClass:_factoryClass];
+	}
 }
 
 - (NSString *)_contextNameForClass:(Class)aClass {
@@ -291,9 +295,13 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
 
 - (NSString *)parentContextName {
     NSString *result = nil;
-    if ([_configInstance respondsToSelector:@selector(parentContextConfiguratorClass)]) {
-        result = [self _contextNameForClass:[((id) _configInstance) parentContextConfiguratorClass]];
+    if ([_configInstance respondsToSelector:@selector(parentContextName)]) {
+        result = _configInstance.parentContextName;
     }
+
+	if ([_configInstance respondsToSelector:@selector(parentContextConfiguratorClass)]) {
+		NSLog(@"WARNING: You are still using parentContextConfiguratorClass in configuration class %@, this method is being ignored, you should implement the parentContextName property instead!", _factoryClass);
+	}
     return result;
 }
 
