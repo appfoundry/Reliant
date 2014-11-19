@@ -2,3 +2,6 @@ language: objective-c
 xcode_workspace: Reliant.xcworkspace
 xcode_scheme: Reliant 
 xcode_sdk: iphonesimulator
+
+before_install:
+  - gem install cocoapods -v '0.34.4'
