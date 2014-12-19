@@ -195,7 +195,9 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
     NSString *aliasMethodName = [NSString stringWithFormat:@"%@%@", ALIAS_METHOD_PREFIX, key];
     Method aliasMethod = class_getInstanceMethod([_configInstance class], NSSelectorFromString(aliasMethodName));
     if (aliasMethod) {
-        id aliases = method_invoke(_configInstance, aliasMethod);
+        typedef id (*mi)(id receiver, Method m, ...);
+        mi f = (mi)method_invoke;
+        id aliases = f(_configInstance, aliasMethod);
         if (![aliases isKindOfClass:[NSArray class]]) {
             [NSException raise:@"OCSConfiguratorException" format:@"Method %@ should return an NSArray or a subclass of it", aliasMethodName];
         }
@@ -393,7 +395,9 @@ static char applicationContextKey;
         }
         [self.extendedStack addObject:key];
         DLog(@"Factory method calling super method");
-        result = objc_msgSendSuper(&superData, _cmd);
+        typedef id (*mss)(struct objc_super *super, SEL op, ...);
+        mss f = (mss)objc_msgSendSuper;
+        result = f(&superData, _cmd);
         [self.extendedStack removeLastObject];
     } else {
         DLog(@"Factory method looking for object in context");
