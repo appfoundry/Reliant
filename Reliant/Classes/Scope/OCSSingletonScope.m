@@ -40,7 +40,9 @@
 
 #if (TARGET_OS_IPHONE)
 - (void) _handleMemoryWarning:(NSNotification *) notification {
-    [_objectRegistry removeAllObjects];
+    if (self.shouldCleanScopeOnMemoryWarnings) {
+        [_objectRegistry removeAllObjects];
+    }
 }
 #endif
 

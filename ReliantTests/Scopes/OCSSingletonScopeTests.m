@@ -42,6 +42,7 @@
 #if (TARGET_OS_IPHONE) 
 - (void) testMemoryWarning {
     id object = [[NSObject alloc] init];
+    _scope.shouldCleanScopeOnMemoryWarnings = YES;
     [_scope registerObject:object forKey:@"SomeObjectKey"];
     
     id result =  [_scope objectForKey:@"SomeObjectKey"];
@@ -51,6 +52,16 @@
     
     result =  [_scope objectForKey:@"SomeObjectKey"];
     XCTAssertNil(result, @"Singleton Scope must not hold any objects after a mem warning");
+}
+
+- (void) testMemoryWarningShouldNotBeHandledByDefault {
+    id object = [[NSObject alloc] init];
+    [_scope registerObject:object forKey:@"SomeObjectKey"];
+
+   [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
+
+    id result =  [_scope objectForKey:@"SomeObjectKey"];
+    XCTAssertNotNil(result, @"Singleton Scope must not hold any objects after a mem warning");
 }
 #endif
 
