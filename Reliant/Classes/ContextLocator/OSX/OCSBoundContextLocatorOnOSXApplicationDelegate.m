@@ -11,7 +11,7 @@
 }
 
 - (id <OCSObjectContext>)locateBoundContextForObject:(NSObject *)object {
-    NSObject<NSApplicationDelegate> *delegate = [NSApp delegate];
+    NSObject<NSApplicationDelegate> *delegate = [[NSApplication sharedApplication] delegate];
     return delegate.ocsObjectContext;
 }
 
