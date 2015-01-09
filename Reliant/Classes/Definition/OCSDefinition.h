@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
 /**
 Describes an object configuration in the application context.

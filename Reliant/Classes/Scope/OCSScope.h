@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
 /**
 Describes a scope. A scope represent a context in which objects are contained.

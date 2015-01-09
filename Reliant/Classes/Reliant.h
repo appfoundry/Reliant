@@ -1,5 +1,5 @@
 //
-//  Header.h
+//  Reliant.h
 //  Reliant
 //
 //  Created by Michael Seghers on 18/09/14.

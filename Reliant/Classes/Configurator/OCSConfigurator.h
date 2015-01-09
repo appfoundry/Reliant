@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
 @class OCSObjectContext;
 @protocol OCSObjectFactory;

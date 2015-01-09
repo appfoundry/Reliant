@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 AppFoundry. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface Setup : NSObject
 
 @end
