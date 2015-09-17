@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors      = { 'Mike Seghers' => 'mike.seghers@appfoundry.be' }
   s.source       = { :git => 'https://github.com/appfoundry/Reliant.git', :tag => s.version.to_s }
 
-  s.private_header_files = 'Reliant/Classes/Runtime/*.h,Reliant/Classes/ContextLocator/OCSBoundContextLocatorFactory.h'
+  s.private_header_files = 'Reliant/Classes/Runtime/*.h', 'Reliant/Classes/ContextLocator/OCSBoundContextLocatorFactory.h'
   s.source_files = 'Reliant/Classes/**/*.{h,m}'
 
   s.ios.deployment_target = '6.0'
