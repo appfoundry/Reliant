@@ -14,6 +14,7 @@
 #import <OCMockito/OCMockito.h>
 #import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "NSObject+OCSReliantContextBinding.h"
+#import "OCSObjectContext.h"
 
 @interface OCSBoundContextLocatorOnViewControllerHierarchyTest : XCTestCase
 

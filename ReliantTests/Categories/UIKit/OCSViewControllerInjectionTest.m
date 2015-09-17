@@ -18,6 +18,8 @@
 #import "OCSScope.h"
 #import "OCSScopeFactory.h"
 #import "OCSDefinition.h"
+#import "OCSContextRegistry.h"
+#import "OCSConfigurator.h"
 
 @interface SimpleViewController : UIViewController
 
