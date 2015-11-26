@@ -296,15 +296,8 @@ static const KeyGenerator keyGenerator = ^(NSString *name) {
 }
 
 - (NSString *)parentContextName {
-    NSString *result = nil;
-    if ([_configInstance respondsToSelector:@selector(parentContextName)]) {
-        result = _configInstance.parentContextName;
-    }
-
-	if ([_configInstance respondsToSelector:@selector(parentContextConfiguratorClass)]) {
-		NSLog(@"WARNING: You are still using parentContextConfiguratorClass in configuration class %@, this method is being ignored, you should implement the parentContextName property instead!", _factoryClass);
-	}
-    return result;
+    NSLog(@"Parent context name is still requested, you should no longer depend on this property, as it is deprecated!");
+    return nil;
 }
 
 @end

@@ -23,8 +23,11 @@ Implement this property on your factory class when you want a custom name for th
 
 /**
 Implement this property on your factory class when you want the configured OCSObjectContext to have a parent context. The return name should match the name of a context already known to Reliant. An exception should be thrown when the given name doesn't match the name of a known context.
+ 
+ Since version 3.0.0 this property is deprecated and should not be used any more. If an object context needs a parent, it needs to be initialized with one. Reliant will no longer lookup contexts as it led to unexpected behaviour in some situations.
+@warning Deprecated: You should no longer use this property.
 */
-@property (nonatomic, readonly) NSString *parentContextName;
+@property (nonatomic, readonly) NSString *parentContextName __attribute__((deprecated));
 
 /**
 @warning Deprecated: You should no longer use this method to configure a parent context. Use the parentContextName property instead.

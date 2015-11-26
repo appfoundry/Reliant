@@ -20,8 +20,4 @@
     return [[DefaultDetailViewModel alloc] init];
 }
 
-- (Class)parentContextConfiguratorClass {
-    return [AppConfiguration class];
-}
-
 @end

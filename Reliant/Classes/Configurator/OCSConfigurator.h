@@ -43,9 +43,9 @@ The context's name which is configured by this configurator.
 @property(nonatomic, readonly) NSString *contextName;
 
 /**
-The parent context's name, if any.
+The parent context's name, if any. This property is ignored from version 3.0 onward. Parent contexts need to be passed in when creating an object context, it will no longer be looked up, since this led to unexpected behaviour in some situations.
 */
-@property(nonatomic, readonly) NSString *parentContextName;
+@property(nonatomic, readonly) NSString *parentContextName __attribute__((deprecated));
 
 /**
 Get a definition for the given key or alias.
