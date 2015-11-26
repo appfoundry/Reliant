@@ -24,7 +24,6 @@
 #import "OCSDefinition.h"
 #import "OCSScope.h"
 #import "OCSObjectFactory.h"
-#import "OCSContextRegistry.h"
 
 @protocol SomeSuperProtocol <NSObject>
 
@@ -104,7 +103,6 @@
     id<OCSConfigurator> _configurator;
     id<OCSScopeFactory> _scopeFactory;
     id<OCSObjectFactory> _objectFactory;
-    id<OCSContextRegistry> _contextRegistry;
     id<OCSScope> _scope;
     NSMutableArray *_knownKeys;
 }
@@ -119,28 +117,17 @@
     [given([_configurator objectKeysAndAliases]) willReturn:_knownKeys];
     _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
     _scope = mockProtocol(@protocol(OCSScope));
-    _contextRegistry = mockProtocol(@protocol(OCSContextRegistry));
-    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory parentContext:nil];
 }
 
 - (void)testShouldNotInitWithoutConfig {
-    _context = [[OCSObjectContext alloc] initWithConfigurator:nil scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:nil scopeFactory:_scopeFactory parentContext:nil];
     assertThat(_context, is(nilValue()));
 }
 
 - (void)testShouldNotInitWithoutScopeFactory {
-    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:nil contextRegistry:_contextRegistry];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:nil parentContext:nil];
     assertThat(_context, is(nilValue()));
-}
-
-- (void)testShouldNotInitWithoutContextRegistry {
-    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:nil];
-    assertThat(_context, is(nilValue()));
-}
-
-- (void)testShouldThrowExceptionWhenConfiguredParentContextIsMissing {
-    [given(_configurator.parentContextName) willReturn:@"ParentContext"];
-    XCTAssertThrows([[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry], @"If a configurator returns a parent context name, but it could not be found in the context registry, an exception should be thrown.");
 }
 
 - (void)testConvenienceInitFailsWhenNoReliantConfigurationClassFound {
@@ -237,38 +224,14 @@
     [verify(_objectFactory) bindToContext:_context];
 }
 
-- (void)testParentContextIsConsultedWhenObjectNotFoundOnOwnContext {
-    [given(_configurator.parentContextName) willReturn:@"ParentContext"];
-    OCSObjectContext *parentContext = mock([OCSObjectContext class]);
-    [given([_contextRegistry contextForName:@"ParentContext"]) willReturn:parentContext];
-    OCSObjectContext *childContext = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
-    [childContext objectForKey:@"Test"];
-    [verify(parentContext) objectForKey:@"Test"];
-}
-
-- (void)testParentContextPerformInjectionIsAlsoCalledWhenPerformingInjectionViaChildContext {
-    [given(_configurator.parentContextName) willReturn:@"ParentContext"];
-    OCSObjectContext *parentContext = mock([OCSObjectContext class]);
-    [given([_contextRegistry contextForName:@"ParentContext"]) willReturn:parentContext];
-    OCSObjectContext *childContext = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
-
-    id object = [[NSObject alloc] init];
-    [childContext performInjectionOn:object];
-    [verify(parentContext) performInjectionOn:object];
-}
-
 - (void)testContextIsAskedToInjectObjectFactory {
-    SpiedObjectContext *childContext = [[SpiedObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
+    SpiedObjectContext *childContext = [[SpiedObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory parentContext:nil];
     assertThat(childContext.injectedObject, is(sameInstance(_objectFactory)));
 }
 
 - (void)testContextGetsNameFromConfigurator {
     [given(_configurator.contextName) willReturn:@"ConfiguredName"];
     assertThat(_context.name, is(equalTo(@"ConfiguredName")));
-}
-
-- (void)testContextShouldBeRegisteredWithContextRegistry {
-    [verify(_contextRegistry) registerContext:_context];
 }
 
 - (OCSDefinition *)_prepareContextToFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName withValue:(id)expectedObject {

@@ -40,7 +40,7 @@
     _parentContext = [[OCSObjectContext alloc] initWithConfigurator:parentConfigurator];
 
     id <OCSConfigurator> childConfigurator = [[OCSConfiguratorFromClass alloc] initWithClass:[ChildConfiguration class]];
-    _childContext = [[OCSObjectContext alloc] initWithConfigurator:childConfigurator];
+    _childContext = [[OCSObjectContext alloc] initWithConfigurator:childConfigurator parentContext:_parentContext];
 }
 
 - (void)testInjectionForAFromChildContext {

@@ -14,7 +14,6 @@
 @protocol OCSScopeFactory;
 
 @class OCSObjectContext;
-@protocol OCSContextRegistry;
 
 /**
 @warning Deprecated: You should nog longer use OCSApplicationContext as type. It has been renamed to OCSObjectContext.
@@ -25,7 +24,10 @@ typedef OCSObjectContext OCSApplicationContext __attribute__((deprecated));
 @protocol OCSObjectContext
 
 /**
-The parent object context.
+The parent object context.  
+ 
+When an object is requested from this context, and this context doesn't contain such an object, it will be recursively requested from the parent object context hierarchy instead. 
+This enables object context inheritance. You can also easily override objects from a parent context by giving an object the same name as it appears in the parent context.
 */
 @property(nonatomic, readonly, weak) id<OCSObjectContext> parentContext;
 
@@ -73,19 +75,28 @@ The scope factory, used to retrieve scopes based on the definitions found in thi
 @property(nonatomic, readonly) id <OCSScopeFactory> scopeFactory;
 
 /**
-Designated initializer. Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory and  the context registry to OCSDefaultContextRegistry shared instance.
+Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory.
 
 @param configurator The configurator that will be used to setup the context.
 */
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator;
 
 /**
-Convenience initializer. Prepares the object context with the given configurator and the given scope factory. Each different context should have it's own configurator instance, and it's own scope factory. You should never share configurators and scope factories between contexts.
+ Prepares the object context with the given configurator and given parent context. Sets the scope factory to an instance of OCSDefaultScopeFactory.
+ 
+ @param configurator The configurator that will be used to setup the context.
+ @param parentContext The parent context.
+ */
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator parentContext:(id <OCSObjectContext>) parentContext;
 
-@param configurator The configurator that provides object definitions and the object factory.
-@param scopeFactory The factory used to look up scopes.
-@param contextRegistry The context registry to which this context should be recorded.
-*/
-- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>)contextRegistry;
+/**
+ Prepares the object context with the given configurator, given scope factory and given parent context.
+ 
+ @param configurator The configurator that will be used to setup the context.
+ @param scopeFactory The factory used to look up scopes.
+ @param parentContext The parent context.
+ */
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory parentContext:(id <OCSObjectContext>) parentContext;
+
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2729CFBD1C074D210033F105 /* ReliantExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CFBC1C074D210033F105 /* ReliantExampleViewController.m */; };
+		2729CFBF1C074D800033F105 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2729CFBE1C074D800033F105 /* Launch Screen.storyboard */; };
+		2729CFC11C074EE40033F105 /* FriendlyGreeterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CFC01C074EE40033F105 /* FriendlyGreeterTest.m */; };
+		2729CFC31C074FA50033F105 /* UnfriendlyGreeterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CFC21C074FA50033F105 /* UnfriendlyGreeterTest.m */; };
 		AB281969032D4947A02865C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA20FF5A44FB47E3BC69EA6D /* libPods.a */; };
 		CC56C36019BEF1C800C69BA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC56C35F19BEF1C800C69BA3 /* Foundation.framework */; };
 		CC56C36219BEF1C800C69BA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC56C36119BEF1C800C69BA3 /* CoreGraphics.framework */; };
@@ -19,7 +23,6 @@
 		CC56C37A19BEF1C800C69BA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC56C35F19BEF1C800C69BA3 /* Foundation.framework */; };
 		CC56C37B19BEF1C800C69BA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC56C36319BEF1C800C69BA3 /* UIKit.framework */; };
 		CC56C38319BEF1C800C69BA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC56C38119BEF1C800C69BA3 /* InfoPlist.strings */; };
-		CC56C38519BEF1C800C69BA3 /* HelloReliantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56C38419BEF1C800C69BA3 /* HelloReliantTests.m */; };
 		CC56C39119BEFC6B00C69BA3 /* AppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56C39019BEFC6B00C69BA3 /* AppConfiguration.m */; };
 		CC56C39519BF021D00C69BA3 /* FriendlyGreeter.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56C39419BF021D00C69BA3 /* FriendlyGreeter.m */; };
 		CC56C39819BF222600C69BA3 /* UnfriendlyGreeter.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56C39719BF222600C69BA3 /* UnfriendlyGreeter.m */; };
@@ -36,7 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7032FF20D3DA45F0A28BB45F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		2729CFBB1C074D210033F105 /* ReliantExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReliantExampleViewController.h; sourceTree = "<group>"; };
+		2729CFBC1C074D210033F105 /* ReliantExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReliantExampleViewController.m; sourceTree = "<group>"; };
+		2729CFBE1C074D800033F105 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2729CFC01C074EE40033F105 /* FriendlyGreeterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendlyGreeterTest.m; sourceTree = "<group>"; };
+		2729CFC21C074FA50033F105 /* UnfriendlyGreeterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnfriendlyGreeterTest.m; sourceTree = "<group>"; };
+		3FCC56C6C44C6CE087BCD074 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AD4A457C9EB8FC482A6A8922 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CA20FF5A44FB47E3BC69EA6D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC56C35C19BEF1C800C69BA3 /* HelloReliant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloReliant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC56C35F19BEF1C800C69BA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,7 +62,6 @@
 		CC56C37819BEF1C800C69BA3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CC56C38019BEF1C800C69BA3 /* HelloReliantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloReliantTests-Info.plist"; sourceTree = "<group>"; };
 		CC56C38219BEF1C800C69BA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CC56C38419BEF1C800C69BA3 /* HelloReliantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloReliantTests.m; sourceTree = "<group>"; };
 		CC56C38E19BEF27800C69BA3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CC56C38F19BEFC6B00C69BA3 /* AppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfiguration.h; sourceTree = "<group>"; };
 		CC56C39019BEFC6B00C69BA3 /* AppConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfiguration.m; sourceTree = "<group>"; };
@@ -89,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FD36B9E89D6F94E1521EC47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD4A457C9EB8FC482A6A8922 /* Pods.debug.xcconfig */,
+				3FCC56C6C44C6CE087BCD074 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CC56C35319BEF1C800C69BA3 = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +114,7 @@
 				CC56C37E19BEF1C800C69BA3 /* HelloReliantTests */,
 				CC56C35E19BEF1C800C69BA3 /* Frameworks */,
 				CC56C35D19BEF1C800C69BA3 /* Products */,
-				7032FF20D3DA45F0A28BB45F /* Pods.xcconfig */,
+				1FD36B9E89D6F94E1521EC47 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,7 +151,10 @@
 				CC56C39419BF021D00C69BA3 /* FriendlyGreeter.m */,
 				CC56C39619BF222600C69BA3 /* UnfriendlyGreeter.h */,
 				CC56C39719BF222600C69BA3 /* UnfriendlyGreeter.m */,
+				2729CFBB1C074D210033F105 /* ReliantExampleViewController.h */,
+				2729CFBC1C074D210033F105 /* ReliantExampleViewController.m */,
 				CC56C37119BEF1C800C69BA3 /* Images.xcassets */,
+				2729CFBE1C074D800033F105 /* Launch Screen.storyboard */,
 				CC56C36619BEF1C800C69BA3 /* Supporting Files */,
 			);
 			path = HelloReliant;
@@ -154,7 +174,8 @@
 		CC56C37E19BEF1C800C69BA3 /* HelloReliantTests */ = {
 			isa = PBXGroup;
 			children = (
-				CC56C38419BEF1C800C69BA3 /* HelloReliantTests.m */,
+				2729CFC01C074EE40033F105 /* FriendlyGreeterTest.m */,
+				2729CFC21C074FA50033F105 /* UnfriendlyGreeterTest.m */,
 				CC56C37F19BEF1C800C69BA3 /* Supporting Files */,
 			);
 			path = HelloReliantTests;
@@ -181,6 +202,7 @@
 				CC56C35919BEF1C800C69BA3 /* Frameworks */,
 				CC56C35A19BEF1C800C69BA3 /* Resources */,
 				1128EA08CB5C41B288A6FD01 /* Copy Pods Resources */,
+				A74E661372E2B2EBC45F8A45 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,7 +237,7 @@
 		CC56C35419BEF1C800C69BA3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = AppFoundry;
 				TargetAttributes = {
 					CC56C37619BEF1C800C69BA3 = {
@@ -246,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2729CFBF1C074D800033F105 /* Launch Screen.storyboard in Resources */,
 				CC56C36A19BEF1C800C69BA3 /* InfoPlist.strings in Resources */,
 				CC56C37219BEF1C800C69BA3 /* Images.xcassets in Resources */,
 			);
@@ -274,7 +297,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2013F0B4F2D042ECB09887FC /* Check Pods Manifest.lock */ = {
@@ -292,6 +315,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		A74E661372E2B2EBC45F8A45 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -304,6 +342,7 @@
 				CC56C39119BEFC6B00C69BA3 /* AppConfiguration.m in Sources */,
 				CC56C36C19BEF1C800C69BA3 /* main.m in Sources */,
 				CC56C39519BF021D00C69BA3 /* FriendlyGreeter.m in Sources */,
+				2729CFBD1C074D210033F105 /* ReliantExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +350,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC56C38519BEF1C800C69BA3 /* HelloReliantTests.m in Sources */,
+				2729CFC31C074FA50033F105 /* UnfriendlyGreeterTest.m in Sources */,
+				2729CFC11C074EE40033F105 /* FriendlyGreeterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +403,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -377,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -409,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -417,13 +458,13 @@
 		};
 		CC56C38919BEF1C800C69BA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7032FF20D3DA45F0A28BB45F /* Pods.xcconfig */;
+			baseConfigurationReference = AD4A457C9EB8FC482A6A8922 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloReliant/HelloReliant-Prefix.pch";
 				INFOPLIST_FILE = "HelloReliant/HelloReliant-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -431,13 +472,13 @@
 		};
 		CC56C38A19BEF1C800C69BA3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7032FF20D3DA45F0A28BB45F /* Pods.xcconfig */;
+			baseConfigurationReference = 3FCC56C6C44C6CE087BCD074 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloReliant/HelloReliant-Prefix.pch";
 				INFOPLIST_FILE = "HelloReliant/HelloReliant-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -448,7 +489,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HelloReliant.app/HelloReliant";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
@@ -459,6 +499,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "HelloReliantTests/HelloReliantTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -470,13 +511,13 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HelloReliant.app/HelloReliant";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloReliant/HelloReliant-Prefix.pch";
 				INFOPLIST_FILE = "HelloReliantTests/HelloReliantTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -31,7 +31,7 @@
     id <StringProvider> stringProvider = [self.ocsObjectContext objectForKey:@"StringProvider"];
     NSLog(@"Application is starting, and now has an application wide context, holding a string provider which says: %@", [stringProvider provideString]);
 
-    //DEMO: You can inject the spring provider, by calling ocsInject on self too (the instance you get back is the same as in the previous example
+    //DEMO: You can inject the string provider, by calling ocsInject on self too (the instance you get back is the same as in the previous example
     [self ocsInject];
     NSLog(@"The app delegate is now injected and holds the StringProvider as configured in the AppConfiguration class: %@", [self.stringProvider provideString]);
 

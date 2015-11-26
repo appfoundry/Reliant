@@ -19,11 +19,21 @@ Returns nil if no context was bound yet.
 @property (nonatomic, strong) id<OCSObjectContext> ocsObjectContext;
 
 /**
-Bootstraps and binds an object context, configured based on the given factory class, to this instance.
+Bootstraps and binds an object context with no parent, configured based on the given factory class, to this instance.
 
 @param factoryClass the factory class to be used as factory and configuration for bound context.
 @see OCSConfiguratorFromClass
 */
 - (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class) factoryClass;
+
+/**
+ Bootstraps and binds an object context with the given parent, configured based on the given factory class, to this instance.
+ 
+ @param factoryClass the factory class to be used as factory and configuration for bound context.
+ @param parentContext the parent context for the bootstrapping context.
+ @see OCSConfiguratorFromClass
+ */
+
+- (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class)factoryClass parentContext:(id <OCSObjectContext>)parentContext;
 
 @end

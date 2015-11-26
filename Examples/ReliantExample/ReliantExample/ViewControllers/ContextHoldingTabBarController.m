@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
-#import <Reliant/OCSObjectContext.h>
+#import <Reliant/Reliant.h>
 #import "ContextHoldingTabBarController.h"
 #import "NSObject+OCSReliantContextBinding.h"
 #import "TabBarConfiguration.h"
@@ -35,7 +35,8 @@
 }
 
 - (void)_initContextHoldingTabBarController {
-    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[TabBarConfiguration class]];
+    NSObject<UIApplicationDelegate> *del = [UIApplication sharedApplication].delegate;
+    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[TabBarConfiguration class] parentContext:[del ocsObjectContext]];
 }
 
 @end

@@ -22,8 +22,12 @@ static char ocsObjectContextKey;
 }
 
 - (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class)factoryClass {
+    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:factoryClass parentContext:nil];
+}
+
+- (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class)factoryClass parentContext:(id <OCSObjectContext>)parentContext {
     id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:factoryClass];
-    self.ocsObjectContext = [[OCSObjectContext alloc] initWithConfigurator:configurator];
+    self.ocsObjectContext = [[OCSObjectContext alloc] initWithConfigurator:configurator parentContext:parentContext];
     [self.ocsObjectContext start];
 }
 

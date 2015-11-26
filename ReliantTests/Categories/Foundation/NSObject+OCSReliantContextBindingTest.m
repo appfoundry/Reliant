@@ -28,10 +28,12 @@ static BOOL hasCalledEagerMethodAndThusContextWasBootstrapped = NO;
 @end
 
 @implementation NSObject_OCSReliantContextBindingTest {
+    id <OCSObjectContext> _parentContext;
 }
 
 - (void)setUp {
     [super setUp];
+    _parentContext = mockProtocol(@protocol(OCSObjectContext));
 }
 
 - (void)tearDown {
@@ -50,6 +52,14 @@ static BOOL hasCalledEagerMethodAndThusContextWasBootstrapped = NO;
     [object ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[BootstrappedConfigurationClass class]];
     assertThat(object.ocsObjectContext, is(notNilValue()));
     assertThatBool(hasCalledEagerMethodAndThusContextWasBootstrapped, isTrue());
+}
+
+- (void)testBootstrapAndBindContextWithConfiguratorFromClassWithParentContext {
+    NSObject *object = [[NSObject alloc] init];
+    [object ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[BootstrappedConfigurationClass class] parentContext:_parentContext];
+    assertThat(object.ocsObjectContext, is(notNilValue()));
+    assertThatBool(hasCalledEagerMethodAndThusContextWasBootstrapped, isTrue());
+    assertThat(object.ocsObjectContext.parentContext, is(sameInstance(_parentContext)));
 }
 
 @end

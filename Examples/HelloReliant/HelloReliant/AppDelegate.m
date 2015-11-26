@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
+#import <Reliant/Reliant.h>
 #import "AppDelegate.h"
 #import "AppConfiguration.h"
-#import <Reliant/Reliant.h>
+#import "ReliantExampleViewController.h"
+
 
 @implementation AppDelegate
 
@@ -27,6 +29,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    self.window.rootViewController = [[ReliantExampleViewController alloc] init];
     return YES;
 }
 

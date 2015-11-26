@@ -18,7 +18,6 @@
 #import "OCSScope.h"
 #import "OCSScopeFactory.h"
 #import "OCSDefinition.h"
-#import "OCSContextRegistry.h"
 #import "OCSConfigurator.h"
 
 @interface SimpleViewController : UIViewController
@@ -33,7 +32,6 @@
 @interface OCSViewControllerInjectionTest : XCTestCase {
     id<OCSConfigurator> _configurator;
     id<OCSScopeFactory> _scopeFactory;
-    id<OCSContextRegistry> _contextRegistry;
     id<OCSScope> _scope;
     OCSObjectContext *_context;
 
@@ -49,10 +47,9 @@
 
     _scopeFactory = mockProtocol(@protocol(OCSScopeFactory));
     _configurator = mockProtocol(@protocol(OCSConfigurator));
-    _contextRegistry = mockProtocol(@protocol(OCSContextRegistry));
 
     _scope = mockProtocol(@protocol(OCSScope));
-    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
+    _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory parentContext:nil];
     [given([_scopeFactory scopeForName:anything()]) willReturn:_scope];
     [given([_configurator objectKeysAndAliases]) willReturn:@[@"injected"]];
 }
