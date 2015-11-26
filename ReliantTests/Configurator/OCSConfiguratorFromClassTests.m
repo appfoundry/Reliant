@@ -63,9 +63,9 @@
 
 - (void)testObjectFactoryIsIndeedAnObjectFactory {
     NSObject *factory = (NSObject *)_configurator.objectFactory;
-    assertThatBool([factory conformsToProtocol:@protocol(OCSObjectFactory)], is(equalToBool(YES)));
-    assertThatBool([factory respondsToSelector:@selector(createObjectForDefinition:)], is(equalToBool(YES)));
-    assertThatBool([factory respondsToSelector:@selector(bindToContext:)], is(equalToBool(YES)));
+    assertThatBool([factory conformsToProtocol:@protocol(OCSObjectFactory)], isTrue());
+    assertThatBool([factory respondsToSelector:@selector(createObjectForDefinition:)], isTrue());
+    assertThatBool([factory respondsToSelector:@selector(bindToContext:)], isTrue());
 }
 
 

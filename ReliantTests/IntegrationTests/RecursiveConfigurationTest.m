@@ -106,10 +106,10 @@
     } @catch (NSException *e) {
         thrown = YES;
         assertThat(e.name, is(equalTo(@"ReliantCircularDependencyException")));
-        assertThat(e.reason, is(containsString(reason)));
+        assertThat(e.reason, is(containsSubstring(reason)));
     }
 
-    assertThatBool(thrown, is(equalToBool(YES)));
+    assertThatBool(thrown, isTrue());
 }
 
 @end
