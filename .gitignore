@@ -16,3 +16,5 @@ profile
 .idea
 Pods
 Podfile.lock
+*.gcda
+*.gcno

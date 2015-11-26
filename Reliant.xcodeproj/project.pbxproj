@@ -895,7 +895,6 @@
 				2765CB9C157184ED00ABE59C /* Sources */,
 				2765CB9D157184ED00ABE59C /* Frameworks */,
 				2765CB9E157184ED00ABE59C /* Resources */,
-				2765CB9F157184ED00ABE59C /* ShellScript */,
 				337CFC3C185E48D096542F69 /* Copy Pods Resources */,
 				6F0C42CAE87D106BFAFFB278 /* Embed Pods Frameworks */,
 			);
@@ -965,19 +964,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2765CB9F157184ED00ABE59C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		27877B5E1574070200C7D871 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
