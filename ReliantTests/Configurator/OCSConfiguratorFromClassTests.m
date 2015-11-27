@@ -95,7 +95,10 @@
 }
 
 - (void)testParentContextNameIsDeprecatedAndAlwaysReturnsNil {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     assertThat(_configurator.parentContextName, is(nilValue()));
+#pragma GCC diagnostics pop
 }
 
 @end
