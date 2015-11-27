@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AppFoundry. All rights reserved.
 //
 
-#import <Reliant/NSObject+OCSReliantInjection.h>
+#import <Reliant/Reliant.h>
 #import "SecondViewController.h"
 #import "DetailViewModel.h"
 #import "Info.h"
@@ -23,14 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
-- (void)didMoveToParentViewController:(UIViewController *)parent {
-    [super didMoveToParentViewController:parent];
     [self ocsInject];
     self.title = [NSString stringWithFormat:@"- %@ -", self.detailViewModel.info.message];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
-
 
 @end

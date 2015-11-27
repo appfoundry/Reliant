@@ -17,24 +17,8 @@
 
 @implementation ContextHoldingTabBarController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self _initContextHoldingTabBarController];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self _initContextHoldingTabBarController];
-    }
-    return self;
-}
-
-- (void)_initContextHoldingTabBarController {
+- (void)viewDidLoad {
+    [super viewDidLoad];
     NSObject<UIApplicationDelegate> *del = [UIApplication sharedApplication].delegate;
     [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[TabBarConfiguration class] parentContext:[del ocsObjectContext]];
 }
