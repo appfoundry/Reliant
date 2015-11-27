@@ -1,31 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Reliant by mikeseghers</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <title>Reliant by appfoundry</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Reliant</h1>
-        <p></p>
-        <p class="view"><a href="https://github.com/mikeseghers/Reliant">View the Project on GitHub <small>mikeseghers/Reliant</small></a></p>
-        <ul>
-          <li><a href="https://github.com/mikeseghers/Reliant/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/mikeseghers/Reliant/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/mikeseghers/Reliant">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Reliant</h1>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Reliant</h1>
+          <h2>dependency injection for iOS and OSX</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/appfoundry/Reliant/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/appfoundry/Reliant/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/appfoundry/Reliant" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="reliant" class="anchor" href="#reliant" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reliant</h1>
 
 <p>Reliant is a Dependency Injection (<a href="http://martinfowler.com/articles/injection.html" title="Martin Fowler never lies">DI</a>) 
 framework for Objective-C, both for OS X and iOS. Its goal is to make it's use as simple
@@ -48,7 +55,8 @@ community. Although we consider the latest version to be pretty complete, there 
 room for improvement. Obviously, since this is open source, do feel free to add your own
 insights/ideas/remarks/opinions.</p>
 
-<h2>Overall architecture</h2>
+<h2>
+<a id="overall-architecture" class="anchor" href="#overall-architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overall architecture</h2>
 
 <p>The framework is set up to be lightweight, you basically need an OCSApplicationContext
 which serves as the container of the managed objects. To register managed objects in this
@@ -64,7 +72,9 @@ names are taken from the well know <a href="http://en.wikipedia.org/wiki/Softwar
 singleton should be thread safe! Reliant further identifies eager and lazy singletons.
 Eager means that they will be instantiated when the application context boots up, lazy
 means they will be instantiated <em>Just-in-Time</em>, when they are requested.</li>
-</ul><p><strong>Remark:</strong> For iOS, Reliant also reacts to memory warnings, by clearing it's singleton
+</ul>
+
+<p><strong>Remark:</strong> For iOS, Reliant also reacts to memory warnings, by clearing it's singleton
 scope. In this case, all singletons become lazy singletons and will be initialized again
 when requested.</p>
 
@@ -72,40 +82,41 @@ when requested.</p>
 <li>A prototype will be created each time it is requested from the application context. Be
 carefull though! If you inject a prototype into a singleton, the prototype's livecycle is
 bound to the singleton!</li>
-</ul><p>Objects are identified by a key and can have aliases, both strings. The framework makes
+</ul>
+
+<p>Objects are identified by a key and can have aliases, both strings. The framework makes
 sure these are unique. Exceptions will be thrown if an attempt is made to add an object
 with a non-unique key or alias.</p>
 
 <p>Now let's look at a Quick start example.</p>
 
-<h2>Quick start</h2>
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start</h2>
 
-<h3>Including Reliant in your project</h3>
+<h3>
+<a id="including-reliant-in-your-project" class="anchor" href="#including-reliant-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Including Reliant in your project</h3>
 
 <p>TODO</p>
 
-<h3>Bootstrapping Reliant</h3>
+<h3>
+<a id="bootstrapping-reliant" class="anchor" href="#bootstrapping-reliant" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bootstrapping Reliant</h3>
 
 <p>To get started with Reliant, you need to tell the <em>OCSApplicationContext</em> to start up. You
 will need to provide a configurator instance to the application context. More on
 configurators later, bare with us for now.</p>
 
-<div class="highlight">
-<pre><span class="c1">//Initialize a configurator</span>
-<span class="kt">id</span><span class="o">&lt;</span><span class="n">OCSConfigurator</span><span class="o">&gt;</span> <span class="n">configurator</span> <span class="o">=</span> <span class="p">[[</span><span class="n">OCSConfiguratorFromClass</span> <span class="n">alloc</span><span class="p">]</span> 
-    <span class="nl">initWithClass:</span><span class="p">[</span><span class="n">YourObjectFactory</span> <span class="n">class</span><span class="p">]];</span>
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">//Initialize a configurator</span>
+<span class="pl-k">id</span>&lt;OCSConfigurator&gt; configurator = [[OCSConfiguratorFromClass <span class="pl-c1">alloc</span>] 
+    initWithClass:[YourObjectFactory <span class="pl-c1">class</span>]];
 
-<span class="c1">//Initialize the application context with the configurator</span>
-<span class="n">OCSApplicationContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[[</span><span class="n">OCSApplicationContext</span> <span class="n">alloc</span><span class="p">]</span> 
-    <span class="nl">initWithConfigurator:</span><span class="n">configurator</span><span class="p">];</span>
+<span class="pl-c">//Initialize the application context with the configurator</span>
+OCSApplicationContext *context = [[OCSApplicationContext <span class="pl-c1">alloc</span>] 
+    initWithConfigurator:configurator];
 
-<span class="c1">//Start the context</span>
-<span class="p">[</span><span class="n">context</span> <span class="n">start</span><span class="p">];</span>
+<span class="pl-c">//Start the context</span>
+[context <span class="pl-c1">start</span>];
 
-<span class="c1">//Done! Well...</span>
-</pre>
-</div>
-
+<span class="pl-c">//Done! Well...</span></pre></div>
 
 <p>This will bootstrap the entire application context. At the time the start method finishes
 it's job, it will have loaded your defintions and it will have instantiated and injected
@@ -117,7 +128,8 @@ method in your UIApplicationDelegate. For OS X this is almost the same:
 <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/NSApplicationDelegate_Protocol/Reference/Reference.html#//apple_ref/occ/intfm/NSApplicationDelegate/applicationDidFinishLaunching:">applicationDidFinishLaunching:</a>
  in your NSApplicationDelegate.</p>
 
-<h3>Using the <em>OCSConfiguratorFromClass</em>
+<h3>
+<a id="using-the-ocsconfiguratorfromclass" class="anchor" href="#using-the-ocsconfiguratorfromclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the <em>OCSConfiguratorFromClass</em>
 </h3>
 
 <p>This is a ready-made configurator implementation. It uses the information found in a class
@@ -133,39 +145,28 @@ methods, you will need to follow some naming conventions on them.</p>
 
 <p>OCSConfiguratorFromClass will detect 4 kinds of methods. (Replace YourObjectKey each time with a unique name)</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createSingleton</span><span class="cm">/*YourObjectKey*/</span><span class="p">;</span> <span class="c1">//Lazy singleton definition</span>
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createEagerSingleton</span><span class="cm">/*YourObjectKey*/</span><span class="p">;</span> <span class="c1">//Eager singleton definition</span>
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createPrototype</span><span class="cm">/*YourObjectKey*/</span><span class="p">;</span><span class="c1">//Prototype definition</span>
-<span class="k">-</span> <span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span> <span class="nf">aliasesFor</span><span class="cm">/*YourObjectKey*/</span><span class="p">;</span><span class="c1">//Alias definitions</span>
-</pre>
-</div>
-
+<div class="highlight highlight-source-objc"><pre>- (<span class="pl-k">id</span>) createSingleton<span class="pl-c">/*YourObjectKey*/</span>; <span class="pl-c">//Lazy singleton definition</span>
+- (<span class="pl-k">id</span>) createEagerSingleton<span class="pl-c">/*YourObjectKey*/</span>; <span class="pl-c">//Eager singleton definition</span>
+- (<span class="pl-k">id</span>) createPrototype<span class="pl-c">/*YourObjectKey*/</span>;<span class="pl-c">//Prototype definition</span>
+- (<span class="pl-c1">NSArray</span> *) aliasesFor<span class="pl-c">/*YourObjectKey*/</span>;<span class="pl-c">//Alias definitions</span></pre></div>
 
 <p>Let's look at them in more detail:</p>
 
-<h4>Defining singletons</h4>
+<h4>
+<a id="defining-singletons" class="anchor" href="#defining-singletons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining singletons</h4>
 
 <p>For each lazy singleton you need, you should add a method with the following signature:</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createSingletonFoo</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">Foo</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
-</pre>
-</div>
-
+<div class="highlight highlight-source-objc"><pre>- (<span class="pl-k">id</span>) createSingletonFoo {
+    <span class="pl-k">return</span> [[[Foo <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}</pre></div>
 
 <p>You can also use what is called <em>constructor injection</em> by calling another 
 <em>createSingleton</em> or <em>createEagerSingleton</em> method:</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createSingletonBar</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">Bar</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithSomeObject:</span><span class="p">[</span><span class="n">self</span> <span class="n">createSingletonFoo</span><span class="p">]]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
-</pre>
-</div>
-
+<div class="highlight highlight-source-objc"><pre>- (<span class="pl-k">id</span>) createSingletonBar {
+    <span class="pl-k">return</span> [[[Bar <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithSomeObject:</span>[<span class="pl-v">self</span> <span class="pl-c1">createSingletonFoo</span>]] <span class="pl-c1">autorelease</span>];
+}</pre></div>
 
 <p>Don't worry about calling the same <em>createSingleton</em> method more then once, the framework
 will only really call each method once and reuse the same result on the succeeding calls,
@@ -176,41 +177,31 @@ we will explain how objects are injected through the use of properties.</p>
 
 <p>To create eager singletons, add this kind of method:</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createEagerSingletonFooBar</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">FooBar</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
-</pre>
-</div>
+<div class="highlight highlight-source-objc"><pre>- (<span class="pl-k">id</span>) createEagerSingletonFooBar {
+    <span class="pl-k">return</span> [[[FooBar <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}</pre></div>
 
-
-<h4>Defining prototypes</h4>
+<h4>
+<a id="defining-prototypes" class="anchor" href="#defining-prototypes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining prototypes</h4>
 
 <p>For creating prototypes we can use a similar approach. Only the method name changes a bit:</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createPrototypeFooBar</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">FooBar</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
-</pre>
-</div>
-
+<div class="highlight highlight-source-objc"><pre>- (<span class="pl-k">id</span>) createPrototypeFooBar {
+    <span class="pl-k">return</span> [[[FooBar <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}</pre></div>
 
 <p><strong>Remember:</strong> each time a prototype is requested, this method will be called. You should 
 therefore consider to keep the initialization as performant as possible.</p>
 
-<h4>Registering aliases for an object</h4>
+<h4>
+<a id="registering-aliases-for-an-object" class="anchor" href="#registering-aliases-for-an-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Registering aliases for an object</h4>
 
 <p>Registering aliases for an object is also possible. Again, you just need to add a method
 with a certain signature:</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span> <span class="nf">aliasesForFoo</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">NSSet</span> <span class="nl">setWithObjects:</span><span class="s">@"_foo"</span><span class="p">,</span> <span class="s">@"_fuu"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
-<span class="p">}</span>
-</pre>
-</div>
-
+<div class="highlight highlight-source-objc"><pre>- (<span class="pl-c1">NSArray</span> *) aliasesForFoo {
+    <span class="pl-k">return</span> [<span class="pl-c1">NSSet</span> <span class="pl-c1">setWithObjects:</span><span class="pl-s"><span class="pl-pds">@"</span>_foo<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">@"</span>_fuu<span class="pl-pds">"</span></span>, <span class="pl-c1">nil</span>];
+}</pre></div>
 
 <p><strong>Remark:</strong> by default, two aliases are already registered for each object. They take the
 form of the key in uppercase (eg. FOO, BAR, FOOBAR, ...) and the key starting with a
@@ -219,12 +210,14 @@ equal to an object key. If an attempt is made to add a duplicate, an exception w
 raised. The automatically added aliases, will only be added if they are not a duplicate of
 the key.</p>
 
-<h4>Other methods in your factory class</h4>
+<h4>
+<a id="other-methods-in-your-factory-class" class="anchor" href="#other-methods-in-your-factory-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other methods in your factory class</h4>
 
 <p>You can add other methods, which might help in creating your objects. These will be
 ignored by the framework, but you can obviously use them in your create methods.</p>
 
-<h4>Dealing with larger applications</h4>
+<h4>
+<a id="dealing-with-larger-applications" class="anchor" href="#dealing-with-larger-applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dealing with larger applications</h4>
 
 <p>In larger applications, the factory class can quickly become huge. This is where you can
 and should use Objective-C's
@@ -233,44 +226,41 @@ mechanism. For each logical group of objects you can create a category, named af
 logical group. All methods in all categories of your factory class will be taken into
 account. It might look something like this (interfaces will be omitted for brevity).</p>
 
-<div class="highlight">
-<pre><span class="k">@implementation</span> <span class="nc">ReliantFactory</span>
+<div class="highlight highlight-source-objc"><pre><span class="pl-k">@implementation</span> <span class="pl-en">ReliantFactory</span>
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createSingletonGeneralObject</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">...;</span>
-<span class="p">}</span>
+- (<span class="pl-k">id</span>) <span class="pl-en">createSingletonGeneralObject</span> {
+    <span class="pl-k">return</span> ...;
+}
 
-<span class="k">@end</span>
+<span class="pl-k">@end</span>
 
-<span class="k">@implementation</span> <span class="nc">ReliantFactory</span> <span class="nl">(Services)</span>
+<span class="pl-k">@implementation</span> <span class="pl-en">ReliantFactory</span> (Services)
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createEagerSingletonServiceA</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">ServiceA</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
+- (<span class="pl-k">id</span>) <span class="pl-en">createEagerSingletonServiceA</span> {
+    <span class="pl-k">return</span> [[[ServiceA <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createEagerSingletonServiceB</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">ServiceB</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
+- (<span class="pl-k">id</span>) <span class="pl-en">createEagerSingletonServiceB</span> {
+    <span class="pl-k">return</span> [[[ServiceB <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}
 
-<span class="k">@end</span>
+<span class="pl-k">@end</span>
 
-<span class="k">@implementation</span> <span class="nc">ReliantFactory</span> <span class="nl">(Repositories)</span>
+<span class="pl-k">@implementation</span> <span class="pl-en">ReliantFactory</span> (Repositories)
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createEagerSingletonRepositoryA</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">RepositoryA</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
+- (<span class="pl-k">id</span>) <span class="pl-en">createEagerSingletonRepositoryA</span> {
+    <span class="pl-k">return</span> [[[RepositoryA <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">createEagerSingletonRepositoryB</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">[[[</span><span class="n">RepositoryB</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
-<span class="p">}</span>
+- (<span class="pl-k">id</span>) <span class="pl-en">createEagerSingletonRepositoryB</span> {
+    <span class="pl-k">return</span> [[[RepositoryB <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">autorelease</span>];
+}
 
-<span class="k">@end</span>
+<span class="pl-k">@end</span>
+</pre></div>
 
-</pre>
-</div>
-
-
-<h3>Injection</h3>
+<h3>
+<a id="injection" class="anchor" href="#injection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Injection</h3>
 
 <p>All objects created in the application context will be injected after their creation. This
 is done as explained before by <em>constructor injection</em> and/or by using Objective-C's 
@@ -280,7 +270,8 @@ matches with a key or alias for an object in the application context, and if it'
 value is nil, the matching object will be injected in this property. All other properties
 will be left alone. This will be done for the entire class hierarchy of the instance.</p>
 
-<h4>Injecting objects that are not know to the application context</h4>
+<h4>
+<a id="injecting-objects-that-are-not-know-to-the-application-context" class="anchor" href="#injecting-objects-that-are-not-know-to-the-application-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>Injecting objects that are not know to the application context</h4>
 
 <p>You can use the injection mechanism described above on objects which are not setup in the 
 application context. A good example would be a UIViewController. In order to make things
@@ -296,63 +287,60 @@ this means that your dependent properties should have the retain attribute on it
 
 <p>This is what you need to do:</p>
 
-<div class="highlight">
-<pre><span class="c1">//In your UIApplicationDelegate</span>
-<span class="k">@implementation</span> <span class="nc">MyAppDelegate</span> <span class="p">{</span>
-    <span class="n">OCSApplicationContext</span> <span class="o">*</span><span class="n">_context</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">//In your UIApplicationDelegate</span>
+<span class="pl-k">@implementation</span> <span class="pl-en">MyAppDelegate</span> {
+    OCSApplicationContext *_context;
+}
 
-<span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> 
-    <span class="nl">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">launchOptions</span> <span class="p">{</span>
-    <span class="c1">//...</span>
+- (<span class="pl-k">BOOL</span>)<span class="pl-en">application</span><span class="pl-en">:</span>(UIApplication *)<span class="pl-smi">application</span> 
+    <span class="pl-en">didFinishLaunchingWithOptions</span><span class="pl-en">:</span>(<span class="pl-c1">NSDictionary</span> *)<span class="pl-smi">launchOptions</span> {
+    <span class="pl-c">//...</span>
 
-    <span class="c1">//Initialize a configurator</span>
-    <span class="kt">id</span><span class="o">&lt;</span><span class="n">OCSConfigurator</span><span class="o">&gt;</span> <span class="n">configurator</span> <span class="o">=</span> <span class="p">[[</span><span class="n">OCSConfiguratorFromClass</span> <span class="n">alloc</span><span class="p">]</span> 
-        <span class="nl">initWithClass:</span><span class="p">[</span><span class="n">YourObjectFactory</span> <span class="n">class</span><span class="p">]];</span>
+    <span class="pl-c">//Initialize a configurator</span>
+    <span class="pl-k">id</span>&lt;OCSConfigurator&gt; configurator = [[OCSConfiguratorFromClass <span class="pl-c1">alloc</span>] 
+        initWithClass:[YourObjectFactory <span class="pl-c1">class</span>]];
 
-    <span class="c1">//Initialize the application context with the configurator</span>
-    <span class="n">_context</span> <span class="o">=</span> <span class="p">[[</span><span class="n">OCSApplicationContext</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithConfigurator:</span><span class="n">configurator</span><span class="p">];</span>
+    <span class="pl-c">//Initialize the application context with the configurator</span>
+    _context = [[OCSApplicationContext <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithConfigurator:</span>configurator];
 
-    <span class="c1">//Start the context</span>
-    <span class="p">[</span><span class="n">_context</span> <span class="n">start</span><span class="p">];</span>
+    <span class="pl-c">//Start the context</span>
+    [_context <span class="pl-c1">start</span>];
 
-    <span class="c1">//...</span>
+    <span class="pl-c">//...</span>
 
-<span class="p">}</span>
+}
 
-<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nl">performInjectionOn:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="n">object</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">_context</span> <span class="nl">performInjectionOn:</span><span class="n">object</span><span class="p">];</span>
-<span class="p">}</span>
+- (<span class="pl-k">void</span>) <span class="pl-en">performInjectionOn</span><span class="pl-en">:</span>(<span class="pl-k">id</span>) <span class="pl-smi">object</span> {
+    [_context <span class="pl-c1">performInjectionOn:</span>object];
+}
 
-<span class="k">@end</span><span class="p">;</span>
+<span class="pl-k">@end</span>;
 
-<span class="c1">//In your UIViewController</span>
-<span class="k">@implementation</span> <span class="nc">MyViewController</span>
+<span class="pl-c">//In your UIViewController</span>
+<span class="pl-k">@implementation</span> <span class="pl-en">MyViewController</span>
 
-<span class="k">@synthesize</span> <span class="n">foo</span><span class="p">;</span>
+<span class="pl-k">@synthesize</span> foo;
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">viewDidLoad</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+- (<span class="pl-k">void</span>) <span class="pl-en">viewDidLoad</span> {
+    [<span class="pl-v">super</span> <span class="pl-c1">viewDidLoad</span>];
 
-    <span class="n">AppDelegate</span> <span class="o">*</span><span class="n">appDelegate</span> <span class="o">=</span> <span class="p">(</span><span class="n">AppDelegate</span> <span class="o">*</span><span class="p">)</span> <span class="p">[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span><span class="p">;</span>
-    <span class="p">[</span><span class="n">appDelegate</span> <span class="nl">performInjectionOn:</span><span class="n">self</span><span class="p">];</span>
-<span class="p">}</span>
+    AppDelegate *appDelegate = (AppDelegate *) [UIApplication <span class="pl-c1">sharedApplication</span>].<span class="pl-smi">delegate</span>;
+    [appDelegate <span class="pl-c1">performInjectionOn:</span><span class="pl-v">self</span>];
+}
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">viewDidUnload</span> <span class="p">{</span>
-    <span class="c1">//Set any injected property to nil here!</span>
-    <span class="n">self</span><span class="p">.</span><span class="n">foo</span> <span class="o">=</span> <span class="nb">nil</span>
+- (<span class="pl-k">void</span>) <span class="pl-en">viewDidUnload</span> {
+    <span class="pl-c">//Set any injected property to nil here!</span>
+    self.<span class="pl-smi">foo</span> = <span class="pl-c1">nil</span>
 
-    <span class="p">[</span><span class="n">super</span> <span class="n">viewDidUnload</span><span class="p">];</span>
-<span class="p">}</span>
+    [<span class="pl-v">super</span> <span class="pl-c1">viewDidUnload</span>];
+}
 
-<span class="k">@end</span>
-</pre>
-</div>
-
+<span class="pl-k">@end</span></pre></div>
 
 <p>And that's all there is to it. The property foo will be injected by Reliant.</p>
 
-<h3>The configurator</h3>
+<h3>
+<a id="the-configurator" class="anchor" href="#the-configurator" aria-hidden="true"><span class="octicon octicon-link"></span></a>The configurator</h3>
 
 <p>As we already saw, a configurator is responsible for setting up definitions and creating
 object instances based on those definitions. Although a default class configurator
@@ -379,31 +367,32 @@ internalContextLoaded: (See API documentation for more information)</p>
 <p><strong>Remark:</strong> Although the framework is extendible, we encourage you to use the provided
 OCSConfiguratorFromClass or extend via the OCSConfiguratorBase.</p>
 
-<h4>Example</h4>
+<h4>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
 
-<div class="highlight">
-<pre><span class="c1">//  CustomConfigurator.h</span>
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">//  CustomConfigurator.h</span>
 
-<span class="k">@interface</span> <span class="nc">CustomConfigurator</span> : <span class="nc">OCSBaseConfigurator</span>
+<span class="pl-k">@interface</span> <span class="pl-en">CustomConfigurator</span> : <span class="pl-e">OCSBaseConfigurator</span>
 
-<span class="k">@end</span>
-
-
-<span class="c1">// CustomConfigurator.m</span>
-
-<span class="n">TODO</span>
-
-<span class="k">@end</span>
-</pre>
-</div>
+<span class="pl-k">@end</span>
 
 
-<h2>Interesting references/discussions</h2>
+<span class="pl-c">// CustomConfigurator.m</span>
+
+TODO
+
+@end</pre></div>
+
+<h2>
+<a id="interesting-referencesdiscussions" class="anchor" href="#interesting-referencesdiscussions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interesting references/discussions</h2>
 
 <ul>
 <li>
 <a href="http://stackoverflow.com/questions/309711/dependency-injection-framework-for-cocoa" title="StackOverflow">Discussion</a> on the necessity of DI in Objective C/Dynamic languages </li>
-</ul><h2>Inspirational projects / credits</h2>
+</ul>
+
+<h2>
+<a id="inspirational-projects--credits" class="anchor" href="#inspirational-projects--credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inspirational projects / credits</h2>
 
 <ul>
 <li><p><a href="http://www.springsource.org/spring-framework#documentation" title="SpringSource Spring framework">Spring framework</a>. 
@@ -424,7 +413,10 @@ approach.</p></li>
 framework for Objective-C, based on Guice. As stated before, the "binding" approach did
 look appealing to me at first, but I don't think binding to types works very well in
 Objective-C. But still, a very well made port.</p></li>
-</ul><h2>Special thanks</h2>
+</ul>
+
+<h2>
+<a id="special-thanks" class="anchor" href="#special-thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Special thanks</h2>
 
 <ul>
 <li>Filip Maelbrancke: for second opinions and rubber ducking</li>
@@ -433,20 +425,26 @@ Objective-C. But still, a very well made port.</p></li>
 <li>Oak Consultancy Services: for necessary resources</li>
 <li>Liesbet Gouwy: for unconditional support</li>
 <li>Kato Seghers: for being born</li>
-</ul><h2>Contact</h2>
+</ul>
+
+<h2>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h2>
 
 <p>If not via GitHub, find me on twitter: <a href="https://github.com/mikeseghers" class="user-mention">@mikeseghers</a></p>
 
-<h2>Licence</h2>
+<h2>
+<a id="licence" class="anchor" href="#licence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licence</h2>
 
 <p>Reliant is released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/mikeseghers">mikeseghers</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        </section>
+
+        <footer>
+          Reliant is maintained by <a href="https://github.com/appfoundry">appfoundry</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
   </body>
 </html>
