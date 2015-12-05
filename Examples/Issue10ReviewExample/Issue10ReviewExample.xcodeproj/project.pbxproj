@@ -10,16 +10,22 @@
 		1F01BE074CA05BB5BB6105C7 /* libPods-Issue10ReviewExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE98B1405C863FA395CF3723 /* libPods-Issue10ReviewExample.a */; };
 		2DBA1109A822AEA8B26A4F5C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA194DE105A220B59382E3 /* ViewController.m */; };
 		2DBA11520615590011AD8927 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1695C3AAD6AD79DBA1CA /* Info.plist */; };
+		2DBA1266AAFFEF2E86287AD0 /* AppWideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13742EBAAC0B93C7CB08 /* AppWideConfiguration.m */; };
 		2DBA1476DF322808F55FB0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA15180DDC228FE3D9EC44 /* LaunchScreen.storyboard */; };
 		2DBA14C43A4FA0A7977B34B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CC908F1340F4764D2D7 /* Main.storyboard */; };
 		2DBA153EBD664DF24B311145 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1AA87D41C50752ACCAB6 /* Assets.xcassets */; };
 		2DBA1CDF7C36CCD61BC44DA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA19D04C2D7AC0976313EE /* AppDelegate.m */; };
+		2DBA1E8CEEFDB6F7B11237FA /* FibonacciViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA149D2E64D9FDAC15CC0B /* FibonacciViewModel.m */; };
 		2DBA1F5BE56974AEBF2C6690 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1ECD6B95718F5AB93551 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBA113CCFD0702B2CD26328 /* AppWideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppWideConfiguration.h; sourceTree = "<group>"; };
 		2DBA11ECBF1EBC020DCC4B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Issue10ReviewExample/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		2DBA13742EBAAC0B93C7CB08 /* AppWideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppWideConfiguration.m; sourceTree = "<group>"; };
 		2DBA142B8E69F150B2A5E53D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2DBA149D2E64D9FDAC15CC0B /* FibonacciViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibonacciViewModel.m; sourceTree = "<group>"; };
+		2DBA15E4BD07F2181B1FB1E7 /* FibonacciViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibonacciViewModel.h; sourceTree = "<group>"; };
 		2DBA1695C3AAD6AD79DBA1CA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		2DBA1706C7567DBD5A79608C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2DBA194DE105A220B59382E3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -75,6 +81,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		2DBA1811FF9A3F66DCC87FBF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2DBA149D2E64D9FDAC15CC0B /* FibonacciViewModel.m */,
+				2DBA15E4BD07F2181B1FB1E7 /* FibonacciViewModel.h */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2DBA1A4516042B3459FF2D55 /* Issue10ReviewExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +99,7 @@
 				2DBA109D6C41E8F189972884 /* Resources */,
 				2DBA138566EDA48A1BBF04B8 /* Controller */,
 				2DBA1AE58673DA4E08BA7D2E /* Configuration */,
+				2DBA1811FF9A3F66DCC87FBF /* ViewModel */,
 			);
 			path = Issue10ReviewExample;
 			sourceTree = "<group>";
@@ -99,6 +115,8 @@
 		2DBA1AE58673DA4E08BA7D2E /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				2DBA13742EBAAC0B93C7CB08 /* AppWideConfiguration.m */,
+				2DBA113CCFD0702B2CD26328 /* AppWideConfiguration.h */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -230,6 +248,8 @@
 				2DBA1F5BE56974AEBF2C6690 /* main.m in Sources */,
 				2DBA1CDF7C36CCD61BC44DA7 /* AppDelegate.m in Sources */,
 				2DBA1109A822AEA8B26A4F5C /* ViewController.m in Sources */,
+				2DBA1266AAFFEF2E86287AD0 /* AppWideConfiguration.m in Sources */,
+				2DBA1E8CEEFDB6F7B11237FA /* FibonacciViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

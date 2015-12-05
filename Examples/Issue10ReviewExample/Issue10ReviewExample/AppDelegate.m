@@ -6,15 +6,29 @@
 //  Copyright (c) 2015 Reliant. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import <Reliant/Reliant.h>
 
-@interface AppDelegate ()
-@end
+#import "AppDelegate.h"
+#import "AppWideConfiguration.h"
+#import "Aspects.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Set up configuration
+    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[AppWideConfiguration class]];
+
+    // Set up an aspect to automatically inject in every view controller, this eliminated the need to call -ocsInject in
+    // every -viewDidLoad, thus it removes any visible dependency on Reliant.
+    NSError *error;
+    [UIViewController aspect_hookSelector:@selector(viewDidLoad)
+                              withOptions:AspectPositionBefore
+                               usingBlock:^(id <AspectInfo> aspectInfo) {
+                                   UIViewController *instance = (UIViewController *) aspectInfo.instance;
+                                   [instance ocsInject];
+                               }
+                                    error:&error];
+
     return YES;
 }
 
