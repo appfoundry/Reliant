@@ -6,11 +6,7 @@
 //  Copyright (c) 2015 Reliant. All rights reserved.
 //
 
-
 #import <UIKit/UIKit.h>
 
-
 @interface ViewController : UIViewController
-
-
 @end
