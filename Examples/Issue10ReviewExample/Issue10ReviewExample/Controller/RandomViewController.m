@@ -23,7 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // IOC
+    // NOTE:
+    // Fetching the parent context like this is pretty ugly. Is there another way?
+    // Isn't it preferable to define the parent externally, anyway?
     [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NestedConfiguration class] parentContext:[(AppDelegate *) [UIApplication sharedApplication].delegate ocsObjectContext]];
     [self ocsInject];
 
