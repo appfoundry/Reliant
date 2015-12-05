@@ -3,12 +3,13 @@
 // Copyright (c) 2015 Reliant. All rights reserved.
 //
 
-#import <Reliant/NSObject+OCSReliantContextBinding.h>
-#import <Reliant/NSObject+OCSReliantInjection.h>
+#import <Reliant/Reliant.h>
+
 #import "RandomViewController.h"
 #import "RandomViewModel.h"
 #import "FibonacciViewModel.h"
 #import "NestedConfiguration.h"
+#import "AppDelegate.h"
 
 @interface RandomViewController ()
 @property(nonatomic, strong) FibonacciViewModel *fibonacciViewModel;
@@ -22,9 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NestedConfiguration class]];
+    // IOC
+    [self ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NestedConfiguration class] parentContext:[(AppDelegate *) [UIApplication sharedApplication].delegate ocsObjectContext]];
     [self ocsInject];
 
+    // Fetch a random number
     self.label.text = [NSString stringWithFormat:@"%@\nRandom number: %d\nFibonacci: %@", self, self.randomViewModel.number, [self.fibonacciViewModel fibonacciSequenceOfLength:3]];
 }
 

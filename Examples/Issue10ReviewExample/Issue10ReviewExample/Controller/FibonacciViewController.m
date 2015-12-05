@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Reliant. All rights reserved.
 //
 
+#import <Reliant/Reliant.h>
+
 #import "FibonacciViewController.h"
 #import "FibonacciViewModel.h"
 
@@ -16,6 +18,11 @@
 @end
 
 @implementation FibonacciViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self ocsInject];
+}
 
 - (IBAction)gimmenacciButtonTapped:(UIButton *)sender {
     if (![[sender titleForState:UIControlStateNormal] isEqualToString:@"Gimmemorenacci"]) {
