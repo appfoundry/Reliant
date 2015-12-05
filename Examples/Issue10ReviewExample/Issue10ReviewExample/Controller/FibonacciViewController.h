@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  FibonacciViewController.h
 //  Issue10ReviewExample
 //
 //  Created by Alex Manarpies on 05/12/15.
@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface FibonacciViewController : UIViewController
 @end

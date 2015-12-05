@@ -7,10 +7,10 @@
 //
 
 #import <Reliant/Reliant.h>
+#import <Aspects/Aspects.h>
 
 #import "AppDelegate.h"
 #import "AppWideConfiguration.h"
-#import "Aspects.h"
 
 @implementation AppDelegate
 
