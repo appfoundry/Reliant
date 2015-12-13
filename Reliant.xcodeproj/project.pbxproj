@@ -86,6 +86,9 @@
 		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27B3352C19D1997F009E993D /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B3352B19D1997F009E993D /* Reliant.h */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
+		2DBA1BC406C207DF128F25E0 /* NCMIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1A5B727F972EE086C9A4 /* NCMIConfiguration.m */; };
+		2DBA1CAEF4E897B26DE1D10B /* NCMIChildConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA15DCFCD841C0E78BCE62 /* NCMIChildConfiguration.m */; };
+		2DBA1E0EEBCC9679F11EFA8B /* NameContextMultipleInstancesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1645259600FC2E73500D /* NameContextMultipleInstancesTests.m */; };
 		3323F01E073E198FD8280A91 /* NSObject+OCSReliantContextBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */; };
 		3323F034055C52F8D2C6EE6A /* OCSBoundContextLocatorOnGivenObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */; };
 		3323F04120AC4D517F0EAB02 /* OCSDefaultContextRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FAFF4A8FEA38ABB2125D /* OCSDefaultContextRegistry.h */; };
@@ -269,6 +272,11 @@
 		27B2C85315F402C1001954BD /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		27B3352B19D1997F009E993D /* Reliant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reliant.h; path = Classes/Reliant.h; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
+		2DBA13510EF4F02B8622C99B /* NCMIChildConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMIChildConfiguration.h; sourceTree = "<group>"; };
+		2DBA15DCFCD841C0E78BCE62 /* NCMIChildConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMIChildConfiguration.m; sourceTree = "<group>"; };
+		2DBA1645259600FC2E73500D /* NameContextMultipleInstancesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameContextMultipleInstancesTests.m; sourceTree = "<group>"; };
+		2DBA1A5B727F972EE086C9A4 /* NCMIConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMIConfiguration.m; sourceTree = "<group>"; };
+		2DBA1CEE40DF19255D0DFB67 /* NCMIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMIConfiguration.h; sourceTree = "<group>"; };
 		3323F0206B8FC9E31C070A88 /* OCSContextRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSContextRegistry.h; sourceTree = "<group>"; };
 		3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorFactory.m; sourceTree = "<group>"; };
 		3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefaultContextRegistry.m; sourceTree = "<group>"; };
@@ -607,6 +615,7 @@
 				274D7BA71563BF2E0007C1C8 /* Supporting Files */,
 				3323F6405E82AFC793DECDB9 /* Scopes */,
 				3323FC031A04428AF676158A /* ContextLocator */,
+				2DBA129C678BEC86DD58088E /* System */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -683,6 +692,26 @@
 			);
 			name = Runtime;
 			path = Classes/Runtime;
+			sourceTree = "<group>";
+		};
+		2DBA129C678BEC86DD58088E /* System */ = {
+			isa = PBXGroup;
+			children = (
+				2DBA1A4F1DBA12B7F0299297 /* NamedContextMultipleInstances */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		2DBA1A4F1DBA12B7F0299297 /* NamedContextMultipleInstances */ = {
+			isa = PBXGroup;
+			children = (
+				2DBA1645259600FC2E73500D /* NameContextMultipleInstancesTests.m */,
+				2DBA1A5B727F972EE086C9A4 /* NCMIConfiguration.m */,
+				2DBA1CEE40DF19255D0DFB67 /* NCMIConfiguration.h */,
+				2DBA15DCFCD841C0E78BCE62 /* NCMIChildConfiguration.m */,
+				2DBA13510EF4F02B8622C99B /* NCMIChildConfiguration.h */,
+			);
+			path = NamedContextMultipleInstances;
 			sourceTree = "<group>";
 		};
 		3323F0A230E2EA3BD5B2CC5A /* ContextLocator */ = {
@@ -1127,6 +1156,9 @@
 				3323F0E50ED598B66052A91D /* OCSBoundContextLocatorFactoryTest.m in Sources */,
 				3323F3FE7B2C66C45A0CD38F /* OCSDefaultContextRegistry.m in Sources */,
 				3323FDB2822EC183880A85E8 /* OCSDefaultContextRegistryTest.m in Sources */,
+				2DBA1E0EEBCC9679F11EFA8B /* NameContextMultipleInstancesTests.m in Sources */,
+				2DBA1BC406C207DF128F25E0 /* NCMIConfiguration.m in Sources */,
+				2DBA1CAEF4E897B26DE1D10B /* NCMIChildConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
