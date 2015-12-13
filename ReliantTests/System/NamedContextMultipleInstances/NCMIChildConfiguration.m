@@ -7,6 +7,6 @@
 @implementation NCMIChildConfiguration
 
 -(NSString *)parentContextName {
-    return @"NCMIConfigurationContext";
+     return @"NCMIConfigurationContext";
 }
 @end

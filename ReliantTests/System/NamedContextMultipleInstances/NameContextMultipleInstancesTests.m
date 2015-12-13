@@ -30,27 +30,28 @@
 
 - (void)testMultipleInstances {
     // These are the context holding objects
-    NSObject *contextHoldingObject1 = [[NSObject alloc] init];
-    NSObject *contextHoldingObject2 = [[NSObject alloc] init];
+    UIViewController *viewControllerA = [[UIViewController alloc] init];
+    UIViewController *viewControllerB = [[UIViewController alloc] init];
 
-    // Bootstrap the first two contexts, independently from eachother
-    [contextHoldingObject1 ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
-    [contextHoldingObject2 ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
+    // Bootstrap the first two contexts, independently from each other
+    [viewControllerA ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
+    [viewControllerB ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
 
     // Contexts should be different
-    expect(contextHoldingObject1.ocsObjectContext).notTo.beIdenticalTo(contextHoldingObject2.ocsObjectContext);
+    expect(viewControllerA.ocsObjectContext).notTo.beIdenticalTo(viewControllerB.ocsObjectContext);
 
     // Objects requested from either context should be different
-    expect([contextHoldingObject1.ocsObjectContext objectForKey:@"testObject"]).notTo.beIdenticalTo([contextHoldingObject2.ocsObjectContext objectForKey:@"testObject"]);
+    expect([viewControllerA.ocsObjectContext objectForKey:@"testObject"]).notTo.beIdenticalTo([viewControllerB.ocsObjectContext objectForKey:@"testObject"]);
 
     // Context 3 derives from NCMIConfiguration
-    NSObject *contextHoldingObject3 = [[NSObject alloc] init];
-    [contextHoldingObject3 ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIChildConfiguration class]];
+    UIViewController *viewControllerC = [[UIViewController alloc] init];
+    [viewControllerB addChildViewController:viewControllerC];
+    [viewControllerC ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIChildConfiguration class]];
 
     // Derived testObject should be fetched from its parent;
     // In the current system, the parent will be the last context bootstrapped, which can be variable at runtime
-    expect([contextHoldingObject3.ocsObjectContext objectForKey:@"testObject"]).to.beIdenticalTo([contextHoldingObject2.ocsObjectContext objectForKey:@"testObject"]);
-    expect([contextHoldingObject3.ocsObjectContext objectForKey:@"testObject"]).notTo.beIdenticalTo([contextHoldingObject1.ocsObjectContext objectForKey:@"testObject"]);
+    expect([viewControllerC.ocsObjectContext objectForKey:@"testObject"]).to.beIdenticalTo([viewControllerB.ocsObjectContext objectForKey:@"testObject"]);
+    expect([viewControllerC.ocsObjectContext objectForKey:@"testObject"]).notTo.beIdenticalTo([viewControllerA.ocsObjectContext objectForKey:@"testObject"]);
 }
 
 @end
