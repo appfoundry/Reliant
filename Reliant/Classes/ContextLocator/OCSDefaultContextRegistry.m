@@ -36,20 +36,40 @@
     return _instance;
 }
 
-- (void)registerContext:(id <OCSObjectContext>)context {
-    _contextRegister[context.name] = [OCSWeakWrapper weakWrapperWithObject:context];
+- (void)registerContext:(id <OCSObjectContext>)context  {
+    [self registerContext:context toBoundObject:nil];
+}
+
+- (void)registerContext:(id <OCSObjectContext>)context toBoundObject:(NSObject *)boundObject {
+    NSString *contextName;
+
+    if(boundObject){
+        contextName = [NSString stringWithFormat:@"%@#%p", context.name, boundObject];
+    } else {
+        contextName = context.name;
+    }
+
+    _contextRegister[contextName] = [OCSWeakWrapper weakWrapperWithObject:context];
 }
 
 - (id <OCSObjectContext>)contextForName:(NSString *)name {
-    OCSWeakWrapper *weakRef = _contextRegister[name];
-    id<OCSObjectContext> result = nil;
-    if (weakRef) {
-        result = [weakRef object];
-        if (!result) {
-            [_contextRegister removeObjectForKey:name];
+    NSArray *keys = [_contextRegister.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject hasPrefix:name];
+    }]];
+
+    NSString *contextName = [keys firstObject];
+    if(contextName){
+        OCSWeakWrapper *weakRef = _contextRegister[contextName];
+        id<OCSObjectContext> result = nil;
+        if (weakRef) {
+            result = [weakRef object];
+            if (!result) {
+                [_contextRegister removeObjectForKey:name];
+            }
         }
+        return result;
     }
-    return result;
+    return nil;
 }
 
 @end

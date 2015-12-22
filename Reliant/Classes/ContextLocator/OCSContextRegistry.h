@@ -23,6 +23,7 @@ Implementations should make sure the given context is not retained.
 @see OCSObjectContext::name
 */
 - (void)registerContext:(id <OCSObjectContext>)context;
+- (void)registerContext:(id <OCSObjectContext>)context toBoundObject:(NSObject *)boundObject;
 
 /**
 Returns a context for the given name.

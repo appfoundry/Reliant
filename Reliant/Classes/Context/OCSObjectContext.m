@@ -63,14 +63,18 @@ Recursive method for injecting objects with their dependencies. This method iter
     return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry]];
 }
 
-- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry {
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry  {
+    return [self initWithConfigurator:configurator scopeFactory:scopeFactory contextRegistry:contextRegistry boundObject:nil];
+}
+
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry boundObject:(NSObject*)boundObject  {
     if (self && configurator && scopeFactory && contextRegistry) {
         self = [super init];
         _configurator = configurator;
         _scopeFactory = scopeFactory;
         _contextRegistry = contextRegistry;
         [_configurator.objectFactory bindToContext:self];
-        [_contextRegistry registerContext:self];
+        [_contextRegistry registerContext:self toBoundObject:boundObject];
         [self _setParentContextIfPossible];
         _objectsUnderConstruction = [NSMutableDictionary dictionary];
         [self performInjectionOn:_configurator.objectFactory];
