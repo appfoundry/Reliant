@@ -49,7 +49,9 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 @end
 
-@implementation OCSObjectContext
+@implementation OCSObjectContext {
+    __weak NSObject *_boundObject;
+}
 
 @synthesize parentContext = _parentContext;
 
@@ -74,6 +76,7 @@ Recursive method for injecting objects with their dependencies. This method iter
         _scopeFactory = scopeFactory;
         _contextRegistry = contextRegistry;
         [_configurator.objectFactory bindToContext:self];
+        _boundObject = boundObject;
         [_contextRegistry registerContext:self toBoundObject:boundObject];
         [self _setParentContextIfPossible];
         _objectsUnderConstruction = [NSMutableDictionary dictionary];
@@ -87,7 +90,7 @@ Recursive method for injecting objects with their dependencies. This method iter
 - (void)_setParentContextIfPossible {
     NSString *parentContextName = _configurator.parentContextName;
     if (parentContextName) {
-        id <OCSObjectContext> parentContext = [_contextRegistry contextForName:parentContextName];
+        id <OCSObjectContext> parentContext = [_contextRegistry contextForName:parentContextName fromBoundObject:_boundObject];
         if (!parentContext) {
             [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found. Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created before this context is.", parentContextName];
         }

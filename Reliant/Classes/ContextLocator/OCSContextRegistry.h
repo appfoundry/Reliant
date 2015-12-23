@@ -33,5 +33,6 @@ Return nil if the context cannot be found.
 @param name The name of the context to look for.
 */
 - (id<OCSObjectContext>)contextForName:(NSString *)name;
+- (id<OCSObjectContext>)contextForName:(NSString *)name fromBoundObject:(NSObject *)boundObject;
 
 @end

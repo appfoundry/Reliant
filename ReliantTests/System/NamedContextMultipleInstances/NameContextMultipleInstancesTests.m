@@ -29,13 +29,17 @@
 }
 
 - (void)testMultipleInstances {
-    // These are the context holding objects
     UIViewController *viewControllerA = [[UIViewController alloc] init];
+    viewControllerA.title = @"ViewController A";
+
+    // These are the context holding objects
     UIViewController *viewControllerB = [[UIViewController alloc] init];
+    viewControllerB.title = @"ViewController B";
 
     // Bootstrap the first two contexts, independently from each other
-    [viewControllerA ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
+    // Purposefully registering the A last to rule out ordering
     [viewControllerB ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
+    [viewControllerA ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
 
     // Contexts should be different
     expect(viewControllerA.ocsObjectContext).notTo.beIdenticalTo(viewControllerB.ocsObjectContext);
@@ -45,6 +49,8 @@
 
     // Context 3 derives from NCMIConfiguration
     UIViewController *viewControllerC = [[UIViewController alloc] init];
+    viewControllerC.title = @"ViewController C";
+
     [viewControllerB addChildViewController:viewControllerC];
     [viewControllerC ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIChildConfiguration class]];
 

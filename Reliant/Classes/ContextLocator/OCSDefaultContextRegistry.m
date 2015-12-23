@@ -51,13 +51,35 @@
 
     _contextRegister[contextName] = [OCSWeakWrapper weakWrapperWithObject:context];
 }
-
 - (id <OCSObjectContext>)contextForName:(NSString *)name {
+    return [self contextForName:name fromBoundObject:nil];
+}
+
+- (id <OCSObjectContext>)contextForName:(NSString *)name fromBoundObject:(NSObject *)boundObject {
+    // Find all registry keys pertaining to the provided context name
     NSArray *keys = [_contextRegister.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject hasPrefix:name];
     }]];
 
-    NSString *contextName = [keys firstObject];
+    NSString *contextName;
+
+    // More than 1 key candidate was found, attempt to deduce the most appropriate by inspecting the bound object's hierarchy
+    if(keys.count > 1 && boundObject && [boundObject respondsToSelector:@selector(parentViewController)]){
+        NSString *match = [[keys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * evaluatedObject, NSDictionary *bindings) {
+            NSString *address = [[evaluatedObject componentsSeparatedByString:@"#"] lastObject];
+            NSString *targetAddress = [NSString stringWithFormat:@"%p", [boundObject performSelector:@selector(parentViewController)] ]; // Should we traverse all the way up or will 1 level suffice?
+
+            return [address isEqualToString:targetAddress];
+        }]] firstObject];
+
+        if(match){
+            contextName = match;
+        }
+    } else {
+        // Implicitly select the first, consider throwing exception here to notify the library consumer?
+        contextName = [keys firstObject];
+    }
+
     if(contextName){
         OCSWeakWrapper *weakRef = _contextRegister[contextName];
         id<OCSObjectContext> result = nil;
@@ -69,6 +91,8 @@
         }
         return result;
     }
+
+    // Should throw exception if none found?
     return nil;
 }
 
