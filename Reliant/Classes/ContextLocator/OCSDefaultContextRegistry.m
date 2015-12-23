@@ -56,6 +56,9 @@
 
     NSString *contextName;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
     // More than 1 key candidate was found, attempt to deduce the most appropriate by inspecting the bound object's hierarchy
     if(keys.count > 1 && boundObject && [boundObject respondsToSelector:@selector(parentViewController)]){
         NSString *match = [[keys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * evaluatedObject, NSDictionary *bindings) {
@@ -72,6 +75,8 @@
         // Implicitly select the first, consider throwing exception here to notify the library consumer?
         contextName = [keys firstObject];
     }
+
+#pragma clang diagnostic pop
 
     if(contextName){
         OCSWeakWrapper *weakRef = _contextRegister[contextName];
