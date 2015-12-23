@@ -36,10 +36,6 @@
     return _instance;
 }
 
-- (void)registerContext:(id <OCSObjectContext>)context  {
-    [self registerContext:context toBoundObject:nil];
-}
-
 - (void)registerContext:(id <OCSObjectContext>)context toBoundObject:(NSObject *)boundObject {
     NSString *contextName;
 
@@ -50,9 +46,6 @@
     }
 
     _contextRegister[contextName] = [OCSWeakWrapper weakWrapperWithObject:context];
-}
-- (id <OCSObjectContext>)contextForName:(NSString *)name {
-    return [self contextForName:name fromBoundObject:nil];
 }
 
 - (id <OCSObjectContext>)contextForName:(NSString *)name fromBoundObject:(NSObject *)boundObject {

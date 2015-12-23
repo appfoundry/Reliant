@@ -31,14 +31,14 @@
 
 - (void)testRegisteredObjectContextCanBeRetrievedByItsName {
     [given(_context.name) willReturn:@"name"];
-    [_registry registerContext:_context];
-    assertThat([_registry contextForName:@"name"], is(sameInstance(_context)));
+    [_registry registerContext:_context toBoundObject:nil];
+    assertThat([_registry contextForName:@"name" fromBoundObject:nil], is(sameInstance(_context)));
 }
 
 - (void)testRegisterReturnsNilForUnknownContexts {
     [given(_context.name) willReturn:@"name"];
-    [_registry registerContext:_context];
-    assertThat([_registry contextForName:@"unknown"], is(nilValue()));
+    [_registry registerContext:_context toBoundObject:nil];
+    assertThat([_registry contextForName:@"unknown" fromBoundObject:nil], is(nilValue()));
 }
 
 - (void)testRegisterShouldHoldWeakReferencesToContexts {
@@ -46,9 +46,9 @@
         id<OCSObjectContext> context = mockProtocol(@protocol(OCSObjectContext));
         [given(context.name) willReturn:@"name"];
         __weak id<OCSObjectContext> weakContext = context;
-        [_registry registerContext:weakContext];
+        [_registry registerContext:weakContext toBoundObject:nil];
     }
-    assertThat([_registry contextForName:@"name"], is(nilValue()));
+    assertThat([_registry contextForName:@"name" fromBoundObject:nil], is(nilValue()));
 }
 
 - (void)testSharedInstanceIsSingleton {

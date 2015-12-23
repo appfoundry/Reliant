@@ -22,7 +22,6 @@ Implementations should make sure the given context is not retained.
 @param context the context to register
 @see OCSObjectContext::name
 */
-- (void)registerContext:(id <OCSObjectContext>)context;
 - (void)registerContext:(id <OCSObjectContext>)context toBoundObject:(NSObject *)boundObject;
 
 /**
@@ -32,7 +31,6 @@ Return nil if the context cannot be found.
 
 @param name The name of the context to look for.
 */
-- (id<OCSObjectContext>)contextForName:(NSString *)name;
 - (id<OCSObjectContext>)contextForName:(NSString *)name fromBoundObject:(NSObject *)boundObject;
 
 @end
