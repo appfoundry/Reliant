@@ -403,6 +403,7 @@
 				27C8F00F1C43ECC8004C87BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27C8F0101C43ECC8004C87BA /* Build configuration list for PBXNativeTarget "ReliantFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +412,7 @@
 				27C8F0121C43ECC8004C87BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
