@@ -1,0 +1,14 @@
+@font-face {
+  font-family: ClanWeb-Medium;
+  src: url("fonts/ClanWeb-Medium.eot");
+}
+
+/* then for WOFF-capable browsers */
+@font-face {
+  font-family: ClanWeb-Medium;
+  src: url("fonts/ClanWeb-Medium.woff") format("woff");
+}
+
+.f-italic {
+  font-style: italic;
+}

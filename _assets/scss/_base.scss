@@ -1,0 +1,58 @@
+body {
+  font-family: $f-default-font;
+  font-size: 13px/1;
+}
+
+h1 {
+  font-size: 5em;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $f-header-font;
+}
+
+h2 {
+  color: $c-orange;
+  padding: 2em 0 1em 0;
+  margin: 0;
+}
+
+h3 {
+  color: $c-secondary-orange;
+  padding: 2em 0 0.25em 0;
+  margin: 0;
+}
+
+p, ul, ol {
+  line-height: 160%;
+}
+
+a {
+  color: $c-secondary-orange;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    color: $c-secondary-orange;
+  }
+
+  svg {
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
+    margin: 0 auto 0.25em auto;
+  }
+}
+
+blockquote {
+  border-left: 5px solid $c-orange;
+  padding-left: 1em;
+  margin-left: 2em;
+
+  p {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+}

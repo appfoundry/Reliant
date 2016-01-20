@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="reliant_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="501.002px" height="501.002px" viewBox="90.715 145.715 501.002 501.002"
+	 enable-background="new 90.715 145.715 501.002 501.002" xml:space="preserve">
+<circle id="circle" cx="341.216" cy="396.216" r="250.501"/>
+<polygon id="leftLeg" fill="currentColor" points="247.494,493.825 212.078,493.825 288.092,298.175 323.509,298.175 "/>
+<polygon id="middleLeg" fill="currentColor" points="303.209,493.825 267.793,493.825 343.808,298.175 379.223,298.175 "/>
+<path id="rightLeg" fill="currentColor" d="M323.509,493.825c73.422-184.421,68.671-195.65,146.845-195.65l-13.389,35.416
+	c-38.871,0-39.734,10.797-98.041,160.234H323.509z"/>
+</svg>

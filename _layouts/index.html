@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-US">
+{% include head.html %}
+<body>
+{% include header.html %}
+
+
+<section id="intro">
+  <div class="container">
+    <p class="f-italic">{{page.intro}}</p>
+  </div>
+</section>
+
+<div class="container">
+  {{content}}
+</div>
+
+{% include footer.html %}
+
+</body>
+</html>
+
+
+

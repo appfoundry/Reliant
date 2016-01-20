@@ -1,0 +1,70 @@
+header {
+  padding: 3em 0 1em 0;
+  background-color: $c-orange;
+  color: $c-white;
+  border-bottom: 10px solid $c-secondary-orange;
+
+  transition: all 0.75s ease;
+
+  .logo-container {
+    @include span(3 first);
+  }
+
+  .brand {
+    @include span(9);
+    margin-top: 1em;
+
+    .tagline {
+      font-size: 1em;
+    }
+  }
+
+  .logo {
+    fill: white;
+    color: $c-orange;
+    height: 100%;
+    width: 100%;
+  }
+
+  .project-status {
+    margin-top: 2vh;
+    text-align: right;
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &.collapsed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 0.5em 0;
+    height: 55px;
+
+    #downloads,
+    .project-status,
+    .brand p {
+      display: none;
+    }
+
+    svg.logo {
+      width: 55px;
+      height: 55px;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .logo-container {
+      @include span(1);
+    }
+  }
+
+  a {
+    color: white;
+  }
+
+}

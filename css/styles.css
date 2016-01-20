@@ -1,0 +1,621 @@
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block; }
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden],
+template {
+  display: none; }
+
+a {
+  background-color: transparent; }
+
+a:active,
+a:hover {
+  outline: 0; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b,
+strong {
+  font-weight: bold; }
+
+dfn {
+  font-style: italic; }
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+small {
+  font-size: 80%; }
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+figure {
+  margin: 1em 40px; }
+
+hr {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  height: 0; }
+
+pre {
+  overflow: auto; }
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0; }
+
+button {
+  overflow: visible; }
+
+button,
+select {
+  text-transform: none; }
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+input {
+  line-height: normal; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0; }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+legend {
+  border: 0;
+  padding: 0; }
+
+textarea {
+  overflow: auto; }
+
+optgroup {
+  font-weight: bold; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td,
+th {
+  padding: 0; }
+
+@font-face {
+  font-family: ClanWeb-Medium;
+  src: url("fonts/ClanWeb-Medium.eot"); }
+
+/* then for WOFF-capable browsers */
+@font-face {
+  font-family: ClanWeb-Medium;
+  src: url("fonts/ClanWeb-Medium.woff") format("woff"); }
+
+.f-italic {
+  font-style: italic; }
+
+body {
+  font-family: "Roboto Slab", serif;
+  font-size: 13px/1; }
+
+h1 {
+  font-size: 5em;
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: ClanWeb-Medium, "Open Sans", sans-serif; }
+
+h2 {
+  color: #f05528;
+  padding: 2em 0 1em 0;
+  margin: 0; }
+
+h3 {
+  color: #ff8800;
+  padding: 2em 0 0.25em 0;
+  margin: 0; }
+
+p, ul, ol {
+  line-height: 160%; }
+
+a {
+  color: #ff8800;
+  text-decoration: none;
+  font-weight: bold; }
+  a:hover {
+    color: #ff8800; }
+  a svg {
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
+    margin: 0 auto 0.25em auto; }
+
+blockquote {
+  border-left: 5px solid #f05528;
+  padding-left: 1em;
+  margin-left: 2em; }
+  blockquote p {
+    padding-top: 1em;
+    padding-bottom: 1em; }
+
+.is-hidden {
+  display: none; }
+
+.container {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .container:after {
+    content: " ";
+    display: block;
+    clear: both; }
+
+header {
+  padding: 3em 0 1em 0;
+  background-color: #f05528;
+  color: #ffffff;
+  border-bottom: 10px solid #ff8800;
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease; }
+  header .logo-container {
+    width: 23.33333%;
+    float: left;
+    margin-left: 0.83333%;
+    margin-right: 0.83333%; }
+  header .brand {
+    width: 73.33333%;
+    float: left;
+    margin-left: 0.83333%;
+    margin-right: 0.83333%;
+    margin-top: 1em; }
+    header .brand .tagline {
+      font-size: 1em; }
+  header .logo {
+    fill: white;
+    color: #f05528;
+    height: 100%;
+    width: 100%; }
+  header .project-status {
+    margin-top: 2vh;
+    text-align: right; }
+    header .project-status a {
+      text-decoration: none; }
+  header.collapsed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 0.5em 0;
+    height: 55px; }
+    header.collapsed #downloads,
+    header.collapsed .project-status,
+    header.collapsed .brand p {
+      display: none; }
+    header.collapsed svg.logo {
+      width: 55px;
+      height: 55px; }
+    header.collapsed h1 {
+      font-size: 2em; }
+    header.collapsed .logo-container {
+      width: 6.66667%;
+      float: left;
+      margin-left: 0.83333%;
+      margin-right: 0.83333%; }
+  header a {
+    color: white; }
+
+footer {
+  background-color: #ff8800;
+  border-top: 10px solid #f05528;
+  padding-bottom: 3em;
+  margin-top: 3em; }
+  footer section:first-child {
+    width: 65%;
+    float: left;
+    margin-left: 0.83333%;
+    margin-right: 0.83333%; }
+  footer section:last-child {
+    width: 31.66667%;
+    float: left;
+    margin-left: 0.83333%;
+    margin-right: 0.83333%; }
+  footer section h2, footer section p {
+    color: white; }
+  footer a {
+    color: white; }
+    footer a:hover {
+      color: #f05528; }
+
+/* Highlights taken from https://gist.github.com/asaaki/1007420  for Monokai theme */
+.c {
+  color: #979380; }
+
+/* Comment                     */
+.err {
+  color: #960050;
+  background-color: #1e0010; }
+
+/* Error                       */
+.k {
+  color: #66d9ef; }
+
+/* Keyword                     */
+.l {
+  color: #ae81ff; }
+
+/* Literal                     */
+.n {
+  color: #f8f8f2; }
+
+/* Name                        */
+.o {
+  color: #f92672; }
+
+/* Operator                    */
+.p {
+  color: #f8f8f2; }
+
+/* Punctuation                 */
+.cm {
+  color: #979380; }
+
+/* Comment.Multiline           */
+.cp {
+  color: #57BE5A; }
+
+/* Comment.Preproc             */
+.c1 {
+  color: #979380; }
+
+/* Comment.Single              */
+.cs {
+  color: #979380; }
+
+/* Comment.Special             */
+.ge {
+  font-style: italic; }
+
+/* Generic.Emph                */
+.gs {
+  font-weight: bold; }
+
+/* Generic.Strong              */
+.kc {
+  color: #66d9ef; }
+
+/* Keyword.Constant            */
+.kd {
+  color: #66d9ef; }
+
+/* Keyword.Declaration         */
+.kn {
+  color: #f92672; }
+
+/* Keyword.Namespace           */
+.kp {
+  color: #66d9ef; }
+
+/* Keyword.Pseudo              */
+.kr {
+  color: #66d9ef; }
+
+/* Keyword.Reserved            */
+.kt {
+  color: #66d9ef; }
+
+/* Keyword.Type                */
+.ld {
+  color: #e6db74; }
+
+/* Literal.Date                */
+.m {
+  color: #ae81ff; }
+
+/* Literal.Number              */
+.s {
+  color: #e6db74; }
+
+/* Literal.String              */
+.na {
+  color: #a6e22e; }
+
+/* Name.Attribute              */
+.nb {
+  color: #f8f8f2; }
+
+/* Name.Builtin                */
+.nc {
+  color: #a6e22e; }
+
+/* Name.Class                  */
+.no {
+  color: #66d9ef; }
+
+/* Name.Constant               */
+.nd {
+  color: #a6e22e; }
+
+/* Name.Decorator              */
+.ni {
+  color: #f8f8f2; }
+
+/* Name.Entity                 */
+.ne {
+  color: #a6e22e; }
+
+/* Name.Exception              */
+.nf {
+  color: #a6e22e; }
+
+/* Name.Function               */
+.nl {
+  color: #f8f8f2; }
+
+/* Name.Label                  */
+.nn {
+  color: #f8f8f2; }
+
+/* Name.Namespace              */
+.nx {
+  color: #a6e22e; }
+
+/* Name.Other                  */
+.py {
+  color: #f8f8f2; }
+
+/* Name.Property               */
+.nt {
+  color: #f92672; }
+
+/* Name.Tag                    */
+.nv {
+  color: #f8f8f2; }
+
+/* Name.Variable               */
+.ow {
+  color: #f92672; }
+
+/* Operator.Word               */
+.w {
+  color: #f8f8f2; }
+
+/* Text.Whitespace             */
+.mf {
+  color: #ae81ff; }
+
+/* Literal.Number.Float        */
+.mh {
+  color: #ae81ff; }
+
+/* Literal.Number.Hex          */
+.mi {
+  color: #ae81ff; }
+
+/* Literal.Number.Integer      */
+.mo {
+  color: #ae81ff; }
+
+/* Literal.Number.Oct          */
+.sb {
+  color: #e6db74; }
+
+/* Literal.String.Backtick     */
+.sc {
+  color: #e6db74; }
+
+/* Literal.String.Char         */
+.sd {
+  color: #e6db74; }
+
+/* Literal.String.Doc          */
+.s2 {
+  color: #e6db74; }
+
+/* Literal.String.Double       */
+.se {
+  color: #ae81ff; }
+
+/* Literal.String.Escape       */
+.sh {
+  color: #e6db74; }
+
+/* Literal.String.Heredoc      */
+.si {
+  color: #e6db74; }
+
+/* Literal.String.Interpol     */
+.sx {
+  color: #e6db74; }
+
+/* Literal.String.Other        */
+.sr {
+  color: #e6db74; }
+
+/* Literal.String.Regex        */
+.s1 {
+  color: #e6db74; }
+
+/* Literal.String.Single       */
+.ss {
+  color: #e6db74; }
+
+/* Literal.String.Symbol       */
+.bp {
+  color: #f8f8f2; }
+
+/* Name.Builtin.Pseudo         */
+.vc {
+  color: #f8f8f2; }
+
+/* Name.Variable.Class         */
+.vg {
+  color: #f8f8f2; }
+
+/* Name.Variable.Global        */
+.vi {
+  color: #f8f8f2; }
+
+/* Name.Variable.Instance      */
+.il {
+  color: #ae81ff; }
+
+/* Literal.Number.Integer.Long */
+.highlight .lineno {
+  color: #ccc;
+  display: inline-block;
+  padding: 0 5px;
+  border-right: 1px solid #ccc;
+  /*position: relative;
+  z-index: 1;*/ }
+
+/*.highlight pre{
+  padding: 10px 12px;
+}*/
+/* Adjusted to give override background and text colour */
+.highlight pre, pre, .highlight .hll {
+  background-color: #49483E;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  color: #FFFFFF; }
+
+.highlight pre code {
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  word-wrap: normal; }
+
+#intro {
+  background-color: #ff8800;
+  color: #ffffff;
+  padding: 1vh 0 1vh 0;
+  margin-bottom: 2vh; }
+  #intro a {
+    color: #f05528; }
+    #intro a:hover {
+      color: #ffffff; }
+
+#downloads {
+  margin-top: 5vh; }
+  #downloads:after {
+    content: " ";
+    display: block;
+    clear: both; }
+  #downloads > div {
+    width: 31.66667%;
+    float: left;
+    margin-left: 0.83333%;
+    margin-right: 0.83333%; }
+
+@media (min-width: 600px) {
+  .contact > div {
+    width: 40%;
+    float: left;
+    margin-left: 5%;
+    margin-right: 5%; } }
+
+.content section {
+  padding-bottom: 2em;
+  border-bottom: 1px solid #f05528; }
+  .content section:last-child {
+    border-bottom: none; }

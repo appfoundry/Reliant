@@ -1,0 +1,27 @@
+footer {
+  background-color: $c-secondary-orange;
+  border-top: 10px solid $c-orange;
+  padding-bottom: 3em;
+  margin-top: 3em;
+  section {
+    &:first-child {
+      @include span(8);
+    }
+
+    &:last-child {
+      @include span(4);
+    }
+
+    h2, p {
+      color: white;
+    }
+  }
+
+  a {
+    color: white;
+
+    &:hover {
+      color: $c-orange;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import "../../bower_components/susy/sass/susy";
+@import "normalize";
+@import "settings";
+@import "colors";
+@import "variables";
+@import "fonts";
+@import "base";
+@import "states";
+@import "layout";
+@import "header";
+@import "footer";
+@import "syntax";
+
+#intro {
+  background-color: $c-secondary-orange;
+  color: $c-white;
+  padding: 1vh 0 1vh 0;
+  margin-bottom: 2vh;
+
+  a {
+    color: $c-orange;
+    &:hover {
+      color: $c-white;
+    }
+  }
+}
+
+#downloads {
+  @include susy-clearfix;
+  margin-top: 5vh;
+
+  > div {
+    @include span(4);
+  }
+}
+
+.contact {
+  @include susy-breakpoint(600px) {
+    > div {
+      @include span(1 of 2);
+    }
+  }
+}
+
+.content {
+  section {
+    padding-bottom: 2em;
+    border-bottom: 1px solid $c-orange;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
