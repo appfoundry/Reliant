@@ -4,7 +4,7 @@ layout: index
 
 Reliant
 =======
-[![Reliant build status](https://img.shields.io/travis/appfoundry/Reliant/master.svg)](https://travis-ci.org/appfoundry/reliant)   [![Cocoapods Version](https://img.shields.io/cocoapods/v/Reliant.svg)](http://cocoadocs.org/docsets/Reliant/2.0.1/)
+
 
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies"))
 framework for Objective-C, both for OS X and iOS. Its goal is to make its use as simple
