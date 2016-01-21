@@ -4,4 +4,4 @@ xcode_scheme: Reliant
 xcode_sdk: iphonesimulator
 
 before_install:
-  - gem install cocoapods -v '0.34.4'
+  - gem install cocoapods
