@@ -1,4 +1,4 @@
-@import "../../bower_components/susy/sass/susy";
+@import "../../../bower_components/susy/sass/susy";
 @import "normalize";
 @import "settings";
 @import "colors";
@@ -31,14 +31,6 @@
 
   > div {
     @include span(4);
-  }
-}
-
-.contact {
-  @include susy-breakpoint(600px) {
-    > div {
-      @include span(1 of 2);
-    }
   }
 }
 

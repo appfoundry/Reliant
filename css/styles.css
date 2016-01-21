@@ -318,8 +318,10 @@ footer {
     float: left;
     margin-left: 0.83333%;
     margin-right: 0.83333%; }
-  footer section h2, footer section p {
+  footer section h2, footer section p, footer section div {
     color: white; }
+  footer section div {
+    margin-left: 0px; }
   footer a {
     color: white; }
     footer a:hover {
@@ -606,13 +608,6 @@ footer {
     float: left;
     margin-left: 0.83333%;
     margin-right: 0.83333%; }
-
-@media (min-width: 600px) {
-  .contact > div {
-    width: 40%;
-    float: left;
-    margin-left: 5%;
-    margin-right: 5%; } }
 
 .content section {
   padding-bottom: 2em;

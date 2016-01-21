@@ -12,8 +12,12 @@ footer {
       @include span(4);
     }
 
-    h2, p {
+    h2, p, div {
       color: white;
+    }
+
+    div {
+     margin-left: 0px;
     }
   }
 
@@ -24,4 +28,6 @@ footer {
       color: $c-orange;
     }
   }
+
+  
 }
