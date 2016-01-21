@@ -49,7 +49,7 @@ static BOOL hasCalledEagerMethodAndThusContextWasBootstrapped = NO;
     NSObject *object = [[NSObject alloc] init];
     [object ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[BootstrappedConfigurationClass class]];
     assertThat(object.ocsObjectContext, is(notNilValue()));
-    assertThatBool(hasCalledEagerMethodAndThusContextWasBootstrapped, is(equalToBool(YES)));
+    assertThatBool(hasCalledEagerMethodAndThusContextWasBootstrapped, isTrue());
 }
 
 @end
