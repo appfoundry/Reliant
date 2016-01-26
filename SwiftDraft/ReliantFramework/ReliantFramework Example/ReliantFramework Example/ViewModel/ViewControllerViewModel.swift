@@ -24,8 +24,8 @@ class ViewControllerViewModel {
         self.amount = Float(arc4random_uniform(100))
     }
     
-    func generateName(callback:(String) -> ()) -> () {
-        callback("Loading name...")
+    func generateName(callback:(String?, ErrorType?) -> ()) -> () {
+        callback("Loading name...", nil)
         return self.nameGenerator.generateName(callback)
     }
 }

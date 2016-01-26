@@ -12,29 +12,30 @@ struct OnlineNameGenerator : NameGenerator {
     let queue:NSOperationQueue = NSOperationQueue()
     let url = NSURL(string: "http://api.uinames.com/?region=United%20States")!
     
-    func generateName(callback: (String) -> ()) {
+    func generateName(callback: (String?, ErrorType?) -> ()) {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, err) in
             do {
                 if let json = data {
                     if let jsonObject = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String, AnyObject>, let name = jsonObject["name"] as? String {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            callback(name)
-                        }
+                        self.doCallbackOnMainThread(name, error: nil, callback: callback)
                     } else {
-                        print("Problems parsing json: \(json)")
+                        self.doCallbackOnMainThread(nil, error: NSError(domain: "JSONParsing", code: 0, userInfo: ["JsonData": json]), callback: callback)
                     }
                 } else {
-                    print("No data!, error maybe? \(err)")
+                    self.doCallbackOnMainThread(nil, error: err, callback: callback)
                 }
             } catch {
-                print("Could not generate name: \(error)")
+                self.doCallbackOnMainThread(nil, error: error, callback: callback)
             }
             
         }
 
         task.resume()
-
-
-        
+    }
+    
+    private func doCallbackOnMainThread(result:String?, error:ErrorType?, callback:(String?, ErrorType?) -> ()) {
+        dispatch_async(dispatch_get_main_queue()) {
+            callback(result, error)
+        }
     }
 }

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NameGenerator {
-    func generateName(callback:(String) -> ()) -> ()
+    func generateName(callback:(String?, ErrorType?) -> ()) -> ()
 }

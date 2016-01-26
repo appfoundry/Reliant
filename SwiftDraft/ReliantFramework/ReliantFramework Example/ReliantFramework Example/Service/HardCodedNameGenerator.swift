@@ -11,8 +11,8 @@ import Foundation
 struct HardCodedNameGenerator : NameGenerator {
     let names = ["Gil", "Ellen", "Tim", "Heidi", "Steve", "Linda", "Craig", "Asana", "Scott", "Deborah", "Phil"]
     
-    func generateName(callback:(String) -> ()) -> () {
-         let index = arc4random_uniform(UInt32(names.count))
-        callback(names[Int(index)])
+    func generateName(callback:(String?, ErrorType?) -> ()) -> () {
+        let index = arc4random_uniform(UInt32(names.count))
+        callback(names[Int(index)], nil)
     }
 }
