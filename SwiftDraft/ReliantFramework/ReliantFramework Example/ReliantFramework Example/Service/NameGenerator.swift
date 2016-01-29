@@ -10,4 +10,5 @@ import Foundation
 
 protocol NameGenerator {
     func generateName(callback:(String?, ErrorType?) -> ()) -> ()
+    func generateNumberOfNames(number:UInt, callback: ([String]?, ErrorType?) -> ())
 }

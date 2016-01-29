@@ -10,14 +10,39 @@ import Foundation
 
 struct OnlineNameGenerator : NameGenerator {
     let queue:NSOperationQueue = NSOperationQueue()
-    let url = NSURL(string: "http://api.uinames.com/?region=United%20States")!
+    
     
     func generateName(callback: (String?, ErrorType?) -> ()) {
+        let url = NSURL(string: "http://api.uinames.com/?region=United%20States")!
+        
+        self.doCallToURL(url, andTransformUsing: {
+            let jsonObject = try NSJSONSerialization.JSONObjectWithData($0, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String, AnyObject>
+            return jsonObject.map(self.nameFromDictionary)
+        }, callback: callback)
+    }
+    
+    func nameFromDictionary(dictionary:Dictionary<String, AnyObject>) -> String {
+        return (dictionary["name"] as? String) ?? "Unkown"
+    }
+    
+    func generateNumberOfNames(number:UInt, callback: ([String]?, ErrorType?) -> ()) {
+        let url = NSURL(string: "http://api.uinames.com/?region=United%20States&amount=\(number)")!
+        
+        self.doCallToURL(url, andTransformUsing: {
+                let jsonObject = try NSJSONSerialization.JSONObjectWithData($0, options: NSJSONReadingOptions.AllowFragments) as? Array<Dictionary<String, AnyObject>>
+                return jsonObject.map {
+                    return $0.map(self.nameFromDictionary)
+                }
+            }, callback: callback);
+    }
+    
+    func doCallToURL<ResultType>(url:NSURL, andTransformUsing dataTransformer:(NSData) throws -> ResultType?, callback:(ResultType?, ErrorType?) -> ())  {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, err) in
             do {
                 if let json = data {
-                    if let jsonObject = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String, AnyObject>, let name = jsonObject["name"] as? String {
-                        self.doCallbackOnMainThread(name, error: nil, callback: callback)
+                    let result = try dataTransformer(json)
+                    if result != nil {
+                        self.doCallbackOnMainThread(result, error: nil, callback: callback)
                     } else {
                         self.doCallbackOnMainThread(nil, error: NSError(domain: "JSONParsing", code: 0, userInfo: ["JsonData": json]), callback: callback)
                     }
@@ -29,11 +54,11 @@ struct OnlineNameGenerator : NameGenerator {
             }
             
         }
-
+        
         task.resume()
     }
     
-    private func doCallbackOnMainThread(result:String?, error:ErrorType?, callback:(String?, ErrorType?) -> ()) {
+    private func doCallbackOnMainThread<ResultType>(result:ResultType?, error:ErrorType?, callback:(ResultType?, ErrorType?) -> ()) {
         dispatch_async(dispatch_get_main_queue()) {
             callback(result, error)
         }

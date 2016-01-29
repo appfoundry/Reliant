@@ -15,4 +15,8 @@ struct HardCodedNameGenerator : NameGenerator {
         let index = arc4random_uniform(UInt32(names.count))
         callback(names[Int(index)], nil)
     }
+    
+    func generateNumberOfNames(number: UInt, callback: ([String]?, ErrorType?) -> ()) {
+        callback(names, nil)
+    }
 }

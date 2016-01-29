@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271DA0F31C58CAAC0030CC01 /* ContextHoldingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DA0F21C58CAAC0030CC01 /* ContextHoldingTabBarController.swift */; };
+		271DA0F51C58CAFE0030CC01 /* TabBarControllerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DA0F41C58CAFE0030CC01 /* TabBarControllerContext.swift */; };
+		271DA0F71C5A16980030CC01 /* TabBarControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DA0F61C5A16980030CC01 /* TabBarControllerViewModel.swift */; };
+		271DA0F91C5BA6AC0030CC01 /* NamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DA0F81C5BA6AC0030CC01 /* NamesTableViewController.swift */; };
+		271DA0FB1C5BA97B0030CC01 /* NamesTableViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DA0FA1C5BA97B0030CC01 /* NamesTableViewControllerModel.swift */; };
+		271DA0FD1C5BAB310030CC01 /* NamesTableViewControllerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DA0FC1C5BAB310030CC01 /* NamesTableViewControllerContext.swift */; };
 		27C8F0301C493536004C87BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8F02F1C493536004C87BA /* AppDelegate.swift */; };
-		27C8F0321C493536004C87BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8F0311C493536004C87BA /* ViewController.swift */; };
+		27C8F0321C493536004C87BA /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8F0311C493536004C87BA /* NameViewController.swift */; };
 		27C8F0351C493536004C87BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C8F0331C493536004C87BA /* Main.storyboard */; };
 		27C8F0371C493536004C87BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C8F0361C493536004C87BA /* Assets.xcassets */; };
 		27C8F03A1C493536004C87BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C8F0381C493536004C87BA /* LaunchScreen.storyboard */; };
@@ -23,9 +29,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		271DA0F21C58CAAC0030CC01 /* ContextHoldingTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextHoldingTabBarController.swift; sourceTree = "<group>"; };
+		271DA0F41C58CAFE0030CC01 /* TabBarControllerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerContext.swift; sourceTree = "<group>"; };
+		271DA0F61C5A16980030CC01 /* TabBarControllerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewModel.swift; sourceTree = "<group>"; };
+		271DA0F81C5BA6AC0030CC01 /* NamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewController.swift; sourceTree = "<group>"; };
+		271DA0FA1C5BA97B0030CC01 /* NamesTableViewControllerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewControllerModel.swift; sourceTree = "<group>"; };
+		271DA0FC1C5BAB310030CC01 /* NamesTableViewControllerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewControllerContext.swift; sourceTree = "<group>"; };
 		27C8F02C1C493536004C87BA /* ReliantFramework Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReliantFramework Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C8F02F1C493536004C87BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		27C8F0311C493536004C87BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		27C8F0311C493536004C87BA /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NameViewController.swift; path = ../NameViewController.swift; sourceTree = "<group>"; };
 		27C8F0341C493536004C87BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27C8F0361C493536004C87BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27C8F0391C493536004C87BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,6 +74,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		271DA0F11C58C9570030CC01 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				27C8F0311C493536004C87BA /* NameViewController.swift */,
+				271DA0F21C58CAAC0030CC01 /* ContextHoldingTabBarController.swift */,
+				271DA0F81C5BA6AC0030CC01 /* NamesTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		27C8F0231C493536004C87BA = {
 			isa = PBXGroup;
 			children = (
@@ -84,11 +106,11 @@
 		27C8F02E1C493536004C87BA /* ReliantFramework Example */ = {
 			isa = PBXGroup;
 			children = (
+				271DA0F11C58C9570030CC01 /* Controller */,
 				27C8F0511C494880004C87BA /* Context */,
 				27C8F04A1C493C48004C87BA /* Service */,
 				27C8F0471C493BEA004C87BA /* ViewModel */,
 				27C8F02F1C493536004C87BA /* AppDelegate.swift */,
-				27C8F0311C493536004C87BA /* ViewController.swift */,
 				27C8F0331C493536004C87BA /* Main.storyboard */,
 				27C8F0361C493536004C87BA /* Assets.xcassets */,
 				27C8F0381C493536004C87BA /* LaunchScreen.storyboard */,
@@ -101,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				27C8F0481C493C0E004C87BA /* ViewControllerViewModel.swift */,
+				271DA0F61C5A16980030CC01 /* TabBarControllerViewModel.swift */,
+				271DA0FA1C5BA97B0030CC01 /* NamesTableViewControllerModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -120,6 +144,8 @@
 			children = (
 				27C8F0451C493B86004C87BA /* ApplicationContext.swift */,
 				27C8F0521C4949BB004C87BA /* ViewControllerContext.swift */,
+				271DA0F41C58CAFE0030CC01 /* TabBarControllerContext.swift */,
+				271DA0FC1C5BAB310030CC01 /* NamesTableViewControllerContext.swift */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -257,8 +283,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				27C8F0501C4943FE004C87BA /* OnlineNameGenerator.swift in Sources */,
-				27C8F0321C493536004C87BA /* ViewController.swift in Sources */,
+				271DA0F51C58CAFE0030CC01 /* TabBarControllerContext.swift in Sources */,
+				271DA0FD1C5BAB310030CC01 /* NamesTableViewControllerContext.swift in Sources */,
+				271DA0F31C58CAAC0030CC01 /* ContextHoldingTabBarController.swift in Sources */,
+				27C8F0321C493536004C87BA /* NameViewController.swift in Sources */,
+				271DA0FB1C5BA97B0030CC01 /* NamesTableViewControllerModel.swift in Sources */,
+				271DA0F91C5BA6AC0030CC01 /* NamesTableViewController.swift in Sources */,
 				27C8F0531C4949BB004C87BA /* ViewControllerContext.swift in Sources */,
+				271DA0F71C5A16980030CC01 /* TabBarControllerViewModel.swift in Sources */,
 				27C8F0461C493B86004C87BA /* ApplicationContext.swift in Sources */,
 				27C8F04C1C493C62004C87BA /* NameGenerator.swift in Sources */,
 				27C8F0301C493536004C87BA /* AppDelegate.swift in Sources */,

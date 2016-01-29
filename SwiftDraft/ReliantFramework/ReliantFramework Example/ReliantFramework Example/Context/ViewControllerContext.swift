@@ -10,15 +10,17 @@ import Foundation
 import Reliant
 
 struct ViewControllerContext : ReliantContext {
+    
+    
     let viewModel:ViewControllerViewModel
     
-    init(nameGenerator:NameGenerator) {
-        viewModel = ViewControllerViewModel(nameGenerator: nameGenerator)
+    init(nameGenerator:NameGenerator, parentContext:TabBarControllerContext) {
+        viewModel = ViewControllerViewModel(nameGenerator: nameGenerator, tabBarControllerViewModel:parentContext.viewModel)
     }
     
-    static func createContext() -> () -> ViewControllerContext {
+    static func createContext() -> (TabBarControllerContext) -> ViewControllerContext {
         return {
-            return ViewControllerContext(nameGenerator: relyOn(ApplicationContext).nameGenerator)
+            return ViewControllerContext(nameGenerator: relyOn(ApplicationContext).nameGenerator, parentContext: $0)
         }
     }
 }

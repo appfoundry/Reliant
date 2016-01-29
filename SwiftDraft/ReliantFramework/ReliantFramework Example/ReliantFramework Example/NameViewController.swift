@@ -9,24 +9,30 @@
 import UIKit
 import Reliant
 
-class ViewController: UIViewController {
+class NameViewController: UIViewController {
     @IBOutlet var label:UILabel!
-    @IBOutlet var slider:UISlider!
     
     //The ViewControllerContext is a so-called Prototype context
     //A prototype context returns a function, instead of an object
     //The returned function depends on your needs, but it will generally 
     //return an object when you call it, in this case it returns a ViewControllerContext
-    let context = relyOn(ViewControllerContext)()
+    var context:ViewControllerContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        slider.value = context.viewModel.amount
+        self.loadContext(self.parentViewController)
+    }
+    
+    func loadData() {
         self.refreshName()
     }
     
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        self.loadContext(parent)
+    }
+    
     @IBAction func refreshName() {
-        context.viewModel.generateName() { [weak self] (result, error) in
+        context?.viewModel.generateName() { [weak self] (result, error) in
             if let err = error as? NSError {
                 self?.label.text = err.localizedDescription
             } else {
@@ -35,9 +41,13 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func sliderValueChanged(slider:UISlider) {
-        context.viewModel.amount = slider.value
+    private func loadContext(parent:UIViewController?) {
+        if context == nil {
+            context = (tabBarController as? ContextHoldingTabBarController).map {
+                return relyOn(ViewControllerContext)($0.context)
+            }
+            self.loadData()
+        }
     }
-
 }
 
