@@ -1,7 +1,10 @@
 Reliant
 =======
+[//]: # (remove-section start)
 
-[![Reliant build status](https://travis-ci.org/appfoundry/Reliant.svg?branch=master)](https://travis-ci.org/appfoundry/reliant)   [![Cocoapods Version](https://cocoapod-badges.herokuapp.com/v/Reliant/badge.png)](http://cocoadocs.org/docsets/Reliant/2.0.1/)
+[![Reliant build status](https://img.shields.io/travis/appfoundry/Reliant/master.svg)](https://travis-ci.org/appfoundry/reliant)   [![Cocoapods Version](https://img.shields.io/cocoapods/v/Reliant.svg)](http://cocoadocs.org/docsets/Reliant/2.0.1/)
+
+[//]: # (remove-section end)
 
 Reliant is a Dependency Injection ([DI](http://martinfowler.com/articles/injection.html "Martin Fowler never lies"))
 framework for Objective-C, both for OS X and iOS. Its goal is to make its use as simple
@@ -144,7 +147,7 @@ Further reading
 ---------------
 
 Do not forget to check our [wiki pages](https://github.com/appfoundry/Reliant/wiki) for more details on what is discussed above.
-Our API documentation is available via [cocoadocs.org](http://cocoadocs.org/docsets/Reliant/2.0.1/)
+Our API documentation is available via [cocoadocs.org](http://cocoadocs.org/docsets/Reliant)
 
 Contact
 -------
