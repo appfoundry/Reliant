@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import <Expecta/Expecta.h>
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
 
 #import "OCSObjectContext.h"
 #import "NSObject+OCSReliantContextBinding.h"
@@ -42,10 +43,10 @@
     [viewControllerA ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIConfiguration class]];
 
     // Contexts should be different
-    expect(viewControllerA.ocsObjectContext).notTo.beIdenticalTo(viewControllerB.ocsObjectContext);
+    assertThat(viewControllerA.ocsObjectContext, isNot(sameInstance(viewControllerB.ocsObjectContext)));
 
     // Objects requested from either context should be different
-    expect([viewControllerA.ocsObjectContext objectForKey:@"testObject"]).notTo.beIdenticalTo([viewControllerB.ocsObjectContext objectForKey:@"testObject"]);
+    assertThat([viewControllerA.ocsObjectContext objectForKey:@"testObject"], isNot(sameInstance([viewControllerB.ocsObjectContext objectForKey:@"testObject"])));
 
     // Context 3 derives from NCMIConfiguration
     UIViewController *viewControllerC = [[UIViewController alloc] init];
@@ -56,8 +57,8 @@
 
     // Derived testObject should be fetched from its parent;
     // In the current system, the parent will be the last context bootstrapped, which can be variable at runtime
-    expect([viewControllerC.ocsObjectContext objectForKey:@"testObject"]).to.beIdenticalTo([viewControllerB.ocsObjectContext objectForKey:@"testObject"]);
-    expect([viewControllerC.ocsObjectContext objectForKey:@"testObject"]).notTo.beIdenticalTo([viewControllerA.ocsObjectContext objectForKey:@"testObject"]);
+    assertThat([viewControllerC.ocsObjectContext objectForKey:@"testObject"], sameInstance([viewControllerB.ocsObjectContext objectForKey:@"testObject"]));
+    assertThat([viewControllerC.ocsObjectContext objectForKey:@"testObject"], isNot(sameInstance([viewControllerA.ocsObjectContext objectForKey:@"testObject"])));
 }
 
 @end
