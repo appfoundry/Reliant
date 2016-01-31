@@ -58,11 +58,17 @@
     }]];
 
     if(keys.count > 1) {
+        // Build matching subset of contexts to search through
+        NSMutableDictionary *contextsToSearch = [[NSMutableDictionary alloc] initWithCapacity:keys.count];
+        for(NSString *key in keys) {
+            contextsToSearch[key] = _contextRegister[key];
+        }
+
         // More than 1 context was found for this context name
         // Attempt to deduce the most appropriate one by inspecting the bound object's hierarchy
         id<OCSBoundContextLocator> contextLocator = [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
         OCSObjectContext *candidateContext = [contextLocator locateBoundContextForObject:boundObject];
-        OCSWeakWrapper *matchedContextWrapper = [_contextRegister.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OCSWeakWrapper * evaluatedObject, NSDictionary *bindings) {
+        OCSWeakWrapper *matchedContextWrapper = [contextsToSearch.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OCSWeakWrapper * evaluatedObject, NSDictionary *bindings) {
             return evaluatedObject.object == candidateContext;
         }]].firstObject;
         return matchedContextWrapper.object;
