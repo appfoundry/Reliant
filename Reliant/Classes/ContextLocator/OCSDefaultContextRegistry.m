@@ -4,6 +4,8 @@
 
 #import "OCSDefaultContextRegistry.h"
 #import "OCSObjectContext.h"
+#import "OCSBoundContextLocatorFactory.h"
+#import "OCSBoundContextLocator.h"
 
 
 @interface OCSWeakWrapper : NSObject
@@ -39,7 +41,8 @@
 - (void)registerContext:(id <OCSObjectContext>)context toBoundObject:(NSObject *)boundObject {
     NSString *contextName;
 
-    if(boundObject){
+    if(boundObject) {
+        // Associate context with the object it is bound to
         contextName = [NSString stringWithFormat:@"%@#%p", context.name, boundObject];
     } else {
         contextName = context.name;
@@ -54,44 +57,23 @@
         return [evaluatedObject hasPrefix:name];
     }]];
 
-    NSString *contextName;
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-
-    // More than 1 key candidate was found, attempt to deduce the most appropriate by inspecting the bound object's hierarchy
-    if(keys.count > 1 && boundObject && [boundObject respondsToSelector:@selector(parentViewController)]){
-        NSString *match = [[keys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * evaluatedObject, NSDictionary *bindings) {
-            NSString *address = [[evaluatedObject componentsSeparatedByString:@"#"] lastObject];
-            NSString *targetAddress = [NSString stringWithFormat:@"%p", [boundObject performSelector:@selector(parentViewController)] ]; // Should we traverse all the way up or will 1 level suffice?
-
-            return [address isEqualToString:targetAddress];
-        }]] firstObject];
-
-        if(match){
-            contextName = match;
-        }
-    } else {
-        // Implicitly select the first, consider throwing exception here to notify the library consumer?
-        contextName = [keys firstObject];
+    if(keys.count > 1) {
+        // More than 1 context was found for this context name
+        // Attempt to deduce the most appropriate one by inspecting the bound object's hierarchy
+        id<OCSBoundContextLocator> contextLocator = [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
+        OCSObjectContext *candidateContext = [contextLocator locateBoundContextForObject:boundObject];
+        OCSWeakWrapper *matchedContextWrapper = [_contextRegister.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OCSWeakWrapper * evaluatedObject, NSDictionary *bindings) {
+            return evaluatedObject.object == candidateContext;
+        }]].firstObject;
+        return matchedContextWrapper.object;
     }
-
-#pragma clang diagnostic pop
-
-    if(contextName){
-        OCSWeakWrapper *weakRef = _contextRegister[contextName];
-        id<OCSObjectContext> result = nil;
-        if (weakRef) {
-            result = [weakRef object];
-            if (!result) {
-                [_contextRegister removeObjectForKey:name];
-            }
-        }
-        return result;
+    else if(keys.count == 1) {
+        OCSWeakWrapper *contextWrapper = _contextRegister[[keys firstObject]];
+        return contextWrapper.object;
     }
-
-    // Should throw exception if none found?
-    return nil;
+    else {
+        return nil;
+    }
 }
 
 @end
