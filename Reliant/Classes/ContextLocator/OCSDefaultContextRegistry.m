@@ -67,7 +67,7 @@
         // More than 1 context was found for this context name
         // Attempt to deduce the most appropriate one by inspecting the bound object's hierarchy
         id<OCSBoundContextLocator> contextLocator = [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
-        OCSObjectContext *candidateContext = [contextLocator locateBoundContextForObject:boundObject];
+        id<OCSObjectContext > candidateContext = [contextLocator locateBoundContextForObject:boundObject];
         OCSWeakWrapper *matchedContextWrapper = [contextsToSearch.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OCSWeakWrapper * evaluatedObject, NSDictionary *bindings) {
             return evaluatedObject.object == candidateContext;
         }]].firstObject;
