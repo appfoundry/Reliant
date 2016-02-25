@@ -4,7 +4,7 @@
 
 Reliant/Swift requires Swift 2. The initial draft was created by Mike Seghers in January 2016 and aims to port Reliant/ObjC's main ideas to Swift.
 
-The main protocol is in Reliant is `ReliantContext`, which provides a place to configure and persist dependencies.
+The main protocol in Reliant is `ReliantContext`, which provides a place to configure and persist dependencies.
 
 ```swift
 public protocol ReliantContext {
@@ -14,7 +14,7 @@ public protocol ReliantContext {
 }
 ```
 
-Contexts simply adopt the `ReliantContext` protocol and implement the `createContext` method. In most cases it should simply defer to the context's initializer, e.g.:
+Contexts simply adopt the `ReliantContext` protocol and implement the `createContext()` method. In most cases it simply defers to the  initializer, e.g.:
 
 ```swift
 class SimpleValueContext : ReliantContext {
