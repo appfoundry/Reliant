@@ -14,7 +14,7 @@ public protocol ReliantContext {
 }
 ```
 
-Contexts simply adopt the `ReliantContext` protocol and implement the `createContext()` method. In most cases it simply defers to the  initializer, e.g.:
+Contexts simply adopt the `ReliantContext` protocol and implement the `createContext()` method. In many cases it simply defers to the  initializer, e.g.:
 
 ```swift
 class SimpleValueContext : ReliantContext {
@@ -36,4 +36,7 @@ class SomeClass {
 
 ### Remarks
 
-(add remarks)
+#### 1. Direct reference to context class everywhere
+
+**Alex**: 
+We talked about mocking away the `relyOn(..)` function, but I think the main issue is the fact that a direct reference to a concrete context class will be spread across the entire code base. This indeed makes it difficult to switch contexts, e.g. in stub/mock or test configurations.
