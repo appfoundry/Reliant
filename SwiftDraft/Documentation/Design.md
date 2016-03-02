@@ -40,3 +40,5 @@ class SomeClass {
 
 **Alex**: 
 We talked about mocking away the `relyOn(..)` function, but I think the main issue is the fact that a direct reference to a concrete context class will be spread across the entire code base. This indeed makes it difficult to switch contexts, e.g. in stub/mock or test configurations.
+
+=> I played around with making the context a protocol and passing that to `relyOn()`, but I quickly ran into issues with this approach because protocols can't be used outside of generic requirements (Swift 2), if associated types are involved. Making contexts referencable via protocols would allow us to decouple it so its implementation can be switched out. 
