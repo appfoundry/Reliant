@@ -13,11 +13,15 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.ios.exclude_files = 'Reliant/Classes/ContextLocator/OSX/*'
 
+  s.watchos.deployment_target = '2.0'
+  s.watchos.exclude_files = 'Reliant/Classes/ContextLocator/OSX/*'
+
   s.osx.deployment_target = '10.8'
   s.osx.exclude_files = 'Reliant/Classes/Categories/UIKit/*', 'Reliant/Classes/ContextLocator/iOS/*'
 
   s.frameworks = 'Foundation'
   s.ios.frameworks = 'UIKit'
+  s.watchos.frameworks = 'UIKit'
   s.osx.frameworks = 'AppKit'
   s.requires_arc = true
 end
