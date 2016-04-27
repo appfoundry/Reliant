@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         _objectRegistry = [[NSMutableDictionary alloc] init];
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
 #endif
     }
@@ -38,7 +38,7 @@
     return [_objectRegistry allKeys];
 }
 
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS)
 - (void) _handleMemoryWarning:(NSNotification *) notification {
     if (self.shouldCleanScopeOnMemoryWarnings) {
         [_objectRegistry removeAllObjects];
@@ -48,7 +48,7 @@
 
 - (void)dealloc
 {
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS)
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
 }
