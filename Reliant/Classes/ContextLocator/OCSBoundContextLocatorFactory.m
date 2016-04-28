@@ -36,12 +36,10 @@
         OCSBoundContextLocatorChain *defaultLocator = [[OCSBoundContextLocatorChain alloc] init];
 
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnGivenObject alloc] init]];
-#if TARGET_OS_IPHONE
 #if TARGET_OS_IOS
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnViewControllerHierarchy alloc] init]];
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnApplicationDelegate alloc] init]];
-#endif
-#else
+#elif TARGET_OS_MAC
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnOSXApplicationDelegate alloc] init]];
 #endif
 
