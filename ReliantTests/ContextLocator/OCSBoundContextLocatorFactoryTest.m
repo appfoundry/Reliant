@@ -13,7 +13,7 @@
 #if TARGET_OS_IPHONE
 #import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "OCSBoundContextLocatorOnApplicationDelegate.h"
-#else
+#elif TARGET_OS_MAC
 #import "OCSBoundContextLocatorOnOSXApplicationDelegate.h"
 #endif
 

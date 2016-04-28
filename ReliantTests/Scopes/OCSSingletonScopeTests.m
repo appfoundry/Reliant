@@ -9,7 +9,7 @@
 #import "OCSSingletonScopeTests.h"
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
-#if (TARGET_OS_IPHONE) 
+#if (TARGET_OS_IOS) 
 #import <UIKit/UIApplication.h>
 #endif
 #import "OCSSingletonScope.h"

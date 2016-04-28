@@ -6,12 +6,10 @@
 #import "OCSBoundContextLocator.h"
 #import "OCSBoundContextLocatorChain.h"
 #import "OCSBoundContextLocatorOnGivenObject.h"
-#if TARGET_OS_IPHONE
 #if TARGET_OS_IOS
 #import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
 #import "OCSBoundContextLocatorOnApplicationDelegate.h"
-#endif
-#else
+#elif TARGET_OS_MAC
 #import "OCSBoundContextLocatorOnOSXApplicationDelegate.h"
 #endif
 
