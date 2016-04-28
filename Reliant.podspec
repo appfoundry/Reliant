@@ -21,7 +21,6 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'Foundation'
   s.ios.frameworks = 'UIKit'
-  s.watchos.frameworks = 'UIKit'
   s.osx.frameworks = 'AppKit'
   s.requires_arc = true
 end
