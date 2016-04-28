@@ -7,6 +7,8 @@
 #import "OCSObjectContext.h"
 #import "OCSConfigurator.h"
 #import "OCSConfiguratorFromClass.h"
+#import "OCSDefaultScopeFactory.h"
+#import "OCSDefaultContextRegistry.h"
 
 
 @implementation NSObject (OCSReliantContextBinding)
@@ -23,7 +25,7 @@ static char ocsObjectContextKey;
 
 - (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class)factoryClass {
     id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:factoryClass];
-    self.ocsObjectContext = [[OCSObjectContext alloc] initWithConfigurator:configurator];
+    self.ocsObjectContext = [[OCSObjectContext alloc] initWithConfigurator:configurator scopeFactory:[[OCSDefaultScopeFactory alloc] init] contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry] boundObject:self];
     [self.ocsObjectContext start];
 }
 

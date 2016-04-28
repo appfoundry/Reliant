@@ -4,6 +4,8 @@
 
 #import "OCSDefaultContextRegistry.h"
 #import "OCSObjectContext.h"
+#import "OCSBoundContextLocatorFactory.h"
+#import "OCSBoundContextLocator.h"
 
 
 @interface OCSWeakWrapper : NSObject
@@ -36,20 +38,48 @@
     return _instance;
 }
 
-- (void)registerContext:(id <OCSObjectContext>)context {
-    _contextRegister[context.name] = [OCSWeakWrapper weakWrapperWithObject:context];
+- (void)registerContext:(id <OCSObjectContext>)context toBoundObject:(NSObject *)boundObject {
+    NSString *contextName;
+
+    if(boundObject) {
+        // Associate context with the object it is bound to
+        contextName = [NSString stringWithFormat:@"%@#%p", context.name, boundObject];
+    } else {
+        contextName = context.name;
+    }
+
+    _contextRegister[contextName] = [OCSWeakWrapper weakWrapperWithObject:context];
 }
 
-- (id <OCSObjectContext>)contextForName:(NSString *)name {
-    OCSWeakWrapper *weakRef = _contextRegister[name];
-    id<OCSObjectContext> result = nil;
-    if (weakRef) {
-        result = [weakRef object];
-        if (!result) {
-            [_contextRegister removeObjectForKey:name];
+- (id <OCSObjectContext>)contextForName:(NSString *)name fromBoundObject:(NSObject *)boundObject {
+    // Find all registry keys pertaining to the provided context name
+    NSArray *keys = [_contextRegister.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString * evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject hasPrefix:name];
+    }]];
+
+    if(keys.count > 1) {
+        // Build matching subset of contexts to search through
+        NSMutableDictionary *contextsToSearch = [[NSMutableDictionary alloc] initWithCapacity:keys.count];
+        for(NSString *key in keys) {
+            contextsToSearch[key] = _contextRegister[key];
         }
+
+        // More than 1 context was found for this context name
+        // Attempt to deduce the most appropriate one by inspecting the bound object's hierarchy
+        id<OCSBoundContextLocator> contextLocator = [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
+        id<OCSObjectContext > candidateContext = [contextLocator locateBoundContextForObject:boundObject];
+        OCSWeakWrapper *matchedContextWrapper = [contextsToSearch.allValues filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OCSWeakWrapper * evaluatedObject, NSDictionary *bindings) {
+            return evaluatedObject.object == candidateContext;
+        }]].firstObject;
+        return matchedContextWrapper.object;
     }
-    return result;
+    else if(keys.count == 1) {
+        OCSWeakWrapper *contextWrapper = _contextRegister[[keys firstObject]];
+        return contextWrapper.object;
+    }
+    else {
+        return nil;
+    }
 }
 
 @end

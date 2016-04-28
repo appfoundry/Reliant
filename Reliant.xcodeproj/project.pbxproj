@@ -86,6 +86,9 @@
 		27B2C85515F402C1001954BD /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C85315F402C1001954BD /* Setup.m */; };
 		27B3352C19D1997F009E993D /* Reliant.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B3352B19D1997F009E993D /* Reliant.h */; };
 		27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */; };
+		2DBA18BCCED9D51E6E866E78 /* NameContextMultipleInstancesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA10D54E7F07CB0093160B /* NameContextMultipleInstancesTests.m */; };
+		2DBA18C0D2586627F1187F08 /* NCMIChildConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1AAD4697F2B9725E8885 /* NCMIChildConfiguration.m */; };
+		2DBA1D021A501F4D2A567F82 /* NCMIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1D80AF13E14C261943B9 /* NCMIConfiguration.m */; };
 		3323F01E073E198FD8280A91 /* NSObject+OCSReliantContextBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */; };
 		3323F034055C52F8D2C6EE6A /* OCSBoundContextLocatorOnGivenObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */; };
 		3323F04120AC4D517F0EAB02 /* OCSDefaultContextRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FAFF4A8FEA38ABB2125D /* OCSDefaultContextRegistry.h */; };
@@ -269,6 +272,11 @@
 		27B2C85315F402C1001954BD /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		27B3352B19D1997F009E993D /* Reliant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reliant.h; path = Classes/Reliant.h; sourceTree = "<group>"; };
 		27F832101564C26300ADCB76 /* OCSConfiguratorFromClassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorFromClassTests.m; sourceTree = "<group>"; };
+		2DBA10D54E7F07CB0093160B /* NameContextMultipleInstancesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameContextMultipleInstancesTests.m; sourceTree = "<group>"; };
+		2DBA1AAD4697F2B9725E8885 /* NCMIChildConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMIChildConfiguration.m; sourceTree = "<group>"; };
+		2DBA1B9753C0D39837E0A706 /* NCMIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMIConfiguration.h; sourceTree = "<group>"; };
+		2DBA1D80AF13E14C261943B9 /* NCMIConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMIConfiguration.m; sourceTree = "<group>"; };
+		2DBA1DDC142057CAA869EB7C /* NCMIChildConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMIChildConfiguration.h; sourceTree = "<group>"; };
 		3323F0206B8FC9E31C070A88 /* OCSContextRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSContextRegistry.h; sourceTree = "<group>"; };
 		3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorFactory.m; sourceTree = "<group>"; };
 		3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefaultContextRegistry.m; sourceTree = "<group>"; };
@@ -511,6 +519,7 @@
 				3323F537ACD042617135F470 /* DependencyTreeConfigurationIntegrationTest.m */,
 				3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */,
 				3323F221E529A209D6FF51D5 /* HierarchicalContextsIntegrationTest.m */,
+				2DBA17F15D143A581D5DA625 /* NamedContextMultipleInstances */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -683,6 +692,18 @@
 			);
 			name = Runtime;
 			path = Classes/Runtime;
+			sourceTree = "<group>";
+		};
+		2DBA17F15D143A581D5DA625 /* NamedContextMultipleInstances */ = {
+			isa = PBXGroup;
+			children = (
+				2DBA10D54E7F07CB0093160B /* NameContextMultipleInstancesTests.m */,
+				2DBA1D80AF13E14C261943B9 /* NCMIConfiguration.m */,
+				2DBA1B9753C0D39837E0A706 /* NCMIConfiguration.h */,
+				2DBA1AAD4697F2B9725E8885 /* NCMIChildConfiguration.m */,
+				2DBA1DDC142057CAA869EB7C /* NCMIChildConfiguration.h */,
+			);
+			path = NamedContextMultipleInstances;
 			sourceTree = "<group>";
 		};
 		3323F0A230E2EA3BD5B2CC5A /* ContextLocator */ = {
@@ -1036,6 +1057,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		859300F97FBEF6035EC471CD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reliant OSX-Reliant OSXTests/Pods-Reliant OSX-Reliant OSXTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B0AFAEB3E0FC941E6645662 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reliant-ReliantTests/Pods-Reliant-ReliantTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		98AAAC25CDA248F4A5686C0D /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1159,6 +1210,9 @@
 				3323F0E50ED598B66052A91D /* OCSBoundContextLocatorFactoryTest.m in Sources */,
 				3323F3FE7B2C66C45A0CD38F /* OCSDefaultContextRegistry.m in Sources */,
 				3323FDB2822EC183880A85E8 /* OCSDefaultContextRegistryTest.m in Sources */,
+				2DBA18BCCED9D51E6E866E78 /* NameContextMultipleInstancesTests.m in Sources */,
+				2DBA1D021A501F4D2A567F82 /* NCMIConfiguration.m in Sources */,
+				2DBA18C0D2586627F1187F08 /* NCMIChildConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

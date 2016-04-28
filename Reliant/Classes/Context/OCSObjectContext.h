@@ -88,4 +88,5 @@ Convenience initializer. Prepares the object context with the given configurator
 */
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>)contextRegistry;
 
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id <OCSContextRegistry>)contextRegistry boundObject:(NSObject *)boundObject;
 @end

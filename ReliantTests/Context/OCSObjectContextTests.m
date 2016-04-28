@@ -240,7 +240,7 @@
 - (void)testParentContextIsConsultedWhenObjectNotFoundOnOwnContext {
     [given(_configurator.parentContextName) willReturn:@"ParentContext"];
     OCSObjectContext *parentContext = mock([OCSObjectContext class]);
-    [given([_contextRegistry contextForName:@"ParentContext"]) willReturn:parentContext];
+    [given([_contextRegistry contextForName:@"ParentContext" fromBoundObject:nil]) willReturn:parentContext];
     OCSObjectContext *childContext = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
     [childContext objectForKey:@"Test"];
     [verify(parentContext) objectForKey:@"Test"];
@@ -249,7 +249,7 @@
 - (void)testParentContextPerformInjectionIsAlsoCalledWhenPerformingInjectionViaChildContext {
     [given(_configurator.parentContextName) willReturn:@"ParentContext"];
     OCSObjectContext *parentContext = mock([OCSObjectContext class]);
-    [given([_contextRegistry contextForName:@"ParentContext"]) willReturn:parentContext];
+    [given([_contextRegistry contextForName:@"ParentContext" fromBoundObject:nil]) willReturn:parentContext];
     OCSObjectContext *childContext = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
 
     id object = [[NSObject alloc] init];
@@ -268,7 +268,7 @@
 }
 
 - (void)testContextShouldBeRegisteredWithContextRegistry {
-    [verify(_contextRegistry) registerContext:_context];
+    [verify(_contextRegistry) registerContext:_context toBoundObject:nil];
 }
 
 - (OCSDefinition *)_prepareContextToFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName withValue:(id)expectedObject {

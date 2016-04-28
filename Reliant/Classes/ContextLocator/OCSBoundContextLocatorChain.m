@@ -8,7 +8,6 @@
 
 @implementation OCSBoundContextLocatorChain {
     NSMutableArray *_locators;
-
 }
 
 - (id)init {
@@ -34,6 +33,5 @@
 - (void)addBoundContextLocator:(id <OCSBoundContextLocator>)contextLocator {
     [_locators addObject:contextLocator];
 }
-
 
 @end
