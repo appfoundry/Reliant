@@ -4,7 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Reliant/Reliant.h>
 
 
-@interface AppConfiguration : NSObject
+@interface AppConfiguration : NSObject<OCSConfigurationClass>
 @end

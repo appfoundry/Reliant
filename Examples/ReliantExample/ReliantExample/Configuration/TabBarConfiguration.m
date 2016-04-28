@@ -7,7 +7,6 @@
 #import "DetailViewModel.h"
 #import "DefaultDetailViewModel.h"
 #import "OCSObjectContext.h"
-#import "OCSBoundContextLocatorFactory.h"
 #import "NSObject+OCSReliantContextBinding.h"
 #import "OCSBoundContextLocator.h"
 #import "AppConfiguration.h"
@@ -21,8 +20,8 @@
     return [[DefaultDetailViewModel alloc] init];
 }
 
-- (Class)parentContextConfiguratorClass {
-    return [AppConfiguration class];
+- (NSString *)parentContextName {
+    return @"AppContext";
 }
 
 @end
