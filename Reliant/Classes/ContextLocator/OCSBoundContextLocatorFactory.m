@@ -37,7 +37,7 @@
 #if TARGET_OS_IOS
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnViewControllerHierarchy alloc] init]];
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnApplicationDelegate alloc] init]];
-#elif TARGET_OS_MAC
+#elif TARGET_OS_MAC && !TARGET_OS_WATCH
         [defaultLocator addBoundContextLocator:[[OCSBoundContextLocatorOnOSXApplicationDelegate alloc] init]];
 #endif
 
