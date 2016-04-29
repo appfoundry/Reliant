@@ -42,10 +42,10 @@
 
 - (void)testDefaultLocatorHasNecessaryLoctorsInChain {
     OCSBoundContextLocatorChain *chain =  [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
     assertThat(chain.locators, hasCountOf(3));
     assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnViewControllerHierarchy class]), instanceOf([OCSBoundContextLocatorOnApplicationDelegate class]), nil));
-#elif TARGET_OS_MAC
+#elif TARGET_OS_MAC && !TARGET_OS_WATCH
     assertThat(chain.locators, hasCountOf(2));
     assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnOSXApplicationDelegate class]), nil));
 #else

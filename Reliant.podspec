@@ -16,6 +16,9 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
   s.watchos.exclude_files = 'Reliant/Classes/ContextLocator/OSX/*', 'Reliant/Classes/ContextLocator/iOS/*', 'Reliant/Classes/Categories/UIKit/*'
 
+  s.tvos.deployment_target = '9.0'
+  s.tvos.exclude_files = 'Reliant/Classes/ContextLocator/OSX/*'
+
   s.osx.deployment_target = '10.8'
   s.osx.exclude_files = 'Reliant/Classes/Categories/UIKit/*', 'Reliant/Classes/ContextLocator/iOS/*'
 

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "278491E11CD3444B0024E6D4"
-               BuildableName = "Reliant watchOS.framework"
+               BuildableName = "Reliant_watchOS.framework"
                BlueprintName = "Reliant watchOS"
                ReferencedContainer = "container:Reliant.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "278491E11CD3444B0024E6D4"
-            BuildableName = "Reliant watchOS.framework"
+            BuildableName = "Reliant_watchOS.framework"
             BlueprintName = "Reliant watchOS"
             ReferencedContainer = "container:Reliant.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "278491E11CD3444B0024E6D4"
-            BuildableName = "Reliant watchOS.framework"
+            BuildableName = "Reliant_watchOS.framework"
             BlueprintName = "Reliant watchOS"
             ReferencedContainer = "container:Reliant.xcodeproj">
          </BuildableReference>
