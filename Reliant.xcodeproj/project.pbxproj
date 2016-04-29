@@ -10,6 +10,7 @@
 		0ED3A4451A8E486BA4F4EFFE /* libPods-Reliant OSX-Reliant OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE8CD4CA62A46E2B2A3CCF1 /* libPods-Reliant OSX-Reliant OSXTests.a */; };
 		2706253719AF138C00245DCA /* OCSReliantExcludingPropertyProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2706253619AF138C00245DCA /* OCSReliantExcludingPropertyProvider.h */; };
 		2706254119AF1CBE00245DCA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2706254019AF1CBE00245DCA /* AppKit.framework */; };
+		271493991CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 271493981CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m */; };
 		274D7B911563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7BA21563BF2E0007C1C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D7B901563BF2E0007C1C8 /* Foundation.framework */; };
 		274D7BAB1563BF2E0007C1C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 274D7BA91563BF2E0007C1C8 /* InfoPlist.strings */; };
@@ -316,6 +317,8 @@
 		270721C2157F4A4F00A05222 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		270721C3157F4A4F00A05222 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		270721C4157F4A4F00A05222 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		271493971CD3A69F00D075F6 /* NCMIGrandChildConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMIGrandChildConfiguration.h; sourceTree = "<group>"; };
+		271493981CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMIGrandChildConfiguration.m; sourceTree = "<group>"; };
 		271CF69518D860AF002DE484 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		271CF69618D860AF002DE484 /* Reliant.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Reliant.podspec; sourceTree = "<group>"; };
 		274D7B8D1563BF2E0007C1C8 /* libReliant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReliant.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -863,6 +866,8 @@
 				2DBA1B9753C0D39837E0A706 /* NCMIConfiguration.h */,
 				2DBA1AAD4697F2B9725E8885 /* NCMIChildConfiguration.m */,
 				2DBA1DDC142057CAA869EB7C /* NCMIChildConfiguration.h */,
+				271493971CD3A69F00D075F6 /* NCMIGrandChildConfiguration.h */,
+				271493981CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m */,
 			);
 			path = NamedContextMultipleInstances;
 			sourceTree = "<group>";
@@ -1459,6 +1464,7 @@
 				27861576181DBAE700B7A755 /* OCSViewControllerInjectionTest.m in Sources */,
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
 				27861573181D11DA00B7A755 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */,
+				271493991CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m in Sources */,
 				2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */,
 				27AB43B518207A360088A187 /* TestObject.m in Sources */,
 				278155E6181C6D3400295410 /* OCSSingletonScope.m in Sources */,

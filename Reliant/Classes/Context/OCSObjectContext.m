@@ -57,12 +57,16 @@ Recursive method for injecting objects with their dependencies. This method iter
 
 - (id)init {
     OCSConfiguratorFromClass *autoConfig = [[OCSConfiguratorFromClass alloc] init];
-    return [self initWithConfigurator:autoConfig];
+    return [self initWithConfigurator:autoConfig boundObject:nil];
 }
 
 - (id)initWithConfigurator:(id <OCSConfigurator>)configurator {
+    return [self initWithConfigurator:configurator boundObject:nil];
+}
+
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator boundObject:(NSObject*)boundObject {
     OCSDefaultScopeFactory *defaultScopeFactory = [[OCSDefaultScopeFactory alloc] init];
-    return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry]];
+    return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry] boundObject:boundObject];
 }
 
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry  {
@@ -92,7 +96,7 @@ Recursive method for injecting objects with their dependencies. This method iter
     if (parentContextName) {
         id <OCSObjectContext> parentContext = [_contextRegistry contextForName:parentContextName fromBoundObject:_boundObject];
         if (!parentContext) {
-            [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found. Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created before this context is.", parentContextName];
+            [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found for context (%@). Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created (and bound) before this context is.", parentContextName, _configurator.contextName];
         }
         _parentContext = parentContext;
     }
