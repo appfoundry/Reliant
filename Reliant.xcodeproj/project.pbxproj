@@ -48,6 +48,7 @@
 		2765CBD71572A7C100ABE59C /* OCSObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 274D7BBB1563BFA10007C1C8 /* OCSObjectContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		277001CA1823C36B00FC366A /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AB43B418207A360088A187 /* TestObject.m */; };
+		278010741CD3D36800121AB7 /* NCMIGrandChildConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 271493981CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m */; };
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		278155DC181C6D0D00295410 /* OCSObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSObjectContext.m */; };
@@ -1639,6 +1640,7 @@
 				2784924C1CD34AB30024E6D4 /* OCSBoundContextLocatorOnGivenObject.m in Sources */,
 				278492511CD34B160024E6D4 /* OCSSingletonScope.m in Sources */,
 				2784925B1CD34B500024E6D4 /* OCSBoundContextLocatorFactory.m in Sources */,
+				278010741CD3D36800121AB7 /* NCMIGrandChildConfiguration.m in Sources */,
 				278492561CD34B290024E6D4 /* NSObject+OCSReliantInjection.m in Sources */,
 				278492501CD34B110024E6D4 /* OCSConfiguratorFromClass.m in Sources */,
 				278492301CD347B00024E6D4 /* HierarchicalContextsIntegrationTest.m in Sources */,
