@@ -20,6 +20,7 @@
 		270625E719AF2C3E00245DCA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270625C619AF2C3D00245DCA /* UIKit.framework */; };
 		270625EF19AF2C3E00245DCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 270625ED19AF2C3E00245DCA /* InfoPlist.strings */; };
 		270625F119AF2C3E00245DCA /* ReliantExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 270625F019AF2C3E00245DCA /* ReliantExampleTests.m */; };
+		278491DA1CD271AA0024E6D4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 278491D91CD271AA0024E6D4 /* Launch Screen.storyboard */; };
 		3323F04F3B579FD3030A4367 /* DefaultDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FAD10FB1B7505A3D7C02 /* DefaultDetailViewModel.m */; };
 		3323F152565FF1211905FF87 /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F58DC4C3D25F8F9E45C8 /* Info.m */; };
 		3323F223259B2D6068EFD406 /* AppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F0D181C82E1061E28401 /* AppConfiguration.m */; };
@@ -61,6 +62,7 @@
 		270625EC19AF2C3E00245DCA /* ReliantExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReliantExampleTests-Info.plist"; sourceTree = "<group>"; };
 		270625EE19AF2C3E00245DCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		270625F019AF2C3E00245DCA /* ReliantExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReliantExampleTests.m; sourceTree = "<group>"; };
+		278491D91CD271AA0024E6D4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2A1FD53E64EA4E859F8C30D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3323F0360BB326AF163AE1F9 /* DefaultStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultStringGenerator.h; sourceTree = "<group>"; };
 		3323F0581730D8A8AC4DE69E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
@@ -85,7 +87,8 @@
 		3323FD7712EF37CF448A0830 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3323FD825625FAC6DB91E195 /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		3323FF0D02D0696FB7987C12 /* StringProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringProvider.h; sourceTree = "<group>"; };
-		8A43BF7C8A5F428498EA1B97 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B89569E56158729A5E6010C5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F37F9EB2EE3FF4A0659FA2C1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +123,7 @@
 				270625EA19AF2C3E00245DCA /* ReliantExampleTests */,
 				270625C119AF2C3D00245DCA /* Frameworks */,
 				270625C019AF2C3D00245DCA /* Products */,
-				8A43BF7C8A5F428498EA1B97 /* Pods.xcconfig */,
+				9ABF35213FDF4CF5541B1B3A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +154,7 @@
 				270625D119AF2C3D00245DCA /* AppDelegate.h */,
 				270625D219AF2C3D00245DCA /* AppDelegate.m */,
 				270625D419AF2C3D00245DCA /* Main.storyboard */,
+				278491D91CD271AA0024E6D4 /* Launch Screen.storyboard */,
 				270625DD19AF2C3D00245DCA /* Images.xcassets */,
 				270625C919AF2C3D00245DCA /* Supporting Files */,
 				3323F358C98D54EADB9615CF /* ViewControllers */,
@@ -249,6 +253,15 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		9ABF35213FDF4CF5541B1B3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F37F9EB2EE3FF4A0659FA2C1 /* Pods.debug.xcconfig */,
+				B89569E56158729A5E6010C5 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,6 +274,7 @@
 				270625BC19AF2C3D00245DCA /* Frameworks */,
 				270625BD19AF2C3D00245DCA /* Resources */,
 				5569CDB50AC745C3B15E4EC8 /* Copy Pods Resources */,
+				B397170221915D0F07FA3CF9 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,7 +309,7 @@
 		270625B719AF2C3D00245DCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = AppFoundry;
 				TargetAttributes = {
 					270625E219AF2C3E00245DCA = {
@@ -329,6 +343,7 @@
 			files = (
 				270625DE19AF2C3D00245DCA /* Images.xcassets in Resources */,
 				270625CD19AF2C3D00245DCA /* InfoPlist.strings in Resources */,
+				278491DA1CD271AA0024E6D4 /* Launch Screen.storyboard in Resources */,
 				270625D619AF2C3D00245DCA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +386,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B397170221915D0F07FA3CF9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -460,6 +490,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -514,13 +545,13 @@
 		};
 		270625F519AF2C3E00245DCA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A43BF7C8A5F428498EA1B97 /* Pods.xcconfig */;
+			baseConfigurationReference = F37F9EB2EE3FF4A0659FA2C1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReliantExample/ReliantExample-Prefix.pch";
 				INFOPLIST_FILE = "ReliantExample/ReliantExample-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -528,13 +559,13 @@
 		};
 		270625F619AF2C3E00245DCA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A43BF7C8A5F428498EA1B97 /* Pods.xcconfig */;
+			baseConfigurationReference = B89569E56158729A5E6010C5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReliantExample/ReliantExample-Prefix.pch";
 				INFOPLIST_FILE = "ReliantExample/ReliantExample-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -556,6 +587,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ReliantExampleTests/ReliantExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -574,6 +606,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReliantExample/ReliantExample-Prefix.pch";
 				INFOPLIST_FILE = "ReliantExampleTests/ReliantExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.appfoundry.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -23,4 +23,8 @@
     return [[DefaultStringGenerator alloc] init];
 }
 
+- (NSString *)contextName {
+    return @"AppContext";
+}
+
 @end

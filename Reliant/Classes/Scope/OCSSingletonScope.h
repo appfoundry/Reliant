@@ -7,7 +7,7 @@
 //
 
 
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS)
 #import <UIKit/UIApplication.h>
 #endif
 
