@@ -80,7 +80,6 @@
         } else {
             return [self _findContextForNameInRegistry:name];
         }
-        
     }
 }
 

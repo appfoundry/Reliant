@@ -11,11 +11,16 @@
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
 
-#import "OCSObjectContext.h"
-#import "NSObject+OCSReliantContextBinding.h"
+#import "Reliant.h"
+#import "OCSBoundContextLocatorFactory.h"
+#import "OCSBoundContextLocatorChain.h"
+#import "OCSBoundContextLocatorOnSharedObject.h"
+#import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
+#import "OCSBoundContextLocatorOnGivenObject.h"
 #import "NCMIConfiguration.h"
 #import "NCMIChildConfiguration.h"
 #import "NCMIGrandChildConfiguration.h"
+#import "NCMIViewControllerConfiguration.h"
 
 @interface NameContextMultipleInstancesTests : XCTestCase
 @end
@@ -24,6 +29,12 @@
 
 @property(nonatomic, readonly, strong) id<OCSObjectContext> rootContext;
 @property(nonatomic, readonly, strong) id<OCSObjectContext> intermediateContext;
+
+@end
+
+@interface OCSBoundContextLocatorFactory (TestKnowsAll)
+
+@property (nonatomic, strong) id<OCSBoundContextLocator> contextLocator;
 
 @end
 
@@ -115,6 +126,30 @@
     assertThat([obj.ocsObjectContext objectForKey:@"testObject"], is(sameInstance([obj.rootContext objectForKey:@"testObject"])));
 }
 
+-(void)testViewControllersCanFindRootContextBoundOnSharedObjects {
+    id <OCSBoundContextLocator> originalLocator = [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
+    NCMIMultipleContextHoldingObject *obj = [[NCMIMultipleContextHoldingObject alloc] init];
+    [self _overrideLocatorFactoryChainWithSharedObject:obj];
+    UIViewController *parentViewController = [[UIViewController alloc] init];
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [parentViewController addChildViewController:viewController];
+    XCTAssertNoThrow([viewController ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:[NCMIViewControllerConfiguration class]]);
+    assertThat([viewController.ocsObjectContext objectForKey:@"testObject"], is(sameInstance([obj.rootContext objectForKey:@"testObject"])));
+    
+    [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator = originalLocator;
+}
+
+- (void)_overrideLocatorFactoryChainWithSharedObject:(NSObject *)obj {
+    OCSBoundContextLocatorChain *chain = [[OCSBoundContextLocatorChain alloc] init];
+    OCSBoundContextLocatorOnGivenObject *onGivenObjectLocator = [[OCSBoundContextLocatorOnGivenObject alloc] init];
+    OCSBoundContextLocatorOnViewControllerHierarchy *hierarchyLocator = [[OCSBoundContextLocatorOnViewControllerHierarchy alloc] init];
+    OCSBoundContextLocatorOnSharedObject *sharedObjectLocator = [[OCSBoundContextLocatorOnSharedObject alloc] initWithSharedObject:obj];
+    [chain addBoundContextLocator:onGivenObjectLocator];
+    [chain addBoundContextLocator:hierarchyLocator];
+    [chain addBoundContextLocator:sharedObjectLocator];
+    [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator = chain;
+}
+
 @end
 
 @implementation NCMIMultipleContextHoldingObject
@@ -130,5 +165,6 @@
     }
     return self;
 }
+
 
 @end

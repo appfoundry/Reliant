@@ -63,6 +63,12 @@
 		278010831CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */; };
 		278010841CD7464900121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */; };
 		278010851CD7464B00121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */; };
+		278010881CD74FCA00121AB7 /* FakeSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010871CD74FCA00121AB7 /* FakeSharedObject.m */; };
+		278010891CD74FCA00121AB7 /* FakeSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010871CD74FCA00121AB7 /* FakeSharedObject.m */; };
+		2780108A1CD74FCA00121AB7 /* FakeSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010871CD74FCA00121AB7 /* FakeSharedObject.m */; };
+		2780108D1CD7524000121AB7 /* NCMIViewControllerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780108C1CD7524000121AB7 /* NCMIViewControllerConfiguration.m */; };
+		2780108E1CD7524000121AB7 /* NCMIViewControllerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780108C1CD7524000121AB7 /* NCMIViewControllerConfiguration.m */; };
+		2780108F1CD7524000121AB7 /* NCMIViewControllerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780108C1CD7524000121AB7 /* NCMIViewControllerConfiguration.m */; };
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		278155DC181C6D0D00295410 /* OCSObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSObjectContext.m */; };
@@ -352,6 +358,10 @@
 		278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorOnSharedObject.h; sourceTree = "<group>"; };
 		278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnSharedObject.m; sourceTree = "<group>"; };
 		278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnSharedObjectTests.m; sourceTree = "<group>"; };
+		278010861CD74FCA00121AB7 /* FakeSharedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeSharedObject.h; sourceTree = "<group>"; };
+		278010871CD74FCA00121AB7 /* FakeSharedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeSharedObject.m; sourceTree = "<group>"; };
+		2780108B1CD7524000121AB7 /* NCMIViewControllerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMIViewControllerConfiguration.h; sourceTree = "<group>"; };
+		2780108C1CD7524000121AB7 /* NCMIViewControllerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMIViewControllerConfiguration.m; sourceTree = "<group>"; };
 		2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBaseTests.m; sourceTree = "<group>"; };
 		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
 		2780EDDB1571052200CFD38C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -756,6 +766,8 @@
 				274D7BA71563BF2E0007C1C8 /* Supporting Files */,
 				3323F6405E82AFC793DECDB9 /* Scopes */,
 				3323FC031A04428AF676158A /* ContextLocator */,
+				278010861CD74FCA00121AB7 /* FakeSharedObject.h */,
+				278010871CD74FCA00121AB7 /* FakeSharedObject.m */,
 			);
 			path = ReliantTests;
 			sourceTree = "<group>";
@@ -870,6 +882,8 @@
 				2DBA1DDC142057CAA869EB7C /* NCMIChildConfiguration.h */,
 				271493971CD3A69F00D075F6 /* NCMIGrandChildConfiguration.h */,
 				271493981CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m */,
+				2780108B1CD7524000121AB7 /* NCMIViewControllerConfiguration.h */,
+				2780108C1CD7524000121AB7 /* NCMIViewControllerConfiguration.m */,
 			);
 			path = NamedContextMultipleInstances;
 			sourceTree = "<group>";
@@ -1462,6 +1476,7 @@
 				278155DC181C6D0D00295410 /* OCSObjectContext.m in Sources */,
 				27B0A9361824007100DFEEB9 /* OCSPropertyRuntimeInfo.m in Sources */,
 				274D7BCE1563C2D10007C1C8 /* OCSObjectContextTests.m in Sources */,
+				278010881CD74FCA00121AB7 /* FakeSharedObject.m in Sources */,
 				27F832111564C26300ADCB76 /* OCSConfiguratorFromClassTests.m in Sources */,
 				27861576181DBAE700B7A755 /* OCSViewControllerInjectionTest.m in Sources */,
 				2795FD85156EE3DC00E7F6FA /* DummyConfigurator+External.m in Sources */,
@@ -1506,6 +1521,7 @@
 				3323FDB2822EC183880A85E8 /* OCSDefaultContextRegistryTest.m in Sources */,
 				2DBA18BCCED9D51E6E866E78 /* NameContextMultipleInstancesTests.m in Sources */,
 				2DBA1D021A501F4D2A567F82 /* NCMIConfiguration.m in Sources */,
+				2780108D1CD7524000121AB7 /* NCMIViewControllerConfiguration.m in Sources */,
 				2DBA18C0D2586627F1187F08 /* NCMIChildConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1564,6 +1580,7 @@
 				3323F9F80210B1F6C3F2E11C /* NSObject+OCSReliantContextBinding.m in Sources */,
 				3323FBE11786DD288572F203 /* NSObject+OCSReliantContextBindingTest.m in Sources */,
 				3323F7030A0131815841CB85 /* OCSDefaultScopeFactoryTest.m in Sources */,
+				278010891CD74FCA00121AB7 /* FakeSharedObject.m in Sources */,
 				3323F09933BDDB00205E099D /* OCSPrototypeScopeTests.m in Sources */,
 				3323F556E73138975C7321AF /* OCSSingletonScopeTests.m in Sources */,
 				3323F0A56F11F388CC66E2E8 /* OCSBoundContextLocatorOnGivenObject.m in Sources */,
@@ -1574,6 +1591,7 @@
 				3323F9204E3EC714E60EC271 /* NSObject+OCSReliantInjection.m in Sources */,
 				3323F490699CF00D5D30E1BA /* NSObject+OCSReliantInjectionTest.m in Sources */,
 				3323F2FC62711FC962764955 /* OCSBoundContextLocatorFactory.m in Sources */,
+				2780108E1CD7524000121AB7 /* NCMIViewControllerConfiguration.m in Sources */,
 				3323F93229F385DF4E85713C /* OCSBoundContextLocatorFactoryTest.m in Sources */,
 				3323F570E352C96AE885A207 /* OCSDefaultContextRegistry.m in Sources */,
 				3323FB1B81B8A0A758EEF4CF /* OCSDefaultContextRegistryTest.m in Sources */,
@@ -1638,6 +1656,7 @@
 				2784922D1CD347B00024E6D4 /* SimpleConfigurationIntegrationTest.m in Sources */,
 				278492591CD34B3E0024E6D4 /* OCSPropertyRuntimeInfo.m in Sources */,
 				2784922E1CD347B00024E6D4 /* DependencyTreeConfigurationIntegrationTest.m in Sources */,
+				2780108A1CD74FCA00121AB7 /* FakeSharedObject.m in Sources */,
 				2784922F1CD347B00024E6D4 /* RecursiveConfigurationTest.m in Sources */,
 				2784924C1CD34AB30024E6D4 /* OCSBoundContextLocatorOnGivenObject.m in Sources */,
 				278492511CD34B160024E6D4 /* OCSSingletonScope.m in Sources */,
@@ -1682,6 +1701,7 @@
 				278492541CD34B220024E6D4 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
 				278492451CD347B00024E6D4 /* OCSBoundContextLocatorChainTest.m in Sources */,
 				278492461CD347B00024E6D4 /* OCSBoundContextLocatorFactoryTest.m in Sources */,
+				2780108F1CD7524000121AB7 /* NCMIViewControllerConfiguration.m in Sources */,
 				278492471CD347B00024E6D4 /* OCSDefaultContextRegistryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,12 +15,9 @@
 #import "NSObject+OCSReliantContextBinding.h"
 #import "OCSBoundContextLocatorOnSharedObject.h"
 #import "OCSObjectContext.h"
+#import "FakeSharedObject.h"
 
-@interface FakeSharedObject : NSObject
 
-+(instancetype)sharedFakeSharedObject;
-
-@end
 
 @interface OCSBoundContextLocatorOnSharedObjectTests : XCTestCase {
     id <OCSObjectContext> _objectContext;
@@ -46,15 +43,3 @@
 @end
 
 
-@implementation FakeSharedObject
-
-+(instancetype)sharedFakeSharedObject {
-    static FakeSharedObject *sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
-}
-
-@end
