@@ -49,6 +49,20 @@
 		2765CBD91572A7C100ABE59C /* OCSConfiguratorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2759BA7B1569AB8000349871 /* OCSConfiguratorConstants.h */; };
 		277001CA1823C36B00FC366A /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AB43B418207A360088A187 /* TestObject.m */; };
 		278010741CD3D36800121AB7 /* NCMIGrandChildConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 271493981CD3A69F00D075F6 /* NCMIGrandChildConfiguration.m */; };
+		278010771CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */; };
+		278010781CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */; };
+		278010791CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */; };
+		2780107A1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */; };
+		2780107B1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		2780107C1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		2780107D1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		2780107E1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		2780107F1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		278010801CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		278010811CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */; };
+		278010831CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */; };
+		278010841CD7464900121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */; };
+		278010851CD7464B00121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */; };
 		2780EDD1156FE48A00CFD38C /* OCSConfiguratorBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */; };
 		2780EDD9157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		278155DC181C6D0D00295410 /* OCSObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 274D7BBC1563BFA10007C1C8 /* OCSObjectContext.m */; };
@@ -94,7 +108,6 @@
 		278492171CD347210024E6D4 /* OCSBoundContextLocatorOnGivenObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */; };
 		278492181CD347210024E6D4 /* OCSBoundContextLocatorChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */; };
 		278492191CD347210024E6D4 /* OCSBoundContextLocatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */; };
-		2784921A1CD347210024E6D4 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */; };
 		2784921B1CD347210024E6D4 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */; };
 		2784921D1CD347210024E6D4 /* OCSDefaultContextRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */; };
 		278492271CD347670024E6D4 /* Reliant_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278492011CD346F10024E6D4 /* Reliant_tvOS.framework */; };
@@ -119,14 +132,12 @@
 		2784923F1CD347B00024E6D4 /* OCSDefaultScopeFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F28B001826F8AD976849 /* OCSDefaultScopeFactoryTest.m */; };
 		278492401CD347B00024E6D4 /* OCSPrototypeScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F337BE91D8DB2FFF90C0 /* OCSPrototypeScopeTests.m */; };
 		278492411CD347B00024E6D4 /* OCSSingletonScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6AD6C57BD51F8CC1085 /* OCSSingletonScopeTests.m */; };
-		278492421CD347B00024E6D4 /* OCSBoundContextCrawlerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F2D51F00FADECDF7BDC1 /* OCSBoundContextCrawlerTest.m */; };
 		278492431CD347B00024E6D4 /* OCSBoundContextLocatorOnGivenObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FD0296FD006579533202 /* OCSBoundContextLocatorOnGivenObjectTest.m */; };
 		278492441CD347B00024E6D4 /* OCSBoundContextLocatorOnViewControllerHierarchyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FDF654BB8B221C250972 /* OCSBoundContextLocatorOnViewControllerHierarchyTest.m */; };
 		278492451CD347B00024E6D4 /* OCSBoundContextLocatorChainTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F20FA6E347D11E4C5E83 /* OCSBoundContextLocatorChainTest.m */; };
 		278492461CD347B00024E6D4 /* OCSBoundContextLocatorFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FB369316BE374498F974 /* OCSBoundContextLocatorFactoryTest.m */; };
 		278492471CD347B00024E6D4 /* OCSDefaultContextRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC2DD2765747EE123EF3 /* OCSDefaultContextRegistryTest.m */; };
 		278492481CD349FC0024E6D4 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */; };
-		278492491CD34A220024E6D4 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */; };
 		2784924A1CD34AAA0024E6D4 /* OCSBoundContextLocatorChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */; };
 		2784924C1CD34AB30024E6D4 /* OCSBoundContextLocatorOnGivenObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */; };
 		2784924D1CD34B000024E6D4 /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
@@ -187,7 +198,6 @@
 		3323F0E50ED598B66052A91D /* OCSBoundContextLocatorFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FB369316BE374498F974 /* OCSBoundContextLocatorFactoryTest.m */; };
 		3323F112640221AAF16CE375 /* HierarchicalContextsIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F221E529A209D6FF51D5 /* HierarchicalContextsIntegrationTest.m */; };
 		3323F1569B6BDD978A2B6B2E /* NSObject+OCSReliantContextBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F9DCF3B1148240F9AEB4 /* NSObject+OCSReliantContextBinding.h */; };
-		3323F170C84639F893F9076A /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */; };
 		3323F17BEB7A16B44C310334 /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
 		3323F1DCF8B76DD47C966E4E /* OCSBoundContextLocatorChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */; };
 		3323F216B1EADA32FB554F07 /* OCSBoundContextLocatorChainTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F20FA6E347D11E4C5E83 /* OCSBoundContextLocatorChainTest.m */; };
@@ -214,7 +224,6 @@
 		3323F570E352C96AE885A207 /* OCSDefaultContextRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */; };
 		3323F5986FCAEDEC02C228CB /* OCSBoundContextLocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F3D2522C723113668259 /* OCSBoundContextLocator.h */; };
 		3323F63DD4B23D955E97A8C2 /* NSObject+OCSReliantContextBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */; };
-		3323F65B9CA84F704D790577 /* OCSBoundContextLocatorOnApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F49FE01960198AC877EC /* OCSBoundContextLocatorOnApplicationDelegate.h */; };
 		3323F66174691139C00CA029 /* NSObject+OCSReliantContextBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FA99EF8D71A0960E5332 /* NSObject+OCSReliantContextBindingTest.m */; };
 		3323F6E3165A5D7AABBE40CA /* OCSContextRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F0206B8FC9E31C070A88 /* OCSContextRegistry.h */; };
 		3323F6FFCCE6572F2F2CF706 /* OCSBoundContextLocatorChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */; };
@@ -222,12 +231,10 @@
 		3323F7648E56EA92F3CA84F3 /* NSObject+OCSReliantInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6DF2A0403AF55DBE532 /* NSObject+OCSReliantInjection.m */; };
 		3323F76A03B1F196D5D7483E /* OCSRuntimeMagic.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FE89CADEB37E6A1421F2 /* OCSRuntimeMagic.h */; };
 		3323F77948FC3A6CD3A144E5 /* OCSBoundContextLocatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */; };
-		3323F7860771F657562766A5 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */; };
 		3323F79E1084CF5B8696521E /* OCSDefaultScopeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC30FA16200019DF7D1B /* OCSDefaultScopeFactory.m */; };
 		3323F7CDA74A68986E6973F2 /* OCSBoundContextLocatorOnGivenObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */; };
 		3323F852D44C7EB1668122D5 /* OCSBoundContextLocatorChainTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F20FA6E347D11E4C5E83 /* OCSBoundContextLocatorChainTest.m */; };
 		3323F8B8E9E4B37E215F1530 /* OCSDefaultContextRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F1719A1E5A67A7FAC675 /* OCSDefaultContextRegistry.m */; };
-		3323F8E02B69566987E76842 /* OCSBoundContextCrawlerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F2D51F00FADECDF7BDC1 /* OCSBoundContextCrawlerTest.m */; };
 		3323F8FC8D2366FA7FF07F04 /* RecursiveConfigurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */; };
 		3323F9204E3EC714E60EC271 /* NSObject+OCSReliantInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6DF2A0403AF55DBE532 /* NSObject+OCSReliantInjection.m */; };
 		3323F93229F385DF4E85713C /* OCSBoundContextLocatorFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FB369316BE374498F974 /* OCSBoundContextLocatorFactoryTest.m */; };
@@ -241,21 +248,17 @@
 		3323F9F80210B1F6C3F2E11C /* NSObject+OCSReliantContextBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */; };
 		3323FA057F309ADDD96AB60E /* OCSBoundContextLocatorOnViewControllerHierarchy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F6BD70654FB36FCE4AAC /* OCSBoundContextLocatorOnViewControllerHierarchy.h */; };
 		3323FA0C8C41685456C4C08A /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
-		3323FA0FD8D28F9E15A4FE7D /* OCSBoundContextLocatorOnOSXApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F93C6C62C18EB26AD493 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m */; };
 		3323FA16AA4AA290F506C0E4 /* OCSBoundContextLocatorOnGivenObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FBAA835F879DD781256F /* OCSBoundContextLocatorOnGivenObject.h */; };
 		3323FA2D324A0EFDCE0A56BF /* OCSPrototypeScopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F337BE91D8DB2FFF90C0 /* OCSPrototypeScopeTests.m */; };
 		3323FA54840E6D74EBE0C870 /* RecursiveConfigurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F19EC82B5994772324C7 /* RecursiveConfigurationTest.m */; };
 		3323FA7BB1BF46D541111719 /* OCSRuntimeMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6C9E61AC13DC893F259 /* OCSRuntimeMagic.m */; };
 		3323FA842AC8404BF9E08E0B /* SimpleConfigurationIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */; };
 		3323FAB7E65F8CE490C033DC /* OCSBoundContextLocatorChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */; };
-		3323FB1216132767703CF155 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F93C6C62C18EB26AD493 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m */; };
 		3323FB1B81B8A0A758EEF4CF /* OCSDefaultContextRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC2DD2765747EE123EF3 /* OCSDefaultContextRegistryTest.m */; };
 		3323FB4C057E85B4B8E09C9C /* NSObject+OCSReliantInjection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FE8A5D024CC4C92168BF /* NSObject+OCSReliantInjection.h */; };
-		3323FB4D980D33FF5DF48242 /* OCSBoundContextCrawlerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F2D51F00FADECDF7BDC1 /* OCSBoundContextCrawlerTest.m */; };
 		3323FB79FE657F7920BE7FB4 /* NSObject+OCSReliantInjectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC863C9B60A12536EBA4 /* NSObject+OCSReliantInjectionTest.m */; };
 		3323FB900ACF3583849E2BA8 /* OCSBoundContextLocatorOnGivenObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323FBAA835F879DD781256F /* OCSBoundContextLocatorOnGivenObject.h */; };
 		3323FBE11786DD288572F203 /* NSObject+OCSReliantContextBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FA99EF8D71A0960E5332 /* NSObject+OCSReliantContextBindingTest.m */; };
-		3323FC6D7AC85AFBA41DABB3 /* OCSBoundContextLocatorOnOSXApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3323F69EC2B8C3851522DB75 /* OCSBoundContextLocatorOnOSXApplicationDelegate.h */; };
 		3323FCBB234922E211AAF8D3 /* OCSDefaultScopeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323FC30FA16200019DF7D1B /* OCSDefaultScopeFactory.m */; };
 		3323FCCEA4CE43C732E0E79A /* OCSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */; };
 		3323FCD2452CB1EC9C3CFBD2 /* NSObject+OCSReliantInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323F6DF2A0403AF55DBE532 /* NSObject+OCSReliantInjection.m */; };
@@ -346,6 +349,9 @@
 		2765CBA1157184ED00ABE59C /* Reliant OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reliant OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2765CBA9157184ED00ABE59C /* Reliant OSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Reliant OSXTests-Info.plist"; sourceTree = "<group>"; };
 		2765CBAB157184ED00ABE59C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorOnSharedObject.h; sourceTree = "<group>"; };
+		278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnSharedObject.m; sourceTree = "<group>"; };
+		278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnSharedObjectTests.m; sourceTree = "<group>"; };
 		2780EDD0156FE48A00CFD38C /* OCSConfiguratorBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSConfiguratorBaseTests.m; sourceTree = "<group>"; };
 		2780EDD7157033EB00CFD38C /* OCSConfiguratorBase+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCSConfiguratorBase+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
 		2780EDDB1571052200CFD38C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -394,23 +400,18 @@
 		3323F221E529A209D6FF51D5 /* HierarchicalContextsIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HierarchicalContextsIntegrationTest.m; sourceTree = "<group>"; };
 		3323F26009A9095C53CA7FCE /* NSObject+OCSReliantContextBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OCSReliantContextBinding.m"; sourceTree = "<group>"; };
 		3323F28B001826F8AD976849 /* OCSDefaultScopeFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefaultScopeFactoryTest.m; sourceTree = "<group>"; };
-		3323F2D51F00FADECDF7BDC1 /* OCSBoundContextCrawlerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextCrawlerTest.m; sourceTree = "<group>"; };
 		3323F337BE91D8DB2FFF90C0 /* OCSPrototypeScopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSPrototypeScopeTests.m; sourceTree = "<group>"; };
-		3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnApplicationDelegate.m; sourceTree = "<group>"; };
 		3323F3D2522C723113668259 /* OCSBoundContextLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocator.h; sourceTree = "<group>"; };
 		3323F3DFA047070711D6ABF8 /* OCSBoundContextLocatorChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorChain.h; sourceTree = "<group>"; };
 		3323F43EFC2DFF1202010408 /* OCSPropertyRuntimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSPropertyRuntimeInfo.h; sourceTree = "<group>"; };
-		3323F49FE01960198AC877EC /* OCSBoundContextLocatorOnApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorOnApplicationDelegate.h; sourceTree = "<group>"; };
 		3323F537ACD042617135F470 /* DependencyTreeConfigurationIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DependencyTreeConfigurationIntegrationTest.m; sourceTree = "<group>"; };
 		3323F59F1F47D5E4E28E32DE /* SimpleConfigurationIntegrationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleConfigurationIntegrationTest.m; sourceTree = "<group>"; };
-		3323F69EC2B8C3851522DB75 /* OCSBoundContextLocatorOnOSXApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorOnOSXApplicationDelegate.h; sourceTree = "<group>"; };
 		3323F6AD6C57BD51F8CC1085 /* OCSSingletonScopeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSSingletonScopeTests.m; sourceTree = "<group>"; };
 		3323F6BD70654FB36FCE4AAC /* OCSBoundContextLocatorOnViewControllerHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSBoundContextLocatorOnViewControllerHierarchy.h; sourceTree = "<group>"; };
 		3323F6C9E61AC13DC893F259 /* OCSRuntimeMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSRuntimeMagic.m; sourceTree = "<group>"; };
 		3323F6DF2A0403AF55DBE532 /* NSObject+OCSReliantInjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OCSReliantInjection.m"; sourceTree = "<group>"; };
 		3323F867D0EF3CBD4D0FD846 /* OCSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSDefinition.m; sourceTree = "<group>"; };
 		3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnGivenObject.m; sourceTree = "<group>"; };
-		3323F93C6C62C18EB26AD493 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSBoundContextLocatorOnOSXApplicationDelegate.m; sourceTree = "<group>"; };
 		3323F9DCF3B1148240F9AEB4 /* NSObject+OCSReliantContextBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+OCSReliantContextBinding.h"; sourceTree = "<group>"; };
 		3323FA99EF8D71A0960E5332 /* NSObject+OCSReliantContextBindingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+OCSReliantContextBindingTest.m"; sourceTree = "<group>"; };
 		3323FAFF4A8FEA38ABB2125D /* OCSDefaultContextRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSDefaultContextRegistry.h; sourceTree = "<group>"; };
@@ -879,6 +880,8 @@
 				3323F3D2522C723113668259 /* OCSBoundContextLocator.h */,
 				3323F8FA4096046EF5327EF7 /* OCSBoundContextLocatorOnGivenObject.m */,
 				3323FBAA835F879DD781256F /* OCSBoundContextLocatorOnGivenObject.h */,
+				278010751CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h */,
+				278010761CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m */,
 				3323FC4501A434335CE35BDD /* OCSBoundContextLocatorChain.m */,
 				3323F3DFA047070711D6ABF8 /* OCSBoundContextLocatorChain.h */,
 				3323F140833C4C221BD3A146 /* OCSBoundContextLocatorFactory.m */,
@@ -907,8 +910,6 @@
 		3323F7A8D518D0D4591AA0C7 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
-				3323F93C6C62C18EB26AD493 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m */,
-				3323F69EC2B8C3851522DB75 /* OCSBoundContextLocatorOnOSXApplicationDelegate.h */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -916,12 +917,12 @@
 		3323FC031A04428AF676158A /* ContextLocator */ = {
 			isa = PBXGroup;
 			children = (
-				3323F2D51F00FADECDF7BDC1 /* OCSBoundContextCrawlerTest.m */,
 				3323FD0296FD006579533202 /* OCSBoundContextLocatorOnGivenObjectTest.m */,
 				3323FDF654BB8B221C250972 /* OCSBoundContextLocatorOnViewControllerHierarchyTest.m */,
 				3323F20FA6E347D11E4C5E83 /* OCSBoundContextLocatorChainTest.m */,
 				3323FB369316BE374498F974 /* OCSBoundContextLocatorFactoryTest.m */,
 				3323FC2DD2765747EE123EF3 /* OCSDefaultContextRegistryTest.m */,
+				278010821CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m */,
 			);
 			path = ContextLocator;
 			sourceTree = "<group>";
@@ -929,8 +930,6 @@
 		3323FDCBE9FC78D8E7D20D2C /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3323F49FE01960198AC877EC /* OCSBoundContextLocatorOnApplicationDelegate.h */,
-				3323F35B89116D2C33BCE84E /* OCSBoundContextLocatorOnApplicationDelegate.m */,
 				3323F6BD70654FB36FCE4AAC /* OCSBoundContextLocatorOnViewControllerHierarchy.h */,
 				3323F19BCB9981CE0A392D38 /* OCSBoundContextLocatorOnViewControllerHierarchy.m */,
 			);
@@ -958,6 +957,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				274D7BC31563BFA10007C1C8 /* OCSScope.h in Headers */,
+				278010771CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */,
 				27861579181DC6E000B7A755 /* UIViewController+OCSReliantExcludingPropertyProvider.h in Headers */,
 				27861568181D0BC400B7A755 /* NSObject+OCSReliantExcludingPropertyProvider.h in Headers */,
 				274D7BC41563BFA10007C1C8 /* OCSConfigurator.h in Headers */,
@@ -981,7 +981,6 @@
 				3323FD11BCDBD085F6AE16BA /* OCSBoundContextLocatorChain.h in Headers */,
 				3323FFA927E3C24C9D3A5252 /* NSObject+OCSReliantInjection.h in Headers */,
 				3323F97036220D2683042547 /* OCSBoundContextLocatorFactory.h in Headers */,
-				3323F65B9CA84F704D790577 /* OCSBoundContextLocatorOnApplicationDelegate.h in Headers */,
 				3323FA057F309ADDD96AB60E /* OCSBoundContextLocatorOnViewControllerHierarchy.h in Headers */,
 				3323F6E3165A5D7AABBE40CA /* OCSContextRegistry.h in Headers */,
 				3323F04120AC4D517F0EAB02 /* OCSDefaultContextRegistry.h in Headers */,
@@ -998,6 +997,7 @@
 				2765CBD11572A7C100ABE59C /* OCSScope.h in Headers */,
 				2765CBD31572A7C100ABE59C /* OCSConfiguratorBase.h in Headers */,
 				2765CBD41572A7C100ABE59C /* OCSConfiguratorBase+ForSubclassEyesOnly.h in Headers */,
+				278010781CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */,
 				2765CBD51572A7C100ABE59C /* OCSConfiguratorFromClass.h in Headers */,
 				2765CBD61572A7C100ABE59C /* OCSDefinition.h in Headers */,
 				2765CBD21572A7C100ABE59C /* OCSSingletonScope.h in Headers */,
@@ -1011,7 +1011,6 @@
 				3323F50736D4405FE8C9DA02 /* OCSBoundContextLocatorChain.h in Headers */,
 				3323FB4C057E85B4B8E09C9C /* NSObject+OCSReliantInjection.h in Headers */,
 				3323F22EBF28C3312422AF31 /* OCSBoundContextLocatorFactory.h in Headers */,
-				3323FC6D7AC85AFBA41DABB3 /* OCSBoundContextLocatorOnOSXApplicationDelegate.h in Headers */,
 				3323F41E647D6E82F79A87EE /* OCSContextRegistry.h in Headers */,
 				3323FFDE7E1CEEF31193ABA6 /* OCSDefaultContextRegistry.h in Headers */,
 			);
@@ -1022,6 +1021,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				278491E51CD3444B0024E6D4 /* Reliant watchOS.h in Headers */,
+				278010791CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,6 +1030,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				278492041CD346F10024E6D4 /* Reliant tvOS.h in Headers */,
+				2780107A1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1448,8 +1449,8 @@
 				3323F1DCF8B76DD47C966E4E /* OCSBoundContextLocatorChain.m in Sources */,
 				3323F7648E56EA92F3CA84F3 /* NSObject+OCSReliantInjection.m in Sources */,
 				3323F77948FC3A6CD3A144E5 /* OCSBoundContextLocatorFactory.m in Sources */,
-				3323F170C84639F893F9076A /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */,
 				3323FE392EE6AB77B4B08BE3 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */,
+				2780107B1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				3323F358D92646042BE642E8 /* OCSDefaultContextRegistry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1485,7 +1486,6 @@
 				3323FA54840E6D74EBE0C870 /* RecursiveConfigurationTest.m in Sources */,
 				3323F4BB96A8E9F075033FFA /* HierarchicalContextsIntegrationTest.m in Sources */,
 				3323F01E073E198FD8280A91 /* NSObject+OCSReliantContextBinding.m in Sources */,
-				3323F8E02B69566987E76842 /* OCSBoundContextCrawlerTest.m in Sources */,
 				3323F66174691139C00CA029 /* NSObject+OCSReliantContextBindingTest.m in Sources */,
 				3323F5681EFA97E5E060F190 /* OCSDefaultScopeFactoryTest.m in Sources */,
 				3323FA2D324A0EFDCE0A56BF /* OCSPrototypeScopeTests.m in Sources */,
@@ -1493,12 +1493,13 @@
 				3323F7CDA74A68986E6973F2 /* OCSBoundContextLocatorOnGivenObject.m in Sources */,
 				3323FE39B34AC682759F1F54 /* OCSBoundContextLocatorOnGivenObjectTest.m in Sources */,
 				3323F98B8B3699621CBCA188 /* OCSBoundContextLocatorOnViewControllerHierarchyTest.m in Sources */,
+				2780107C1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				3323F6FFCCE6572F2F2CF706 /* OCSBoundContextLocatorChain.m in Sources */,
 				3323F852D44C7EB1668122D5 /* OCSBoundContextLocatorChainTest.m in Sources */,
 				3323F409FAE4E29E215A0B03 /* NSObject+OCSReliantInjection.m in Sources */,
 				3323FB79FE657F7920BE7FB4 /* NSObject+OCSReliantInjectionTest.m in Sources */,
 				3323F95088C60DFF7AC8AB4B /* OCSBoundContextLocatorFactory.m in Sources */,
-				3323F7860771F657562766A5 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */,
+				278010831CD7464500121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */,
 				3323FD6D429AC8A190BFC9A5 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */,
 				3323F0E50ED598B66052A91D /* OCSBoundContextLocatorFactoryTest.m in Sources */,
 				3323F3FE7B2C66C45A0CD38F /* OCSDefaultContextRegistry.m in Sources */,
@@ -1523,12 +1524,12 @@
 				3323F329CDC245C7313C35BF /* OCSDefinition.m in Sources */,
 				3323FCBB234922E211AAF8D3 /* OCSDefaultScopeFactory.m in Sources */,
 				3323F3795AEF595FC6204CB6 /* OCSRuntimeMagic.m in Sources */,
+				2780107D1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				3323F63DD4B23D955E97A8C2 /* NSObject+OCSReliantContextBinding.m in Sources */,
 				3323F034055C52F8D2C6EE6A /* OCSBoundContextLocatorOnGivenObject.m in Sources */,
 				3323FAB7E65F8CE490C033DC /* OCSBoundContextLocatorChain.m in Sources */,
 				3323FCD2452CB1EC9C3CFBD2 /* NSObject+OCSReliantInjection.m in Sources */,
 				3323FD68A3F8D8D926269C0D /* OCSBoundContextLocatorFactory.m in Sources */,
-				3323FA0FD8D28F9E15A4FE7D /* OCSBoundContextLocatorOnOSXApplicationDelegate.m in Sources */,
 				3323F8B8E9E4B37E215F1530 /* OCSDefaultContextRegistry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1555,12 +1556,12 @@
 				3323FCCEA4CE43C732E0E79A /* OCSDefinition.m in Sources */,
 				3323F311CDF8BF129535AD4A /* OCSDefaultScopeFactory.m in Sources */,
 				3323FE89A0052BCC664931C2 /* OCSRuntimeMagic.m in Sources */,
+				278010841CD7464900121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */,
 				3323FA842AC8404BF9E08E0B /* SimpleConfigurationIntegrationTest.m in Sources */,
 				3323F9E5388F46156E0F51C6 /* DependencyTreeConfigurationIntegrationTest.m in Sources */,
 				3323F8FC8D2366FA7FF07F04 /* RecursiveConfigurationTest.m in Sources */,
 				3323F112640221AAF16CE375 /* HierarchicalContextsIntegrationTest.m in Sources */,
 				3323F9F80210B1F6C3F2E11C /* NSObject+OCSReliantContextBinding.m in Sources */,
-				3323FB4D980D33FF5DF48242 /* OCSBoundContextCrawlerTest.m in Sources */,
 				3323FBE11786DD288572F203 /* NSObject+OCSReliantContextBindingTest.m in Sources */,
 				3323F7030A0131815841CB85 /* OCSDefaultScopeFactoryTest.m in Sources */,
 				3323F09933BDDB00205E099D /* OCSPrototypeScopeTests.m in Sources */,
@@ -1569,10 +1570,10 @@
 				3323FF649029EFC11EA53FA8 /* OCSBoundContextLocatorOnGivenObjectTest.m in Sources */,
 				3323F53D1820191BFBC5AD63 /* OCSBoundContextLocatorChain.m in Sources */,
 				3323F216B1EADA32FB554F07 /* OCSBoundContextLocatorChainTest.m in Sources */,
+				2780107E1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				3323F9204E3EC714E60EC271 /* NSObject+OCSReliantInjection.m in Sources */,
 				3323F490699CF00D5D30E1BA /* NSObject+OCSReliantInjectionTest.m in Sources */,
 				3323F2FC62711FC962764955 /* OCSBoundContextLocatorFactory.m in Sources */,
-				3323FB1216132767703CF155 /* OCSBoundContextLocatorOnOSXApplicationDelegate.m in Sources */,
 				3323F93229F385DF4E85713C /* OCSBoundContextLocatorFactoryTest.m in Sources */,
 				3323F570E352C96AE885A207 /* OCSDefaultContextRegistry.m in Sources */,
 				3323FB1B81B8A0A758EEF4CF /* OCSDefaultContextRegistryTest.m in Sources */,
@@ -1591,6 +1592,7 @@
 				278491EF1CD3449D0024E6D4 /* OCSPrototypeScope.m in Sources */,
 				278491F01CD3449D0024E6D4 /* OCSDefaultScopeFactory.m in Sources */,
 				278491F11CD3449D0024E6D4 /* NSObject+OCSReliantExcludingPropertyProvider.m in Sources */,
+				2780107F1CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				278491F21CD3449D0024E6D4 /* NSObject+OCSReliantContextBinding.m in Sources */,
 				278491F31CD3449D0024E6D4 /* NSObject+OCSReliantInjection.m in Sources */,
 				278491F61CD3449D0024E6D4 /* OCSPropertyRuntimeInfo.m in Sources */,
@@ -1623,8 +1625,8 @@
 				278492171CD347210024E6D4 /* OCSBoundContextLocatorOnGivenObject.m in Sources */,
 				278492181CD347210024E6D4 /* OCSBoundContextLocatorChain.m in Sources */,
 				278492191CD347210024E6D4 /* OCSBoundContextLocatorFactory.m in Sources */,
-				2784921A1CD347210024E6D4 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */,
 				2784921B1CD347210024E6D4 /* OCSBoundContextLocatorOnViewControllerHierarchy.m in Sources */,
+				278010801CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				2784921D1CD347210024E6D4 /* OCSDefaultContextRegistry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1666,14 +1668,14 @@
 				2784923C1CD347B00024E6D4 /* NSObject+OCSReliantInjectionTest.m in Sources */,
 				2784925A1CD34B420024E6D4 /* OCSRuntimeMagic.m in Sources */,
 				2784923D1CD347B00024E6D4 /* TestObject.m in Sources */,
-				278492491CD34A220024E6D4 /* OCSBoundContextLocatorOnApplicationDelegate.m in Sources */,
+				278010811CD7460800121AB7 /* OCSBoundContextLocatorOnSharedObject.m in Sources */,
 				2784923E1CD347B00024E6D4 /* Setup.m in Sources */,
 				2784923F1CD347B00024E6D4 /* OCSDefaultScopeFactoryTest.m in Sources */,
 				278492401CD347B00024E6D4 /* OCSPrototypeScopeTests.m in Sources */,
 				278492411CD347B00024E6D4 /* OCSSingletonScopeTests.m in Sources */,
 				2784924D1CD34B000024E6D4 /* OCSDefinition.m in Sources */,
 				2784924A1CD34AAA0024E6D4 /* OCSBoundContextLocatorChain.m in Sources */,
-				278492421CD347B00024E6D4 /* OCSBoundContextCrawlerTest.m in Sources */,
+				278010851CD7464B00121AB7 /* OCSBoundContextLocatorOnSharedObjectTests.m in Sources */,
 				278492431CD347B00024E6D4 /* OCSBoundContextLocatorOnGivenObjectTest.m in Sources */,
 				278492571CD34B310024E6D4 /* UIResponder+OCSReliantExcludingPropertyProvider.m in Sources */,
 				278492441CD347B00024E6D4 /* OCSBoundContextLocatorOnViewControllerHierarchyTest.m in Sources */,
