@@ -73,11 +73,20 @@ The scope factory, used to retrieve scopes based on the definitions found in thi
 @property(nonatomic, readonly) id <OCSScopeFactory> scopeFactory;
 
 /**
-Designated initializer. Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory and  the context registry to OCSDefaultContextRegistry shared instance.
+Convenience initializer. Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory and  the context registry to OCSDefaultContextRegistry shared instance.
 
 @param configurator The configurator that will be used to setup the context.
 */
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator;
+
+/**
+ Designated initializer. Prepares the object context with the given configurator. Sets the scope factory to an instance of OCSDefaultScopeFactory, the context registry to OCSDefaultContextRegistry shared instance and registers the context linked to it's bound object.
+ 
+ @param configurator The configurator that will be used to setup the context.
+ @param boundObject  The object to which this context is bound. Defaults to nil, but you should probably not rely on this default.
+ */
+
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator boundObject:(NSObject*)boundObject;
 
 /**
 Convenience initializer. Prepares the object context with the given configurator and the given scope factory. Each different context should have it's own configurator instance, and it's own scope factory. You should never share configurators and scope factories between contexts.
@@ -88,5 +97,13 @@ Convenience initializer. Prepares the object context with the given configurator
 */
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>)contextRegistry;
 
+/**
+ Convenience initializer. Prepares the object context with the given configurator and the given scope factory. Each different context should have it's own configurator instance, and it's own scope factory. You should never share configurators and scope factories between contexts.
+ 
+ @param configurator The configurator that provides object definitions and the object factory.
+ @param scopeFactory The factory used to look up scopes.
+ @param contextRegistry The context registry to which this context should be recorded.
+ @param boundObject The object to which this context is bound. Defaults to nil, but you should probably not rely on this default.
+ */
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id <OCSContextRegistry>)contextRegistry boundObject:(NSObject *)boundObject;
 @end

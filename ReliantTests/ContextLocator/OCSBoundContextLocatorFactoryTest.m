@@ -10,11 +10,9 @@
 #import "OCSBoundContextLocatorFactory.h"
 #import "OCSBoundContextLocatorChain.h"
 #import "OCSBoundContextLocatorOnGivenObject.h"
+#import "OCSBoundContextLocatorOnSharedObject.h"
 #if TARGET_OS_IPHONE
 #import "OCSBoundContextLocatorOnViewControllerHierarchy.h"
-#import "OCSBoundContextLocatorOnApplicationDelegate.h"
-#elif TARGET_OS_MAC
-#import "OCSBoundContextLocatorOnOSXApplicationDelegate.h"
 #endif
 
 #define HC_SHORTHAND
@@ -44,10 +42,10 @@
     OCSBoundContextLocatorChain *chain =  [OCSBoundContextLocatorFactory sharedBoundContextLocatorFactory].contextLocator;
 #if TARGET_OS_IOS || TARGET_OS_TV
     assertThat(chain.locators, hasCountOf(3));
-    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnViewControllerHierarchy class]), instanceOf([OCSBoundContextLocatorOnApplicationDelegate class]), nil));
+    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnViewControllerHierarchy class]), instanceOf([OCSBoundContextLocatorOnSharedObject class]), nil));
 #elif TARGET_OS_MAC && !TARGET_OS_WATCH
     assertThat(chain.locators, hasCountOf(2));
-    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnOSXApplicationDelegate class]), nil));
+    assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), instanceOf([OCSBoundContextLocatorOnSharedObject class]), nil));
 #else
     assertThat(chain.locators, hasCountOf(1));
     assertThat(chain.locators, hasItems(instanceOf([OCSBoundContextLocatorOnGivenObject class]), nil));
