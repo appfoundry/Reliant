@@ -2,4 +2,5 @@
 # The podfile in your own project should only contain:
 #   pod 'Reliant'
 
+target ‘ReliantExample’
 pod 'Reliant', :path => '../../'

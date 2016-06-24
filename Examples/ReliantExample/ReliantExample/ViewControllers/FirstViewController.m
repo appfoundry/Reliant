@@ -18,10 +18,13 @@
 
 @implementation FirstViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)awakeFromNib {
     [self ocsInject];
     self.title = [NSString stringWithFormat:@"- %@ -", self.detailViewModel.info.message];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

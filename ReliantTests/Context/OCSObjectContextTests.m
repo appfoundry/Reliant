@@ -122,7 +122,8 @@
     _contextRegistry = mockProtocol(@protocol(OCSContextRegistry));
     _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
 }
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
 - (void)testShouldNotInitWithoutConfig {
     _context = [[OCSObjectContext alloc] initWithConfigurator:nil scopeFactory:_scopeFactory contextRegistry:_contextRegistry];
     assertThat(_context, is(nilValue()));
@@ -137,6 +138,7 @@
     _context = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:nil];
     assertThat(_context, is(nilValue()));
 }
+#pragma clang diagnostic pop
 
 - (void)testShouldThrowExceptionWhenConfiguredParentContextIsMissing {
     [given(_configurator.parentContextName) willReturn:@"ParentContext"];
@@ -269,6 +271,12 @@
 
 - (void)testContextShouldBeRegisteredWithContextRegistry {
     [verify(_contextRegistry) registerContext:_context toBoundObject:nil];
+}
+
+- (void)testContextCanBeInitializedWithParentContext {
+    id<OCSObjectContext> parentContext = mockProtocol(@protocol(OCSObjectContext));
+    _context  = [[OCSObjectContext alloc] initWithConfigurator:_configurator scopeFactory:_scopeFactory contextRegistry:_contextRegistry boundObject:self parentContext:parentContext];
+    assertThat(_context.parentContext, is(sameInstance(parentContext)));
 }
 
 - (OCSDefinition *)_prepareContextToFindObjectForKey:(NSString *)objectKey inScopeNamed:(NSString *)scopeName withValue:(id)expectedObject {

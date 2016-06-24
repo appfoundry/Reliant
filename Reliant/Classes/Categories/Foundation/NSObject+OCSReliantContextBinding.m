@@ -29,4 +29,10 @@ static char ocsObjectContextKey;
     [self.ocsObjectContext start];
 }
 
+- (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class)factoryClass parentContext:(id<OCSObjectContext>)parentContext {
+    id<OCSConfigurator> configurator = [[OCSConfiguratorFromClass alloc] initWithClass:factoryClass];
+    self.ocsObjectContext = [[OCSObjectContext alloc] initWithConfigurator:configurator scopeFactory:[[OCSDefaultScopeFactory alloc] init] contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry] boundObject:self parentContext:parentContext];
+    [self.ocsObjectContext start];
+}
+
 @end

@@ -36,8 +36,7 @@
     NSLog(@"The app delegate is now injected and holds the StringProvider as configured in the AppConfiguration class: %@", [self.stringProvider provideString]);
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[[RootViewController alloc] init]];
-    self.window.rootViewController = controller;
+    self.window.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
