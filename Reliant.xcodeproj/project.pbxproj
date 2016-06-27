@@ -838,7 +838,8 @@
 				2775925D1CFEEAC60074C25F /* OCSDefaultBootstrapper.h */,
 				2775925E1CFEEAC60074C25F /* OCSDefaultBootstrapper.m */,
 			);
-			path = Bootstrap;
+			name = Bootstrap;
+			path = Classes/Bootstrap;
 			sourceTree = "<group>";
 		};
 		277592611D0170250074C25F /* Bootstrap */ = {
