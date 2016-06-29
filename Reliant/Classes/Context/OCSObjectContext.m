@@ -62,16 +62,33 @@ Recursive method for injecting objects with their dependencies. This method iter
     return [self initWithConfigurator:configurator boundObject:nil];
 }
 
+- (id)initWithConfigurator:(id <OCSConfigurator>)configurator parentContext:(id<OCSObjectContext>)parentContext {
+    return [self initWithConfigurator:configurator boundObject:nil parentContext:parentContext];
+}
+
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator boundObject:(NSObject*)boundObject {
     OCSDefaultScopeFactory *defaultScopeFactory = [[OCSDefaultScopeFactory alloc] init];
     return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry] boundObject:boundObject];
+}
+
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator boundObject:(NSObject*)boundObject parentContext:(id<OCSObjectContext>)parentContext {
+    OCSDefaultScopeFactory *defaultScopeFactory = [[OCSDefaultScopeFactory alloc] init];
+    return [self initWithConfigurator:configurator scopeFactory:defaultScopeFactory contextRegistry:[OCSDefaultContextRegistry sharedDefaultContextRegistry] boundObject:boundObject parentContext:parentContext];
 }
 
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry  {
     return [self initWithConfigurator:configurator scopeFactory:scopeFactory contextRegistry:contextRegistry boundObject:nil];
 }
 
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>)contextRegistry parentContext:(id<OCSObjectContext>)parentContext {
+    return [self initWithConfigurator:configurator scopeFactory:scopeFactory contextRegistry:contextRegistry boundObject:nil parentContext:parentContext];
+}
+
 - (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id<OCSContextRegistry>) contextRegistry boundObject:(NSObject*)boundObject  {
+    return [self initWithConfigurator:configurator scopeFactory:scopeFactory contextRegistry:contextRegistry boundObject:boundObject parentContext:[self _parentContextIfPossibleFromBoundObject:boundObject configurator:configurator contextRegistry:contextRegistry]];
+}
+
+- (instancetype)initWithConfigurator:(id <OCSConfigurator>)configurator scopeFactory:(id <OCSScopeFactory>)scopeFactory contextRegistry:(id <OCSContextRegistry>)contextRegistry boundObject:(NSObject *)boundObject parentContext:(id<OCSObjectContext>)parentContext {
     if (self && configurator && scopeFactory && contextRegistry) {
         self = [super init];
         _configurator = configurator;
@@ -79,7 +96,10 @@ Recursive method for injecting objects with their dependencies. This method iter
         _contextRegistry = contextRegistry;
         [_configurator.objectFactory bindToContext:self];
         [_contextRegistry registerContext:self toBoundObject:boundObject];
-        [self _setParentContextIfPossibleFromBoundObject:boundObject];
+        _parentContext = parentContext;
+        if (_parentContext && ![_parentContext.name isEqualToString:configurator.parentContextName]) {
+            DLog(@"WARNING: context with name (%@) has a configurator with parentContextName (%@) which does not equal the actual parentContext name (%@)", self.name, configurator.parentContextName, parentContext.name);
+        }
         _objectsUnderConstruction = [NSMutableDictionary dictionary];
         [self performInjectionOn:_configurator.objectFactory];
     } else {
@@ -88,15 +108,16 @@ Recursive method for injecting objects with their dependencies. This method iter
     return self;
 }
 
-- (void)_setParentContextIfPossibleFromBoundObject:(NSObject *)boundObject {
-    NSString *parentContextName = _configurator.parentContextName;
+- (id<OCSObjectContext>)_parentContextIfPossibleFromBoundObject:(NSObject *)boundObject configurator:(id <OCSConfigurator>)configurator contextRegistry:(id<OCSContextRegistry>) contextRegistry {
+    NSString *parentContextName = configurator.parentContextName;
+    id<OCSObjectContext> parentContext = nil;
     if (parentContextName) {
-        id <OCSObjectContext> parentContext = [_contextRegistry contextForName:parentContextName fromBoundObject:boundObject];
+        parentContext = [contextRegistry contextForName:parentContextName fromBoundObject:boundObject];
         if (!parentContext) {
-            [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found for context (%@). Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created (and bound) before this context is.", parentContextName, _configurator.contextName];
+            [NSException raise:@"ParentNotFoundException" format:@"The configured parent (%@) could not be found for context (%@). Make sure you configured the name correctly (both on the parent and this context's configuration) and that the parent context is created (and bound) before this context is.", parentContextName, configurator.contextName];
         }
-        _parentContext = parentContext;
     }
+    return parentContext;
 }
 
 - (NSString *)name {

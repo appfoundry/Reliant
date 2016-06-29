@@ -26,4 +26,14 @@ Bootstraps and binds an object context, configured based on the given factory cl
 */
 - (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class) factoryClass;
 
+
+/**
+ Bootstraps and binds an object context with the given parent context, configured based on the given factory class, to this instance.
+ 
+ @param factoryClass the factory class to be used as factory and configuration for bound context.
+ @param parentContext the parent context for bound context.
+ @see OCSConfiguratorFromClass
+ */
+- (void)ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:(Class) factoryClass parentContext:(id<OCSObjectContext>)parentContext;
+
 @end

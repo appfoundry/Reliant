@@ -24,4 +24,15 @@
     return context;
 }
 
+- (id<OCSObjectContext>)bootstrapObjectContextWithConfigurationFromClass:(Class)configuration bindOnObject:(NSObject *)object parentContext:(id<OCSObjectContext>)parentContext {
+    [object ocsBootstrapAndBindObjectContextWithConfiguratorFromClass:configuration parentContext:parentContext];
+    return object.ocsObjectContext;
+}
+
+- (id<OCSObjectContext>)bootstrapObjectContextWithConfigurationFromClass:(Class)configuration bindAndInjectObject:(NSObject *)object parentContext:(id<OCSObjectContext>)parentContext {
+    id<OCSObjectContext> context = [self bootstrapObjectContextWithConfigurationFromClass:configuration bindOnObject:object parentContext:parentContext];
+    [object ocsInject];
+    return context;
+}
+
 @end

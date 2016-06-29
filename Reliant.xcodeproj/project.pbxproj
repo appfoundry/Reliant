@@ -838,7 +838,8 @@
 				2775925D1CFEEAC60074C25F /* OCSDefaultBootstrapper.h */,
 				2775925E1CFEEAC60074C25F /* OCSDefaultBootstrapper.m */,
 			);
-			path = Bootstrap;
+			name = Bootstrap;
+			path = Classes/Bootstrap;
 			sourceTree = "<group>";
 		};
 		277592611D0170250074C25F /* Bootstrap */ = {
@@ -1821,6 +1822,7 @@
 					LOG_RELIANT,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1850,6 +1852,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

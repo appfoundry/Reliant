@@ -21,16 +21,15 @@
 
 @implementation SecondViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-}
 
-- (void)didMoveToParentViewController:(UIViewController *)parent {
-    [super didMoveToParentViewController:parent];
+-(void)awakeFromNib {
     [self ocsInject];
     self.title = [NSString stringWithFormat:@"- %@ -", self.detailViewModel.info.message];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+}
 
 @end

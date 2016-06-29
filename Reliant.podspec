@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Reliant'
-  s.version      = '2.3.2'
+  s.version      = '2.4.0'
   s.summary      = 'Reliant is a light-weight Dependency Injection (DI) framework for Objective-C, both for OS X and iOS.'
   s.homepage     = 'https://github.com/appfoundry/Reliant'
   s.license      = 'MIT'
